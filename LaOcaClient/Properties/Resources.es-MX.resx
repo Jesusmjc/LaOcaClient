@@ -133,7 +133,7 @@
     <value>Iniciar sesión</value>
   </data>
   <data name="btnOlvideMiContraseña" xml:space="preserve">
-    <value>Olvidé mi contraseña</value>
+    <value>Olvié mi contraseña</value>
   </data>
   <data name="btnReenviarCodigo" xml:space="preserve">
     <value>Reenviar código después de:</value>
@@ -199,7 +199,7 @@
     <value>Ocurrió un error inesperado. Por favor intente más tarde.</value>
   </data>
   <data name="globalIdiomaPreferente" xml:space="preserve">
-    <value>Idioma preferente:</value>
+    <value>Idioma preferente</value>
   </data>
   <data name="globalJugarComoInvitado" xml:space="preserve">
     <value>Jugar como invitado</value>
@@ -232,7 +232,7 @@
     <value>Salir</value>
   </data>
   <data name="globalSocial" xml:space="preserve">
-    <value>Social</value>
+    <value>Social </value>
   </data>
   <data name="globalVisibilidad" xml:space="preserve">
     <value>Visibilidad</value>
@@ -241,7 +241,7 @@
     <value>Confirmar la nueva contraseña:</value>
   </data>
   <data name="lbEnviarSolicitudAmistad" xml:space="preserve">
-    <value>Enviar solicitud de amistad</value>
+    <value>Enviar solicitud de amistaD</value>
   </data>
   <data name="lbIngresarCodigo" xml:space="preserve">
     <value>Ingrese el código de verificación:</value>
@@ -271,7 +271,7 @@
     <value>¿Estás seguro de que deseas cancelar la creación de la cuenta?</value>
   </data>
   <data name="msgCuentaCreada" xml:space="preserve">
-    <value>La cuenta se ha creado correctamente.</value>
+    <value>La cuenta se ha creado correctamente</value>
   </data>
   <data name="msgMensajeEnviado" xml:space="preserve">
     <value>Se ha enviado un código a su correo para restablecer la contraseña.</value>

@@ -1,0 +1,26 @@
+﻿<Window x:Class="LaOcaClient.IniciarSesion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaOcaClient"
+        xmlns:p="clr-namespace:LaOcaClient.Properties"
+        mc:Ignorable="d"
+        Title="IniciarSesion" Height="500" Width="800">
+    <Grid>
+        <Label x:Name="lbInicioSesion" Content="{x:Static p:Resources.lbInicioSesion}" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" FontSize="48" Width="338"/>
+        <TextBox x:Name="usuarioLogin" HorizontalAlignment="Left" Margin="259,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Height="25" 
+                 Text="{x:Static p:Resources.usuarioLogin}" Tag="{x:Static p:Resources.usuarioLogin}" Foreground="Gray" GotFocus="ManejarFocoTextBox" LostFocus="ManejarPerdidaFocoTextBox"/>
+        <TextBox x:Name="contraseñaLogin" HorizontalAlignment="Left" Margin="259,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Height="25" 
+                 Text="{x:Static p:Resources.contraseñaLogin}"  Tag="{x:Static p:Resources.contraseñaLogin}" Foreground="Gray" GotFocus="ManejarFocoTextBox" LostFocus="ManejarPerdidaFocoTextBox"/>
+        <Button x:Name="btnIniciarSesion" Content="{x:Static p:Resources.btnIniciarSesion}" HorizontalAlignment="Left" Margin="295,242,0,0" VerticalAlignment="Top" Width="216" Height="30" FontSize="14"
+                Background="Green" Foreground="White" FontWeight="Bold" Click="btnIniciarSesion_Click"/>
+        <Button x:Name="btnOlvideMiContraseña" Content="{x:Static p:Resources.btnOlvideMiContraseña}"  HorizontalAlignment="Left" Margin="341,292,0,0" VerticalAlignment="Top" 
+                 Foreground="DarkBlue" Background="Transparent" BorderBrush="Transparent" FontWeight="Bold" Cursor="" Click="btnOlvideMiContraseña_Click"/>
+        <Button x:Name="btnCrearCuentaNueva" Content="{x:Static p:Resources.btnCrearCuenta}"  HorizontalAlignment="Left" Margin="400,327,0,0" VerticalAlignment="Top" Width="135"
+                Foreground="DarkBlue" Background="Transparent" BorderBrush="Transparent" FontWeight="Bold" Cursor="Hand" Click="btnCrearCuentaNueva_Click" />
+        <Button x:Name="btnJugarComoInvitado" Content="{x:Static p:Resources.globalJugarComoInvitado}"  HorizontalAlignment="Left" Margin="343,362,0,0" VerticalAlignment="Top" 
+                Foreground="DarkBlue" Background="Transparent" BorderBrush="Transparent" FontWeight="Bold" Cursor="Hand" Click="btnJugarComoInvitado_Click"/>
+        <Label x:Name="lbNoTengoCuenta" Content="{x:Static p:Resources.lbNoTengoCuenta}"  HorizontalAlignment="Left" Margin="271,324,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.897,0.502" Width="144"/>
+    </Grid>
+</Window>
