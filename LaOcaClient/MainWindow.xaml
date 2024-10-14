@@ -8,6 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button Content="La Prueba" HorizontalAlignment="Left" Margin="359,170,0,0" VerticalAlignment="Top" Click="ProbarConexión"/>
+        <Button Content="Agregar usuario" HorizontalAlignment="Left" Margin="591,217,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
     </Grid>
 </Window>

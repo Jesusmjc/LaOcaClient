@@ -22,6 +22,7 @@
     <MetadataSource Address="http://localhost:8082" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="5c524d95-b6be-4b19-8788-285e8f589437" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd2" />
     <MetadataFile FileName="LaOcaService.wsdl" MetadataType="Wsdl" ID="6798cf65-a8dc-416e-bd49-93d0f7ebbddf" SourceId="1" SourceUrl="http://localhost:8082/?wsdl" />
     <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="aca0794e-f4a7-4d44-b12a-8e35cbca6a1b" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd0" />
     <MetadataFile FileName="item.disco" MetadataType="Disco" ID="3c010e5d-226a-4704-9a2f-c4deb5c5f618" SourceId="1" SourceUrl="http://localhost:8082/?disco" />
