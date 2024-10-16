@@ -118,168 +118,168 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btnCrearCuenta" xml:space="preserve">
-    <value>Crear cuenta nueva</value>
+    <value>Create new account</value>
   </data>
   <data name="btnEnviarCodigo" xml:space="preserve">
-    <value>Enviar</value>
+    <value>Send</value>
   </data>
   <data name="btnGuardarCambios" xml:space="preserve">
-    <value>Guardar cambios</value>
+    <value>Save changes</value>
   </data>
   <data name="btnGuardarNuevaContraseña" xml:space="preserve">
-    <value>Guardar</value>
+    <value>Save</value>
   </data>
   <data name="btnIniciarSesion" xml:space="preserve">
-    <value>Iniciar sesión</value>
+    <value>Login</value>
   </data>
   <data name="btnOlvideMiContraseña" xml:space="preserve">
-    <value>Olvidé mi contraseña</value>
+    <value>Forgot password</value>
   </data>
   <data name="btnReenviarCodigo" xml:space="preserve">
-    <value>Reenviar código después de:</value>
+    <value>Resend code after:</value>
   </data>
   <data name="btnSeleccionarImagenPerfil" xml:space="preserve">
-    <value>Seleccionar imagen de perfil</value>
+    <value>Select porfile image</value>
   </data>
   <data name="btnVerificarCodigo" xml:space="preserve">
-    <value>Verificar</value>
+    <value>Verify</value>
   </data>
   <data name="camposVaciosLogin" xml:space="preserve">
-    <value>Por favor llena todos los campos</value>
+    <value>Please fill in all fields</value>
   </data>
   <data name="caracteresInvalidosLogin" xml:space="preserve">
-    <value>El nombre de usuario o contraseña contienen caracteres inválidos</value>
+    <value>The username or password contains invalid characters</value>
   </data>
   <data name="contraseñaLogin" xml:space="preserve">
-    <value>Contraseña</value>
+    <value>Password</value>
   </data>
   <data name="credencialesIncorrectasLogin" xml:space="preserve">
-    <value>Usuario o contraseña incorrectos</value>
+    <value>Incorrect username or password</value>
   </data>
   <data name="globalAceptar" xml:space="preserve">
-    <value>Aceptar</value>
+    <value>Accept</value>
   </data>
   <data name="btnGlobalEntrar" xml:space="preserve">
-    <value>Entrar</value>
+    <value>Enter</value>
   </data>
   <data name="btnGlobalRegresar" xml:space="preserve">
-    <value>Regresar</value>
+    <value>Back</value>
   </data>
   <data name="globalCampoObligatorio" xml:space="preserve">
-    <value>Campo obligatorio*</value>
+    <value>Required field*</value>
   </data>
   <data name="globalCancelar" xml:space="preserve">
-    <value>Cancelar</value>
+    <value>Cancel</value>
   </data>
   <data name="globalCaracteresInvalidos" xml:space="preserve">
-    <value>Caracteres inválidos*</value>
+    <value>Invalid characters*</value>
   </data>
   <data name="globalConfiguración" xml:space="preserve">
-    <value>Configuración</value>
+    <value>Settings</value>
   </data>
   <data name="globalConfirmarContraseña" xml:space="preserve">
-    <value>Confirmar contraseña:</value>
+    <value>Confirm password:</value>
   </data>
   <data name="globalContraseña" xml:space="preserve">
-    <value>Contraseña:</value>
+    <value>Password:</value>
   </data>
   <data name="globalContraseñasNoCoinciden" xml:space="preserve">
-    <value>Las contraseñas no coinciden</value>
+    <value>Passwords do not match</value>
   </data>
   <data name="globalCorreo" xml:space="preserve">
-    <value>Correo:</value>
+    <value>Mail:</value>
   </data>
   <data name="globalCrearCuenta" xml:space="preserve">
-    <value>Crear cuenta</value>
+    <value>Create account</value>
   </data>
   <data name="globalErrorBD" xml:space="preserve">
-    <value>No fue posible conectarse a la base de datos. Por favor intente más tarde.</value>
+    <value>Failed to connect to the database. Please try again later.</value>
   </data>
   <data name="globalErrorServidor" xml:space="preserve">
-    <value>Ocurrió un error inesperado. Por favor intente más tarde.</value>
+    <value>An unexpected error occurred. Please try again later.</value>
   </data>
   <data name="globalIdiomaPreferente" xml:space="preserve">
-    <value>Idioma preferente:</value>
+    <value>Preferred languaje:</value>
   </data>
   <data name="globalJugarComoInvitado" xml:space="preserve">
-    <value>Jugar como invitado</value>
+    <value>Play as a guest</value>
   </data>
   <data name="globalMsgBienvenido" xml:space="preserve">
-    <value>Bienvenido</value>
+    <value>Welcome</value>
   </data>
   <data name="globalNombreCompleto" xml:space="preserve">
-    <value>Nombre completo:</value>
+    <value>Full name:</value>
   </data>
   <data name="globalNombreUsuario" xml:space="preserve">
-    <value>Nombre de usuario:</value>
+    <value>Username:</value>
   </data>
   <data name="globalPrivada" xml:space="preserve">
-    <value>Privada</value>
+    <value>Private</value>
   </data>
   <data name="globalPublica" xml:space="preserve">
-    <value>Pública</value>
+    <value>Public</value>
   </data>
   <data name="globalRecuperarContraseña" xml:space="preserve">
-    <value>Recuperar contraseña</value>
+    <value>Recover password</value>
   </data>
   <data name="globalRegresar" xml:space="preserve">
-    <value>Regresar</value>
+    <value>Back</value>
   </data>
   <data name="globalSala" xml:space="preserve">
-    <value>Sala</value>
+    <value>Lobby</value>
   </data>
   <data name="globalSalir" xml:space="preserve">
-    <value>Salir</value>
+    <value>Exit</value>
   </data>
   <data name="globalSocial" xml:space="preserve">
     <value>Social</value>
   </data>
   <data name="globalVisibilidad" xml:space="preserve">
-    <value>Visibilidad</value>
+    <value>Visibility</value>
   </data>
   <data name="lbConfirmarNuevaContraseña" xml:space="preserve">
-    <value>Confirmar la nueva contraseña:</value>
+    <value>Confirm new password:</value>
   </data>
   <data name="lbEnviarSolicitudAmistad" xml:space="preserve">
-    <value>Enviar solicitud de amistad</value>
+    <value>Send friend request</value>
   </data>
   <data name="lbIngresarCodigo" xml:space="preserve">
-    <value>Ingrese el código de verificación:</value>
+    <value>Enter the verification code:</value>
   </data>
   <data name="lbIngresarCorreoo" xml:space="preserve">
-    <value>Ingrese su correo electrónico registrado:</value>
+    <value>Enter your registered emal:</value>
   </data>
   <data name="lbIngresarNombreJugador" xml:space="preserve">
-    <value>Ingrese el nombre del jugador:</value>
+    <value>Enter the player's name:</value>
   </data>
   <data name="lbIngresarNuevaContraseña" xml:space="preserve">
-    <value>Ingrese la nueva contraseña:</value>
+    <value>Enter new password:</value>
   </data>
   <data name="lbInicioSesion" xml:space="preserve">
-    <value>Inicio de sesión</value>
+    <value>Login</value>
   </data>
   <data name="lbModificarCuenta" xml:space="preserve">
-    <value>Modificar cuenta</value>
+    <value>Modify account</value>
   </data>
   <data name="lbNombreUsuarioTemporal" xml:space="preserve">
-    <value>Tu nombre de usuario temporal es:</value>
+    <value>Your temporary username is:</value>
   </data>
   <data name="lbNoTengoCuenta" xml:space="preserve">
-    <value>¿No tiene una cuenta?</value>
+    <value>Don't have an account?</value>
   </data>
   <data name="msgCancelarCreacionCuenta" xml:space="preserve">
-    <value>¿Estás seguro de que deseas cancelar la creación de la cuenta?</value>
+    <value>Are you sure you want to cancel account creation?</value>
   </data>
   <data name="msgCuentaCreada" xml:space="preserve">
-    <value>La cuenta se ha creado correctamente.</value>
+    <value>The account has been created successfully.</value>
   </data>
   <data name="msgMensajeEnviado" xml:space="preserve">
-    <value>Se ha enviado un código a su correo para restablecer la contraseña.</value>
+    <value>A code has been sent to your email to reset your password.</value>
   </data>
   <data name="msgSolicitudAmistadEnviada" xml:space="preserve">
-    <value>Solicitud de amistad enviada.</value>
+    <value>Friend request sent.</value>
   </data>
   <data name="usuarioLogin" xml:space="preserve">
-    <value>Usuario</value>
+    <value>Username</value>
   </data>
 </root>
