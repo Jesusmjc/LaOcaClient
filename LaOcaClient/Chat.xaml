@@ -1,0 +1,17 @@
+﻿<Window x:Class="LaOcaClient.Chat"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaOcaClient"
+        mc:Ignorable="d"
+        Title="Chat" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="btnUnirse" Content="Unirse" HorizontalAlignment="Left" Margin="567,89,0,0" VerticalAlignment="Top" Click="UnirseAlChat" Width="54"/>
+        <Button x:Name="btnEnviar" Content="Enviar" HorizontalAlignment="Left" Margin="567,139,0,0" VerticalAlignment="Top" Click="EnviarMensaje" Width="54"/>
+        <TextBox x:Name="tbxNombreJugador" HorizontalAlignment="Left" Margin="229,91,0,0" TextWrapping="Wrap" Text="Ingresa tu nombre" VerticalAlignment="Top" Width="312"/>
+        <TextBox x:Name="tbxMensaje" HorizontalAlignment="Left" Margin="229,141,0,0" TextWrapping="Wrap" Text="Escribe un mensaje" VerticalAlignment="Top" Width="312"/>
+        <ListBox x:Name="lbChat" HorizontalAlignment="Center" Height="158" Margin="0,217,0,0" VerticalAlignment="Top" Width="496" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+
+    </Grid>
+</Window>

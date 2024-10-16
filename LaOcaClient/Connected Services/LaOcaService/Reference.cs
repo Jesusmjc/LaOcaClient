@@ -57,4 +57,73 @@ namespace LaOcaClient.LaOcaService {
             return base.Channel.GetUserAsync(username);
         }
     }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioChat", CallbackContract=typeof(LaOcaClient.LaOcaService.IServicioChatCallback))]
+    public interface IServicioChat {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioChat/UnirseAlChat")]
+        void UnirseAlChat(string nombreJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioChat/UnirseAlChat")]
+        System.Threading.Tasks.Task UnirseAlChatAsync(string nombreJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioChat/EnviarMensaje")]
+        void EnviarMensaje(string nombreJugador, string mensaje);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioChat/EnviarMensaje")]
+        System.Threading.Tasks.Task EnviarMensajeAsync(string nombreJugador, string mensaje);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioChatCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioChat/MostrarMensaje")]
+        void MostrarMensaje(string nombreJugador, string mensaje);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioChatChannel : LaOcaClient.LaOcaService.IServicioChat, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ServicioChatClient : System.ServiceModel.DuplexClientBase<LaOcaClient.LaOcaService.IServicioChat>, LaOcaClient.LaOcaService.IServicioChat {
+        
+        public ServicioChatClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
+        }
+        
+        public ServicioChatClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
+        }
+        
+        public ServicioChatClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioChatClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioChatClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public void UnirseAlChat(string nombreJugador) {
+            base.Channel.UnirseAlChat(nombreJugador);
+        }
+        
+        public System.Threading.Tasks.Task UnirseAlChatAsync(string nombreJugador) {
+            return base.Channel.UnirseAlChatAsync(nombreJugador);
+        }
+        
+        public void EnviarMensaje(string nombreJugador, string mensaje) {
+            base.Channel.EnviarMensaje(nombreJugador, mensaje);
+        }
+        
+        public System.Threading.Tasks.Task EnviarMensajeAsync(string nombreJugador, string mensaje) {
+            return base.Channel.EnviarMensajeAsync(nombreJugador, mensaje);
+        }
+    }
 }
