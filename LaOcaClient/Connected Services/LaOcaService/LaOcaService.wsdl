@@ -58,10 +58,40 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IServicioInicioSesion_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/LaOcaService" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ILoginService_GetUser_InputMessage">
@@ -79,6 +109,15 @@
   <wsdl:message name="IServicioChat_MostrarMensaje_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MostrarMensaje" />
   </wsdl:message>
+  <wsdl:message name="IServicioInicioSesion_IniciarSesion_InputMessage">
+    <wsdl:part name="parameters" element="tns:IniciarSesion" />
+  </wsdl:message>
+  <wsdl:message name="IServicioInicioSesion_IniciarSesion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IniciarSesionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioInicioSesion_IniciarSesion_InicioSesionExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/LaOcaService" name="detail" element="q1:InicioSesionException" />
+  </wsdl:message>
   <wsdl:portType name="ILoginService">
     <wsdl:operation name="GetUser">
       <wsdl:input wsaw:Action="http://tempuri.org/ILoginService/GetUser" message="tns:ILoginService_GetUser_InputMessage" />
@@ -94,6 +133,13 @@
     </wsdl:operation>
     <wsdl:operation name="MostrarMensaje">
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioChat/MostrarMensaje" message="tns:IServicioChat_MostrarMensaje_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IServicioInicioSesion">
+    <wsdl:operation name="IniciarSesion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioInicioSesion/IniciarSesion" message="tns:IServicioInicioSesion_IniciarSesion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioInicioSesion/IniciarSesionResponse" message="tns:IServicioInicioSesion_IniciarSesion_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IServicioInicioSesion/IniciarSesionInicioSesionExceptionFault" name="InicioSesionExceptionFault" message="tns:IServicioInicioSesion_IniciarSesion_InicioSesionExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_ILoginService" type="tns:ILoginService">
@@ -131,6 +177,22 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IServicioInicioSesion" type="tns:IServicioInicioSesion">
+    <wsp:PolicyReference URI="#NetTcpBinding_IServicioInicioSesion_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="IniciarSesion">
+      <soap12:operation soapAction="http://tempuri.org/IServicioInicioSesion/IniciarSesion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InicioSesionExceptionFault">
+        <soap12:fault use="literal" name="InicioSesionExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:service name="LaOcaService">
     <wsdl:port name="NetTcpBinding_ILoginService" binding="tns:NetTcpBinding_ILoginService">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
@@ -142,6 +204,15 @@
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioChat" binding="tns:NetTcpBinding_IServicioChat">
+      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IServicioInicioSesion" binding="tns:NetTcpBinding_IServicioInicioSesion">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>

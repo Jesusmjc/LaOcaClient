@@ -9,7 +9,304 @@
 //------------------------------------------------------------------------------
 
 namespace LaOcaClient.LaOcaService {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Cuenta", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
+    [System.SerializableAttribute()]
+    public partial class Cuenta : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContrasenaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CorreoElectronicoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdCuentaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdJugadorField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Contrasena {
+            get {
+                return this.ContrasenaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContrasenaField, value) != true)) {
+                    this.ContrasenaField = value;
+                    this.RaisePropertyChanged("Contrasena");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CorreoElectronico {
+            get {
+                return this.CorreoElectronicoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CorreoElectronicoField, value) != true)) {
+                    this.CorreoElectronicoField = value;
+                    this.RaisePropertyChanged("CorreoElectronico");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdCuenta {
+            get {
+                return this.IdCuentaField;
+            }
+            set {
+                if ((this.IdCuentaField.Equals(value) != true)) {
+                    this.IdCuentaField = value;
+                    this.RaisePropertyChanged("IdCuenta");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdJugador {
+            get {
+                return this.IdJugadorField;
+            }
+            set {
+                if ((this.IdJugadorField.Equals(value) != true)) {
+                    this.IdJugadorField = value;
+                    this.RaisePropertyChanged("IdJugador");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Jugador", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
+    [System.SerializableAttribute()]
+    public partial class Jugador : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ApellidoMaternoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ApellidoPaternoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdCuentaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdFotoPerfilField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdJugadorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdPuntuacionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreUsuarioField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ApellidoMaterno {
+            get {
+                return this.ApellidoMaternoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ApellidoMaternoField, value) != true)) {
+                    this.ApellidoMaternoField = value;
+                    this.RaisePropertyChanged("ApellidoMaterno");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ApellidoPaterno {
+            get {
+                return this.ApellidoPaternoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ApellidoPaternoField, value) != true)) {
+                    this.ApellidoPaternoField = value;
+                    this.RaisePropertyChanged("ApellidoPaterno");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdCuenta {
+            get {
+                return this.IdCuentaField;
+            }
+            set {
+                if ((this.IdCuentaField.Equals(value) != true)) {
+                    this.IdCuentaField = value;
+                    this.RaisePropertyChanged("IdCuenta");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdFotoPerfil {
+            get {
+                return this.IdFotoPerfilField;
+            }
+            set {
+                if ((this.IdFotoPerfilField.Equals(value) != true)) {
+                    this.IdFotoPerfilField = value;
+                    this.RaisePropertyChanged("IdFotoPerfil");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdJugador {
+            get {
+                return this.IdJugadorField;
+            }
+            set {
+                if ((this.IdJugadorField.Equals(value) != true)) {
+                    this.IdJugadorField = value;
+                    this.RaisePropertyChanged("IdJugador");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdPuntuacion {
+            get {
+                return this.IdPuntuacionField;
+            }
+            set {
+                if ((this.IdPuntuacionField.Equals(value) != true)) {
+                    this.IdPuntuacionField = value;
+                    this.RaisePropertyChanged("IdPuntuacion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NombreUsuario {
+            get {
+                return this.NombreUsuarioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreUsuarioField, value) != true)) {
+                    this.NombreUsuarioField = value;
+                    this.RaisePropertyChanged("NombreUsuario");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="InicioSesionException", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
+    [System.SerializableAttribute()]
+    public partial class InicioSesionException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MensajeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Mensaje {
+            get {
+                return this.MensajeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MensajeField, value) != true)) {
+                    this.MensajeField = value;
+                    this.RaisePropertyChanged("Mensaje");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.ILoginService")]
@@ -124,6 +421,54 @@ namespace LaOcaClient.LaOcaService {
         
         public System.Threading.Tasks.Task EnviarMensajeAsync(string nombreJugador, string mensaje) {
             return base.Channel.EnviarMensajeAsync(nombreJugador, mensaje);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioInicioSesion")]
+    public interface IServicioInicioSesion {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioInicioSesion/IniciarSesion", ReplyAction="http://tempuri.org/IServicioInicioSesion/IniciarSesionResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LaOcaClient.LaOcaService.InicioSesionException), Action="http://tempuri.org/IServicioInicioSesion/IniciarSesionInicioSesionExceptionFault", Name="InicioSesionException", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
+        LaOcaClient.LaOcaService.Jugador IniciarSesion(LaOcaClient.LaOcaService.Cuenta cuentaUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioInicioSesion/IniciarSesion", ReplyAction="http://tempuri.org/IServicioInicioSesion/IniciarSesionResponse")]
+        System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Jugador> IniciarSesionAsync(LaOcaClient.LaOcaService.Cuenta cuentaUsuario);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioInicioSesionChannel : LaOcaClient.LaOcaService.IServicioInicioSesion, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ServicioInicioSesionClient : System.ServiceModel.ClientBase<LaOcaClient.LaOcaService.IServicioInicioSesion>, LaOcaClient.LaOcaService.IServicioInicioSesion {
+        
+        public ServicioInicioSesionClient() {
+        }
+        
+        public ServicioInicioSesionClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ServicioInicioSesionClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioInicioSesionClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioInicioSesionClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public LaOcaClient.LaOcaService.Jugador IniciarSesion(LaOcaClient.LaOcaService.Cuenta cuentaUsuario) {
+            return base.Channel.IniciarSesion(cuentaUsuario);
+        }
+        
+        public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Jugador> IniciarSesionAsync(LaOcaClient.LaOcaService.Cuenta cuentaUsuario) {
+            return base.Channel.IniciarSesionAsync(cuentaUsuario);
         }
     }
 }

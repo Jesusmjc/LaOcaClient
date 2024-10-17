@@ -8,19 +8,23 @@
         mc:Ignorable="d"
         Title="IniciarSesion" Height="500" Width="800">
     <Grid>
-        <Label x:Name="lbInicioSesion" Content="{x:Static p:Resources.lbInicioSesion}" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" FontSize="48" Width="338"/>
-        <TextBox x:Name="usuarioLogin" HorizontalAlignment="Left" Margin="259,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Height="25" 
-                 Text="{x:Static p:Resources.usuarioLogin}" Tag="{x:Static p:Resources.usuarioLogin}" Foreground="Gray" GotFocus="ManejarFocoTextBox" LostFocus="ManejarPerdidaFocoTextBox"/>
-        <TextBox x:Name="contraseñaLogin" HorizontalAlignment="Left" Margin="259,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Height="25" 
-                 Text="{x:Static p:Resources.contraseñaLogin}"  Tag="{x:Static p:Resources.contraseñaLogin}" Foreground="Gray" GotFocus="ManejarFocoTextBox" LostFocus="ManejarPerdidaFocoTextBox"/>
-        <Button x:Name="btnIniciarSesion" Content="{x:Static p:Resources.btnIniciarSesion}" HorizontalAlignment="Left" Margin="295,242,0,0" VerticalAlignment="Top" Width="216" Height="30" FontSize="14"
+        <Label x:Name="lbInicioSesion" Content="La Oca" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0,28,0,0" VerticalAlignment="Top" FontSize="48" Width="338"/>
+        <TextBox x:Name="tbxCorreoElectronico" HorizontalAlignment="Left" Margin="259,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Height="25" Tag="{x:Static p:Resources.usuarioLogin}" Foreground="Black" GotFocus="ManejarFocoTextBox" LostFocus="ManejarPerdidaFocoTextBox"/>
+        <Button x:Name="btnIniciarSesion" Content="{x:Static p:Resources.btnIniciarSesion}" HorizontalAlignment="Left" Margin="295,321,0,0" VerticalAlignment="Top" Width="216" Height="30" FontSize="14"
                 Background="Green" Foreground="White" FontWeight="Bold" Click="btnIniciarSesion_Click"/>
-        <Button x:Name="btnOlvideMiContraseña" Content="{x:Static p:Resources.btnOlvideMiContraseña}"  HorizontalAlignment="Left" Margin="341,292,0,0" VerticalAlignment="Top" 
+        <Button x:Name="btnOlvideMiContraseña" Content="{x:Static p:Resources.btnOlvideMiContraseña}"  HorizontalAlignment="Left" Margin="341,371,0,0" VerticalAlignment="Top" 
                  Foreground="DarkBlue" Background="Transparent" BorderBrush="Transparent" FontWeight="Bold" Cursor="" Click="btnOlvideMiContraseña_Click"/>
-        <Button x:Name="btnCrearCuentaNueva" Content="{x:Static p:Resources.btnCrearCuenta}"  HorizontalAlignment="Left" Margin="400,327,0,0" VerticalAlignment="Top" Width="135"
+        <Button x:Name="btnCrearCuentaNueva" Content="{x:Static p:Resources.btnCrearCuenta}"  HorizontalAlignment="Left" Margin="400,406,0,0" VerticalAlignment="Top" Width="135"
                 Foreground="DarkBlue" Background="Transparent" BorderBrush="Transparent" FontWeight="Bold" Cursor="Hand" Click="btnCrearCuentaNueva_Click" />
-        <Button x:Name="btnJugarComoInvitado" Content="{x:Static p:Resources.globalJugarComoInvitado}"  HorizontalAlignment="Left" Margin="343,362,0,0" VerticalAlignment="Top" 
+        <Button x:Name="btnJugarComoInvitado" Content="{x:Static p:Resources.globalJugarComoInvitado}"  HorizontalAlignment="Left" Margin="343,441,0,0" VerticalAlignment="Top" 
                 Foreground="DarkBlue" Background="Transparent" BorderBrush="Transparent" FontWeight="Bold" Cursor="Hand" Click="btnJugarComoInvitado_Click"/>
-        <Label x:Name="lbNoTengoCuenta" Content="{x:Static p:Resources.lbNoTengoCuenta}"  HorizontalAlignment="Left" Margin="271,324,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.897,0.502" Width="144"/>
+        <Label x:Name="lbNoTengoCuenta" Content="{x:Static p:Resources.lbNoTengoCuenta}"  HorizontalAlignment="Left" Margin="271,403,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.897,0.502" Width="144"/>
+        <Label x:Name="lbCorreoInvalido" Content="Ingrese un correo electrónico válido." HorizontalAlignment="Left" Height="25" Margin="259,173,0,0" VerticalAlignment="Top" Width="288" Foreground="#FFFA0606" Visibility="Hidden"/>
+        <Label x:Name="lbContrasenaInvalida" Content="Ingrese una contrasena válida." HorizontalAlignment="Left" Height="25" Margin="259,267,0,0" VerticalAlignment="Top" Width="288" Foreground="#FFFA0606" Visibility="Hidden"/>
+        <Label x:Name="lbCaracteristicasCorreoValido" Content="Características de un correo válido:&#xD;&#xA;- Entre 5 y 20 caracteres antes del @.&#xD;&#xA;- Contiene solo letras, dígitos, guion bajo &#xD;&#xA;   o guion medio.&#xD;&#xA;- Pertenece a uno de los siguientes dominios:&#xD;&#xA;   gmail, outlook, hotmail.&#xD;&#xA;- Termina en .com" HorizontalAlignment="Left" Height="118" Margin="566,146,0,0" VerticalAlignment="Top" Width="269" FontSize="10" Foreground="#FF026B8F" Visibility="Hidden"/>
+        <Label x:Name="lbCaracteristicasContrasenaValida" Content="Características de una contraseña válida:&#xD;&#xA;- Entre 8 y 16 caracteres.&#xD;&#xA;- Al menos una letra minúscula.&#xD;&#xA;- Al menos una letra mayúscula.&#xD;&#xA;- Al menos un número.&#xD;&#xA;- Al menos un caracter especial &#xD;&#xA;  ($, @, !, %, *, ?, &amp;, #, (.), (, ), _, -)" HorizontalAlignment="Left" Height="118" Margin="566,146,0,0" VerticalAlignment="Top" Width="269" FontSize="10" Foreground="#FF026B8F" Visibility="Hidden"/>
+        <PasswordBox x:Name="pwbContrasena" HorizontalAlignment="Left" Margin="259,242,0,0" VerticalAlignment="Top" Width="288" Height="25"/>
+        <Label x:Name="lbContrasena" Content="Contraseña:" HorizontalAlignment="Left" Height="28" Margin="259,214,0,0" VerticalAlignment="Top" Width="144"/>
+        <Label x:Name="lbContrasena_Copy" Content="Correo Electrónico:" HorizontalAlignment="Left" Height="28" Margin="259,120,0,0" VerticalAlignment="Top" Width="144"/>
     </Grid>
 </Window>
