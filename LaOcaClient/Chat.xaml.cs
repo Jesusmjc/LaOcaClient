@@ -64,8 +64,8 @@ namespace LaOcaClient
             } 
             catch (Exception ex) when (ex is CommunicationException | ex is TimeoutException)
             {
-                MessageBox.Show($"Error al enviar mensaje: {ex.Message}");
-            }
+                    MessageBox.Show("Ha ocurrido un error al enviar el mensaje.", "Error de conexión.", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
         }
 
         public void MostrarMensaje(string nombreJugador, string mensaje)
