@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LaOcaClient.LaOcaService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,10 +12,8 @@ namespace LaOcaClient
         private static SingletonJugador instance;
         private static readonly object lockObject = new object();
 
-        public int IdJugador { get; set; }
-        public string NombreJugador { get; set; }
+        public Jugador Jugador {  get; set; }
         public bool EsInvitado { get; set; }
-        public string CorreoElectronico { get; set; }
 
 
         private SingletonJugador() { }

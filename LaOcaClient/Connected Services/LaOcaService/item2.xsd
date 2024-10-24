@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/LaOcaService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/LaOcaService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8082/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:complexType name="Cuenta">
     <xs:sequence>
       <xs:element minOccurs="0" name="Contrasena" nillable="true" type="xs:string" />
@@ -11,13 +12,12 @@
   <xs:element name="Cuenta" nillable="true" type="tns:Cuenta" />
   <xs:complexType name="Jugador">
     <xs:sequence>
-      <xs:element minOccurs="0" name="ApellidoMaterno" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ApellidoPaterno" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CanalCallbackChat" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="CanalCallbackSala" nillable="true" type="xs:anyType" />
       <xs:element minOccurs="0" name="IdCuenta" type="xs:int" />
       <xs:element minOccurs="0" name="IdFotoPerfil" type="xs:int" />
       <xs:element minOccurs="0" name="IdJugador" type="xs:int" />
       <xs:element minOccurs="0" name="IdPuntuacion" type="xs:int" />
-      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NombreUsuario" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
@@ -28,4 +28,15 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="InicioSesionException" nillable="true" type="tns:InicioSesionException" />
+  <xs:complexType name="Sala">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Codigo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdSala" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Jugadores" nillable="true" type="q1:ArrayOfKeyValueOfstringJugadorklcadHpp" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreHost" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoDeAcceso" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Sala" nillable="true" type="tns:Sala" />
 </xs:schema>

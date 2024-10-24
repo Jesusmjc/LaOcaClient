@@ -1,0 +1,25 @@
+﻿<Window x:Class="LaOcaClient.Sala"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaOcaClient"
+        mc:Ignorable="d"
+        Title="Sala" Height="450" Width="800">
+    <Grid>
+        <ListBox x:Name="lbChat" HorizontalAlignment="Left" Height="73" Margin="26,325,0,0" VerticalAlignment="Top" Width="405"/>
+        <TextBox x:Name="tbxMensaje" HorizontalAlignment="Left" Margin="26,398,0,0" TextWrapping="Wrap" Text="Escribe un mensaje" VerticalAlignment="Top" Width="405" KeyDown="EnviarMensaje"/>
+        <Image Margin="26,26,746,380" Source="/Recursos/icono_volver.png" Stretch="Fill"/>
+        <Grid x:Name="gridJugadorSala1" HorizontalAlignment="Left" Height="140" Margin="100,120,0,0" VerticalAlignment="Top" Width="100"/>
+        <Grid x:Name="gridJugadorSala2" HorizontalAlignment="Left" Height="140" Margin="275,120,0,0" VerticalAlignment="Top" Width="100"/>
+        <Grid x:Name="gridJugadorSala3" HorizontalAlignment="Left" Height="140" Margin="450,120,0,0" VerticalAlignment="Top" Width="100"/>
+        <Grid x:Name="gridJugadorSala4" HorizontalAlignment="Left" Height="140" Margin="625,120,0,0" VerticalAlignment="Top" Width="100"/>
+        <Rectangle HorizontalAlignment="Left" Height="50" Margin="380,15,0,0" Stroke="Black" VerticalAlignment="Top" Width="239" Fill="#FFA9BAB9"/>
+        <Label Content="Código de la Sala:" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="32" Margin="397,24,0,0" VerticalAlignment="Top" Width="117"/>
+        <Label x:Name="lbCodigoSala" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="0000" HorizontalAlignment="Left" Height="32" Margin="519,24,0,0" VerticalAlignment="Top" Width="81"/>
+        <Label x:Name="lbNombreSala" Content="Label" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="117,15,0,0" VerticalAlignment="Top" Height="50" Width="196" FontSize="24"/>
+        <TextBox x:Name="tbxCodigo" MaxLength="4" HorizontalAlignment="Left" Margin="492,398,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Código:" HorizontalAlignment="Left" Margin="492,372,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnUnirseASala" Content="Unirse" HorizontalAlignment="Left" Height="18" Margin="625,398,0,0" VerticalAlignment="Top" Width="50" Click="UnirseASala"/>
+    </Grid>
+</Window>

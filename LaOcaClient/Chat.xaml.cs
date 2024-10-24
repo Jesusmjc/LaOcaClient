@@ -41,15 +41,13 @@ namespace LaOcaClient
             {
                 try
                 {
-                    cliente.UnirseAlChat(nombreJugador);
+                    cliente.UnirseAlChat(nombreJugador, "0");
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Error al enviar mensaje: {ex.Message}");
                 }
-            }
-
-            
+            } 
         }
 
         private void EnviarMensaje(object sender, RoutedEventArgs e)
@@ -60,7 +58,7 @@ namespace LaOcaClient
             if (!string.IsNullOrWhiteSpace(nombreJugador) && !string.IsNullOrWhiteSpace(mensaje))
             try
             {
-                cliente.EnviarMensaje(nombreJugador, mensaje);
+                cliente.EnviarMensaje(nombreJugador, mensaje, "0");
             } 
             catch (Exception ex) when (ex is CommunicationException | ex is TimeoutException)
             {

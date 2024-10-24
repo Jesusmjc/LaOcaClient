@@ -22,11 +22,12 @@
     <MetadataSource Address="http://localhost:8082" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="66ec56f1-a7c3-4078-b651-ca3754e929b2" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd2" />
-    <MetadataFile FileName="LaOcaService.wsdl" MetadataType="Wsdl" ID="6798cf65-a8dc-416e-bd49-93d0f7ebbddf" SourceId="1" SourceUrl="http://localhost:8082/?wsdl" />
     <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="aca0794e-f4a7-4d44-b12a-8e35cbca6a1b" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd0" />
-    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="3c010e5d-226a-4704-9a2f-c4deb5c5f618" SourceId="1" SourceUrl="http://localhost:8082/?disco" />
     <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="2ca3029c-d675-4532-80b0-8478d55c18ff" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd1" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="66ec56f1-a7c3-4078-b651-ca3754e929b2" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd2" />
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="30702c43-2562-4da3-b00c-e62daad5e3cd" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd3" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="3c010e5d-226a-4704-9a2f-c4deb5c5f618" SourceId="1" SourceUrl="http://localhost:8082/?disco" />
+    <MetadataFile FileName="LaOcaService.wsdl" MetadataType="Wsdl" ID="6798cf65-a8dc-416e-bd49-93d0f7ebbddf" SourceId="1" SourceUrl="http://localhost:8082/?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

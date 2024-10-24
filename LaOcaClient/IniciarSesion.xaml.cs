@@ -93,14 +93,15 @@ namespace LaOcaClient
             {
                 jugadorInicioSesion = cliente.IniciarSesion(cuentaInicioSesion);
 
-                SingletonJugador.Instance.IdJugador = jugadorInicioSesion.IdJugador;
-                SingletonJugador.Instance.NombreJugador = jugadorInicioSesion.NombreUsuario;
-                SingletonJugador.Instance.CorreoElectronico = tbxCorreoElectronico.Text.ToString();
+                SingletonJugador.Instance.Jugador = jugadorInicioSesion;
+                //SingletonJugador.Instance.IdJugador = jugadorInicioSesion.IdJugador;
+                //SingletonJugador.Instance.NombreJugador = jugadorInicioSesion.NombreUsuario;
+                //SingletonJugador.Instance.CorreoElectronico = tbxCorreoElectronico.Text.ToString();
                 SingletonJugador.Instance.EsInvitado = false;
 
-                Chat ventanaChat = new Chat();
+                Sala ventanaSala = new Sala();
                 this.Close();
-                ventanaChat.ShowDialog();
+                ventanaSala.Show();
             }
             catch (FaultException<InicioSesionException> ex)
             {

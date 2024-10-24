@@ -110,16 +110,20 @@ namespace LaOcaClient.LaOcaService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Jugador", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Cuenta))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.InicioSesionException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Sala))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<string, LaOcaClient.LaOcaService.Jugador>))]
     public partial class Jugador : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ApellidoMaternoField;
+        private object CanalCallbackChatField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ApellidoPaternoField;
+        private object CanalCallbackSalaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdCuentaField;
@@ -132,9 +136,6 @@ namespace LaOcaClient.LaOcaService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdPuntuacionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NombreField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NombreUsuarioField;
@@ -150,27 +151,27 @@ namespace LaOcaClient.LaOcaService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ApellidoMaterno {
+        public object CanalCallbackChat {
             get {
-                return this.ApellidoMaternoField;
+                return this.CanalCallbackChatField;
             }
             set {
-                if ((object.ReferenceEquals(this.ApellidoMaternoField, value) != true)) {
-                    this.ApellidoMaternoField = value;
-                    this.RaisePropertyChanged("ApellidoMaterno");
+                if ((object.ReferenceEquals(this.CanalCallbackChatField, value) != true)) {
+                    this.CanalCallbackChatField = value;
+                    this.RaisePropertyChanged("CanalCallbackChat");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ApellidoPaterno {
+        public object CanalCallbackSala {
             get {
-                return this.ApellidoPaternoField;
+                return this.CanalCallbackSalaField;
             }
             set {
-                if ((object.ReferenceEquals(this.ApellidoPaternoField, value) != true)) {
-                    this.ApellidoPaternoField = value;
-                    this.RaisePropertyChanged("ApellidoPaterno");
+                if ((object.ReferenceEquals(this.CanalCallbackSalaField, value) != true)) {
+                    this.CanalCallbackSalaField = value;
+                    this.RaisePropertyChanged("CanalCallbackSala");
                 }
             }
         }
@@ -223,19 +224,6 @@ namespace LaOcaClient.LaOcaService {
                 if ((this.IdPuntuacionField.Equals(value) != true)) {
                     this.IdPuntuacionField = value;
                     this.RaisePropertyChanged("IdPuntuacion");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Nombre {
-            get {
-                return this.NombreField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
-                    this.NombreField = value;
-                    this.RaisePropertyChanged("Nombre");
                 }
             }
         }
@@ -308,6 +296,131 @@ namespace LaOcaClient.LaOcaService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Sala", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
+    [System.SerializableAttribute()]
+    public partial class Sala : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodigoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdSalaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<string, LaOcaClient.LaOcaService.Jugador> JugadoresField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreHostField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TipoDeAccesoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Codigo {
+            get {
+                return this.CodigoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodigoField, value) != true)) {
+                    this.CodigoField = value;
+                    this.RaisePropertyChanged("Codigo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdSala {
+            get {
+                return this.IdSalaField;
+            }
+            set {
+                if ((this.IdSalaField.Equals(value) != true)) {
+                    this.IdSalaField = value;
+                    this.RaisePropertyChanged("IdSala");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<string, LaOcaClient.LaOcaService.Jugador> Jugadores {
+            get {
+                return this.JugadoresField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.JugadoresField, value) != true)) {
+                    this.JugadoresField = value;
+                    this.RaisePropertyChanged("Jugadores");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NombreHost {
+            get {
+                return this.NombreHostField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreHostField, value) != true)) {
+                    this.NombreHostField = value;
+                    this.RaisePropertyChanged("NombreHost");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TipoDeAcceso {
+            get {
+                return this.TipoDeAccesoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TipoDeAccesoField, value) != true)) {
+                    this.TipoDeAccesoField = value;
+                    this.RaisePropertyChanged("TipoDeAcceso");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.ILoginService")]
     public interface ILoginService {
@@ -360,16 +473,16 @@ namespace LaOcaClient.LaOcaService {
     public interface IServicioChat {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioChat/UnirseAlChat")]
-        void UnirseAlChat(string nombreJugador);
+        void UnirseAlChat(string nombreJugador, string codigoSala);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioChat/UnirseAlChat")]
-        System.Threading.Tasks.Task UnirseAlChatAsync(string nombreJugador);
+        System.Threading.Tasks.Task UnirseAlChatAsync(string nombreJugador, string codigoSala);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioChat/EnviarMensaje")]
-        void EnviarMensaje(string nombreJugador, string mensaje);
+        void EnviarMensaje(string nombreJugador, string mensaje, string codigoSala);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioChat/EnviarMensaje")]
-        System.Threading.Tasks.Task EnviarMensajeAsync(string nombreJugador, string mensaje);
+        System.Threading.Tasks.Task EnviarMensajeAsync(string nombreJugador, string mensaje, string codigoSala);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -407,20 +520,20 @@ namespace LaOcaClient.LaOcaService {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void UnirseAlChat(string nombreJugador) {
-            base.Channel.UnirseAlChat(nombreJugador);
+        public void UnirseAlChat(string nombreJugador, string codigoSala) {
+            base.Channel.UnirseAlChat(nombreJugador, codigoSala);
         }
         
-        public System.Threading.Tasks.Task UnirseAlChatAsync(string nombreJugador) {
-            return base.Channel.UnirseAlChatAsync(nombreJugador);
+        public System.Threading.Tasks.Task UnirseAlChatAsync(string nombreJugador, string codigoSala) {
+            return base.Channel.UnirseAlChatAsync(nombreJugador, codigoSala);
         }
         
-        public void EnviarMensaje(string nombreJugador, string mensaje) {
-            base.Channel.EnviarMensaje(nombreJugador, mensaje);
+        public void EnviarMensaje(string nombreJugador, string mensaje, string codigoSala) {
+            base.Channel.EnviarMensaje(nombreJugador, mensaje, codigoSala);
         }
         
-        public System.Threading.Tasks.Task EnviarMensajeAsync(string nombreJugador, string mensaje) {
-            return base.Channel.EnviarMensajeAsync(nombreJugador, mensaje);
+        public System.Threading.Tasks.Task EnviarMensajeAsync(string nombreJugador, string mensaje, string codigoSala) {
+            return base.Channel.EnviarMensajeAsync(nombreJugador, mensaje, codigoSala);
         }
     }
     
@@ -469,6 +582,136 @@ namespace LaOcaClient.LaOcaService {
         
         public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Jugador> IniciarSesionAsync(LaOcaClient.LaOcaService.Cuenta cuentaUsuario) {
             return base.Channel.IniciarSesionAsync(cuentaUsuario);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioSala", CallbackContract=typeof(LaOcaClient.LaOcaService.IServicioSalaCallback))]
+    public interface IServicioSala {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSala/AgregarNuevaSala", ReplyAction="http://tempuri.org/IServicioSala/AgregarNuevaSalaResponse")]
+        int AgregarNuevaSala(LaOcaClient.LaOcaService.Sala nuevaSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSala/AgregarNuevaSala", ReplyAction="http://tempuri.org/IServicioSala/AgregarNuevaSalaResponse")]
+        System.Threading.Tasks.Task<int> AgregarNuevaSalaAsync(LaOcaClient.LaOcaService.Sala nuevaSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSala/VerificarCodigoSalaEsUnico", ReplyAction="http://tempuri.org/IServicioSala/VerificarCodigoSalaEsUnicoResponse")]
+        bool VerificarCodigoSalaEsUnico(string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSala/VerificarCodigoSalaEsUnico", ReplyAction="http://tempuri.org/IServicioSala/VerificarCodigoSalaEsUnicoResponse")]
+        System.Threading.Tasks.Task<bool> VerificarCodigoSalaEsUnicoAsync(string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSala/AgregarJugadorASala", ReplyAction="http://tempuri.org/IServicioSala/AgregarJugadorASalaResponse")]
+        int AgregarJugadorASala(LaOcaClient.LaOcaService.Jugador nuevoJugador, string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSala/AgregarJugadorASala", ReplyAction="http://tempuri.org/IServicioSala/AgregarJugadorASalaResponse")]
+        System.Threading.Tasks.Task<int> AgregarJugadorASalaAsync(LaOcaClient.LaOcaService.Jugador nuevoJugador, string codigoSala);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioSalaCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioSala/MostrarNuevoJugadorEnSala")]
+        void MostrarNuevoJugadorEnSala(LaOcaClient.LaOcaService.Jugador nuevoJugador);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioSalaChannel : LaOcaClient.LaOcaService.IServicioSala, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ServicioSalaClient : System.ServiceModel.DuplexClientBase<LaOcaClient.LaOcaService.IServicioSala>, LaOcaClient.LaOcaService.IServicioSala {
+        
+        public ServicioSalaClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
+        }
+        
+        public ServicioSalaClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
+        }
+        
+        public ServicioSalaClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioSalaClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioSalaClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public int AgregarNuevaSala(LaOcaClient.LaOcaService.Sala nuevaSala) {
+            return base.Channel.AgregarNuevaSala(nuevaSala);
+        }
+        
+        public System.Threading.Tasks.Task<int> AgregarNuevaSalaAsync(LaOcaClient.LaOcaService.Sala nuevaSala) {
+            return base.Channel.AgregarNuevaSalaAsync(nuevaSala);
+        }
+        
+        public bool VerificarCodigoSalaEsUnico(string codigoSala) {
+            return base.Channel.VerificarCodigoSalaEsUnico(codigoSala);
+        }
+        
+        public System.Threading.Tasks.Task<bool> VerificarCodigoSalaEsUnicoAsync(string codigoSala) {
+            return base.Channel.VerificarCodigoSalaEsUnicoAsync(codigoSala);
+        }
+        
+        public int AgregarJugadorASala(LaOcaClient.LaOcaService.Jugador nuevoJugador, string codigoSala) {
+            return base.Channel.AgregarJugadorASala(nuevoJugador, codigoSala);
+        }
+        
+        public System.Threading.Tasks.Task<int> AgregarJugadorASalaAsync(LaOcaClient.LaOcaService.Jugador nuevoJugador, string codigoSala) {
+            return base.Channel.AgregarJugadorASalaAsync(nuevoJugador, codigoSala);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioRecuperarSala")]
+    public interface IServicioRecuperarSala {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioRecuperarSala/RecuperarSala", ReplyAction="http://tempuri.org/IServicioRecuperarSala/RecuperarSalaResponse")]
+        LaOcaClient.LaOcaService.Sala RecuperarSala(string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioRecuperarSala/RecuperarSala", ReplyAction="http://tempuri.org/IServicioRecuperarSala/RecuperarSalaResponse")]
+        System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Sala> RecuperarSalaAsync(string codigoSala);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioRecuperarSalaChannel : LaOcaClient.LaOcaService.IServicioRecuperarSala, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ServicioRecuperarSalaClient : System.ServiceModel.ClientBase<LaOcaClient.LaOcaService.IServicioRecuperarSala>, LaOcaClient.LaOcaService.IServicioRecuperarSala {
+        
+        public ServicioRecuperarSalaClient() {
+        }
+        
+        public ServicioRecuperarSalaClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ServicioRecuperarSalaClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioRecuperarSalaClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioRecuperarSalaClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public LaOcaClient.LaOcaService.Sala RecuperarSala(string codigoSala) {
+            return base.Channel.RecuperarSala(codigoSala);
+        }
+        
+        public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Sala> RecuperarSalaAsync(string codigoSala) {
+            return base.Channel.RecuperarSalaAsync(codigoSala);
         }
     }
 }
