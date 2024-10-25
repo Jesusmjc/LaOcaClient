@@ -263,5 +263,14 @@ namespace LaOcaClient
             this.Close();
             ventanaNuevaSala.ShowDialog();
         }
+
+        private void LimpiarTextoEjemplo(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (textBox != null && tbxMensaje.Text.ToString().Equals("Escribe un mensaje"))
+            {
+                textBox.Clear(); // Limpia el contenido del TextBox al hacer clic en él
+            }
+        }
     }
 }

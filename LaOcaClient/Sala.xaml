@@ -8,7 +8,7 @@
         Title="Sala" Height="450" Width="800">
     <Grid>
         <ListBox x:Name="lbChat" HorizontalAlignment="Left" Height="73" Margin="26,325,0,0" VerticalAlignment="Top" Width="405"/>
-        <TextBox x:Name="tbxMensaje" HorizontalAlignment="Left" Margin="26,398,0,0" TextWrapping="Wrap" Text="Escribe un mensaje" VerticalAlignment="Top" Width="405" KeyDown="EnviarMensaje"/>
+        <TextBox x:Name="tbxMensaje" MaxLength="100" HorizontalAlignment="Left" Margin="26,398,0,0" TextWrapping="Wrap" Text="Escribe un mensaje" VerticalAlignment="Top" Width="405" KeyDown="EnviarMensaje"/>
         <Image Margin="26,26,746,380" Source="/Recursos/icono_volver.png" Stretch="Fill"/>
         <Grid x:Name="gridJugadorSala1" HorizontalAlignment="Left" Height="140" Margin="100,120,0,0" VerticalAlignment="Top" Width="100"/>
         <Grid x:Name="gridJugadorSala2" HorizontalAlignment="Left" Height="140" Margin="275,120,0,0" VerticalAlignment="Top" Width="100"/>
