@@ -94,14 +94,14 @@ namespace LaOcaClient
 
             var cuenta = new Cuenta
             {
-                correoElectronico = correo,
-                contrasena = contrasena
+                CorreoElectronico = correo,
+                Contrasena = Utilidad.HashearConSha256(contrasena)
             };
 
             var jugador = new Jugador
             {
-                nombreUsuario = nombreUsuario,
-                idFotoPerfil = ObtenerIdAspectoPorReferencia(_imagenPerfilSeleccionada)
+                NombreUsuario = nombreUsuario,
+                IdFotoPerfil = ObtenerIdAspectoPorReferencia(_imagenPerfilSeleccionada)
             };
 
             try
@@ -126,9 +126,9 @@ namespace LaOcaClient
 
             var cuenta = new Cuenta
             {
-                idCuenta = 2,
-                correoElectronico = correo,
-                contrasena = contrasena
+                IdCuenta = 2,
+                CorreoElectronico = correo,
+                Contrasena = contrasena
             };
 
             int idFotoPerfil;
@@ -146,9 +146,9 @@ namespace LaOcaClient
 
             var jugador = new Jugador
             {
-                idJugador = 2,
-                nombreUsuario = nombreUsuario,
-                idFotoPerfil = idFotoPerfil
+                IdJugador = 2,
+                NombreUsuario = nombreUsuario,
+                IdFotoPerfil = idFotoPerfil
             };
 
             try
@@ -178,14 +178,14 @@ namespace LaOcaClient
 
                     var cuenta = new Cuenta
                     {
-                        correoElectronico = tbCorreo.Text,
-                        contrasena = tbContraseña.Password
+                        CorreoElectronico = tbCorreo.Text,
+                        Contrasena = Utilidad.HashearConSha256(tbContraseña.Password)
                     };
 
                     var jugador = new Jugador
                     {
-                        nombreUsuario = tbNombreUsuario.Text,
-                        idFotoPerfil = ObtenerIdAspectoPorReferencia(_imagenPerfilSeleccionada)
+                        NombreUsuario = tbNombreUsuario.Text,
+                        IdFotoPerfil = ObtenerIdAspectoPorReferencia(_imagenPerfilSeleccionada)
                     };
 
                     try
@@ -359,15 +359,15 @@ namespace LaOcaClient
                 return;
             }
 
-            tbNombreUsuario.Text = jugador.nombreUsuario;
-            tbCorreo.Text = cuenta.correoElectronico;
-            tbContraseña.Password = cuenta.contrasena;
-            tbConfirmarContraseña.Password = cuenta.contrasena;
+            tbNombreUsuario.Text = jugador.NombreUsuario;
+            tbCorreo.Text = cuenta.CorreoElectronico;
+            tbContraseña.Password = cuenta.Contrasena;
+            tbConfirmarContraseña.Password = cuenta.Contrasena;
 
-            var aspecto = _servicioAspecto.ObtenerAspectoPorId(jugador.idFotoPerfil);
+            var aspecto = _servicioAspecto.ObtenerAspectoPorId(jugador.IdFotoPerfil);
             if (aspecto != null)
             {
-                _imagenPerfilSeleccionada = aspecto.referencia;
+                _imagenPerfilSeleccionada = aspecto.Referencia;
                 foreach (var child in wpImagenesPerfil.Children)
                 {
                     if (child is Image img && img.Source.ToString() == _imagenPerfilSeleccionada)

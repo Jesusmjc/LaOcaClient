@@ -51,10 +51,10 @@ namespace LaOcaClient
 
             try
             {
-                bool esContraseñaCorrecta = _servicioCuenta.VerificarContraseñaActual(cuenta.idCuenta, contraseñaActual);
+                bool esContraseñaCorrecta = _servicioCuenta.VerificarContraseñaActual(cuenta.IdCuenta, contraseñaActual);
                 if (esContraseñaCorrecta)
                 {
-                    cuenta.contrasena = nuevaContraseña;
+                    cuenta.Contrasena = nuevaContraseña;
                     _servicioCuenta.ModificarCuenta(cuenta);
                     MessageBox.Show("Contraseña actualizada exitosamente.");
                     this.Close();
