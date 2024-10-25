@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -66,6 +67,14 @@
     </Compile>
     <Compile Include="Utilidad.cs" />
     <Page Include="Chat.xaml">
+    <Compile Include="RecuperarContraseña.xaml.cs">
+      <DependentUpon>RecuperarContraseña.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CambiarContraseña.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CrearCuenta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -83,11 +92,16 @@
     </Compile>
     <Compile Include="Chat.xaml.cs">
       <DependentUpon>Chat.xaml</DependentUpon>
+    <Compile Include="CambiarContraseña.xaml.cs">
+      <DependentUpon>CambiarContraseña.xaml</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\LaOcaService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="CrearCuenta.xaml.cs">
+      <DependentUpon>CrearCuenta.xaml</DependentUpon>
     </Compile>
     <Compile Include="IniciarSesion.xaml.cs">
       <DependentUpon>IniciarSesion.xaml</DependentUpon>
@@ -101,13 +115,31 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\JugadorEnSala.xaml">
+    <Page Include="MenuPrincipal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RecuperarContraseña.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MenuPrincipal.xaml.cs">
+      <DependentUpon>MenuPrincipal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.en-US.Designer.cs">
+      <DependentUpon>Resources.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Resources.es-MX.Designer.cs">
+      <DependentUpon>Resources.es-MX.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -125,6 +157,14 @@
     <EmbeddedResource Include="Properties\Resources.es-MX.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.es-MX.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.es-MX.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Connected Services\LaOcaService\item.xsd">
@@ -138,6 +178,12 @@
     </None>
     <None Include="Connected Services\LaOcaService\item3.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\LaOcaService\LaOcaClient.LaOcaService.Aspecto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\LaOcaService\LaOcaClient.LaOcaService.Cuenta.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\LaOcaService\LaOcaClient.LaOcaService.Jugador.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -195,6 +241,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\icono_usuario.png" />
+    <Resource Include="Recursos\OcaDeportista.jpg" />
+    <Resource Include="Recursos\OcaDesastrosa.jpg" />
+    <Resource Include="Recursos\OcaIngeniera.jpg" />
+    <Resource Include="Recursos\OcaProgramadora.jpg" />
+    <Resource Include="Recursos\OcaRockstar.jpg" />
+    <Resource Include="Recursos\OcaUniversitaria.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

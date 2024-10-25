@@ -42,7 +42,7 @@ namespace LaOcaClient
             TextBox cuadroTexto = remitente as TextBox;
             if (string.IsNullOrWhiteSpace(cuadroTexto.Text))
             {
-                cuadroTexto.Text = "";
+                cuadroTexto.Text = cuadroTexto.Tag.ToString();
                 cuadroTexto.Foreground = Brushes.Gray;
             }
         }
@@ -99,9 +99,9 @@ namespace LaOcaClient
                 //SingletonJugador.Instance.CorreoElectronico = tbxCorreoElectronico.Text.ToString();
                 SingletonJugador.Instance.EsInvitado = false;
 
-                Sala ventanaSala = new Sala();
+                MenuPrincipal menuPrincipalWindow = new MenuPrincipal();
+                menuPrincipalWindow.Show();
                 this.Close();
-                ventanaSala.Show();
             }
             catch (FaultException<InicioSesionException> ex)
             {
@@ -128,13 +128,15 @@ namespace LaOcaClient
 
         private void btnOlvideMiContraseña_Click(object sender, RoutedEventArgs e)
         {
-
+            RecuperarContraseña ventanaRecuperarContraseña = new RecuperarContraseña();
+            ventanaRecuperarContraseña.Show();
+            this.Close();
         }
 
         private void btnCrearCuentaNueva_Click(object sender, RoutedEventArgs e)
         {
-            //CrearCuenta crearCuentaWindow = new CrearCuenta();
-            //crearCuentaWindow.Show();
+            CrearCuenta crearCuentaWindow = new CrearCuenta(ModoCuenta.Crear);
+            crearCuentaWindow.Show();
             this.Close();
         }
 
