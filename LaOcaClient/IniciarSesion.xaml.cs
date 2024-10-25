@@ -42,17 +42,21 @@ namespace LaOcaClient
 
         private void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
         {
-
+            MenuPrincipal menuPrincipalWindow = new MenuPrincipal();
+            menuPrincipalWindow.Show();
+            this.Close();
         }
 
         private void btnOlvideMiContraseña_Click(object sender, RoutedEventArgs e)
         {
-
+            RecuperarContraseña ventanaRecuperarContraseña = new RecuperarContraseña();
+            ventanaRecuperarContraseña.Show();
+            this.Close();
         }
 
         private void btnCrearCuentaNueva_Click(object sender, RoutedEventArgs e)
         {
-            CrearCuenta crearCuentaWindow = new CrearCuenta();
+            CrearCuenta crearCuentaWindow = new CrearCuenta(ModoCuenta.Crear);
             crearCuentaWindow.Show();
             this.Close();
         }

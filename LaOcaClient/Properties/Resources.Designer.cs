@@ -142,15 +142,6 @@ namespace LaOcaClient.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Seleccionar imagen de perfil.
-        /// </summary>
-        public static string btnSeleccionarImagenPerfil {
-            get {
-                return ResourceManager.GetString("btnSeleccionarImagenPerfil", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Busca una cadena traducida similar a Verificar.
         /// </summary>
         public static string btnVerificarCodigo {
@@ -268,7 +259,7 @@ namespace LaOcaClient.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Correo:.
+        ///   Busca una cadena traducida similar a Correo electrónico:.
         /// </summary>
         public static string globalCorreo {
             get {
@@ -450,9 +441,9 @@ namespace LaOcaClient.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a Ingrese su correo electrónico registrado:.
         /// </summary>
-        public static string lbIngresarCorreoo {
+        public static string lbIngresarCorreo {
             get {
-                return ResourceManager.GetString("lbIngresarCorreoo", resourceCulture);
+                return ResourceManager.GetString("lbIngresarCorreo", resourceCulture);
             }
         }
         
@@ -511,6 +502,15 @@ namespace LaOcaClient.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Seleccionar imagen de perfil.
+        /// </summary>
+        public static string lbSeleccionarImagenPerfil {
+            get {
+                return ResourceManager.GetString("lbSeleccionarImagenPerfil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ¿Estás seguro de que deseas cancelar la creación de la cuenta?.
         /// </summary>
         public static string msgCancelarCreacionCuenta {
@@ -543,6 +543,60 @@ namespace LaOcaClient.Properties {
         public static string msgSolicitudAmistadEnviada {
             get {
                 return ResourceManager.GetString("msgSolicitudAmistadEnviada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Oca Aesthetic.
+        /// </summary>
+        public static string skinOcaAesthetic {
+            get {
+                return ResourceManager.GetString("skinOcaAesthetic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Oca Dibujada.
+        /// </summary>
+        public static string skinOcaDibujada {
+            get {
+                return ResourceManager.GetString("skinOcaDibujada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Oca Fea.
+        /// </summary>
+        public static string skinOcaFea {
+            get {
+                return ResourceManager.GetString("skinOcaFea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Oca Madre.
+        /// </summary>
+        public static string skinOcaMadre {
+            get {
+                return ResourceManager.GetString("skinOcaMadre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Oca Realista.
+        /// </summary>
+        public static string skinOcaRealista {
+            get {
+                return ResourceManager.GetString("skinOcaRealista", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Oca Triste.
+        /// </summary>
+        public static string skinOcaTriste {
+            get {
+                return ResourceManager.GetString("skinOcaTriste", resourceCulture);
             }
         }
         

@@ -15,383 +15,12 @@ namespace LaOcaClient.LaOcaService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Jugadores", Namespace="http://schemas.datacontract.org/2004/07/LaOcaDataAccess")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Cuenta", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
     [System.SerializableAttribute()]
-    public partial class Jugadores : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Cuenta : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private LaOcaClient.LaOcaService.Amistades[] AmistadesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private LaOcaClient.LaOcaService.Amistades[] Amistades1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private LaOcaClient.LaOcaService.Aspectos AspectosField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private LaOcaClient.LaOcaService.Cuentas CuentasField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> IdCuentaField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> IdFotoPerfilField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdJugadorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> IdPuntuacionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private LaOcaClient.LaOcaService.JugadoresAspectos[] JugadoresAspectosField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private LaOcaClient.LaOcaService.Puntuaciones PuntuacionesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string apellidoMaternoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string apellidoPaternoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string nombreField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string nombreUsuarioField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public LaOcaClient.LaOcaService.Amistades[] Amistades {
-            get {
-                return this.AmistadesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AmistadesField, value) != true)) {
-                    this.AmistadesField = value;
-                    this.RaisePropertyChanged("Amistades");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public LaOcaClient.LaOcaService.Amistades[] Amistades1 {
-            get {
-                return this.Amistades1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Amistades1Field, value) != true)) {
-                    this.Amistades1Field = value;
-                    this.RaisePropertyChanged("Amistades1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public LaOcaClient.LaOcaService.Aspectos Aspectos {
-            get {
-                return this.AspectosField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AspectosField, value) != true)) {
-                    this.AspectosField = value;
-                    this.RaisePropertyChanged("Aspectos");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public LaOcaClient.LaOcaService.Cuentas Cuentas {
-            get {
-                return this.CuentasField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CuentasField, value) != true)) {
-                    this.CuentasField = value;
-                    this.RaisePropertyChanged("Cuentas");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> IdCuenta {
-            get {
-                return this.IdCuentaField;
-            }
-            set {
-                if ((this.IdCuentaField.Equals(value) != true)) {
-                    this.IdCuentaField = value;
-                    this.RaisePropertyChanged("IdCuenta");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> IdFotoPerfil {
-            get {
-                return this.IdFotoPerfilField;
-            }
-            set {
-                if ((this.IdFotoPerfilField.Equals(value) != true)) {
-                    this.IdFotoPerfilField = value;
-                    this.RaisePropertyChanged("IdFotoPerfil");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdJugador {
-            get {
-                return this.IdJugadorField;
-            }
-            set {
-                if ((this.IdJugadorField.Equals(value) != true)) {
-                    this.IdJugadorField = value;
-                    this.RaisePropertyChanged("IdJugador");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> IdPuntuacion {
-            get {
-                return this.IdPuntuacionField;
-            }
-            set {
-                if ((this.IdPuntuacionField.Equals(value) != true)) {
-                    this.IdPuntuacionField = value;
-                    this.RaisePropertyChanged("IdPuntuacion");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public LaOcaClient.LaOcaService.JugadoresAspectos[] JugadoresAspectos {
-            get {
-                return this.JugadoresAspectosField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.JugadoresAspectosField, value) != true)) {
-                    this.JugadoresAspectosField = value;
-                    this.RaisePropertyChanged("JugadoresAspectos");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public LaOcaClient.LaOcaService.Puntuaciones Puntuaciones {
-            get {
-                return this.PuntuacionesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PuntuacionesField, value) != true)) {
-                    this.PuntuacionesField = value;
-                    this.RaisePropertyChanged("Puntuaciones");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string apellidoMaterno {
-            get {
-                return this.apellidoMaternoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.apellidoMaternoField, value) != true)) {
-                    this.apellidoMaternoField = value;
-                    this.RaisePropertyChanged("apellidoMaterno");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string apellidoPaterno {
-            get {
-                return this.apellidoPaternoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.apellidoPaternoField, value) != true)) {
-                    this.apellidoPaternoField = value;
-                    this.RaisePropertyChanged("apellidoPaterno");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string nombre {
-            get {
-                return this.nombreField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.nombreField, value) != true)) {
-                    this.nombreField = value;
-                    this.RaisePropertyChanged("nombre");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string nombreUsuario {
-            get {
-                return this.nombreUsuarioField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.nombreUsuarioField, value) != true)) {
-                    this.nombreUsuarioField = value;
-                    this.RaisePropertyChanged("nombreUsuario");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Aspectos", Namespace="http://schemas.datacontract.org/2004/07/LaOcaDataAccess")]
-    [System.SerializableAttribute()]
-    public partial class Aspectos : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdAspectoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private LaOcaClient.LaOcaService.Jugadores[] JugadoresField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private LaOcaClient.LaOcaService.JugadoresAspectos[] JugadoresAspectosField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string referenciaField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string tipoField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdAspecto {
-            get {
-                return this.IdAspectoField;
-            }
-            set {
-                if ((this.IdAspectoField.Equals(value) != true)) {
-                    this.IdAspectoField = value;
-                    this.RaisePropertyChanged("IdAspecto");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public LaOcaClient.LaOcaService.Jugadores[] Jugadores {
-            get {
-                return this.JugadoresField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.JugadoresField, value) != true)) {
-                    this.JugadoresField = value;
-                    this.RaisePropertyChanged("Jugadores");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public LaOcaClient.LaOcaService.JugadoresAspectos[] JugadoresAspectos {
-            get {
-                return this.JugadoresAspectosField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.JugadoresAspectosField, value) != true)) {
-                    this.JugadoresAspectosField = value;
-                    this.RaisePropertyChanged("JugadoresAspectos");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string referencia {
-            get {
-                return this.referenciaField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.referenciaField, value) != true)) {
-                    this.referenciaField = value;
-                    this.RaisePropertyChanged("referencia");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string tipo {
-            get {
-                return this.tipoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.tipoField, value) != true)) {
-                    this.tipoField = value;
-                    this.RaisePropertyChanged("tipo");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Cuentas", Namespace="http://schemas.datacontract.org/2004/07/LaOcaDataAccess")]
-    [System.SerializableAttribute()]
-    public partial class Cuentas : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdCuentaField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> IdJugadorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private LaOcaClient.LaOcaService.Jugadores[] JugadoresField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string contrasenaField;
@@ -399,6 +28,12 @@ namespace LaOcaClient.LaOcaService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string correoElectronicoField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idCuentaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idJugadorField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -406,45 +41,6 @@ namespace LaOcaClient.LaOcaService {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdCuenta {
-            get {
-                return this.IdCuentaField;
-            }
-            set {
-                if ((this.IdCuentaField.Equals(value) != true)) {
-                    this.IdCuentaField = value;
-                    this.RaisePropertyChanged("IdCuenta");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> IdJugador {
-            get {
-                return this.IdJugadorField;
-            }
-            set {
-                if ((this.IdJugadorField.Equals(value) != true)) {
-                    this.IdJugadorField = value;
-                    this.RaisePropertyChanged("IdJugador");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public LaOcaClient.LaOcaService.Jugadores[] Jugadores {
-            get {
-                return this.JugadoresField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.JugadoresField, value) != true)) {
-                    this.JugadoresField = value;
-                    this.RaisePropertyChanged("Jugadores");
-                }
             }
         }
         
@@ -474,143 +70,28 @@ namespace LaOcaClient.LaOcaService {
             }
         }
         
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Puntuaciones", Namespace="http://schemas.datacontract.org/2004/07/LaOcaDataAccess")]
-    [System.SerializableAttribute()]
-    public partial class Puntuaciones : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> IdJugadorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdPuntuacionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private LaOcaClient.LaOcaService.Jugadores[] JugadoresField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> casillasRecorridasGlobalField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> monedasActualesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> monedasObtenidasGlobalField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> partidasGanadasGlobalField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> IdJugador {
+        public int idCuenta {
             get {
-                return this.IdJugadorField;
+                return this.idCuentaField;
             }
             set {
-                if ((this.IdJugadorField.Equals(value) != true)) {
-                    this.IdJugadorField = value;
-                    this.RaisePropertyChanged("IdJugador");
+                if ((this.idCuentaField.Equals(value) != true)) {
+                    this.idCuentaField = value;
+                    this.RaisePropertyChanged("idCuenta");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdPuntuacion {
+        public int idJugador {
             get {
-                return this.IdPuntuacionField;
+                return this.idJugadorField;
             }
             set {
-                if ((this.IdPuntuacionField.Equals(value) != true)) {
-                    this.IdPuntuacionField = value;
-                    this.RaisePropertyChanged("IdPuntuacion");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public LaOcaClient.LaOcaService.Jugadores[] Jugadores {
-            get {
-                return this.JugadoresField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.JugadoresField, value) != true)) {
-                    this.JugadoresField = value;
-                    this.RaisePropertyChanged("Jugadores");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> casillasRecorridasGlobal {
-            get {
-                return this.casillasRecorridasGlobalField;
-            }
-            set {
-                if ((this.casillasRecorridasGlobalField.Equals(value) != true)) {
-                    this.casillasRecorridasGlobalField = value;
-                    this.RaisePropertyChanged("casillasRecorridasGlobal");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> monedasActuales {
-            get {
-                return this.monedasActualesField;
-            }
-            set {
-                if ((this.monedasActualesField.Equals(value) != true)) {
-                    this.monedasActualesField = value;
-                    this.RaisePropertyChanged("monedasActuales");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> monedasObtenidasGlobal {
-            get {
-                return this.monedasObtenidasGlobalField;
-            }
-            set {
-                if ((this.monedasObtenidasGlobalField.Equals(value) != true)) {
-                    this.monedasObtenidasGlobalField = value;
-                    this.RaisePropertyChanged("monedasObtenidasGlobal");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> partidasGanadasGlobal {
-            get {
-                return this.partidasGanadasGlobalField;
-            }
-            set {
-                if ((this.partidasGanadasGlobalField.Equals(value) != true)) {
-                    this.partidasGanadasGlobalField = value;
-                    this.RaisePropertyChanged("partidasGanadasGlobal");
+                if ((this.idJugadorField.Equals(value) != true)) {
+                    this.idJugadorField = value;
+                    this.RaisePropertyChanged("idJugador");
                 }
             }
         }
@@ -627,33 +108,27 @@ namespace LaOcaClient.LaOcaService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Amistades", Namespace="http://schemas.datacontract.org/2004/07/LaOcaDataAccess")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Jugador", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
     [System.SerializableAttribute()]
-    public partial class Amistades : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Jugador : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdAmistadField;
+        private int idCuentaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> IdJugadorReceptorField;
+        private int idFotoPerfilField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> IdJugadorSolicitanteField;
+        private int idJugadorField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private LaOcaClient.LaOcaService.Jugadores JugadoresField;
+        private int idPuntuacionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private LaOcaClient.LaOcaService.Jugadores Jugadores1Field;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string estadoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> fechaField;
+        private string nombreUsuarioField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -666,92 +141,66 @@ namespace LaOcaClient.LaOcaService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdAmistad {
+        public int idCuenta {
             get {
-                return this.IdAmistadField;
+                return this.idCuentaField;
             }
             set {
-                if ((this.IdAmistadField.Equals(value) != true)) {
-                    this.IdAmistadField = value;
-                    this.RaisePropertyChanged("IdAmistad");
+                if ((this.idCuentaField.Equals(value) != true)) {
+                    this.idCuentaField = value;
+                    this.RaisePropertyChanged("idCuenta");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> IdJugadorReceptor {
+        public int idFotoPerfil {
             get {
-                return this.IdJugadorReceptorField;
+                return this.idFotoPerfilField;
             }
             set {
-                if ((this.IdJugadorReceptorField.Equals(value) != true)) {
-                    this.IdJugadorReceptorField = value;
-                    this.RaisePropertyChanged("IdJugadorReceptor");
+                if ((this.idFotoPerfilField.Equals(value) != true)) {
+                    this.idFotoPerfilField = value;
+                    this.RaisePropertyChanged("idFotoPerfil");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> IdJugadorSolicitante {
+        public int idJugador {
             get {
-                return this.IdJugadorSolicitanteField;
+                return this.idJugadorField;
             }
             set {
-                if ((this.IdJugadorSolicitanteField.Equals(value) != true)) {
-                    this.IdJugadorSolicitanteField = value;
-                    this.RaisePropertyChanged("IdJugadorSolicitante");
+                if ((this.idJugadorField.Equals(value) != true)) {
+                    this.idJugadorField = value;
+                    this.RaisePropertyChanged("idJugador");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public LaOcaClient.LaOcaService.Jugadores Jugadores {
+        public int idPuntuacion {
             get {
-                return this.JugadoresField;
+                return this.idPuntuacionField;
             }
             set {
-                if ((object.ReferenceEquals(this.JugadoresField, value) != true)) {
-                    this.JugadoresField = value;
-                    this.RaisePropertyChanged("Jugadores");
+                if ((this.idPuntuacionField.Equals(value) != true)) {
+                    this.idPuntuacionField = value;
+                    this.RaisePropertyChanged("idPuntuacion");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public LaOcaClient.LaOcaService.Jugadores Jugadores1 {
+        public string nombreUsuario {
             get {
-                return this.Jugadores1Field;
+                return this.nombreUsuarioField;
             }
             set {
-                if ((object.ReferenceEquals(this.Jugadores1Field, value) != true)) {
-                    this.Jugadores1Field = value;
-                    this.RaisePropertyChanged("Jugadores1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string estado {
-            get {
-                return this.estadoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.estadoField, value) != true)) {
-                    this.estadoField = value;
-                    this.RaisePropertyChanged("estado");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> fecha {
-            get {
-                return this.fechaField;
-            }
-            set {
-                if ((this.fechaField.Equals(value) != true)) {
-                    this.fechaField = value;
-                    this.RaisePropertyChanged("fecha");
+                if ((object.ReferenceEquals(this.nombreUsuarioField, value) != true)) {
+                    this.nombreUsuarioField = value;
+                    this.RaisePropertyChanged("nombreUsuario");
                 }
             }
         }
@@ -768,27 +217,21 @@ namespace LaOcaClient.LaOcaService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="JugadoresAspectos", Namespace="http://schemas.datacontract.org/2004/07/LaOcaDataAccess")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Aspecto", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
     [System.SerializableAttribute()]
-    public partial class JugadoresAspectos : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Aspecto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private LaOcaClient.LaOcaService.Aspectos AspectosField;
+        private int idAspectoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> IdAspectoField;
+        private string referenciaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> IdJugadorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdJugadorAspectoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private LaOcaClient.LaOcaService.Jugadores JugadoresField;
+        private string tipoField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -801,66 +244,40 @@ namespace LaOcaClient.LaOcaService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public LaOcaClient.LaOcaService.Aspectos Aspectos {
+        public int idAspecto {
             get {
-                return this.AspectosField;
+                return this.idAspectoField;
             }
             set {
-                if ((object.ReferenceEquals(this.AspectosField, value) != true)) {
-                    this.AspectosField = value;
-                    this.RaisePropertyChanged("Aspectos");
+                if ((this.idAspectoField.Equals(value) != true)) {
+                    this.idAspectoField = value;
+                    this.RaisePropertyChanged("idAspecto");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> IdAspecto {
+        public string referencia {
             get {
-                return this.IdAspectoField;
+                return this.referenciaField;
             }
             set {
-                if ((this.IdAspectoField.Equals(value) != true)) {
-                    this.IdAspectoField = value;
-                    this.RaisePropertyChanged("IdAspecto");
+                if ((object.ReferenceEquals(this.referenciaField, value) != true)) {
+                    this.referenciaField = value;
+                    this.RaisePropertyChanged("referencia");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> IdJugador {
+        public string tipo {
             get {
-                return this.IdJugadorField;
+                return this.tipoField;
             }
             set {
-                if ((this.IdJugadorField.Equals(value) != true)) {
-                    this.IdJugadorField = value;
-                    this.RaisePropertyChanged("IdJugador");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdJugadorAspecto {
-            get {
-                return this.IdJugadorAspectoField;
-            }
-            set {
-                if ((this.IdJugadorAspectoField.Equals(value) != true)) {
-                    this.IdJugadorAspectoField = value;
-                    this.RaisePropertyChanged("IdJugadorAspecto");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public LaOcaClient.LaOcaService.Jugadores Jugadores {
-            get {
-                return this.JugadoresField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.JugadoresField, value) != true)) {
-                    this.JugadoresField = value;
-                    this.RaisePropertyChanged("Jugadores");
+                if ((object.ReferenceEquals(this.tipoField, value) != true)) {
+                    this.tipoField = value;
+                    this.RaisePropertyChanged("tipo");
                 }
             }
         }
@@ -923,49 +340,245 @@ namespace LaOcaClient.LaOcaService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioCrearCuenta")]
-    public interface IServicioCrearCuenta {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioCuenta")]
+    public interface IServicioCuenta {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCrearCuenta/AgregarJugador", ReplyAction="http://tempuri.org/IServicioCrearCuenta/AgregarJugadorResponse")]
-        void AgregarJugador(LaOcaClient.LaOcaService.Jugadores jugador);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/CrearCuenta", ReplyAction="http://tempuri.org/IServicioCuenta/CrearCuentaResponse")]
+        void CrearCuenta(LaOcaClient.LaOcaService.Cuenta cuenta, LaOcaClient.LaOcaService.Jugador jugador, string referenciaImagen);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCrearCuenta/AgregarJugador", ReplyAction="http://tempuri.org/IServicioCrearCuenta/AgregarJugadorResponse")]
-        System.Threading.Tasks.Task AgregarJugadorAsync(LaOcaClient.LaOcaService.Jugadores jugador);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/CrearCuenta", ReplyAction="http://tempuri.org/IServicioCuenta/CrearCuentaResponse")]
+        System.Threading.Tasks.Task CrearCuentaAsync(LaOcaClient.LaOcaService.Cuenta cuenta, LaOcaClient.LaOcaService.Jugador jugador, string referenciaImagen);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ModificarCuenta", ReplyAction="http://tempuri.org/IServicioCuenta/ModificarCuentaResponse")]
+        void ModificarCuenta(LaOcaClient.LaOcaService.Cuenta cuenta);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ModificarCuenta", ReplyAction="http://tempuri.org/IServicioCuenta/ModificarCuentaResponse")]
+        System.Threading.Tasks.Task ModificarCuentaAsync(LaOcaClient.LaOcaService.Cuenta cuenta);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ModificarJugador", ReplyAction="http://tempuri.org/IServicioCuenta/ModificarJugadorResponse")]
+        void ModificarJugador(LaOcaClient.LaOcaService.Jugador jugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ModificarJugador", ReplyAction="http://tempuri.org/IServicioCuenta/ModificarJugadorResponse")]
+        System.Threading.Tasks.Task ModificarJugadorAsync(LaOcaClient.LaOcaService.Jugador jugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ModificarAspecto", ReplyAction="http://tempuri.org/IServicioCuenta/ModificarAspectoResponse")]
+        void ModificarAspecto(LaOcaClient.LaOcaService.Aspecto aspecto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ModificarAspecto", ReplyAction="http://tempuri.org/IServicioCuenta/ModificarAspectoResponse")]
+        System.Threading.Tasks.Task ModificarAspectoAsync(LaOcaClient.LaOcaService.Aspecto aspecto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorId", ReplyAction="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorIdResponse")]
+        LaOcaClient.LaOcaService.Cuenta ObtenerCuentaPorId(int idCuenta);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorId", ReplyAction="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorIdResponse")]
+        System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Cuenta> ObtenerCuentaPorIdAsync(int idCuenta);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ObtenerJugadorPorId", ReplyAction="http://tempuri.org/IServicioCuenta/ObtenerJugadorPorIdResponse")]
+        LaOcaClient.LaOcaService.Jugador ObtenerJugadorPorId(int idJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ObtenerJugadorPorId", ReplyAction="http://tempuri.org/IServicioCuenta/ObtenerJugadorPorIdResponse")]
+        System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Jugador> ObtenerJugadorPorIdAsync(int idJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/CrearAspecto", ReplyAction="http://tempuri.org/IServicioCuenta/CrearAspectoResponse")]
+        void CrearAspecto(LaOcaClient.LaOcaService.Aspecto aspecto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/CrearAspecto", ReplyAction="http://tempuri.org/IServicioCuenta/CrearAspectoResponse")]
+        System.Threading.Tasks.Task CrearAspectoAsync(LaOcaClient.LaOcaService.Aspecto aspecto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ObtenerAspectoPorId", ReplyAction="http://tempuri.org/IServicioCuenta/ObtenerAspectoPorIdResponse")]
+        LaOcaClient.LaOcaService.Aspecto ObtenerAspectoPorId(int idAspecto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ObtenerAspectoPorId", ReplyAction="http://tempuri.org/IServicioCuenta/ObtenerAspectoPorIdResponse")]
+        System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Aspecto> ObtenerAspectoPorIdAsync(int idAspecto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/EnviarCodigoVerificacion", ReplyAction="http://tempuri.org/IServicioCuenta/EnviarCodigoVerificacionResponse")]
+        void EnviarCodigoVerificacion(string correoElectronico);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/EnviarCodigoVerificacion", ReplyAction="http://tempuri.org/IServicioCuenta/EnviarCodigoVerificacionResponse")]
+        System.Threading.Tasks.Task EnviarCodigoVerificacionAsync(string correoElectronico);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/VerificarCodigoCrearCuenta", ReplyAction="http://tempuri.org/IServicioCuenta/VerificarCodigoCrearCuentaResponse")]
+        bool VerificarCodigoCrearCuenta(string correo, string codigo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/VerificarCodigoCrearCuenta", ReplyAction="http://tempuri.org/IServicioCuenta/VerificarCodigoCrearCuentaResponse")]
+        System.Threading.Tasks.Task<bool> VerificarCodigoCrearCuentaAsync(string correo, string codigo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/VerificarCodigoRecuperarContraseña", ReplyAction="http://tempuri.org/IServicioCuenta/VerificarCodigoRecuperarContraseñaResponse")]
+        int VerificarCodigoRecuperarContraseña(string correo, string codigo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/VerificarCodigoRecuperarContraseña", ReplyAction="http://tempuri.org/IServicioCuenta/VerificarCodigoRecuperarContraseñaResponse")]
+        System.Threading.Tasks.Task<int> VerificarCodigoRecuperarContraseñaAsync(string correo, string codigo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/VerificarContraseñaActual", ReplyAction="http://tempuri.org/IServicioCuenta/VerificarContraseñaActualResponse")]
+        bool VerificarContraseñaActual(int idCuenta, string contraseñaActual);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/VerificarContraseñaActual", ReplyAction="http://tempuri.org/IServicioCuenta/VerificarContraseñaActualResponse")]
+        System.Threading.Tasks.Task<bool> VerificarContraseñaActualAsync(int idCuenta, string contraseñaActual);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/SolicitarRecuperacionContrasena", ReplyAction="http://tempuri.org/IServicioCuenta/SolicitarRecuperacionContrasenaResponse")]
+        void SolicitarRecuperacionContrasena(string correoElectronico);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/SolicitarRecuperacionContrasena", ReplyAction="http://tempuri.org/IServicioCuenta/SolicitarRecuperacionContrasenaResponse")]
+        System.Threading.Tasks.Task SolicitarRecuperacionContrasenaAsync(string correoElectronico);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ModificarContraseña", ReplyAction="http://tempuri.org/IServicioCuenta/ModificarContraseñaResponse")]
+        void ModificarContraseña(int idCuenta, string nuevaContrasena);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ModificarContraseña", ReplyAction="http://tempuri.org/IServicioCuenta/ModificarContraseñaResponse")]
+        System.Threading.Tasks.Task ModificarContraseñaAsync(int idCuenta, string nuevaContrasena);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorCodigoVerificacion", ReplyAction="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorCodigoVerificacionResponse")]
+        LaOcaClient.LaOcaService.Cuenta ObtenerCuentaPorCodigoVerificacion(string codigoVerificacion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorCodigoVerificacion", ReplyAction="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorCodigoVerificacionResponse")]
+        System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Cuenta> ObtenerCuentaPorCodigoVerificacionAsync(string codigoVerificacion);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServicioCrearCuentaChannel : LaOcaClient.LaOcaService.IServicioCrearCuenta, System.ServiceModel.IClientChannel {
+    public interface IServicioCuentaChannel : LaOcaClient.LaOcaService.IServicioCuenta, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServicioCrearCuentaClient : System.ServiceModel.ClientBase<LaOcaClient.LaOcaService.IServicioCrearCuenta>, LaOcaClient.LaOcaService.IServicioCrearCuenta {
+    public partial class ServicioCuentaClient : System.ServiceModel.ClientBase<LaOcaClient.LaOcaService.IServicioCuenta>, LaOcaClient.LaOcaService.IServicioCuenta {
         
-        public ServicioCrearCuentaClient() {
+        public ServicioCuentaClient() {
         }
         
-        public ServicioCrearCuentaClient(string endpointConfigurationName) : 
+        public ServicioCuentaClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public ServicioCrearCuentaClient(string endpointConfigurationName, string remoteAddress) : 
+        public ServicioCuentaClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public ServicioCrearCuentaClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ServicioCuentaClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public ServicioCrearCuentaClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ServicioCuentaClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
-        public void AgregarJugador(LaOcaClient.LaOcaService.Jugadores jugador) {
-            base.Channel.AgregarJugador(jugador);
+        public void CrearCuenta(LaOcaClient.LaOcaService.Cuenta cuenta, LaOcaClient.LaOcaService.Jugador jugador, string referenciaImagen) {
+            base.Channel.CrearCuenta(cuenta, jugador, referenciaImagen);
         }
         
-        public System.Threading.Tasks.Task AgregarJugadorAsync(LaOcaClient.LaOcaService.Jugadores jugador) {
-            return base.Channel.AgregarJugadorAsync(jugador);
+        public System.Threading.Tasks.Task CrearCuentaAsync(LaOcaClient.LaOcaService.Cuenta cuenta, LaOcaClient.LaOcaService.Jugador jugador, string referenciaImagen) {
+            return base.Channel.CrearCuentaAsync(cuenta, jugador, referenciaImagen);
+        }
+        
+        public void ModificarCuenta(LaOcaClient.LaOcaService.Cuenta cuenta) {
+            base.Channel.ModificarCuenta(cuenta);
+        }
+        
+        public System.Threading.Tasks.Task ModificarCuentaAsync(LaOcaClient.LaOcaService.Cuenta cuenta) {
+            return base.Channel.ModificarCuentaAsync(cuenta);
+        }
+        
+        public void ModificarJugador(LaOcaClient.LaOcaService.Jugador jugador) {
+            base.Channel.ModificarJugador(jugador);
+        }
+        
+        public System.Threading.Tasks.Task ModificarJugadorAsync(LaOcaClient.LaOcaService.Jugador jugador) {
+            return base.Channel.ModificarJugadorAsync(jugador);
+        }
+        
+        public void ModificarAspecto(LaOcaClient.LaOcaService.Aspecto aspecto) {
+            base.Channel.ModificarAspecto(aspecto);
+        }
+        
+        public System.Threading.Tasks.Task ModificarAspectoAsync(LaOcaClient.LaOcaService.Aspecto aspecto) {
+            return base.Channel.ModificarAspectoAsync(aspecto);
+        }
+        
+        public LaOcaClient.LaOcaService.Cuenta ObtenerCuentaPorId(int idCuenta) {
+            return base.Channel.ObtenerCuentaPorId(idCuenta);
+        }
+        
+        public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Cuenta> ObtenerCuentaPorIdAsync(int idCuenta) {
+            return base.Channel.ObtenerCuentaPorIdAsync(idCuenta);
+        }
+        
+        public LaOcaClient.LaOcaService.Jugador ObtenerJugadorPorId(int idJugador) {
+            return base.Channel.ObtenerJugadorPorId(idJugador);
+        }
+        
+        public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Jugador> ObtenerJugadorPorIdAsync(int idJugador) {
+            return base.Channel.ObtenerJugadorPorIdAsync(idJugador);
+        }
+        
+        public void CrearAspecto(LaOcaClient.LaOcaService.Aspecto aspecto) {
+            base.Channel.CrearAspecto(aspecto);
+        }
+        
+        public System.Threading.Tasks.Task CrearAspectoAsync(LaOcaClient.LaOcaService.Aspecto aspecto) {
+            return base.Channel.CrearAspectoAsync(aspecto);
+        }
+        
+        public LaOcaClient.LaOcaService.Aspecto ObtenerAspectoPorId(int idAspecto) {
+            return base.Channel.ObtenerAspectoPorId(idAspecto);
+        }
+        
+        public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Aspecto> ObtenerAspectoPorIdAsync(int idAspecto) {
+            return base.Channel.ObtenerAspectoPorIdAsync(idAspecto);
+        }
+        
+        public void EnviarCodigoVerificacion(string correoElectronico) {
+            base.Channel.EnviarCodigoVerificacion(correoElectronico);
+        }
+        
+        public System.Threading.Tasks.Task EnviarCodigoVerificacionAsync(string correoElectronico) {
+            return base.Channel.EnviarCodigoVerificacionAsync(correoElectronico);
+        }
+        
+        public bool VerificarCodigoCrearCuenta(string correo, string codigo) {
+            return base.Channel.VerificarCodigoCrearCuenta(correo, codigo);
+        }
+        
+        public System.Threading.Tasks.Task<bool> VerificarCodigoCrearCuentaAsync(string correo, string codigo) {
+            return base.Channel.VerificarCodigoCrearCuentaAsync(correo, codigo);
+        }
+        
+        public int VerificarCodigoRecuperarContraseña(string correo, string codigo) {
+            return base.Channel.VerificarCodigoRecuperarContraseña(correo, codigo);
+        }
+        
+        public System.Threading.Tasks.Task<int> VerificarCodigoRecuperarContraseñaAsync(string correo, string codigo) {
+            return base.Channel.VerificarCodigoRecuperarContraseñaAsync(correo, codigo);
+        }
+        
+        public bool VerificarContraseñaActual(int idCuenta, string contraseñaActual) {
+            return base.Channel.VerificarContraseñaActual(idCuenta, contraseñaActual);
+        }
+        
+        public System.Threading.Tasks.Task<bool> VerificarContraseñaActualAsync(int idCuenta, string contraseñaActual) {
+            return base.Channel.VerificarContraseñaActualAsync(idCuenta, contraseñaActual);
+        }
+        
+        public void SolicitarRecuperacionContrasena(string correoElectronico) {
+            base.Channel.SolicitarRecuperacionContrasena(correoElectronico);
+        }
+        
+        public System.Threading.Tasks.Task SolicitarRecuperacionContrasenaAsync(string correoElectronico) {
+            return base.Channel.SolicitarRecuperacionContrasenaAsync(correoElectronico);
+        }
+        
+        public void ModificarContraseña(int idCuenta, string nuevaContrasena) {
+            base.Channel.ModificarContraseña(idCuenta, nuevaContrasena);
+        }
+        
+        public System.Threading.Tasks.Task ModificarContraseñaAsync(int idCuenta, string nuevaContrasena) {
+            return base.Channel.ModificarContraseñaAsync(idCuenta, nuevaContrasena);
+        }
+        
+        public LaOcaClient.LaOcaService.Cuenta ObtenerCuentaPorCodigoVerificacion(string codigoVerificacion) {
+            return base.Channel.ObtenerCuentaPorCodigoVerificacion(codigoVerificacion);
+        }
+        
+        public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Cuenta> ObtenerCuentaPorCodigoVerificacionAsync(string codigoVerificacion) {
+            return base.Channel.ObtenerCuentaPorCodigoVerificacionAsync(codigoVerificacion);
         }
     }
 }

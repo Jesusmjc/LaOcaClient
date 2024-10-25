@@ -138,7 +138,7 @@
   <data name="btnReenviarCodigo" xml:space="preserve">
     <value>Reenviar código después de:</value>
   </data>
-  <data name="btnSeleccionarImagenPerfil" xml:space="preserve">
+  <data name="lbSeleccionarImagenPerfil" xml:space="preserve">
     <value>Seleccionar imagen de perfil</value>
   </data>
   <data name="btnVerificarCodigo" xml:space="preserve">
@@ -187,7 +187,7 @@
     <value>Las contraseñas no coinciden</value>
   </data>
   <data name="globalCorreo" xml:space="preserve">
-    <value>Correo:</value>
+    <value>Correo electrónico:</value>
   </data>
   <data name="globalCrearCuenta" xml:space="preserve">
     <value>Crear cuenta</value>
@@ -246,7 +246,7 @@
   <data name="lbIngresarCodigo" xml:space="preserve">
     <value>Ingrese el código de verificación:</value>
   </data>
-  <data name="lbIngresarCorreoo" xml:space="preserve">
+  <data name="lbIngresarCorreo" xml:space="preserve">
     <value>Ingrese su correo electrónico registrado:</value>
   </data>
   <data name="lbIngresarNombreJugador" xml:space="preserve">
@@ -281,5 +281,23 @@
   </data>
   <data name="usuarioLogin" xml:space="preserve">
     <value>Usuario</value>
+  </data>
+  <data name="skinOcaMadre" xml:space="preserve">
+    <value>Oca Madre</value>
+  </data>
+  <data name="skinOcaAesthetic" xml:space="preserve">
+    <value>Oca Aesthetic</value>
+  </data>
+  <data name="skinOcaDibujada" xml:space="preserve">
+    <value>Oca Dibujada</value>
+  </data>
+  <data name="skinOcaFea" xml:space="preserve">
+    <value>Oca Fea</value>
+  </data>
+  <data name="skinOcaRealista" xml:space="preserve">
+    <value>Oca Realista</value>
+  </data>
+  <data name="skinOcaTriste" xml:space="preserve">
+    <value>Oca Triste</value>
   </data>
 </root>

@@ -138,7 +138,7 @@
   <data name="btnReenviarCodigo" xml:space="preserve">
     <value>Resend code after:</value>
   </data>
-  <data name="btnSeleccionarImagenPerfil" xml:space="preserve">
+  <data name="lbSeleccionarImagenPerfil" xml:space="preserve">
     <value>Select porfile image</value>
   </data>
   <data name="btnVerificarCodigo" xml:space="preserve">
@@ -187,7 +187,7 @@
     <value>Passwords do not match</value>
   </data>
   <data name="globalCorreo" xml:space="preserve">
-    <value>Mail:</value>
+    <value>Email:</value>
   </data>
   <data name="globalCrearCuenta" xml:space="preserve">
     <value>Create account</value>
@@ -246,7 +246,7 @@
   <data name="lbIngresarCodigo" xml:space="preserve">
     <value>Enter the verification code:</value>
   </data>
-  <data name="lbIngresarCorreoo" xml:space="preserve">
+  <data name="lbIngresarCorreo" xml:space="preserve">
     <value>Enter your registered emal:</value>
   </data>
   <data name="lbIngresarNombreJugador" xml:space="preserve">
@@ -281,5 +281,23 @@
   </data>
   <data name="usuarioLogin" xml:space="preserve">
     <value>Username</value>
+  </data>
+  <data name="skinOcaMadre" xml:space="preserve">
+    <value>Mother Goose</value>
+  </data>
+  <data name="skinOcaAesthetic" xml:space="preserve">
+    <value>Aesthetic Goose</value>
+  </data>
+  <data name="skinOcaDibujada" xml:space="preserve">
+    <value>Drawn Goose</value>
+  </data>
+  <data name="skinOcaFea" xml:space="preserve">
+    <value>Ugly Goose</value>
+  </data>
+  <data name="skinOcaRealista" xml:space="preserve">
+    <value>Realistic Goose</value>
+  </data>
+  <data name="skinOcaTriste" xml:space="preserve">
+    <value>Sad Goose</value>
   </data>
 </root>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="LaOcaService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsp:Policy wsu:Id="NetTcpBinding_ILoginService_policy">
+  <wsp:Policy wsu:Id="endpointLogin_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
@@ -29,7 +29,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IServicioCrearCuenta_policy">
+  <wsp:Policy wsu:Id="endpointCrearCuenta_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
@@ -62,7 +62,7 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/LaOcaDataAccess" />
+      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/LaOcaService" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ILoginService_GetUser_InputMessage">
@@ -71,11 +71,95 @@
   <wsdl:message name="ILoginService_GetUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUserResponse" />
   </wsdl:message>
-  <wsdl:message name="IServicioCrearCuenta_AgregarJugador_InputMessage">
-    <wsdl:part name="parameters" element="tns:AgregarJugador" />
+  <wsdl:message name="IServicioCuenta_CrearCuenta_InputMessage">
+    <wsdl:part name="parameters" element="tns:CrearCuenta" />
   </wsdl:message>
-  <wsdl:message name="IServicioCrearCuenta_AgregarJugador_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AgregarJugadorResponse" />
+  <wsdl:message name="IServicioCuenta_CrearCuenta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearCuentaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ModificarCuenta_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarCuenta" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ModificarCuenta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarCuentaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ModificarJugador_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarJugador" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ModificarJugador_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarJugadorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ModificarAspecto_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarAspecto" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ModificarAspecto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarAspectoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ObtenerCuentaPorId_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCuentaPorId" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ObtenerCuentaPorId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCuentaPorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ObtenerJugadorPorId_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerJugadorPorId" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ObtenerJugadorPorId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerJugadorPorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_CrearAspecto_InputMessage">
+    <wsdl:part name="parameters" element="tns:CrearAspecto" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_CrearAspecto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearAspectoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ObtenerAspectoPorId_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAspectoPorId" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ObtenerAspectoPorId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAspectoPorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_EnviarCodigoVerificacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnviarCodigoVerificacion" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_EnviarCodigoVerificacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnviarCodigoVerificacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_VerificarCodigoCrearCuenta_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerificarCodigoCrearCuenta" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_VerificarCodigoCrearCuenta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerificarCodigoCrearCuentaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_VerificarCodigoRecuperarContraseña_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerificarCodigoRecuperarContraseña" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_VerificarCodigoRecuperarContraseña_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerificarCodigoRecuperarContraseñaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_VerificarContraseñaActual_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerificarContraseñaActual" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_VerificarContraseñaActual_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerificarContraseñaActualResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_SolicitarRecuperacionContrasena_InputMessage">
+    <wsdl:part name="parameters" element="tns:SolicitarRecuperacionContrasena" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_SolicitarRecuperacionContrasena_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SolicitarRecuperacionContrasenaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ModificarContraseña_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarContraseña" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ModificarContraseña_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarContraseñaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ObtenerCuentaPorCodigoVerificacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCuentaPorCodigoVerificacion" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ObtenerCuentaPorCodigoVerificacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCuentaPorCodigoVerificacionResponse" />
   </wsdl:message>
   <wsdl:portType name="ILoginService">
     <wsdl:operation name="GetUser">
@@ -83,14 +167,70 @@
       <wsdl:output wsaw:Action="http://tempuri.org/ILoginService/GetUserResponse" message="tns:ILoginService_GetUser_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:portType name="IServicioCrearCuenta">
-    <wsdl:operation name="AgregarJugador">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCrearCuenta/AgregarJugador" message="tns:IServicioCrearCuenta_AgregarJugador_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCrearCuenta/AgregarJugadorResponse" message="tns:IServicioCrearCuenta_AgregarJugador_OutputMessage" />
+  <wsdl:portType name="IServicioCuenta">
+    <wsdl:operation name="CrearCuenta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/CrearCuenta" message="tns:IServicioCuenta_CrearCuenta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/CrearCuentaResponse" message="tns:IServicioCuenta_CrearCuenta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarCuenta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ModificarCuenta" message="tns:IServicioCuenta_ModificarCuenta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ModificarCuentaResponse" message="tns:IServicioCuenta_ModificarCuenta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarJugador">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ModificarJugador" message="tns:IServicioCuenta_ModificarJugador_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ModificarJugadorResponse" message="tns:IServicioCuenta_ModificarJugador_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarAspecto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ModificarAspecto" message="tns:IServicioCuenta_ModificarAspecto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ModificarAspectoResponse" message="tns:IServicioCuenta_ModificarAspecto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCuentaPorId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorId" message="tns:IServicioCuenta_ObtenerCuentaPorId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorIdResponse" message="tns:IServicioCuenta_ObtenerCuentaPorId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerJugadorPorId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerJugadorPorId" message="tns:IServicioCuenta_ObtenerJugadorPorId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerJugadorPorIdResponse" message="tns:IServicioCuenta_ObtenerJugadorPorId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CrearAspecto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/CrearAspecto" message="tns:IServicioCuenta_CrearAspecto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/CrearAspectoResponse" message="tns:IServicioCuenta_CrearAspecto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAspectoPorId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerAspectoPorId" message="tns:IServicioCuenta_ObtenerAspectoPorId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerAspectoPorIdResponse" message="tns:IServicioCuenta_ObtenerAspectoPorId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EnviarCodigoVerificacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/EnviarCodigoVerificacion" message="tns:IServicioCuenta_EnviarCodigoVerificacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/EnviarCodigoVerificacionResponse" message="tns:IServicioCuenta_EnviarCodigoVerificacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificarCodigoCrearCuenta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/VerificarCodigoCrearCuenta" message="tns:IServicioCuenta_VerificarCodigoCrearCuenta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/VerificarCodigoCrearCuentaResponse" message="tns:IServicioCuenta_VerificarCodigoCrearCuenta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificarCodigoRecuperarContraseña">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/VerificarCodigoRecuperarContraseña" message="tns:IServicioCuenta_VerificarCodigoRecuperarContraseña_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/VerificarCodigoRecuperarContraseñaResponse" message="tns:IServicioCuenta_VerificarCodigoRecuperarContraseña_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificarContraseñaActual">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/VerificarContraseñaActual" message="tns:IServicioCuenta_VerificarContraseñaActual_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/VerificarContraseñaActualResponse" message="tns:IServicioCuenta_VerificarContraseñaActual_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SolicitarRecuperacionContrasena">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/SolicitarRecuperacionContrasena" message="tns:IServicioCuenta_SolicitarRecuperacionContrasena_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/SolicitarRecuperacionContrasenaResponse" message="tns:IServicioCuenta_SolicitarRecuperacionContrasena_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarContraseña">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ModificarContraseña" message="tns:IServicioCuenta_ModificarContraseña_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ModificarContraseñaResponse" message="tns:IServicioCuenta_ModificarContraseña_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCuentaPorCodigoVerificacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorCodigoVerificacion" message="tns:IServicioCuenta_ObtenerCuentaPorCodigoVerificacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorCodigoVerificacionResponse" message="tns:IServicioCuenta_ObtenerCuentaPorCodigoVerificacion_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="NetTcpBinding_ILoginService" type="tns:ILoginService">
-    <wsp:PolicyReference URI="#NetTcpBinding_ILoginService_policy" />
+  <wsdl:binding name="endpointLogin" type="tns:ILoginService">
+    <wsp:PolicyReference URI="#endpointLogin_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
     <wsdl:operation name="GetUser">
       <soap12:operation soapAction="http://tempuri.org/ILoginService/GetUser" style="document" />
@@ -102,11 +242,137 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="NetTcpBinding_IServicioCrearCuenta" type="tns:IServicioCrearCuenta">
-    <wsp:PolicyReference URI="#NetTcpBinding_IServicioCrearCuenta_policy" />
+  <wsdl:binding name="endpointCrearCuenta" type="tns:IServicioCuenta">
+    <wsp:PolicyReference URI="#endpointCrearCuenta_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="AgregarJugador">
-      <soap12:operation soapAction="http://tempuri.org/IServicioCrearCuenta/AgregarJugador" style="document" />
+    <wsdl:operation name="CrearCuenta">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/CrearCuenta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarCuenta">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ModificarCuenta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarJugador">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ModificarJugador" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarAspecto">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ModificarAspecto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCuentaPorId">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerJugadorPorId">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ObtenerJugadorPorId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CrearAspecto">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/CrearAspecto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAspectoPorId">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ObtenerAspectoPorId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviarCodigoVerificacion">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/EnviarCodigoVerificacion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificarCodigoCrearCuenta">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/VerificarCodigoCrearCuenta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificarCodigoRecuperarContraseña">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/VerificarCodigoRecuperarContraseña" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificarContraseñaActual">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/VerificarContraseñaActual" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SolicitarRecuperacionContrasena">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/SolicitarRecuperacionContrasena" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarContraseña">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ModificarContraseña" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCuentaPorCodigoVerificacion">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorCodigoVerificacion" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -116,7 +382,7 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="LaOcaService">
-    <wsdl:port name="NetTcpBinding_ILoginService" binding="tns:NetTcpBinding_ILoginService">
+    <wsdl:port name="endpointLogin" binding="tns:endpointLogin">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
@@ -125,7 +391,7 @@
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
-    <wsdl:port name="NetTcpBinding_IServicioCrearCuenta" binding="tns:NetTcpBinding_IServicioCrearCuenta">
+    <wsdl:port name="endpointCrearCuenta" binding="tns:endpointCrearCuenta">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
