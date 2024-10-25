@@ -23,11 +23,19 @@ namespace LaOcaClient
 
         private void btnModificarCuenta_Click(object sender, RoutedEventArgs e)
         {
-            int idCuenta = 2;
-            int idJugador = 2;
+            int idCuenta = SingletonJugador.Instance.Jugador.IdCuenta;
+            int idJugador = SingletonJugador.Instance.Jugador.IdJugador;
             CrearCuenta ventanaCrearCuenta = new CrearCuenta(ModoCuenta.Modificar, idCuenta, idJugador);
             ventanaCrearCuenta.ActualizarVentanaModificar(ModoCuenta.Modificar);
-            ventanaCrearCuenta.ShowDialog();
+            ventanaCrearCuenta.Show();
+            this.Close();
+        }
+
+        private void BtnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            IniciarSesion ventanaIniciarSesion = new IniciarSesion();
+            ventanaIniciarSesion.Show();
+            this.Close();
         }
     }
 }

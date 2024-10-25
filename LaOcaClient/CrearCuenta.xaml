@@ -38,6 +38,6 @@
         <Button x:Name="btnReenviarCodigo" Content="Reenviar código" HorizontalAlignment="Center" Margin="0,360,0,0" VerticalAlignment="Top" Visibility="Collapsed" Click="btnReenviarCodigo_Click"/>
         <Label x:Name="lbReenviarCodigo" Content="Podrás reenviar el código después de 60 segundos." HorizontalAlignment="Center" Margin="0,334,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
         <Button x:Name="btnVolverAtras" Content="Volver atrás" HorizontalAlignment="Left" Margin="487,408,0,0" VerticalAlignment="Top" Width="75" Click="btnVolverAtras_Click" Visibility="Collapsed"/>
-        <Button x:Name="btnCambiarContraseña" Content="Cambiar contraseña" HorizontalAlignment="Left" Margin="78,385,0,0" VerticalAlignment="Top" Width="182" Height="26" Visibility="Visible" Click="btnCambiarContraseña_Click"/>
+        <Button x:Name="btnCambiarContraseña" Content="Cambiar contraseña" HorizontalAlignment="Left" Margin="78,385,0,0" VerticalAlignment="Top" Width="182" Height="26" Visibility="Collapsed" Click="btnCambiarContraseña_Click"/>
     </Grid>
 </Window>

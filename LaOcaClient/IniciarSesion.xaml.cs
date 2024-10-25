@@ -99,13 +99,13 @@ namespace LaOcaClient
                 //SingletonJugador.Instance.CorreoElectronico = tbxCorreoElectronico.Text.ToString();
                 SingletonJugador.Instance.EsInvitado = false;
 
-                Sala ventanaSala = new Sala();
+                /*Sala ventanaSala = new Sala();
                 ventanaSala.ShowDialog();
-                this.Close();
+                this.Close();*/
 
-                //MenuPrincipal menuPrincipalWindow = new MenuPrincipal();
-                //menuPrincipalWindow.Show();
-                //this.Close();
+                MenuPrincipal menuPrincipalWindow = new MenuPrincipal();
+                menuPrincipalWindow.Show();
+                this.Close();
             }
             catch (FaultException<InicioSesionException> ex)
             {

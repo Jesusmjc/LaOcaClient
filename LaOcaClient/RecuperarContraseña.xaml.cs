@@ -12,12 +12,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.ServiceModel;
 
 namespace LaOcaClient
 {
     public partial class RecuperarContraseña : Window
     {
-        
         private readonly IServicioCuenta _servicioCuenta;
 
         public RecuperarContraseña()
@@ -36,17 +36,29 @@ namespace LaOcaClient
                 return;
             }
 
+            if (!Utilidad.ValidarCorreoElectronico(correo))
+            {
+                MessageBox.Show("El correo electrónico no es válido. Debe ser un correo de gmail, outlook o hotmail.");
+                return;
+            }
+
             try
             {
                 _servicioCuenta.EnviarCodigoVerificacion(correo);
                 MessageBox.Show("Se ha enviado un código de restablecimiento a su correo.");
                 ActualizarVentanaCodigoVerificacion();
-
-
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show($"Error de comunicación al enviar el código de restablecimiento: {ex.Message}");
+            }
+            catch (TimeoutException ex)
+            {
+                MessageBox.Show($"El envío del código de restablecimiento ha superado el tiempo de espera: {ex.Message}");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al enviar el código de restablecimiento: {ex.Message}");
+                MessageBox.Show($"Error inesperado al enviar el código de restablecimiento: {ex.Message}");
             }
         }
 
@@ -73,9 +85,9 @@ namespace LaOcaClient
             {
                 int cuentaId = _servicioCuenta.VerificarCodigoRecuperarContraseña(correo, codigoIngresado);
 
-                if (cuentaId > 0) 
+                if (cuentaId > 0)
                 {
-                    idCuenta = cuentaId; 
+                    idCuenta = cuentaId;
                     MessageBox.Show("Código de verificación correcto.");
                     ActualizarVentanaRestablecerContrasena();
                 }
@@ -84,9 +96,17 @@ namespace LaOcaClient
                     MessageBox.Show("Código de verificación incorrecto.");
                 }
             }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show($"Error de comunicación al verificar el código: {ex.Message}");
+            }
+            catch (TimeoutException ex)
+            {
+                MessageBox.Show($"La verificación del código ha superado el tiempo de espera: {ex.Message}");
+            }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al verificar el código: {ex.Message}");
+                MessageBox.Show($"Error inesperado al verificar el código: {ex.Message}");
             }
         }
 
@@ -107,13 +127,24 @@ namespace LaOcaClient
             string nuevaContrasena = pbNuevaContrasena.Password;
             string confirmarContrasena = pbConfirmarContrasena.Password;
 
+            if (string.IsNullOrEmpty(nuevaContrasena) || string.IsNullOrEmpty(confirmarContrasena))
+            {
+                MessageBox.Show("Todos los campos son obligatorios.");
+                return;
+            }
+
+            if (!Utilidad.ValidarContrasena(nuevaContrasena))
+            {
+                MessageBox.Show("La nueva contraseña no cumple con los requisitos. Debe tener entre 8 y 16 caracteres, incluir al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.");
+                return;
+            }
+
             if (nuevaContrasena != confirmarContrasena)
             {
                 MessageBox.Show("Las contraseñas no coinciden.");
                 return;
             }
 
-            // Asegurarse de que el idCuenta fue obtenido correctamente después de la verificación del código
             if (idCuenta <= 0)
             {
                 MessageBox.Show("Primero verifique el código de recuperación.");
@@ -122,18 +153,31 @@ namespace LaOcaClient
 
             try
             {
-                _servicioCuenta.ModificarContraseña(idCuenta, nuevaContrasena);
+                _servicioCuenta.ModificarContraseña(idCuenta, Utilidad.HashearConSha256(nuevaContrasena));
                 MessageBox.Show("Contraseña restablecida exitosamente.");
+                IniciarSesion ventanaIniciarSesion = new IniciarSesion();
+                ventanaIniciarSesion.Show();
                 this.Close();
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show($"Error de comunicación al restablecer la contraseña: {ex.Message}");
+            }
+            catch (TimeoutException ex)
+            {
+                MessageBox.Show($"El restablecimiento de la contraseña ha superado el tiempo de espera: {ex.Message}");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al restablecer la contraseña: {ex.Message}");
+                MessageBox.Show($"Error inesperado al restablecer la contraseña: {ex.Message}");
             }
         }
 
-
-
+        private void btnVolver_Click(object sender, RoutedEventArgs e)
+        {
+            IniciarSesion ventanaIniciarSesion = new IniciarSesion();
+            ventanaIniciarSesion.Show();
+            this.Close();
+        }
     }
 }
-

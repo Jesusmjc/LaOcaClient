@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,10 +30,28 @@ namespace LaOcaClient
 
         private void CargarDatosCuenta(int idCuenta)
         {
-            cuenta = _servicioCuenta.ObtenerCuentaPorId(idCuenta);
-            if (cuenta == null)
+            try
             {
-                MessageBox.Show("Cuenta no encontrada.");
+                cuenta = _servicioCuenta.ObtenerCuentaPorId(idCuenta);
+                if (cuenta == null)
+                {
+                    MessageBox.Show("Cuenta no encontrada.");
+                    Close();
+                }
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show($"Error de comunicación al cargar los datos de la cuenta: {ex.Message}");
+                Close();
+            }
+            catch (TimeoutException ex)
+            {
+                MessageBox.Show($"La carga de los datos de la cuenta ha superado el tiempo de espera: {ex.Message}");
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error inesperado al cargar los datos de la cuenta: {ex.Message}");
                 Close();
             }
         }
@@ -43,6 +62,18 @@ namespace LaOcaClient
             string nuevaContraseña = tbNuevaContraseña.Password;
             string confirmarNuevaContraseña = tbConfirmarNuevaContraseña.Password;
 
+            if (string.IsNullOrEmpty(contraseñaActual) || string.IsNullOrEmpty(nuevaContraseña) || string.IsNullOrEmpty(confirmarNuevaContraseña))
+            {
+                MessageBox.Show("Todos los campos son obligatorios.");
+                return;
+            }
+
+            if (!Utilidad.ValidarContrasena(nuevaContraseña))
+            {
+                MessageBox.Show("La nueva contraseña no cumple con los requisitos. Debe tener entre 8 y 16 caracteres, incluir al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.");
+                return;
+            }
+
             if (nuevaContraseña != confirmarNuevaContraseña)
             {
                 MessageBox.Show("Las nuevas contraseñas no coinciden.");
@@ -51,12 +82,14 @@ namespace LaOcaClient
 
             try
             {
-                bool esContraseñaCorrecta = _servicioCuenta.VerificarContraseñaActual(cuenta.IdCuenta, contraseñaActual);
+                bool esContraseñaCorrecta = _servicioCuenta.VerificarContraseñaActual(cuenta.IdCuenta, Utilidad.HashearConSha256(contraseñaActual));
                 if (esContraseñaCorrecta)
                 {
-                    cuenta.Contrasena = nuevaContraseña;
+                    cuenta.Contrasena = Utilidad.HashearConSha256(nuevaContraseña);
                     _servicioCuenta.ModificarCuenta(cuenta);
                     MessageBox.Show("Contraseña actualizada exitosamente.");
+                    IniciarSesion ventanaIniciarSesion = new IniciarSesion();
+                    ventanaIniciarSesion.Show();
                     this.Close();
                 }
                 else
@@ -64,10 +97,28 @@ namespace LaOcaClient
                     MessageBox.Show("La contraseña actual es incorrecta.");
                 }
             }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show($"Error de comunicación al actualizar la contraseña: {ex.Message}");
+            }
+            catch (TimeoutException ex)
+            {
+                MessageBox.Show($"La actualización de la contraseña ha superado el tiempo de espera: {ex.Message}");
+            }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al actualizar la contraseña: {ex.Message}");
+                MessageBox.Show($"Error inesperado al actualizar la contraseña: {ex.Message}");
             }
+        }
+
+        private void btnVolver_Click(object sender, RoutedEventArgs e)
+        {
+            int idCuenta = SingletonJugador.Instance.Jugador.IdCuenta;
+            int idJugador = SingletonJugador.Instance.Jugador.IdJugador;
+            CrearCuenta ventanaCrearCuenta = new CrearCuenta(ModoCuenta.Modificar, idCuenta, idJugador);
+            ventanaCrearCuenta.ActualizarVentanaModificar(ModoCuenta.Modificar);
+            ventanaCrearCuenta.Show();
+            this.Close();
         }
     }
 }

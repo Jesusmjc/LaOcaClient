@@ -1,10 +1,12 @@
 ﻿<Window x:Class="LaOcaClient.RecuperarContraseña"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Restablecer Contraseña" Height="200" Width="300">
+        Title="Restablecer Contraseña" Height="245" Width="379">
     <Grid>
 
-        <StackPanel x:Name="spCorreo" Margin="20" Visibility="Visible">
+        <Button Content="Volver" Margin="0,0,0,-100" Click="btnVolver_Click" Height="20" Width="60"/>
+
+        <StackPanel x:Name="spCorreo" Margin="20,20,20,24" Visibility="Visible">
             <TextBlock Text="Ingrese su correo electrónico" Margin="0,0,0,10"/>
             <TextBox x:Name="tbCorreoElectronico" Margin="0,0,0,20"/>
             <Button Content="Enviar código de restablecimiento" Click="btnEnviarCodigoRestablecimiento_Click"/>

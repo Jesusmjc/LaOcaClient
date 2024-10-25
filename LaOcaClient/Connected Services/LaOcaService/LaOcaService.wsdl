@@ -323,6 +323,18 @@
   <wsdl:message name="IServicioCuenta_ObtenerCuentaPorCodigoVerificacion_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerCuentaPorCodigoVerificacionResponse" />
   </wsdl:message>
+  <wsdl:message name="IServicioCuenta_CorreoExiste_InputMessage">
+    <wsdl:part name="parameters" element="tns:CorreoExiste" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_CorreoExiste_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CorreoExisteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_NombreUsuarioExiste_InputMessage">
+    <wsdl:part name="parameters" element="tns:NombreUsuarioExiste" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_NombreUsuarioExiste_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NombreUsuarioExisteResponse" />
+  </wsdl:message>
   <wsdl:portType name="ILoginService">
     <wsdl:operation name="GetUser">
       <wsdl:input wsaw:Action="http://tempuri.org/ILoginService/GetUser" message="tns:ILoginService_GetUser_InputMessage" />
@@ -430,6 +442,14 @@
     <wsdl:operation name="ObtenerCuentaPorCodigoVerificacion">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorCodigoVerificacion" message="tns:IServicioCuenta_ObtenerCuentaPorCodigoVerificacion_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorCodigoVerificacionResponse" message="tns:IServicioCuenta_ObtenerCuentaPorCodigoVerificacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CorreoExiste">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/CorreoExiste" message="tns:IServicioCuenta_CorreoExiste_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/CorreoExisteResponse" message="tns:IServicioCuenta_CorreoExiste_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NombreUsuarioExiste">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/NombreUsuarioExiste" message="tns:IServicioCuenta_NombreUsuarioExiste_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteResponse" message="tns:IServicioCuenta_NombreUsuarioExiste_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_ILoginService" type="tns:ILoginService">
@@ -671,6 +691,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="CorreoExiste">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/CorreoExiste" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NombreUsuarioExiste">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/NombreUsuarioExiste" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="LaOcaService">
     <wsdl:port name="NetTcpBinding_ILoginService" binding="tns:NetTcpBinding_ILoginService">
@@ -678,7 +716,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+          <Upn>THELASTLAPTOPHP\Carim</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -687,7 +725,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+          <Upn>THELASTLAPTOPHP\Carim</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -696,7 +734,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+          <Upn>THELASTLAPTOPHP\Carim</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -705,7 +743,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+          <Upn>THELASTLAPTOPHP\Carim</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -714,7 +752,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+          <Upn>THELASTLAPTOPHP\Carim</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -723,7 +761,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+          <Upn>THELASTLAPTOPHP\Carim</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

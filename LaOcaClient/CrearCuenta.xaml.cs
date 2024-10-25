@@ -54,6 +54,8 @@ namespace LaOcaClient
         {
             if (modo == ModoCuenta.Modificar)
             {
+                globalCrearCuenta.Content = "Modificar cuenta";
+                btnSiguienteModificarCuenta.Content = "Guardar cambios";
                 CargarDatosJugador(idCuenta, idJugador);
             }
         }
@@ -86,9 +88,45 @@ namespace LaOcaClient
             string confirmarContrasena = tbConfirmarContraseña.Password;
             string correo = tbCorreo.Text;
 
+            if (string.IsNullOrEmpty(nombreUsuario) || string.IsNullOrEmpty(contrasena) || string.IsNullOrEmpty(confirmarContrasena) || string.IsNullOrEmpty(correo))
+            {
+                MessageBox.Show("Todos los campos son obligatorios.");
+                return;
+            }
+
+            if (!Utilidad.ValidarNombreJugador(nombreUsuario))
+            {
+                MessageBox.Show("El nombre de usuario debe tener al menos 6 caracteres.");
+                return;
+            }
+
+            if (!Utilidad.ValidarCorreoElectronico(correo))
+            {
+                MessageBox.Show("El correo electrónico no es válido. Debe ser un correo de gmail, outlook o hotmail.");
+                return;
+            }
+
+            if (!Utilidad.ValidarContrasena(contrasena))
+            {
+                MessageBox.Show("La contraseña no cumple con los requisitos. Debe tener entre 8 y 16 caracteres, incluir al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.");
+                return;
+            }
+
             if (contrasena != confirmarContrasena)
             {
                 MessageBox.Show("Las contraseñas no coinciden.");
+                return;
+            }
+
+            if (_servicioCuenta.CorreoExiste(correo))
+            {
+                MessageBox.Show("El correo electrónico ya está registrado.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(_imagenPerfilSeleccionada))
+            {
+                MessageBox.Show("Debe seleccionar una imagen de perfil.");
                 return;
             }
 
@@ -96,39 +134,6 @@ namespace LaOcaClient
             {
                 CorreoElectronico = correo,
                 Contrasena = Utilidad.HashearConSha256(contrasena)
-            };
-
-            var jugador = new Jugador
-            {
-                NombreUsuario = nombreUsuario,
-                IdFotoPerfil = ObtenerIdAspectoPorReferencia(_imagenPerfilSeleccionada)
-            };
-
-            try
-            {
-                _servicioCuenta.EnviarCodigoVerificacion(correo);
-                MessageBox.Show("Se han guardado los datos de tu cuenta. Por favor revisa el código de verificación que se envió a tu correo electrónico.");
-                ActualizarVentanaCrearCuenta();
-                IniciarTemporizador();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al enviar el código de verificación: {ex.Message}");
-            }
-        }
-
-        private void btnSiguienteModificar_Click(object sender, RoutedEventArgs e)
-        {
-            string nombreUsuario = tbNombreUsuario.Text;
-            string contrasena = tbContraseña.Password;
-            string confirmarContrasena = tbConfirmarContraseña.Password;
-            string correo = tbCorreo.Text;
-
-            var cuenta = new Cuenta
-            {
-                IdCuenta = 2,
-                CorreoElectronico = correo,
-                Contrasena = contrasena
             };
 
             int idFotoPerfil;
@@ -142,11 +147,90 @@ namespace LaOcaClient
                 return;
             }
 
-            MessageBox.Show($"ID de la imagen de perfil seleccionada: {idFotoPerfil}");
+            var jugador = new Jugador
+            {
+                NombreUsuario = nombreUsuario,
+                IdFotoPerfil = idFotoPerfil
+            };
+
+            try
+            {
+                _servicioCuenta.EnviarCodigoVerificacion(correo);
+                MessageBox.Show("Se han guardado los datos de tu cuenta. Por favor revisa el código de verificación que se envió a tu correo electrónico.");
+                ActualizarVentanaCrearCuenta();
+                IniciarTemporizador();
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show($"Error de comunicación al enviar el código de verificación: {ex.Message}");
+            }
+            catch (TimeoutException ex)
+            {
+                MessageBox.Show($"El envío del código de verificación ha superado el tiempo de espera: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error inesperado al enviar el código de verificación: {ex.Message}");
+            }
+        }
+
+        private void btnSiguienteModificar_Click(object sender, RoutedEventArgs e)
+        {
+            string nombreUsuario = tbNombreUsuario.Text;
+            string correo = tbCorreo.Text;
+            string contraseña = tbContraseña.Password;
+
+            if (string.IsNullOrEmpty(nombreUsuario) || string.IsNullOrEmpty(correo))
+            {
+                MessageBox.Show("Todos los campos son obligatorios.");
+                return;
+            }
+
+            if (!Utilidad.ValidarNombreJugador(nombreUsuario))
+            {
+                MessageBox.Show("El nombre de usuario debe tener al menos 6 caracteres.");
+                return;
+            }
+
+            if (_servicioCuenta.NombreUsuarioExiste(nombreUsuario) && nombreUsuario != SingletonJugador.Instance.Jugador.NombreUsuario)
+            {
+                MessageBox.Show("El nombre de usuario ya está en uso. Por favor, elija otro nombre.");
+                return;
+            }
+
+            if (!Utilidad.ValidarCorreoElectronico(correo))
+            {
+                MessageBox.Show("El correo electrónico no es válido. Debe ser un correo de gmail, outlook o hotmail.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(_imagenPerfilSeleccionada))
+            {
+                MessageBox.Show("Debe seleccionar una imagen de perfil.");
+                return;
+            }
+
+            var cuenta = new Cuenta
+            {
+                IdCuenta = SingletonJugador.Instance.Jugador.IdCuenta,
+                CorreoElectronico = correo,
+                Contrasena = contraseña
+            };
+
+            int idFotoPerfil;
+            try
+            {
+                idFotoPerfil = ObtenerIdAspectoPorReferencia(_imagenPerfilSeleccionada);
+            }
+            catch (ArgumentException)
+            {
+                MessageBox.Show("La referencia de la imagen seleccionada no es válida.");
+                return;
+            }
 
             var jugador = new Jugador
             {
-                IdJugador = 2,
+                IdJugador = SingletonJugador.Instance.Jugador.IdJugador,
                 NombreUsuario = nombreUsuario,
                 IdFotoPerfil = idFotoPerfil
             };
@@ -156,11 +240,22 @@ namespace LaOcaClient
                 _servicioCuenta.ModificarCuenta(cuenta);
                 _servicioJugador.ModificarJugador(jugador);
                 MessageBox.Show("Cuenta modificada exitosamente.");
-                CargarDatosJugador(2, 2);
+                CargarDatosJugador(SingletonJugador.Instance.Jugador.IdCuenta, SingletonJugador.Instance.Jugador.IdJugador);
+                MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
+                ventanaMenuPrincipal.Show();
+                this.Close();
+            }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show($"Error de comunicación al modificar la cuenta: {ex.Message}");
+            }
+            catch (TimeoutException ex)
+            {
+                MessageBox.Show($"La modificación de la cuenta ha superado el tiempo de espera: {ex.Message}");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al modificar la cuenta: {ex.Message}");
+                MessageBox.Show($"Error inesperado al modificar la cuenta: {ex.Message}");
             }
         }
 
@@ -192,11 +287,21 @@ namespace LaOcaClient
                     {
                         _servicioCuenta.CrearCuenta(cuenta, jugador, _imagenPerfilSeleccionada);
                         MessageBox.Show("Cuenta creada exitosamente.");
+                        IniciarSesion ventanaIniciarSesion = new IniciarSesion();
+                        ventanaIniciarSesion.Show();
                         this.Close();
+                    }
+                    catch (CommunicationException ex)
+                    {
+                        MessageBox.Show($"Error de comunicación al crear la cuenta: {ex.Message}");
+                    }
+                    catch (TimeoutException ex)
+                    {
+                        MessageBox.Show($"La creación de la cuenta ha superado el tiempo de espera: {ex.Message}");
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error al crear la cuenta: {ex.Message}");
+                        MessageBox.Show($"Error inesperado al crear la cuenta: {ex.Message}");
                     }
                 }
                 else
@@ -204,9 +309,17 @@ namespace LaOcaClient
                     MessageBox.Show("Código de verificación incorrecto.");
                 }
             }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show($"Error de comunicación al verificar el código: {ex.Message}");
+            }
+            catch (TimeoutException ex)
+            {
+                MessageBox.Show($"La verificación del código ha superado el tiempo de espera: {ex.Message}");
+            }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al verificar el código: {ex.Message}");
+                MessageBox.Show($"Error inesperado al verificar el código: {ex.Message}");
             }
         }
 
@@ -220,9 +333,17 @@ namespace LaOcaClient
                 MessageBox.Show("Se ha reenviado el código de verificación a tu correo electrónico.");
                 IniciarTemporizador();
             }
+            catch (CommunicationException ex)
+            {
+                MessageBox.Show($"Error de comunicación al reenviar el código de verificación: {ex.Message}");
+            }
+            catch (TimeoutException ex)
+            {
+                MessageBox.Show($"El reenvío del código de verificación ha superado el tiempo de espera: {ex.Message}");
+            }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al reenviar el código de verificación: {ex.Message}");
+                MessageBox.Show($"Error inesperado al reenviar el código de verificación: {ex.Message}");
             }
         }
 
@@ -272,7 +393,29 @@ namespace LaOcaClient
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            CancelarCrearModificar(_modo);
+        }
+
+        private void CancelarCrearModificar(ModoCuenta modo)
+        {
+            if (modo == ModoCuenta.Crear)
+            {
+                if (MessageBoxResult.Yes == MessageBox.Show("¿Estás seguro de que deseas cancelar la creación de la cuenta?", "Cancelar creación de cuenta", MessageBoxButton.YesNo, MessageBoxImage.Warning))
+                {
+                    IniciarSesion ventanaIniciarSesion = new IniciarSesion();
+                    ventanaIniciarSesion.Show();
+                    this.Close();
+                }
+            }
+            else if(modo == ModoCuenta.Modificar)
+            {
+                if (MessageBoxResult.Yes == MessageBox.Show("¿Estás seguro de que deseas cancelar la modificación de la cuenta?", "Cancelar modificación de cuenta", MessageBoxButton.YesNo, MessageBoxImage.Warning))
+                {
+                    MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
+                    ventanaMenuPrincipal.Show();
+                    this.Close();
+                }
+            }
         }
 
         private void ImagenPerfil_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -280,7 +423,7 @@ namespace LaOcaClient
             Image imagenSeleccionada = sender as Image;
             _imagenPerfilSeleccionada = imagenSeleccionada.Source.ToString();
 
-            MessageBox.Show($"Referencia de la imagen seleccionada: {_imagenPerfilSeleccionada}");
+            //MessageBox.Show($"Referencia de la imagen seleccionada: {_imagenPerfilSeleccionada}");
 
             foreach (var child in wpImagenesPerfil.Children)
             {
@@ -345,44 +488,59 @@ namespace LaOcaClient
 
         private void CargarDatosJugador(int idCuenta, int idJugador)
         {
-            var cuenta = _servicioCuenta.ObtenerCuentaPorId(idCuenta);
-            if (cuenta == null)
+            try
             {
-                MessageBox.Show("Cuenta no encontrada.");
-                return;
-            }
-
-            var jugador = _servicioJugador.ObtenerJugadorPorId(idJugador);
-            if (jugador == null)
-            {
-                MessageBox.Show("Jugador no encontrado.");
-                return;
-            }
-
-            tbNombreUsuario.Text = jugador.NombreUsuario;
-            tbCorreo.Text = cuenta.CorreoElectronico;
-            tbContraseña.Password = cuenta.Contrasena;
-            tbConfirmarContraseña.Password = cuenta.Contrasena;
-
-            var aspecto = _servicioAspecto.ObtenerAspectoPorId(jugador.IdFotoPerfil);
-            if (aspecto != null)
-            {
-                _imagenPerfilSeleccionada = aspecto.Referencia;
-                foreach (var child in wpImagenesPerfil.Children)
+                var cuenta = _servicioCuenta.ObtenerCuentaPorId(idCuenta);
+                if (cuenta == null)
                 {
-                    if (child is Image img && img.Source.ToString() == _imagenPerfilSeleccionada)
+                    MessageBox.Show("Cuenta no encontrada.");
+                    return;
+                }
+
+                var jugador = _servicioJugador.ObtenerJugadorPorId(idJugador);
+                if (jugador == null)
+                {
+                    MessageBox.Show("Jugador no encontrado.");
+                    return;
+                }
+
+                tbNombreUsuario.Text = jugador.NombreUsuario;
+                tbCorreo.Text = cuenta.CorreoElectronico;
+                tbContraseña.Password = cuenta.Contrasena;
+                tbConfirmarContraseña.Password = cuenta.Contrasena;
+
+                var aspecto = _servicioAspecto.ObtenerAspectoPorId(jugador.IdFotoPerfil);
+                if (aspecto != null)
+                {
+                    _imagenPerfilSeleccionada = aspecto.Referencia;
+                    foreach (var child in wpImagenesPerfil.Children)
                     {
-                        img.Opacity = 1.0;
-                    }
-                    else if (child is Image img2)
-                    {
-                        img2.Opacity = 0.5;
+                        if (child is Image img && img.Source.ToString() == _imagenPerfilSeleccionada)
+                        {
+                            img.Opacity = 1.0;
+                        }
+                        else if (child is Image img2)
+                        {
+                            img2.Opacity = 0.5;
+                        }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Imagen de perfil no encontrada.");
+                }
             }
-            else
+            catch (CommunicationException ex)
             {
-                MessageBox.Show("Imagen de perfil no encontrada.");
+                MessageBox.Show($"Error de comunicación al cargar los datos del jugador: {ex.Message}");
+            }
+            catch (TimeoutException ex)
+            {
+                MessageBox.Show($"La carga de los datos del jugador ha superado el tiempo de espera: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error inesperado al cargar los datos del jugador: {ex.Message}");
             }
         }
 
@@ -403,8 +561,8 @@ namespace LaOcaClient
 
         private void btnCambiarContraseña_Click(object sender, RoutedEventArgs e)
         {
-            CambiarContraseña ventanaCambiarContraseña = new CambiarContraseña(2);
-            ventanaCambiarContraseña.ShowDialog();
+            CambiarContraseña ventanaCambiarContraseña = new CambiarContraseña(SingletonJugador.Instance.Jugador.IdCuenta);
+            ventanaCambiarContraseña.Show();
             this.Close();
         }
     }
