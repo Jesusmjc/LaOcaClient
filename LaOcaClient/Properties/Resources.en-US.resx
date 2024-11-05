@@ -121,13 +121,13 @@
     <value>Create new account</value>
   </data>
   <data name="btnEnviarCodigo" xml:space="preserve">
-    <value>Send</value>
+    <value>Send code</value>
   </data>
   <data name="btnGuardarCambios" xml:space="preserve">
     <value>Save changes</value>
   </data>
   <data name="btnGuardarNuevaContraseña" xml:space="preserve">
-    <value>Save</value>
+    <value>Reset password</value>
   </data>
   <data name="btnIniciarSesion" xml:space="preserve">
     <value>Login</value>
@@ -136,10 +136,10 @@
     <value>Forgot password</value>
   </data>
   <data name="btnReenviarCodigo" xml:space="preserve">
-    <value>Resend code after:</value>
+    <value>Resend code</value>
   </data>
   <data name="lbSeleccionarImagenPerfil" xml:space="preserve">
-    <value>Select profile image</value>
+    <value>Select profile image:</value>
   </data>
   <data name="btnVerificarCodigo" xml:space="preserve">
     <value>Verify</value>
@@ -247,7 +247,7 @@
     <value>Enter the verification code:</value>
   </data>
   <data name="lbIngresarCorreo" xml:space="preserve">
-    <value>Enter your registered email:</value>
+    <value>Enter your email:</value>
   </data>
   <data name="lbIngresarNombreJugador" xml:space="preserve">
     <value>Enter the player's name:</value>
@@ -299,5 +299,38 @@
   </data>
   <data name="skinOcaTriste" xml:space="preserve">
     <value>Sad Goose</value>
+  </data>
+  <data name="lbTituloOca" xml:space="preserve">
+    <value>Oca Game</value>
+  </data>
+  <data name="globalBtnSiguiente" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="btnCambiarContraseña" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="lbContraseñaActual" xml:space="preserve">
+    <value>Current password</value>
+  </data>
+  <data name="btnBuscarPartida" xml:space="preserve">
+    <value>Search for game</value>
+  </data>
+  <data name="btnUnirsePartida" xml:space="preserve">
+    <value>Join game</value>
+  </data>
+  <data name="btnCrearPartida" xml:space="preserve">
+    <value>Create game</value>
+  </data>
+  <data name="lbIngreseCorreoValido" xml:space="preserve">
+    <value>Please enter a valid email address</value>
+  </data>
+  <data name="lbContraseñaValida" xml:space="preserve">
+    <value>Please enter a valid password</value>
+  </data>
+  <data name="lbCaracteristicasCorreoValido" xml:space="preserve">
+    <value>A valid email address must meet the following&amp;#xD;&amp;#xA;crtieria:&amp;#xA;- Between 5 y 20 characters before the @.&amp;#xA;- Contains only letters, numbers, underscore &amp;#xA;   or hyphen.&amp;#xA;- Contains one of the following domains:&amp;#xA;   gmail, outlook, hotmail.&amp;#xA;- Ends with .com</value>
+  </data>
+  <data name="lbCaracteristicasContraseñaValida" xml:space="preserve">
+    <value>A valid password must contain:&amp;#xA;- Between 8 and 16 characters.&amp;#xA;- At least one lower case letter.&amp;#xA;- At least one upper case letter.&amp;#xA;- At least one number.&amp;#xA;- At least one of the following characters. &amp;#xA;  ($, @, !, %, *, ?, &amp;amp;, #, (.), (, ), _, -)</value>
   </data>
 </root>

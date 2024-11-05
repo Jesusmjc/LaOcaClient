@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,8 +16,7 @@ namespace LaOcaClient
     {
         App()
         {
-            //System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("es-MX"); 
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-MX");
         }
     }
 }

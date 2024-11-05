@@ -617,5 +617,93 @@ namespace LaOcaClient.Properties {
                 return ResourceManager.GetString("usuarioLogin", resourceCulture);
             }
         }
+
+        public static string lbTituloOca
+        {
+            get
+            {
+                return ResourceManager.GetString("lbTituloOca", resourceCulture);
+            }
+        }
+
+         public static string globalBtnSiguiente
+        {
+            get
+            {
+                return ResourceManager.GetString("globalBtnSiguiente", resourceCulture);
+            }
+        }
+
+        public static string btnCambiarContraseña
+        {
+            get
+            {
+                return ResourceManager.GetString("btnCambiarContraseña", resourceCulture);
+            }
+        }
+
+        public static string lbContraseñaActual
+        {
+            get
+            {
+                return ResourceManager.GetString("lbContraseñaActual", resourceCulture);
+            }
+        }
+
+        public static string btnCrearPartida
+        {
+            get
+            {
+                return ResourceManager.GetString("btnCrearPartida", resourceCulture);
+            }
+        }
+
+        public static string btnBuscarPartida
+        {
+            get
+            {
+                return ResourceManager.GetString("btnBuscarPartida", resourceCulture);
+            }
+        }
+
+        public static string btnUnirsePartida
+        {
+            get
+            {
+                return ResourceManager.GetString("btnUnirsePartida", resourceCulture);
+            }
+        }
+
+        public static string lbIngreseCorreoValido
+        {
+            get
+            {
+                return ResourceManager.GetString("lbIngreseCorreoValido", resourceCulture);
+            }
+        }
+
+        public static string lbContraseñaValida
+        {
+            get
+            {
+                return ResourceManager.GetString("lbContraseñaValida", resourceCulture);
+            }
+        }
+
+        public static string lbCaracteristicasContraseñaValida
+        {
+            get
+            {
+                return ResourceManager.GetString("lbCaracteristicasContraseñaValida", resourceCulture);
+            }
+        }
+
+        public static string lbCaracteristicasCorreoValido
+        {
+            get
+            {
+                return ResourceManager.GetString("lbCaracteristicasCorreoValido", resourceCulture);
+            }
+        }
     }
 }

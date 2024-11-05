@@ -68,6 +68,9 @@
     <Compile Include="Partida.xaml.cs">
       <DependentUpon>Partida.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LaOcaPartida.xaml.cs">
+      <DependentUpon>LaOcaPartida.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sala.xaml.cs">
       <DependentUpon>Sala.xaml</DependentUpon>
     </Compile>
@@ -101,6 +104,10 @@
     <Page Include="IniciarSesion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LaOcaPartida.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -165,7 +172,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\Resources.en-US.Designer.cs">
-      <DependentUpon>Resources.en-US.resx</DependentUpon>
+      <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -265,6 +272,12 @@
     <Resource Include="Recursos\OcaProgramadora.jpg" />
     <Resource Include="Recursos\OcaRockstar.jpg" />
     <Resource Include="Recursos\OcaUniversitaria.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\TableroOca.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\FichaOca.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
