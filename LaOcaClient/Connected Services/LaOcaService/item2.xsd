@@ -13,6 +13,7 @@
   <xs:complexType name="Jugador">
     <xs:sequence>
       <xs:element minOccurs="0" name="CanalCallbackChat" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="CanalCallbackPartida" nillable="true" type="xs:anyType" />
       <xs:element minOccurs="0" name="CanalCallbackSala" nillable="true" type="xs:anyType" />
       <xs:element minOccurs="0" name="IdCuenta" type="xs:int" />
       <xs:element minOccurs="0" name="IdFotoPerfil" type="xs:int" />
@@ -35,10 +36,18 @@
       <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Jugadores" nillable="true" type="q1:ArrayOfKeyValueOfstringJugadorklcadHpp" />
       <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NombreHost" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TipoDeAcceso" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Partida" nillable="true" type="tns:Partida" />
+      <xs:element minOccurs="0" name="Visibilidad" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Sala" nillable="true" type="tns:Sala" />
+  <xs:complexType name="Partida">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NombreJugadorEnTurno" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NombresDeJugadoresEnOrdenDeTurnos" nillable="true" type="q2:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Partida" nillable="true" type="tns:Partida" />
   <xs:complexType name="Aspecto">
     <xs:sequence>
       <xs:element minOccurs="0" name="IdAspecto" type="xs:int" />

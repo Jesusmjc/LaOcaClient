@@ -97,10 +97,31 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="IniciarPartida">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codigoSala" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IniciarPartidaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="IniciarPartidaResult" nillable="true" type="q5:Partida" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="MostrarNuevoJugadorEnSala">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="nuevoJugador" nillable="true" type="q5:Jugador" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="nuevoJugador" nillable="true" type="q6:Jugador" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MostrarVentanaDePartida">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="partida" nillable="true" type="q7:Partida" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -114,15 +135,50 @@
   <xs:element name="RecuperarSalaResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="RecuperarSalaResult" nillable="true" type="q6:Sala" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="RecuperarSalaResult" nillable="true" type="q8:Sala" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AgregarCanalCallback">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nombreJugador" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="codigoSala" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AgregarCanalCallbackResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PasarTurnoASiguienteJugador">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="posicionJugadorTurnoActual" type="xs:int" />
+        <xs:element minOccurs="0" name="codigoSala" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PasarTurnoASiguienteJugadorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PasarTurnoASiguienteJugadorResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MostrarNuevoJugadorEnTurno">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nombreNuevoJugadorEnTurno" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CrearCuenta">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="cuenta" nillable="true" type="q7:Cuenta" />
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="jugador" nillable="true" type="q8:Jugador" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="cuenta" nillable="true" type="q9:Cuenta" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="jugador" nillable="true" type="q10:Jugador" />
         <xs:element minOccurs="0" name="referenciaImagen" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -135,7 +191,7 @@
   <xs:element name="ModificarCuenta">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="cuenta" nillable="true" type="q9:Cuenta" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="cuenta" nillable="true" type="q11:Cuenta" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -147,7 +203,7 @@
   <xs:element name="ModificarJugador">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="jugador" nillable="true" type="q10:Jugador" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="jugador" nillable="true" type="q12:Jugador" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -159,7 +215,7 @@
   <xs:element name="ModificarAspecto">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="aspecto" nillable="true" type="q11:Aspecto" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="aspecto" nillable="true" type="q13:Aspecto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -178,7 +234,7 @@
   <xs:element name="ObtenerCuentaPorIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="ObtenerCuentaPorIdResult" nillable="true" type="q12:Cuenta" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="ObtenerCuentaPorIdResult" nillable="true" type="q14:Cuenta" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -192,14 +248,14 @@
   <xs:element name="ObtenerJugadorPorIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="ObtenerJugadorPorIdResult" nillable="true" type="q13:Jugador" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="ObtenerJugadorPorIdResult" nillable="true" type="q15:Jugador" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CrearAspecto">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="aspecto" nillable="true" type="q14:Aspecto" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="aspecto" nillable="true" type="q16:Aspecto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -218,7 +274,7 @@
   <xs:element name="ObtenerAspectoPorIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="ObtenerAspectoPorIdResult" nillable="true" type="q15:Aspecto" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="ObtenerAspectoPorIdResult" nillable="true" type="q17:Aspecto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -314,7 +370,7 @@
   <xs:element name="ObtenerCuentaPorCodigoVerificacionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="ObtenerCuentaPorCodigoVerificacionResult" nillable="true" type="q16:Cuenta" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="ObtenerCuentaPorCodigoVerificacionResult" nillable="true" type="q18:Cuenta" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

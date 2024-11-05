@@ -1,0 +1,21 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaOcaClient"
+        xmlns:Properties="clr-namespace:LaOcaClient.Properties" x:Class="LaOcaClient.ConfiguracionSala"
+        mc:Ignorable="d"
+        Title="ConfiguracionSala" Height="450" Width="800">
+    <Grid>
+        <Label x:Name="lbConfiguracionSala" Content="Crear Sala" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Height="50" Width="196" FontSize="24"/>
+        <Label Content="Nombre de la Sala:&#xA;" HorizontalAlignment="Left" Margin="201,125,0,0" VerticalAlignment="Top" Height="30"/>
+        <Label Content="Visibilidad:" HorizontalAlignment="Left" Margin="244,171,0,0" VerticalAlignment="Top" Height="29"/>
+
+        <TextBox x:Name="tbxNombreSala" MaxLength="50" HorizontalAlignment="Left" Margin="351,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Height="26" Tag="{x:Static Properties:Resources.usuarioLogin}" Foreground="Black"/>
+        <ComboBox x:Name="cbVisibilidad" HorizontalAlignment="Left" Margin="353,173,0,0" VerticalAlignment="Top" Width="246" Height="26"/>
+        <Button x:Name="btnCrearSala" Content="Crear Sala" HorizontalAlignment="Left" Margin="660,369,0,0" VerticalAlignment="Top" Height="29" Width="80" Click="IrASala"/>
+        <Label x:Name="lbCamposVacios" Content="Por favor llene todos los campos para continuar." HorizontalAlignment="Center" Margin="0,276,0,0" VerticalAlignment="Top" Foreground="Red" Visibility="Hidden"/>
+
+    </Grid>
+</Window>

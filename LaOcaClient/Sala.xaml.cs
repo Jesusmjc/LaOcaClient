@@ -1,8 +1,10 @@
 ﻿using LaOcaClient.LaOcaService;
 using LaOcaClient.UserControls;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,14 +31,24 @@ namespace LaOcaClient
         private LaOcaService.ServicioSalaClient clienteSala;
 
         private Grid[] gridsJugadores;
-        
+
         public Sala()
         {
             InitializeComponent();
             
             PrepararSala();
             MostrarPrimerJugador();
-            CrearSala();
+            //CrearSala();
+            UnirseAlChat();
+        }
+
+        public Sala(string nombreSala, string visibilidad)
+        {
+            InitializeComponent();
+
+            PrepararSala();
+            MostrarPrimerJugador();
+            CrearSala(nombreSala, visibilidad);
             UnirseAlChat();
         }
 
@@ -50,6 +62,7 @@ namespace LaOcaClient
 
             PrepararSala();
             MostrarJugadoresEnSala();
+            AgregarJugadorASala();
             UnirseAlChat();
         }
 
@@ -66,14 +79,14 @@ namespace LaOcaClient
             clienteSala = new LaOcaService.ServicioSalaClient(contexto);
         }
 
-        private void CrearSala()
+        private void CrearSala(string nombreSala, string visibilidad)
         {
             LaOcaService.Sala nuevaSala = new LaOcaService.Sala()
             {
-                Nombre = "Sala de Prueba",
+                Nombre = nombreSala,
                 Codigo = GenerarCodigoSala(),
                 Jugadores = new Dictionary<string, LaOcaService.Jugador>(),
-                TipoDeAcceso = "Pública",
+                Visibilidad = visibilidad,
                 NombreHost = SingletonJugador.Instance.Jugador.NombreUsuario
             };
             nuevaSala.Jugadores.Add(SingletonJugador.Instance.Jugador.NombreUsuario, SingletonJugador.Instance.Jugador);
@@ -93,11 +106,11 @@ namespace LaOcaClient
                     MessageBox.Show("Ha ocurrido un error al crear la sala.", "Error con la sala", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (TimeoutException)
+            catch (TimeoutException ex)
             {
                 MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (CommunicationException)
+            catch (CommunicationException ex)
             {
                 MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -162,6 +175,28 @@ namespace LaOcaClient
             return codigoSala;
         }
 
+        private void AgregarJugadorASala()
+        {
+            sala.Jugadores.Add(SingletonJugador.Instance.Jugador.NombreUsuario, SingletonJugador.Instance.Jugador);
+
+            try
+            {
+                clienteSala.AgregarJugadorASala(SingletonJugador.Instance.Jugador, sala.Codigo);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al enviar mensaje: {ex.Message}");
+            }
+        }
+
         private void UnirseAlChat()
         {
             try
@@ -222,46 +257,10 @@ namespace LaOcaClient
             gridsJugadores[sala.Jugadores.Count].Children.Add(nuevoJugadorEnSala);
 
             sala.Jugadores.Add(nuevoJugador.NombreUsuario, nuevoJugador);
-        }
 
-        private void UnirseASala(object sender, RoutedEventArgs e)
-        {
-            string codigoSalaObjetivo = tbxCodigo.Text.ToString();
-            LaOcaService.Sala salaObjetivo = new LaOcaService.Sala();
-
-            if (!string.IsNullOrWhiteSpace(codigoSalaObjetivo))
-            {
-                LaOcaService.ServicioRecuperarSalaClient clienteRecuperarSala = new LaOcaService.ServicioRecuperarSalaClient();
-                salaObjetivo = clienteRecuperarSala.RecuperarSala(codigoSalaObjetivo);
-
-                int resultadoAgregarJugador = 0;
-
-                if (salaObjetivo != null)
-                {
-                    try
-                    {
-                        resultadoAgregarJugador = clienteSala.AgregarJugadorASala(SingletonJugador.Instance.Jugador, codigoSalaObjetivo);
-
-                        if (resultadoAgregarJugador == 0)
-                        {
-                            MessageBox.Show("Parece que la sala ya está llena.", "Error con la sala", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
-                    }
-                    catch (TimeoutException)
-                    {
-                        MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    catch (CommunicationException)
-                    {
-                        MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
-                
+            if (sala.Jugadores.Count > 1) {
+                btnIniciarPartida.IsEnabled = true;
             }
-
-            Sala ventanaNuevaSala = new Sala(salaObjetivo);
-            this.Close();
-            ventanaNuevaSala.ShowDialog();
         }
 
         private void LimpiarTextoEjemplo(object sender, RoutedEventArgs e)
@@ -269,8 +268,35 @@ namespace LaOcaClient
             TextBox textBox = sender as TextBox;
             if (textBox != null && tbxMensaje.Text.ToString().Equals("Escribe un mensaje"))
             {
-                textBox.Clear(); // Limpia el contenido del TextBox al hacer clic en él
+                textBox.Clear();
             }
+        }
+
+        private void IniciarPartida(object sender, RoutedEventArgs e)
+        {
+            if (sala.Jugadores.Count >= 2)
+            {
+                LaOcaService.Partida nuevaPartida = clienteSala.IniciarPartida(sala.Codigo);
+
+                sala.Partida = nuevaPartida;
+
+                Partida ventanaPartida = new Partida(sala);
+                this.Close();
+                ventanaPartida.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Se necesitan al menos dos jugadores para iniciar partida.", "Se necesitan más jugadores", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public void MostrarVentanaDePartida(LaOcaService.Partida partida)
+        {
+            sala.Partida = partida;
+
+            Partida ventanaPartida = new Partida(sala);
+            this.Close();
+            ventanaPartida.ShowDialog();
         }
     }
 }
