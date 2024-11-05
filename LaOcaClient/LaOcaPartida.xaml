@@ -9,7 +9,7 @@
     <Grid Margin="0,0,0,-6">
         <Image Source="pack://application:,,,/LaOcaClient;component/Recursos/TableroOca.png" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Canvas Name="TableroCanvas" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Image Name="FichaImage" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOca.png" Width="50" Height="50" Canvas.Left="279" Canvas.Top="35" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Image Name="FichaImage" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOca.png" Width="50" Height="50" Canvas.Left="279" Canvas.Top="36" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
         <Button Content="Mover Ficha" HorizontalAlignment="Left" Margin="360,546,0,0" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>

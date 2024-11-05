@@ -93,7 +93,7 @@ namespace LaOcaClient
         private void LanzarDados(object sender, RoutedEventArgs e)
         {
             Random random = new Random();
-            int numeroAleatorio = random.Next(1, 7);
+            int numeroAleatorio = random.Next(2, 13);
 
             MessageBox.Show("Ha salido " + numeroAleatorio);
 
