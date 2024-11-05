@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.ServiceModel;
@@ -25,6 +26,24 @@ namespace LaOcaClient
         {
             InitializeComponent();
             cliente = new LaOcaService.ServicioInicioSesionClient();
+        }
+
+        private void CbIdioma_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbIdioma.SelectedItem is ComboBoxItem selectedItem)
+            {
+                string cultureCode = selectedItem.Tag.ToString();
+                CambiarIdioma(cultureCode);
+            }
+        }
+
+        private void CambiarIdioma(string cultureCode)
+        {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(cultureCode);
+
+            IniciarSesion nuevaVentana = new IniciarSesion();
+            nuevaVentana.Show();
+            this.Close();
         }
 
         private void ManejarFocoTextBox(object remitente, RoutedEventArgs e)
@@ -146,7 +165,9 @@ namespace LaOcaClient
 
         private void btnJugarComoInvitado_Click(object sender, RoutedEventArgs e)
         {
-
+            LaOcaPartida laOcaPartida = new LaOcaPartida();
+            this.Close();
+            laOcaPartida.ShowDialog();
         }
 
         private void LimpiarTextoEjemplo(object sender, MouseButtonEventArgs e)

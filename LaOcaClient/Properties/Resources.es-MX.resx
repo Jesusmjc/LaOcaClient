@@ -121,13 +121,13 @@
     <value>Crear cuenta nueva</value>
   </data>
   <data name="btnEnviarCodigo" xml:space="preserve">
-    <value>Enviar</value>
+    <value>Enviar código</value>
   </data>
   <data name="btnGuardarCambios" xml:space="preserve">
     <value>Guardar cambios</value>
   </data>
   <data name="btnGuardarNuevaContraseña" xml:space="preserve">
-    <value>Guardar</value>
+    <value>Restablecer contraseña</value>
   </data>
   <data name="btnIniciarSesion" xml:space="preserve">
     <value>Iniciar sesión</value>
@@ -136,10 +136,10 @@
     <value>Olvié mi contraseña</value>
   </data>
   <data name="btnReenviarCodigo" xml:space="preserve">
-    <value>Reenviar código después de:</value>
+    <value>Reenviar código</value>
   </data>
   <data name="lbSeleccionarImagenPerfil" xml:space="preserve">
-    <value>Seleccionar imagen de perfil</value>
+    <value>Seleccionar imagen de perfil:</value>
   </data>
   <data name="btnVerificarCodigo" xml:space="preserve">
     <value>Verificar</value>
@@ -247,7 +247,7 @@
     <value>Ingrese el código de verificación:</value>
   </data>
   <data name="lbIngresarCorreo" xml:space="preserve">
-    <value>Ingrese su correo electrónico registrado:</value>
+    <value>Ingrese su correo electrónico:</value>
   </data>
   <data name="lbIngresarNombreJugador" xml:space="preserve">
     <value>Ingrese el nombre del jugador:</value>
@@ -299,5 +299,38 @@
   </data>
   <data name="skinOcaTriste" xml:space="preserve">
     <value>Oca Triste</value>
+  </data>
+  <data name="lbTituloOca" xml:space="preserve">
+    <value>La Oca</value>
+  </data>
+  <data name="globalBtnSiguiente" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
+  <data name="btnCambiarContraseña" xml:space="preserve">
+    <value>Cambiar contraseña</value>
+  </data>
+  <data name="lbContraseñaActual" xml:space="preserve">
+    <value>Contraseña actual</value>
+  </data>
+  <data name="btnBuscarPartida" xml:space="preserve">
+    <value>Buscar partida</value>
+  </data>
+  <data name="btnUnirsePartida" xml:space="preserve">
+    <value>Unirse a partida</value>
+  </data>
+  <data name="btnCrearPartida" xml:space="preserve">
+    <value>Crear partida</value>
+  </data>
+  <data name="lbIngreseCorreoValido" xml:space="preserve">
+    <value>Ingrese un correo electrónico válido</value>
+  </data>
+  <data name="lbContraseñaValida" xml:space="preserve">
+    <value>Ingrese una contraseña válida</value>
+  </data>
+  <data name="lbCaracteristicasCorreoValido" xml:space="preserve">
+    <value>Características de un correo válido:&amp;#xD;&amp;#xA;- Entre 5 y 20 caracteres antes del @.&amp;#xD;&amp;#xA;- Contiene solo letras, dígitos, guion bajo &amp;#xD;&amp;#xA;   o guion medio.&amp;#xD;&amp;#xA;- Pertenece a uno de los siguientes dominios:&amp;#xD;&amp;#xA;   gmail, outlook, hotmail.&amp;#xD;&amp;#xA;- Termina en .com</value>
+  </data>
+  <data name="lbCaracteristicasContraseñaValida" xml:space="preserve">
+    <value>Características de una contraseña válida:&amp;#xD;&amp;#xA;- Entre 8 y 16 caracteres.&amp;#xD;&amp;#xA;- Al menos una letra minúscula.&amp;#xD;&amp;#xA;- Al menos una letra mayúscula.&amp;#xD;&amp;#xA;- Al menos un número.&amp;#xD;&amp;#xA;- Al menos un caracter especial &amp;#xD;&amp;#xA;  ($, @, !, %, *, ?, &amp;amp;, #, (.), (, ), _, -)</value>
   </data>
 </root>

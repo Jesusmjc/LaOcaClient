@@ -18,6 +18,8 @@ using System.IO;
 using LaOcaClient.LaOcaService;
 using System.ServiceModel;
 using System.Windows.Threading;
+using System.Resources;
+using System.Globalization;
 
 namespace LaOcaClient
 {
@@ -36,6 +38,8 @@ namespace LaOcaClient
         private DispatcherTimer _timer;
         private int _tiempoRestante;
         private readonly ModoCuenta _modo;
+        private readonly ResourceManager _resourceManager;
+
 
         public CrearCuenta(ModoCuenta modo)
         {
@@ -48,6 +52,8 @@ namespace LaOcaClient
             _timer.Tick += Timer_Tick;
             _modo = modo;
             AjustarInterfazSegunModo();
+            _resourceManager = new ResourceManager("LaOcaClient.Resources", typeof(CrearCuenta).Assembly);
+
         }
 
         public CrearCuenta(ModoCuenta modo, int idCuenta, int idJugador) : this(modo)

@@ -1,0 +1,16 @@
+﻿<Window x:Class="LaOcaClient.LaOcaPartida"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaOcaClient"
+        mc:Ignorable="d"
+        Title="LaOcaPartida" Height="600" Width="800">
+    <Grid Margin="0,0,0,-6">
+        <Image Source="pack://application:,,,/LaOcaClient;component/Recursos/TableroOca.png" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Canvas Name="TableroCanvas" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Name="FichaImage" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOca.png" Width="50" Height="50" Canvas.Left="279" Canvas.Top="35" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </Canvas>
+        <Button Content="Mover Ficha" HorizontalAlignment="Left" Margin="360,546,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+    </Grid>
+</Window>

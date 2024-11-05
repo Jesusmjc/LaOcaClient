@@ -1063,4 +1063,65 @@ namespace LaOcaClient.LaOcaService {
             return base.Channel.NombreUsuarioExisteAsync(nombreUsuario);
         }
     }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioJugabilidad")]
+    public interface IServicioJugabilidad {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugabilidad/JugarTurno", ReplyAction="http://tempuri.org/IServicioJugabilidad/JugarTurnoResponse")]
+        void JugarTurno(int pasos);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugabilidad/JugarTurno", ReplyAction="http://tempuri.org/IServicioJugabilidad/JugarTurnoResponse")]
+        System.Threading.Tasks.Task JugarTurnoAsync(int pasos);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugabilidad/ObtenerPosicionFicha", ReplyAction="http://tempuri.org/IServicioJugabilidad/ObtenerPosicionFichaResponse")]
+        int ObtenerPosicionFicha();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugabilidad/ObtenerPosicionFicha", ReplyAction="http://tempuri.org/IServicioJugabilidad/ObtenerPosicionFichaResponse")]
+        System.Threading.Tasks.Task<int> ObtenerPosicionFichaAsync();
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioJugabilidadChannel : LaOcaClient.LaOcaService.IServicioJugabilidad, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ServicioJugabilidadClient : System.ServiceModel.ClientBase<LaOcaClient.LaOcaService.IServicioJugabilidad>, LaOcaClient.LaOcaService.IServicioJugabilidad {
+        
+        public ServicioJugabilidadClient() {
+        }
+        
+        public ServicioJugabilidadClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ServicioJugabilidadClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioJugabilidadClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioJugabilidadClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public void JugarTurno(int pasos) {
+            base.Channel.JugarTurno(pasos);
+        }
+        
+        public System.Threading.Tasks.Task JugarTurnoAsync(int pasos) {
+            return base.Channel.JugarTurnoAsync(pasos);
+        }
+        
+        public int ObtenerPosicionFicha() {
+            return base.Channel.ObtenerPosicionFicha();
+        }
+        
+        public System.Threading.Tasks.Task<int> ObtenerPosicionFichaAsync() {
+            return base.Channel.ObtenerPosicionFichaAsync();
+        }
+    }
 }

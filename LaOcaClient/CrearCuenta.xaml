@@ -18,10 +18,10 @@
         <PasswordBox x:Name="tbConfirmarContraseña" HorizontalAlignment="Left" Margin="78,438,0,0" VerticalAlignment="Top" Width="182" FontSize="14" Height="26" Visibility="Visible"/>
         <Label x:Name="globalCorreo" Content="{x:Static p:Resources.globalCorreo}" HorizontalAlignment="Left" Margin="78,514,0,0" VerticalAlignment="Top" FontSize="14" Width="184" Visibility="Visible"/>
         <TextBox x:Name="tbCorreo" HorizontalAlignment="Left" Margin="78,542,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" FontSize="14" Height="26" Visibility="Visible"/>
-        <Button x:Name="btnSiguienteCrearCuenta" Content="Siguiente" HorizontalAlignment="Left" Margin="691,590,0,0" VerticalAlignment="Top" Width="73" Click="btnSiguienteCrear_Click" Visibility="Visible"/>
+        <Button x:Name="btnSiguienteCrearCuenta" Content="{x:Static p:Resources.globalBtnSiguiente}" HorizontalAlignment="Left" Margin="691,590,0,0" VerticalAlignment="Top" Width="73" Click="btnSiguienteCrear_Click" Visibility="Visible"/>
         <Button x:Name="btnSiguienteModificarCuenta" Content="Siguiente" HorizontalAlignment="Left" Margin="691,590,0,0" VerticalAlignment="Top" Width="73" Click="btnSiguienteModificar_Click" Visibility="Visible"/>
         <Button x:Name="btnCancelar" Content="{x:Static p:Resources.globalCancelar}" HorizontalAlignment="Left" Margin="776,590,0,0" VerticalAlignment="Top" Width="56" Click="btnCancelar_Click" Visibility="Visible"/>
-        <Label x:Name="lbSeleccionarImagenPerfil" Content="Seleccionar imagen de perfil:" HorizontalAlignment="Center" Margin="0,226,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.341,0.425" FontSize="14" Visibility="Visible" Width="192"/>
+        <Label x:Name="lbSeleccionarImagenPerfil" Content="{x:Static p:Resources.lbSeleccionarImagenPerfil}" HorizontalAlignment="Center" Margin="0,226,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.341,0.425" FontSize="14" Visibility="Visible" Width="192"/>
         
         <WrapPanel x:Name="wpImagenesPerfil" HorizontalAlignment="Left" Margin="354,268,0,0" VerticalAlignment="Top" Width="400" Height="300" Visibility="Visible">
             <Image x:Name="imgOcaDeportista" Source="pack://application:,,,/LaOcaClient;component/Recursos/OcaDeportista.jpg" Width="100" Height="100" Margin="10" MouseLeftButtonUp="ImagenPerfil_MouseLeftButtonUp"/>
@@ -33,11 +33,11 @@
         </WrapPanel>
 
         <TextBox x:Name="tbCodigoVerificacion" Width="200" Height="30" Margin="125,190,125,144" Visibility="Collapsed" />
-        <Button x:Name="btnVerificarCodigo" Content="Verificar Código" Width="200" Height="30" Margin="125,238,125,96" Click="btnVerificarCodigo_Click" Visibility="Collapsed" />
-        <Label x:Name="lbIngresarCodigo" Content="Ingresa el código de verificación:" HorizontalAlignment="Left" Margin="188,178,0,0" VerticalAlignment="Top" FontSize="14" Visibility="Collapsed"/>
-        <Button x:Name="btnReenviarCodigo" Content="Reenviar código" HorizontalAlignment="Center" Margin="0,360,0,0" VerticalAlignment="Top" Visibility="Collapsed" Click="btnReenviarCodigo_Click"/>
-        <Label x:Name="lbReenviarCodigo" Content="Podrás reenviar el código después de 60 segundos." HorizontalAlignment="Center" Margin="0,334,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
-        <Button x:Name="btnVolverAtras" Content="Volver atrás" HorizontalAlignment="Left" Margin="487,408,0,0" VerticalAlignment="Top" Width="75" Click="btnVolverAtras_Click" Visibility="Collapsed"/>
-        <Button x:Name="btnCambiarContraseña" Content="Cambiar contraseña" HorizontalAlignment="Left" Margin="78,385,0,0" VerticalAlignment="Top" Width="182" Height="26" Visibility="Collapsed" Click="btnCambiarContraseña_Click"/>
+        <Button x:Name="btnVerificarCodigo" Content="{x:Static p:Resources.btnVerificarCodigo}" Width="200" Height="30" Margin="125,238,125,96" Click="btnVerificarCodigo_Click" Visibility="Collapsed" />
+        <Label x:Name="lbIngresarCodigo" Content="{x:Static p:Resources.lbIngresarCodigo}" HorizontalAlignment="Left" Margin="188,178,0,0" VerticalAlignment="Top" FontSize="14" Visibility="Collapsed"/>
+        <Button x:Name="btnReenviarCodigo" Content="{x:Static p:Resources.btnReenviarCodigo}" HorizontalAlignment="Center" Margin="0,360,0,0" VerticalAlignment="Top" Visibility="Collapsed" Click="btnReenviarCodigo_Click"/>
+        <Label x:Name="lbReenviarCodigo" Content="{x:Static p:Resources.btnReenviarCodigo}" HorizontalAlignment="Center" Margin="0,334,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
+        <Button x:Name="btnVolverAtras" Content="{x:Static p:Resources.btnGlobalRegresar}" HorizontalAlignment="Left" Margin="487,408,0,0" VerticalAlignment="Top" Width="75" Click="btnVolverAtras_Click" Visibility="Collapsed"/>
+        <Button x:Name="btnCambiarContraseña" Content="{x:Static p:Resources.btnCambiarContraseña}" HorizontalAlignment="Left" Margin="78,385,0,0" VerticalAlignment="Top" Width="182" Height="26" Visibility="Collapsed" Click="btnCambiarContraseña_Click"/>
     </Grid>
 </Window>
