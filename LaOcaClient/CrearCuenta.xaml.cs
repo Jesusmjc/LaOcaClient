@@ -40,7 +40,6 @@ namespace LaOcaClient
         private readonly ModoCuenta _modo;
         private readonly ResourceManager _resourceManager;
 
-
         public CrearCuenta(ModoCuenta modo)
         {
             InitializeComponent();
@@ -94,7 +93,7 @@ namespace LaOcaClient
             string confirmarContrasena = tbConfirmarContraseña.Password;
             string correo = tbCorreo.Text;
 
-            if (string.IsNullOrEmpty(nombreUsuario) || string.IsNullOrEmpty(contrasena) || string.IsNullOrEmpty(confirmarContrasena) || string.IsNullOrEmpty(correo))
+            if (string.IsNullOrWhiteSpace(nombreUsuario) || string.IsNullOrWhiteSpace(contrasena) || string.IsNullOrWhiteSpace(confirmarContrasena) || string.IsNullOrWhiteSpace(correo))
             {
                 MessageBox.Show("Todos los campos son obligatorios.");
                 return;
@@ -103,6 +102,14 @@ namespace LaOcaClient
             if (!Utilidad.ValidarNombreJugador(nombreUsuario))
             {
                 MessageBox.Show("El nombre de usuario debe tener al menos 6 caracteres.");
+                return;
+            }
+
+            // Verificar si el nombre de usuario ya existe en modo creación o es diferente en modo modificación
+            if (_servicioCuenta.NombreUsuarioExiste(nombreUsuario) &&
+               (_modo == ModoCuenta.Crear || nombreUsuario != SingletonJugador.Instance.Jugador.NombreUsuario))
+            {
+                MessageBox.Show("El nombre de usuario ya está en uso. Por favor, elija otro nombre.");
                 return;
             }
 
@@ -182,11 +189,12 @@ namespace LaOcaClient
 
         private void btnSiguienteModificar_Click(object sender, RoutedEventArgs e)
         {
+            tbCorreo.IsEnabled = false;
             string nombreUsuario = tbNombreUsuario.Text;
             string correo = tbCorreo.Text;
             string contraseña = tbContraseña.Password;
 
-            if (string.IsNullOrEmpty(nombreUsuario) || string.IsNullOrEmpty(correo))
+            if (string.IsNullOrWhiteSpace(nombreUsuario))
             {
                 MessageBox.Show("Todos los campos son obligatorios.");
                 return;
@@ -198,15 +206,10 @@ namespace LaOcaClient
                 return;
             }
 
-            if (_servicioCuenta.NombreUsuarioExiste(nombreUsuario) && nombreUsuario != SingletonJugador.Instance.Jugador.NombreUsuario)
+            if (_servicioCuenta.NombreUsuarioExiste(nombreUsuario) &&
+               (_modo == ModoCuenta.Crear || nombreUsuario != SingletonJugador.Instance.Jugador.NombreUsuario))
             {
                 MessageBox.Show("El nombre de usuario ya está en uso. Por favor, elija otro nombre.");
-                return;
-            }
-
-            if (!Utilidad.ValidarCorreoElectronico(correo))
-            {
-                MessageBox.Show("El correo electrónico no es válido. Debe ser un correo de gmail, outlook o hotmail.");
                 return;
             }
 
@@ -559,9 +562,10 @@ namespace LaOcaClient
                 globalConfirmarContraseña.Visibility = Visibility.Collapsed;
                 tbConfirmarContraseña.Visibility = Visibility.Collapsed;
                 btnCambiarContraseña.Visibility = Visibility.Visible;
-                globalCorreo.Margin = new Thickness(78, 440, 0, 0);
-                tbCorreo.Margin = new Thickness(78, 468, 0, 0);
-                btnCambiarContraseña.Margin = new Thickness(78, 353, 0, 0);
+                //globalCorreo.Margin = new Thickness(78, 440, 0, 0);
+                //tbCorreo.Margin = new Thickness(78, 468, 0, 0);
+                tbCorreo.IsEnabled = false;
+                //btnCambiarContraseña.Margin = new Thickness(78, 353, 0, 0);
             }
         }
 

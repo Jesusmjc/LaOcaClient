@@ -133,7 +133,7 @@
     <value>Iniciar sesión</value>
   </data>
   <data name="btnOlvideMiContraseña" xml:space="preserve">
-    <value>Olvié mi contraseña</value>
+    <value>Olvidé mi contraseña</value>
   </data>
   <data name="btnReenviarCodigo" xml:space="preserve">
     <value>Reenviar código</value>

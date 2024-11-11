@@ -15,6 +15,8 @@
       <xs:element minOccurs="0" name="CanalCallbackChat" nillable="true" type="xs:anyType" />
       <xs:element minOccurs="0" name="CanalCallbackPartida" nillable="true" type="xs:anyType" />
       <xs:element minOccurs="0" name="CanalCallbackSala" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Ficha" nillable="true" type="tns:Ficha" />
+      <xs:element minOccurs="0" name="FichaAsignada" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IdCuenta" type="xs:int" />
       <xs:element minOccurs="0" name="IdFotoPerfil" type="xs:int" />
       <xs:element minOccurs="0" name="IdJugador" type="xs:int" />
@@ -23,6 +25,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Jugador" nillable="true" type="tns:Jugador" />
+  <xs:complexType name="Ficha">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PosicionActual" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Ficha" nillable="true" type="tns:Ficha" />
   <xs:complexType name="InicioSesionException">
     <xs:sequence>
       <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
