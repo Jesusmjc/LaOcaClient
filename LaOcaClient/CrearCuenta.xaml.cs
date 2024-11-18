@@ -88,68 +88,19 @@ namespace LaOcaClient
 
         private void btnSiguienteCrear_Click(object sender, RoutedEventArgs e)
         {
-            string nombreUsuario = tbNombreUsuario.Text;
-            string contrasena = tbContraseña.Password;
-            string confirmarContrasena = tbConfirmarContraseña.Password;
-            string correo = tbCorreo.Text;
-
-            if (string.IsNullOrWhiteSpace(nombreUsuario) || string.IsNullOrWhiteSpace(contrasena) || string.IsNullOrWhiteSpace(confirmarContrasena) || string.IsNullOrWhiteSpace(correo))
+            if (!ValidarFormularioCrear())
             {
-                MessageBox.Show("Todos los campos son obligatorios.");
-                return;
-            }
-
-            if (!Utilidad.ValidarNombreJugador(nombreUsuario))
-            {
-                MessageBox.Show("El nombre de usuario debe tener al menos 6 caracteres.");
-                return;
-            }
-
-            // Verificar si el nombre de usuario ya existe en modo creación o es diferente en modo modificación
-            if (_servicioCuenta.NombreUsuarioExiste(nombreUsuario) &&
-               (_modo == ModoCuenta.Crear || nombreUsuario != SingletonJugador.Instance.Jugador.NombreUsuario))
-            {
-                MessageBox.Show("El nombre de usuario ya está en uso. Por favor, elija otro nombre.");
-                return;
-            }
-
-            if (!Utilidad.ValidarCorreoElectronico(correo))
-            {
-                MessageBox.Show("El correo electrónico no es válido. Debe ser un correo de gmail, outlook o hotmail.");
-                return;
-            }
-
-            if (!Utilidad.ValidarContrasena(contrasena))
-            {
-                MessageBox.Show("La contraseña no cumple con los requisitos. Debe tener entre 8 y 16 caracteres, incluir al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.");
-                return;
-            }
-
-            if (contrasena != confirmarContrasena)
-            {
-                MessageBox.Show("Las contraseñas no coinciden.");
-                return;
-            }
-
-            if (_servicioCuenta.CorreoExiste(correo))
-            {
-                MessageBox.Show("El correo electrónico ya está registrado.");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(_imagenPerfilSeleccionada))
-            {
-                MessageBox.Show("Debe seleccionar una imagen de perfil.");
                 return;
             }
 
             var cuenta = new Cuenta
             {
-                CorreoElectronico = correo,
-                Contrasena = Utilidad.HashearConSha256(contrasena)
+                CorreoElectronico = tbCorreo.Text,
+                Contrasena = Utilidad.HashearConSha256(tbContraseña.Password)
             };
 
             int idFotoPerfil;
+
             try
             {
                 idFotoPerfil = ObtenerIdAspectoPorReferencia(_imagenPerfilSeleccionada);
@@ -162,13 +113,13 @@ namespace LaOcaClient
 
             var jugador = new Jugador
             {
-                NombreUsuario = nombreUsuario,
+                NombreUsuario = tbNombreUsuario.Text,
                 IdFotoPerfil = idFotoPerfil
             };
 
             try
             {
-                _servicioCuenta.EnviarCodigoVerificacion(correo);
+                _servicioCuenta.EnviarCodigoVerificacion(tbCorreo.Text);
                 MessageBox.Show("Se han guardado los datos de tu cuenta. Por favor revisa el código de verificación que se envió a tu correo electrónico.");
                 ActualizarVentanaCrearCuenta();
                 IniciarTemporizador();
@@ -189,41 +140,16 @@ namespace LaOcaClient
 
         private void btnSiguienteModificar_Click(object sender, RoutedEventArgs e)
         {
-            tbCorreo.IsEnabled = false;
-            string nombreUsuario = tbNombreUsuario.Text;
-            string correo = tbCorreo.Text;
-            string contraseña = tbContraseña.Password;
-
-            if (string.IsNullOrWhiteSpace(nombreUsuario))
+            if (!ValidarFormularioModificar())
             {
-                MessageBox.Show("Todos los campos son obligatorios.");
-                return;
-            }
-
-            if (!Utilidad.ValidarNombreJugador(nombreUsuario))
-            {
-                MessageBox.Show("El nombre de usuario debe tener al menos 6 caracteres.");
-                return;
-            }
-
-            if (_servicioCuenta.NombreUsuarioExiste(nombreUsuario) &&
-               (_modo == ModoCuenta.Crear || nombreUsuario != SingletonJugador.Instance.Jugador.NombreUsuario))
-            {
-                MessageBox.Show("El nombre de usuario ya está en uso. Por favor, elija otro nombre.");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(_imagenPerfilSeleccionada))
-            {
-                MessageBox.Show("Debe seleccionar una imagen de perfil.");
                 return;
             }
 
             var cuenta = new Cuenta
             {
                 IdCuenta = SingletonJugador.Instance.Jugador.IdCuenta,
-                CorreoElectronico = correo,
-                Contrasena = contraseña
+                CorreoElectronico = tbCorreo.Text,
+                Contrasena = tbContraseña.Password
             };
 
             int idFotoPerfil;
@@ -240,7 +166,7 @@ namespace LaOcaClient
             var jugador = new Jugador
             {
                 IdJugador = SingletonJugador.Instance.Jugador.IdJugador,
-                NombreUsuario = nombreUsuario,
+                NombreUsuario = tbNombreUsuario.Text,
                 IdFotoPerfil = idFotoPerfil
             };
 
@@ -266,6 +192,104 @@ namespace LaOcaClient
             {
                 MessageBox.Show($"Error inesperado al modificar la cuenta: {ex.Message}");
             }
+        }
+
+        private bool ValidarFormularioCrear()
+        {
+            return ValidarCamposComunes() && ValidarContrasena() && ValidarCorreo() && ValidarImagenPerfil();
+        }
+
+        private bool ValidarFormularioModificar()
+        {
+            return ValidarCamposComunes() && ValidarImagenPerfil();
+        }
+
+        private bool ValidarCamposComunes()
+        {
+            string nombreUsuario = tbNombreUsuario.Text;
+
+            if (string.IsNullOrWhiteSpace(nombreUsuario))
+            {
+                MessageBox.Show("Todos los campos son obligatorios.");
+                return false;
+            }
+
+            if (!Utilidad.ValidarNombreJugador(nombreUsuario))
+            {
+                MessageBox.Show("El nombre de usuario debe tener al menos 6 caracteres.");
+                return false;
+            }
+
+            if (_servicioCuenta.NombreUsuarioExiste(nombreUsuario) &&
+               (_modo == ModoCuenta.Crear || nombreUsuario != SingletonJugador.Instance.Jugador.NombreUsuario))
+            {
+                MessageBox.Show("El nombre de usuario ya está en uso. Por favor, elija otro nombre.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidarContrasena()
+        {
+            string contrasena = tbContraseña.Password;
+            string confirmarContrasena = tbConfirmarContraseña.Password;
+
+            if (string.IsNullOrWhiteSpace(contrasena) || string.IsNullOrWhiteSpace(confirmarContrasena))
+            {
+                MessageBox.Show("Todos los campos son obligatorios.");
+                return false;
+            }
+
+            if (!Utilidad.ValidarContrasena(contrasena))
+            {
+                MessageBox.Show("La contraseña no cumple con los requisitos. Debe tener entre 8 y 16 caracteres, incluir al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.");
+                return false;
+            }
+
+            if (contrasena != confirmarContrasena)
+            {
+                MessageBox.Show("Las contraseñas no coinciden.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidarCorreo()
+        {
+            string correo = tbCorreo.Text;
+
+            if (string.IsNullOrWhiteSpace(correo))
+            {
+                MessageBox.Show("Todos los campos son obligatorios.");
+                return false;
+            }
+
+            if (!Utilidad.ValidarCorreoElectronico(correo))
+            {
+                MessageBox.Show("El correo electrónico no es válido. Debe ser un correo de gmail, outlook o hotmail.");
+                return false;
+            }
+
+            if (_servicioCuenta.CorreoExiste(correo))
+            {
+                MessageBox.Show("El correo electrónico ya está registrado.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidarImagenPerfil()
+        {
+            if (string.IsNullOrEmpty(_imagenPerfilSeleccionada))
+            {
+                MessageBox.Show("Debe seleccionar una imagen de perfil.");
+                return false;
+            }
+
+            return true;
         }
 
         private void btnVerificarCodigo_Click(object sender, RoutedEventArgs e)

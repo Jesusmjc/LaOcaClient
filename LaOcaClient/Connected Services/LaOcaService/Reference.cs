@@ -1331,10 +1331,10 @@ namespace LaOcaClient.LaOcaService {
     public interface IServicioJugabilidad {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugabilidad/JugarTurno", ReplyAction="http://tempuri.org/IServicioJugabilidad/JugarTurnoResponse")]
-        void JugarTurno(int pasos);
+        void JugarTurno(int pasos, string codigoSala, string nombreJugador);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugabilidad/JugarTurno", ReplyAction="http://tempuri.org/IServicioJugabilidad/JugarTurnoResponse")]
-        System.Threading.Tasks.Task JugarTurnoAsync(int pasos);
+        System.Threading.Tasks.Task JugarTurnoAsync(int pasos, string codigoSala, string nombreJugador);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugabilidad/ObtenerPosicionFicha", ReplyAction="http://tempuri.org/IServicioJugabilidad/ObtenerPosicionFichaResponse")]
         int ObtenerPosicionFicha();
@@ -1370,12 +1370,12 @@ namespace LaOcaClient.LaOcaService {
                 base(binding, remoteAddress) {
         }
         
-        public void JugarTurno(int pasos) {
-            base.Channel.JugarTurno(pasos);
+        public void JugarTurno(int pasos, string codigoSala, string nombreJugador) {
+            base.Channel.JugarTurno(pasos, codigoSala, nombreJugador);
         }
         
-        public System.Threading.Tasks.Task JugarTurnoAsync(int pasos) {
-            return base.Channel.JugarTurnoAsync(pasos);
+        public System.Threading.Tasks.Task JugarTurnoAsync(int pasos, string codigoSala, string nombreJugador) {
+            return base.Channel.JugarTurnoAsync(pasos, codigoSala, nombreJugador);
         }
         
         public int ObtenerPosicionFicha() {

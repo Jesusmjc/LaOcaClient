@@ -274,16 +274,18 @@
     <Resource Include="Recursos\OcaUniversitaria.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Recursos\FichaOca.png" />
+    <Resource Include="Recursos\TableroOca.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\FichaOcaAmarilla.png" />
     <Resource Include="Recursos\FichaOcaAzul.png" />
     <Resource Include="Recursos\FichaOcaRosa.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Recursos\FichaOcaVerde.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Recursos\TableroOca.png" />
+    <Resource Include="Recursos\TableroOcaActualizado.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Shapes;
 using System.Windows.Media;
 using LaOcaClient.UserControls;
+using System.Windows.Media.Imaging;
 
 namespace LaOcaClient
 {
@@ -18,9 +19,16 @@ namespace LaOcaClient
         private Dictionary<int, Point> _posicionesCasillas;
         private Grid[] gridsJugadores;
         private Dictionary<string, int> posicionesJugadores;
-        private string _fichaAsignada;
         private Dictionary<string, string> fichaPorJugador = new Dictionary<string, string>();
+        private Dictionary<string, Image> fichasPorJugador = new Dictionary<string, Image>();
 
+        private List<string> fichasDisponibles = new List<string>
+        {
+            "pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaAmarilla.png",
+            "pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaAzul.png",
+            "pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaRosa.png",
+            "pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaVerde.png"
+        };
 
         public Partida(LaOcaService.Sala sala)
         {
@@ -29,8 +37,8 @@ namespace LaOcaClient
             _servicioJugabilidad = new ServicioJugabilidadClient();
             _posicionesCasillas = ObtenerPosicionesCasillas();
             posicionesJugadores = new Dictionary<string, int>();
-
             this.sala = sala;
+
             gridsJugadores = new Grid[4];
             gridsJugadores[0] = gridJugador1;
             gridsJugadores[1] = gridJugador2;
@@ -51,15 +59,28 @@ namespace LaOcaClient
 
         private void MostrarJugadoresEnPartida()
         {
+            Point posicionInicial = _posicionesCasillas[0];
+
             for (int i = 0; i < sala.Jugadores.Count; i++)
             {
                 Jugador jugador = sala.Jugadores[sala.Partida.NombresDeJugadoresEnOrdenDeTurnos[i]];
 
-                fichaPorJugador[jugador.NombreUsuario] = jugador.FichaAsignada;
+                string fichaPath = fichasDisponibles[i % fichasDisponibles.Count];
+                Image ficha = new Image();
+                ficha.Source = new BitmapImage(new Uri(fichaPath));
+                ficha.Width = 85;
+                ficha.Height = 85;
+                fichasPorJugador[jugador.NombreUsuario] = ficha;
 
                 JugadorEnSala jugadorEnSala = new JugadorEnSala(jugador.NombreUsuario, jugador.IdJugador);
                 gridsJugadores[i].Children.Add(jugadorEnSala);
-                posicionesJugadores[jugador.NombreUsuario] = 0; 
+                posicionesJugadores[jugador.NombreUsuario] = 0;
+
+                TableroCanvas.Children.Add(ficha);
+                Canvas.SetLeft(ficha, posicionInicial.X + (i));
+                Canvas.SetTop(ficha, posicionInicial.Y);
+
+                Console.WriteLine($"Jugador {jugador.NombreUsuario} con ficha {fichaPath} añadido a la interfaz en la posición inicial.");
             }
         }
 
@@ -93,60 +114,62 @@ namespace LaOcaClient
             if (sala.Partida.NombreJugadorEnTurno == SingletonJugador.Instance.Jugador.NombreUsuario)
             {
                 int posicionJugador = Array.IndexOf(sala.Partida.NombresDeJugadoresEnOrdenDeTurnos, SingletonJugador.Instance.Jugador.NombreUsuario);
-                try
-                {
-                    await clientePartida.PasarTurnoASiguienteJugadorAsync(posicionJugador, sala.Codigo);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error al pasar el turno: {ex.Message}");
-                }
+                await clientePartida.PasarTurnoASiguienteJugadorAsync(posicionJugador, sala.Codigo);
             }
         }
 
         private void MoverFicha(int pasos, string nombreJugador)
         {
-            int posicionActual = posicionesJugadores[nombreJugador];
-            int nuevaPosicion = posicionActual + pasos;
+            if (posicionesJugadores.TryGetValue(nombreJugador, out int posicionActual))
+            {
+                int nuevaPosicion = posicionActual + pasos; 
+                if (nuevaPosicion >= _posicionesCasillas.Count)
+                    nuevaPosicion = _posicionesCasillas.Count - 1;
 
-            if (nuevaPosicion >= _posicionesCasillas.Count)
-                nuevaPosicion = _posicionesCasillas.Count - 1;
-
-            posicionesJugadores[nombreJugador] = nuevaPosicion;
-
-            ActualizarInterfazGrafica(nuevaPosicion, nombreJugador);
-
-            _servicioJugabilidad.JugarTurno(pasos);
+                posicionesJugadores[nombreJugador] = nuevaPosicion;
+                ActualizarInterfazGrafica(nuevaPosicion, nombreJugador);
+                _servicioJugabilidad.JugarTurno(pasos, sala.Codigo, nombreJugador);
+            }
         }
 
         private void ActualizarInterfazGrafica(int nuevaPosicion, string nombreJugador)
         {
-            Image ficha = ObtenerFichaPorJugador(nombreJugador);
-            if (_posicionesCasillas.TryGetValue(nuevaPosicion, out Point nuevaPosicionCanvas))
+            if (fichasPorJugador.TryGetValue(nombreJugador, out Image ficha))
             {
-                Canvas.SetLeft(ficha, nuevaPosicionCanvas.X);
-                Canvas.SetTop(ficha, nuevaPosicionCanvas.Y);
-                Console.WriteLine($"La ficha de {nombreJugador} está ahora en la casilla {nuevaPosicion}");
+                if (_posicionesCasillas.TryGetValue(nuevaPosicion, out Point nuevaPosicionCanvas))
+                {
+                    Canvas.SetLeft(ficha, nuevaPosicionCanvas.X);
+                    Canvas.SetTop(ficha, nuevaPosicionCanvas.Y);
+                    Console.WriteLine($"La ficha de {nombreJugador} está ahora en la casilla {nuevaPosicion}");
+                }
+                else
+                {
+                    Console.WriteLine($"Posición {nuevaPosicion} no encontrada en el tablero.");
+                }
             }
             else
             {
-                Console.WriteLine($"Posición {nuevaPosicion} no encontrada en el tablero.");
+                Console.WriteLine($"Ficha para el jugador {nombreJugador} no encontrada.");
             }
         }
 
         private Image ObtenerFichaPorJugador(string nombreJugador)
         {
-            string fichaAsignada;
-            if (fichaPorJugador.TryGetValue(nombreJugador, out fichaAsignada))
+            if (fichaPorJugador.TryGetValue(nombreJugador, out string fichaAsignada))
             {
-                if (fichaAsignada == "FichaOcaAmarilla")
-                    return FichaOcaAmarilla;
-                else if (fichaAsignada == "FichaOcaAzul")
-                    return FichaOcaAzul;
-                else if (fichaAsignada == "FichaOcaRosa")
-                    return FichaOcaRosa;
-                else if (fichaAsignada == "FichaOcaVerde")
-                    return FichaOcaVerde;
+                switch (fichaAsignada)
+                {
+                    case "FichaOcaAmarilla":
+                        return FichaOcaAmarilla;
+                    case "FichaOcaAzul":
+                        return FichaOcaAzul;
+                    case "FichaOcaRosa":
+                        return FichaOcaRosa;
+                    case "FichaOcaVerde":
+                        return FichaOcaVerde;
+                    default:
+                        return FichaOcaAmarilla;
+                }
             }
             return FichaOcaAmarilla;
         }
@@ -225,9 +248,15 @@ namespace LaOcaClient
 
         public void ActualizarPosicionFicha(int nuevaPosicion, string nombreJugador)
         {
-            posicionesJugadores[nombreJugador] = nuevaPosicion;
-
-            ActualizarInterfazGrafica(nuevaPosicion, nombreJugador);
+            if (posicionesJugadores.ContainsKey(nombreJugador))
+            {
+                posicionesJugadores[nombreJugador] = nuevaPosicion;
+                ActualizarInterfazGrafica(nuevaPosicion, nombreJugador);
+            }
+            else
+            {
+                Console.WriteLine($"Jugador {nombreJugador} no encontrado en el diccionario de posiciones.");
+            }
         }
 
         public void MostrarNuevoJugadorEnTurno(string nombreNuevoJugadorEnTurno)
@@ -239,7 +268,7 @@ namespace LaOcaClient
             {
                 VentanaCierreAutomatico ventanaTurno = new VentanaCierreAutomatico("¡Es tu turno de tirar!", "Tu turno", 2);
                 ventanaTurno.Show();
-                btnDados.IsEnabled = true; 
+                btnDados.IsEnabled = true;
             }
             else
             {

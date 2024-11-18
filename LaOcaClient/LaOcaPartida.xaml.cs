@@ -34,7 +34,7 @@ namespace LaOcaClient
 
         private void MoverFicha(int pasos)
         {
-            _servicioJugabilidad.JugarTurno(pasos);
+            //_servicioJugabilidad.JugarTurno(pasos, sala.Codigo, nombreJugador);
             int nuevaPosicion = _servicioJugabilidad.ObtenerPosicionFicha();
             ActualizarInterfazGrafica(nuevaPosicion);
         }

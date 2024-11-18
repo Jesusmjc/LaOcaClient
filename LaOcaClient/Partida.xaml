@@ -13,13 +13,12 @@
         <!-- Tablero principal en el lado izquierdo -->
         <Viewbox Stretch="Uniform" Grid.Column="0">
             <Grid>
-                <Image Source="pack://application:,,,/LaOcaClient;component/Recursos/TableroOca.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Image Source="pack://application:,,,/LaOcaClient;component/Recursos/TableroOcaActualizado.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Canvas Name="TableroCanvas" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Name="FichaOcaAmarilla" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaAmarilla.png" Width="85" Height="85" Canvas.Left="-584" Canvas.Top="315"/>
-                    <Image Name="FichaOcaAzul" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaAzul.png" Width="85" Height="85" Canvas.Left="-584" Canvas.Top="315"/>
-                    <Image Name="FichaOcaRosa" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaRosa.png" Width="85" Height="85" Canvas.Left="-584" Canvas.Top="315"/>
-                    <Image Name="FichaOcaVerde" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaVerde.png" Width="85" Height="85" Canvas.Left="-584" Canvas.Top="315"/>
-
+                    <Image Name="FichaOcaAmarilla" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaAmarilla.png" Width="85" Height="85" Canvas.Left="-584" Canvas.Top="315" Visibility="Collapsed"/>
+                    <Image Name="FichaOcaAzul" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaAzul.png" Width="85" Height="85" Canvas.Left="-584" Canvas.Top="315" Visibility="Collapsed"/>
+                    <Image Name="FichaOcaRosa" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaRosa.png" Width="85" Height="85" Canvas.Left="-584" Canvas.Top="315" Visibility="Collapsed"/>
+                    <Image Name="FichaOcaVerde" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaVerde.png" Width="85" Height="85" Canvas.Left="-584" Canvas.Top="315" Visibility="Collapsed"/>
                 </Canvas>
             </Grid>
         </Viewbox>

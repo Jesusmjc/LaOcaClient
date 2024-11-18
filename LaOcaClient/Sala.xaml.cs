@@ -253,15 +253,27 @@ namespace LaOcaClient
 
         public void MostrarNuevoJugadorEnSala(Jugador nuevoJugador)
         {
-            JugadorEnSala nuevoJugadorEnSala = new JugadorEnSala(nuevoJugador.NombreUsuario, nuevoJugador.IdJugador);
-            gridsJugadores[sala.Jugadores.Count].Children.Add(nuevoJugadorEnSala);
+            if (!sala.Jugadores.ContainsKey(nuevoJugador.NombreUsuario)) // Verificar si el jugador ya existe
+            {
+                // Crear una nueva visualización del jugador en la interfaz
+                JugadorEnSala nuevoJugadorEnSala = new JugadorEnSala(nuevoJugador.NombreUsuario, nuevoJugador.IdJugador);
+                gridsJugadores[sala.Jugadores.Count].Children.Add(nuevoJugadorEnSala);
 
-            sala.Jugadores.Add(nuevoJugador.NombreUsuario, nuevoJugador);
+                // Agregar el jugador a la sala
+                sala.Jugadores.Add(nuevoJugador.NombreUsuario, nuevoJugador);
 
-            if (sala.Jugadores.Count > 1) {
-                btnIniciarPartida.IsEnabled = true;
+                // Habilitar el botón para iniciar la partida si hay más de un jugador
+                if (sala.Jugadores.Count > 1)
+                {
+                    btnIniciarPartida.IsEnabled = true;
+                }
+            }
+            else
+            {
+                Console.WriteLine($"El jugador {nuevoJugador.NombreUsuario} ya está en la sala.");
             }
         }
+
 
         private void LimpiarTextoEjemplo(object sender, RoutedEventArgs e)
         {
