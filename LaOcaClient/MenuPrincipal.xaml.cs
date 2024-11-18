@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LaOcaClient.LaOcaService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -82,6 +83,10 @@ namespace LaOcaClient
                     }
                     
                 }
+                catch (FaultException<SalaException> ex)
+                {
+                    MessageBox.Show(ex.Detail.Mensaje + "\n" + ex.Reason, "Error al buscar la Sala", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
                 catch (TimeoutException)
                 {
                     MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -91,6 +96,33 @@ namespace LaOcaClient
                     MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private void MostrarListaAmigos(object sender, RoutedEventArgs e)
+        {
+            Social ventanaSocial = new Social();
+            this.Close();
+            ventanaSocial.ShowDialog();
+        }
+
+        private void CerrarSesion(object sender, RoutedEventArgs e)
+        {
+            LaOcaService.ServicioJugadoresEnLineaClient clienteJugadoresEnLinea = new LaOcaService.ServicioJugadoresEnLineaClient();
+
+            try
+            {
+                clienteJugadoresEnLinea.EliminarJugadorDesconectado(SingletonJugador.Instance.Jugador);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            this.Close();
         }
     }
 }

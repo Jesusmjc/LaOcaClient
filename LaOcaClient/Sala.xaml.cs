@@ -24,13 +24,17 @@ namespace LaOcaClient
     /// </summary>
     public partial class Sala : Window, IServicioChatCallback, IServicioSalaCallback
     {
-        private LaOcaService.Sala sala;
+        public LaOcaService.Sala sala;
 
         private InstanceContext contexto;
         private LaOcaService.ServicioChatClient clienteChat;
         private LaOcaService.ServicioSalaClient clienteSala;
 
         private Grid[] gridsJugadores;
+        private JugadorEnSala[] jugadoresEnSala;
+
+        private Social ventanaSocial;
+        private bool _ventanaEstaAbierta = true;
 
         public Sala()
         {
@@ -38,7 +42,6 @@ namespace LaOcaClient
             
             PrepararSala();
             MostrarPrimerJugador();
-            //CrearSala();
             UnirseAlChat();
         }
 
@@ -74,6 +77,8 @@ namespace LaOcaClient
             gridsJugadores[2] = gridJugadorSala3;
             gridsJugadores[3] = gridJugadorSala4;
 
+            jugadoresEnSala = new JugadorEnSala[4];
+
             contexto = new InstanceContext(this);
             clienteChat = new LaOcaService.ServicioChatClient(contexto);
             clienteSala = new LaOcaService.ServicioSalaClient(contexto);
@@ -81,6 +86,8 @@ namespace LaOcaClient
 
         private void CrearSala(string nombreSala, string visibilidad)
         {
+            btnIniciarPartida.Visibility = Visibility.Visible;
+
             LaOcaService.Sala nuevaSala = new LaOcaService.Sala()
             {
                 Nombre = nombreSala,
@@ -106,11 +113,11 @@ namespace LaOcaClient
                     MessageBox.Show("Ha ocurrido un error al crear la sala.", "Error con la sala", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (TimeoutException ex)
+            catch (TimeoutException)
             {
                 MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (CommunicationException ex)
+            catch (CommunicationException)
             {
                 MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -127,9 +134,11 @@ namespace LaOcaClient
         {
             JugadorEnSala hostEnSala = new JugadorEnSala(sala.NombreHost, sala.Jugadores[sala.NombreHost].IdJugador);
             gridsJugadores[0].Children.Add(hostEnSala);
+            jugadoresEnSala[0] = hostEnSala;
 
             JugadorEnSala jugadorSala = new JugadorEnSala(SingletonJugador.Instance.Jugador.NombreUsuario, SingletonJugador.Instance.Jugador.IdJugador);
             gridsJugadores[sala.Jugadores.Count].Children.Add(jugadorSala);
+            jugadoresEnSala[sala.Jugadores.Count] = jugadorSala;
 
             int posicion = 1;
 
@@ -137,7 +146,10 @@ namespace LaOcaClient
             {
                 if (!parJugador.Key.Equals(SingletonJugador.Instance.Jugador.NombreUsuario) && !parJugador.Key.Equals(sala.NombreHost))
                 {
-                    gridsJugadores[posicion].Children.Add(new JugadorEnSala(parJugador.Key, parJugador.Value.IdJugador));
+                    JugadorEnSala jugadorEnSala = new JugadorEnSala(parJugador.Key, parJugador.Value.IdJugador);
+                   
+                    gridsJugadores[posicion].Children.Add(jugadorEnSala);
+                    jugadoresEnSala[posicion] = jugadorEnSala;
 
                     posicion++;
                 }
@@ -253,14 +265,19 @@ namespace LaOcaClient
 
         public void MostrarNuevoJugadorEnSala(Jugador nuevoJugador)
         {
-            JugadorEnSala nuevoJugadorEnSala = new JugadorEnSala(nuevoJugador.NombreUsuario, nuevoJugador.IdJugador);
-            gridsJugadores[sala.Jugadores.Count].Children.Add(nuevoJugadorEnSala);
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                JugadorEnSala nuevoJugadorEnSala = new JugadorEnSala(nuevoJugador.NombreUsuario, nuevoJugador.IdJugador);
+                gridsJugadores[sala.Jugadores.Count].Children.Add(nuevoJugadorEnSala);
+                jugadoresEnSala[sala.Jugadores.Count] = nuevoJugadorEnSala;
 
-            sala.Jugadores.Add(nuevoJugador.NombreUsuario, nuevoJugador);
+                sala.Jugadores.Add(nuevoJugador.NombreUsuario, nuevoJugador);
 
-            if (sala.Jugadores.Count > 1) {
-                btnIniciarPartida.IsEnabled = true;
-            }
+                if (sala.Jugadores.Count > 1)
+                {
+                    btnIniciarPartida.IsEnabled = true;
+                }
+            });
         }
 
         private void LimpiarTextoEjemplo(object sender, RoutedEventArgs e)
@@ -297,6 +314,82 @@ namespace LaOcaClient
             Partida ventanaPartida = new Partida(sala);
             this.Close();
             ventanaPartida.ShowDialog();
+        }
+
+        private void RegresarAMenuPrincipal(object sender, MouseButtonEventArgs e)
+        {
+            MessageBoxResult resultado = MessageBox.Show("¿Estás seguro de que quieres salir al Menú Principal?", "Estás a punto de abandonar la partida", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (resultado == MessageBoxResult.Yes)
+            {
+                if (!SingletonJugador.Instance.Jugador.NombreUsuario.Equals(sala.NombreHost))
+                {
+                    clienteSala.NotificarDesconexion(SingletonJugador.Instance.Jugador.NombreUsuario, sala.Codigo);
+                }
+                else
+                {
+                    clienteSala.EliminarSala(sala.Codigo);
+                }
+
+                MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
+                this.Close();
+                ventanaMenuPrincipal.ShowDialog();
+            }
+        }
+
+        public void MostrarDesconexionJugador(string nombreJugadorDesconectado)
+        {
+            sala.Jugadores.Remove(nombreJugadorDesconectado);
+
+            int posicionJugadorDesconectado = 3;
+
+            for (int i = sala.Jugadores.Count; i >= 1; i--)
+            {
+                if (jugadoresEnSala[i].nombreJugador.Equals(nombreJugadorDesconectado))
+                {
+                    posicionJugadorDesconectado = i;
+                    gridsJugadores[i].Children.Clear();
+                    jugadoresEnSala[i] = null;
+
+                    break;
+                }
+            }
+
+            for (int i = posicionJugadorDesconectado;  i < sala.Jugadores.Count; i++)
+            {
+                JugadorEnSala jugadorEnSalaTemp = jugadoresEnSala[i + 1];
+
+                gridsJugadores[i + 1].Children.Clear();
+                gridsJugadores[i].Children.Add(jugadorEnSalaTemp);
+                jugadoresEnSala[i] = jugadoresEnSala[i + 1];
+            }
+
+            gridsJugadores[sala.Jugadores.Count].Children.Clear();
+            jugadoresEnSala[sala.Jugadores.Count] = null;
+        }
+
+        public void ExpulsarAMenúPrincipal(string motivo)
+        {
+            MessageBox.Show(motivo, "Has sido expulsado de la sala", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
+            ventanaSocial?.Close();
+            _ventanaEstaAbierta = false;
+            this.Close();
+            ventanaMenuPrincipal.ShowDialog();
+        }
+
+        private void MostrarAmigos(object sender, RoutedEventArgs e)
+        {
+            Social ventanaAmigos = new Social(this);
+            this.ventanaSocial = ventanaAmigos;
+
+            this.Hide();
+            ventanaAmigos.ShowDialog();
+            if (_ventanaEstaAbierta)
+            {
+                this.Show();
+            }
         }
     }
 }

@@ -13,9 +13,9 @@
         <Button Content="{x:Static p:Resources.btnBuscarPartida}" HorizontalAlignment="Center" Margin="0,117,0,0" VerticalAlignment="Top" Width="184" Height="36" FontSize="20"/>
         <Button Content="{x:Static p:Resources.btnUnirsePartida}" HorizontalAlignment="Center" Margin="0,295,0,0" VerticalAlignment="Top" Width="184" Height="36" FontSize="20" Click="UnirseASala"/>
         <Button Content="{x:Static p:Resources.btnCrearPartida}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="184" Height="36" FontSize="20" Click="IrAConfiguracionSala" Margin="0,181,0,0"/>
-        <Button Content="{x:Static p:Resources.globalSalir}" HorizontalAlignment="Center" Margin="0,378,0,0" VerticalAlignment="Top" Width="92" FontSize="16" Click="BtnSalir_Click"/>
+        <Button x:Name="btnSalir" Content="{x:Static p:Resources.globalSalir}" HorizontalAlignment="Center" Margin="0,378,0,0" VerticalAlignment="Top" Width="92" FontSize="16" Click="CerrarSesion"/>
         <Button Content="{x:Static p:Resources.globalConfiguración}" HorizontalAlignment="Left" Margin="659,19,0,0" VerticalAlignment="Top" Width="113" FontSize="16"/>
-        <Button Content="{x:Static p:Resources.globalSocial}" HorizontalAlignment="Left" Margin="550,19,0,0" VerticalAlignment="Top" Width="88" FontSize="16"/>
+        <Button x:Name="btnSocial" Content="{x:Static p:Resources.globalSocial}" HorizontalAlignment="Left" Margin="550,19,0,0" VerticalAlignment="Top" Width="88" FontSize="16" Click="MostrarListaAmigos"/>
         <Label Content="Código de Sala:" HorizontalAlignment="Left" Margin="306,261,0,0" VerticalAlignment="Top" FontSize="14"/>
         <TextBox x:Name="tbxCodigoSala" HorizontalAlignment="Left" Margin="417,263,0,0" MaxLength="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Height="24" FontSize="16"/>
     </Grid>

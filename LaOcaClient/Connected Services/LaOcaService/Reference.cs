@@ -111,10 +111,14 @@ namespace LaOcaClient.LaOcaService {
     [System.Runtime.Serialization.DataContractAttribute(Name="Jugador", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Cuenta))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.InvitacionPartida[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.InvitacionPartida))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.InicioSesionException))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Sala))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Partida))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.SalaException))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Aspecto))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Jugador[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<string, LaOcaClient.LaOcaService.Jugador>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(string[]))]
     public partial class Jugador : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -123,7 +127,13 @@ namespace LaOcaClient.LaOcaService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object CanalCallbackBuzonField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private object CanalCallbackChatField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object CanalCallbackJugadoresEnLineaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private object CanalCallbackPartidaField;
@@ -144,6 +154,9 @@ namespace LaOcaClient.LaOcaService {
         private int IdPuntuacionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private LaOcaClient.LaOcaService.InvitacionPartida[] InvitacionesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NombreUsuarioField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -157,6 +170,19 @@ namespace LaOcaClient.LaOcaService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public object CanalCallbackBuzon {
+            get {
+                return this.CanalCallbackBuzonField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CanalCallbackBuzonField, value) != true)) {
+                    this.CanalCallbackBuzonField = value;
+                    this.RaisePropertyChanged("CanalCallbackBuzon");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public object CanalCallbackChat {
             get {
                 return this.CanalCallbackChatField;
@@ -165,6 +191,19 @@ namespace LaOcaClient.LaOcaService {
                 if ((object.ReferenceEquals(this.CanalCallbackChatField, value) != true)) {
                     this.CanalCallbackChatField = value;
                     this.RaisePropertyChanged("CanalCallbackChat");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object CanalCallbackJugadoresEnLinea {
+            get {
+                return this.CanalCallbackJugadoresEnLineaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CanalCallbackJugadoresEnLineaField, value) != true)) {
+                    this.CanalCallbackJugadoresEnLineaField = value;
+                    this.RaisePropertyChanged("CanalCallbackJugadoresEnLinea");
                 }
             }
         }
@@ -248,6 +287,19 @@ namespace LaOcaClient.LaOcaService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public LaOcaClient.LaOcaService.InvitacionPartida[] Invitaciones {
+            get {
+                return this.InvitacionesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.InvitacionesField, value) != true)) {
+                    this.InvitacionesField = value;
+                    this.RaisePropertyChanged("Invitaciones");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string NombreUsuario {
             get {
                 return this.NombreUsuarioField;
@@ -256,6 +308,67 @@ namespace LaOcaClient.LaOcaService {
                 if ((object.ReferenceEquals(this.NombreUsuarioField, value) != true)) {
                     this.NombreUsuarioField = value;
                     this.RaisePropertyChanged("NombreUsuario");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="InvitacionPartida", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
+    [System.SerializableAttribute()]
+    public partial class InvitacionPartida : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodigoSalaObjetivoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private LaOcaClient.LaOcaService.Jugador JugadorEmisorField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CodigoSalaObjetivo {
+            get {
+                return this.CodigoSalaObjetivoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodigoSalaObjetivoField, value) != true)) {
+                    this.CodigoSalaObjetivoField = value;
+                    this.RaisePropertyChanged("CodigoSalaObjetivo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public LaOcaClient.LaOcaService.Jugador JugadorEmisor {
+            get {
+                return this.JugadorEmisorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.JugadorEmisorField, value) != true)) {
+                    this.JugadorEmisorField = value;
+                    this.RaisePropertyChanged("JugadorEmisor");
                 }
             }
         }
@@ -503,6 +616,51 @@ namespace LaOcaClient.LaOcaService {
                 if ((object.ReferenceEquals(this.NombresDeJugadoresEnOrdenDeTurnosField, value) != true)) {
                     this.NombresDeJugadoresEnOrdenDeTurnosField = value;
                     this.RaisePropertyChanged("NombresDeJugadoresEnOrdenDeTurnos");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SalaException", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
+    [System.SerializableAttribute()]
+    public partial class SalaException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MensajeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Mensaje {
+            get {
+                return this.MensajeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MensajeField, value) != true)) {
+                    this.MensajeField = value;
+                    this.RaisePropertyChanged("Mensaje");
                 }
             }
         }
@@ -785,6 +943,18 @@ namespace LaOcaClient.LaOcaService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSala/IniciarPartida", ReplyAction="http://tempuri.org/IServicioSala/IniciarPartidaResponse")]
         System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Partida> IniciarPartidaAsync(string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSala/NotificarDesconexion", ReplyAction="http://tempuri.org/IServicioSala/NotificarDesconexionResponse")]
+        void NotificarDesconexion(string nombreJugadorDesconectado, string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSala/NotificarDesconexion", ReplyAction="http://tempuri.org/IServicioSala/NotificarDesconexionResponse")]
+        System.Threading.Tasks.Task NotificarDesconexionAsync(string nombreJugadorDesconectado, string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSala/EliminarSala", ReplyAction="http://tempuri.org/IServicioSala/EliminarSalaResponse")]
+        void EliminarSala(string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSala/EliminarSala", ReplyAction="http://tempuri.org/IServicioSala/EliminarSalaResponse")]
+        System.Threading.Tasks.Task EliminarSalaAsync(string codigoSala);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -795,6 +965,12 @@ namespace LaOcaClient.LaOcaService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioSala/MostrarVentanaDePartida")]
         void MostrarVentanaDePartida(LaOcaClient.LaOcaService.Partida partida);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioSala/MostrarDesconexionJugador")]
+        void MostrarDesconexionJugador(string nombreJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioSala/ExpulsarAMenúPrincipal")]
+        void ExpulsarAMenúPrincipal(string motivo);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -856,6 +1032,22 @@ namespace LaOcaClient.LaOcaService {
         public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Partida> IniciarPartidaAsync(string codigoSala) {
             return base.Channel.IniciarPartidaAsync(codigoSala);
         }
+        
+        public void NotificarDesconexion(string nombreJugadorDesconectado, string codigoSala) {
+            base.Channel.NotificarDesconexion(nombreJugadorDesconectado, codigoSala);
+        }
+        
+        public System.Threading.Tasks.Task NotificarDesconexionAsync(string nombreJugadorDesconectado, string codigoSala) {
+            return base.Channel.NotificarDesconexionAsync(nombreJugadorDesconectado, codigoSala);
+        }
+        
+        public void EliminarSala(string codigoSala) {
+            base.Channel.EliminarSala(codigoSala);
+        }
+        
+        public System.Threading.Tasks.Task EliminarSalaAsync(string codigoSala) {
+            return base.Channel.EliminarSalaAsync(codigoSala);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -863,6 +1055,7 @@ namespace LaOcaClient.LaOcaService {
     public interface IServicioRecuperarSala {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioRecuperarSala/RecuperarSala", ReplyAction="http://tempuri.org/IServicioRecuperarSala/RecuperarSalaResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LaOcaClient.LaOcaService.SalaException), Action="http://tempuri.org/IServicioRecuperarSala/RecuperarSalaSalaExceptionFault", Name="SalaException", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
         LaOcaClient.LaOcaService.Sala RecuperarSala(string codigoSala);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioRecuperarSala/RecuperarSala", ReplyAction="http://tempuri.org/IServicioRecuperarSala/RecuperarSalaResponse")]
@@ -909,11 +1102,11 @@ namespace LaOcaClient.LaOcaService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioPartida", CallbackContract=typeof(LaOcaClient.LaOcaService.IServicioPartidaCallback))]
     public interface IServicioPartida {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPartida/AgregarCanalCallback", ReplyAction="http://tempuri.org/IServicioPartida/AgregarCanalCallbackResponse")]
-        void AgregarCanalCallback(string nombreJugador, string codigoSala);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPartida/AgregarCanalCallbackPartida", ReplyAction="http://tempuri.org/IServicioPartida/AgregarCanalCallbackPartidaResponse")]
+        void AgregarCanalCallbackPartida(string nombreJugador, string codigoSala);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPartida/AgregarCanalCallback", ReplyAction="http://tempuri.org/IServicioPartida/AgregarCanalCallbackResponse")]
-        System.Threading.Tasks.Task AgregarCanalCallbackAsync(string nombreJugador, string codigoSala);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPartida/AgregarCanalCallbackPartida", ReplyAction="http://tempuri.org/IServicioPartida/AgregarCanalCallbackPartidaResponse")]
+        System.Threading.Tasks.Task AgregarCanalCallbackPartidaAsync(string nombreJugador, string codigoSala);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPartida/PasarTurnoASiguienteJugador", ReplyAction="http://tempuri.org/IServicioPartida/PasarTurnoASiguienteJugadorResponse")]
         string PasarTurnoASiguienteJugador(int posicionJugadorTurnoActual, string codigoSala);
@@ -957,12 +1150,12 @@ namespace LaOcaClient.LaOcaService {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void AgregarCanalCallback(string nombreJugador, string codigoSala) {
-            base.Channel.AgregarCanalCallback(nombreJugador, codigoSala);
+        public void AgregarCanalCallbackPartida(string nombreJugador, string codigoSala) {
+            base.Channel.AgregarCanalCallbackPartida(nombreJugador, codigoSala);
         }
         
-        public System.Threading.Tasks.Task AgregarCanalCallbackAsync(string nombreJugador, string codigoSala) {
-            return base.Channel.AgregarCanalCallbackAsync(nombreJugador, codigoSala);
+        public System.Threading.Tasks.Task AgregarCanalCallbackPartidaAsync(string nombreJugador, string codigoSala) {
+            return base.Channel.AgregarCanalCallbackPartidaAsync(nombreJugador, codigoSala);
         }
         
         public string PasarTurnoASiguienteJugador(int posicionJugadorTurnoActual, string codigoSala) {
@@ -1303,6 +1496,277 @@ namespace LaOcaClient.LaOcaService {
         
         public System.Threading.Tasks.Task<int> ObtenerPosicionFichaAsync() {
             return base.Channel.ObtenerPosicionFichaAsync();
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioJugadoresEnLinea")]
+    public interface IServicioJugadoresEnLinea {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugadoresEnLinea/AgregarJugadorConectado", ReplyAction="http://tempuri.org/IServicioJugadoresEnLinea/AgregarJugadorConectadoResponse")]
+        int AgregarJugadorConectado(LaOcaClient.LaOcaService.Jugador nuevoJugadorConectado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugadoresEnLinea/AgregarJugadorConectado", ReplyAction="http://tempuri.org/IServicioJugadoresEnLinea/AgregarJugadorConectadoResponse")]
+        System.Threading.Tasks.Task<int> AgregarJugadorConectadoAsync(LaOcaClient.LaOcaService.Jugador nuevoJugadorConectado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugadoresEnLinea/EliminarJugadorDesconectado", ReplyAction="http://tempuri.org/IServicioJugadoresEnLinea/EliminarJugadorDesconectadoResponse")]
+        void EliminarJugadorDesconectado(LaOcaClient.LaOcaService.Jugador jugadorDesconectado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugadoresEnLinea/EliminarJugadorDesconectado", ReplyAction="http://tempuri.org/IServicioJugadoresEnLinea/EliminarJugadorDesconectadoResponse")]
+        System.Threading.Tasks.Task EliminarJugadorDesconectadoAsync(LaOcaClient.LaOcaService.Jugador jugadorDesconectado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugadoresEnLinea/RecuperarJugadoresConectados", ReplyAction="http://tempuri.org/IServicioJugadoresEnLinea/RecuperarJugadoresConectadosResponse" +
+            "")]
+        LaOcaClient.LaOcaService.Jugador[] RecuperarJugadoresConectados();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugadoresEnLinea/RecuperarJugadoresConectados", ReplyAction="http://tempuri.org/IServicioJugadoresEnLinea/RecuperarJugadoresConectadosResponse" +
+            "")]
+        System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Jugador[]> RecuperarJugadoresConectadosAsync();
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioJugadoresEnLineaChannel : LaOcaClient.LaOcaService.IServicioJugadoresEnLinea, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ServicioJugadoresEnLineaClient : System.ServiceModel.ClientBase<LaOcaClient.LaOcaService.IServicioJugadoresEnLinea>, LaOcaClient.LaOcaService.IServicioJugadoresEnLinea {
+        
+        public ServicioJugadoresEnLineaClient() {
+        }
+        
+        public ServicioJugadoresEnLineaClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ServicioJugadoresEnLineaClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioJugadoresEnLineaClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioJugadoresEnLineaClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public int AgregarJugadorConectado(LaOcaClient.LaOcaService.Jugador nuevoJugadorConectado) {
+            return base.Channel.AgregarJugadorConectado(nuevoJugadorConectado);
+        }
+        
+        public System.Threading.Tasks.Task<int> AgregarJugadorConectadoAsync(LaOcaClient.LaOcaService.Jugador nuevoJugadorConectado) {
+            return base.Channel.AgregarJugadorConectadoAsync(nuevoJugadorConectado);
+        }
+        
+        public void EliminarJugadorDesconectado(LaOcaClient.LaOcaService.Jugador jugadorDesconectado) {
+            base.Channel.EliminarJugadorDesconectado(jugadorDesconectado);
+        }
+        
+        public System.Threading.Tasks.Task EliminarJugadorDesconectadoAsync(LaOcaClient.LaOcaService.Jugador jugadorDesconectado) {
+            return base.Channel.EliminarJugadorDesconectadoAsync(jugadorDesconectado);
+        }
+        
+        public LaOcaClient.LaOcaService.Jugador[] RecuperarJugadoresConectados() {
+            return base.Channel.RecuperarJugadoresConectados();
+        }
+        
+        public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Jugador[]> RecuperarJugadoresConectadosAsync() {
+            return base.Channel.RecuperarJugadoresConectadosAsync();
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioActualizacionJugadoresEnLinea", CallbackContract=typeof(LaOcaClient.LaOcaService.IServicioActualizacionJugadoresEnLineaCallback))]
+    public interface IServicioActualizacionJugadoresEnLinea {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioActualizacionJugadoresEnLinea/AgregarCanalCallbackJug" +
+            "adoresEnLinea", ReplyAction="http://tempuri.org/IServicioActualizacionJugadoresEnLinea/AgregarCanalCallbackJug" +
+            "adoresEnLineaResponse")]
+        void AgregarCanalCallbackJugadoresEnLinea(string nombreJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioActualizacionJugadoresEnLinea/AgregarCanalCallbackJug" +
+            "adoresEnLinea", ReplyAction="http://tempuri.org/IServicioActualizacionJugadoresEnLinea/AgregarCanalCallbackJug" +
+            "adoresEnLineaResponse")]
+        System.Threading.Tasks.Task AgregarCanalCallbackJugadoresEnLineaAsync(string nombreJugador);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioActualizacionJugadoresEnLineaCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioActualizacionJugadoresEnLinea/MostrarNuevoJugadorCone" +
+            "ctado")]
+        void MostrarNuevoJugadorConectado(LaOcaClient.LaOcaService.Jugador nuevoJugadorConectado);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioActualizacionJugadoresEnLinea/OcultarJugadorDesconect" +
+            "ado")]
+        void OcultarJugadorDesconectado(LaOcaClient.LaOcaService.Jugador nombreJugadorDesconectado);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioActualizacionJugadoresEnLineaChannel : LaOcaClient.LaOcaService.IServicioActualizacionJugadoresEnLinea, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ServicioActualizacionJugadoresEnLineaClient : System.ServiceModel.DuplexClientBase<LaOcaClient.LaOcaService.IServicioActualizacionJugadoresEnLinea>, LaOcaClient.LaOcaService.IServicioActualizacionJugadoresEnLinea {
+        
+        public ServicioActualizacionJugadoresEnLineaClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
+        }
+        
+        public ServicioActualizacionJugadoresEnLineaClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
+        }
+        
+        public ServicioActualizacionJugadoresEnLineaClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioActualizacionJugadoresEnLineaClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioActualizacionJugadoresEnLineaClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public void AgregarCanalCallbackJugadoresEnLinea(string nombreJugador) {
+            base.Channel.AgregarCanalCallbackJugadoresEnLinea(nombreJugador);
+        }
+        
+        public System.Threading.Tasks.Task AgregarCanalCallbackJugadoresEnLineaAsync(string nombreJugador) {
+            return base.Channel.AgregarCanalCallbackJugadoresEnLineaAsync(nombreJugador);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioSocial")]
+    public interface IServicioSocial {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSocial/EnviarInvitacionAPartida", ReplyAction="http://tempuri.org/IServicioSocial/EnviarInvitacionAPartidaResponse")]
+        bool EnviarInvitacionAPartida(string nombreJugadorReceptor, LaOcaClient.LaOcaService.Jugador jugadorEmisor, string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSocial/EnviarInvitacionAPartida", ReplyAction="http://tempuri.org/IServicioSocial/EnviarInvitacionAPartidaResponse")]
+        System.Threading.Tasks.Task<bool> EnviarInvitacionAPartidaAsync(string nombreJugadorReceptor, LaOcaClient.LaOcaService.Jugador jugadorEmisor, string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSocial/EliminarInvitacionAPartida", ReplyAction="http://tempuri.org/IServicioSocial/EliminarInvitacionAPartidaResponse")]
+        void EliminarInvitacionAPartida(string nombreJugador, LaOcaClient.LaOcaService.InvitacionPartida invitacion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSocial/EliminarInvitacionAPartida", ReplyAction="http://tempuri.org/IServicioSocial/EliminarInvitacionAPartidaResponse")]
+        System.Threading.Tasks.Task EliminarInvitacionAPartidaAsync(string nombreJugador, LaOcaClient.LaOcaService.InvitacionPartida invitacion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSocial/RecuperarInvitaciones", ReplyAction="http://tempuri.org/IServicioSocial/RecuperarInvitacionesResponse")]
+        LaOcaClient.LaOcaService.InvitacionPartida[] RecuperarInvitaciones(string nombreJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSocial/RecuperarInvitaciones", ReplyAction="http://tempuri.org/IServicioSocial/RecuperarInvitacionesResponse")]
+        System.Threading.Tasks.Task<LaOcaClient.LaOcaService.InvitacionPartida[]> RecuperarInvitacionesAsync(string nombreJugador);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioSocialChannel : LaOcaClient.LaOcaService.IServicioSocial, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ServicioSocialClient : System.ServiceModel.ClientBase<LaOcaClient.LaOcaService.IServicioSocial>, LaOcaClient.LaOcaService.IServicioSocial {
+        
+        public ServicioSocialClient() {
+        }
+        
+        public ServicioSocialClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ServicioSocialClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioSocialClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioSocialClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public bool EnviarInvitacionAPartida(string nombreJugadorReceptor, LaOcaClient.LaOcaService.Jugador jugadorEmisor, string codigoSala) {
+            return base.Channel.EnviarInvitacionAPartida(nombreJugadorReceptor, jugadorEmisor, codigoSala);
+        }
+        
+        public System.Threading.Tasks.Task<bool> EnviarInvitacionAPartidaAsync(string nombreJugadorReceptor, LaOcaClient.LaOcaService.Jugador jugadorEmisor, string codigoSala) {
+            return base.Channel.EnviarInvitacionAPartidaAsync(nombreJugadorReceptor, jugadorEmisor, codigoSala);
+        }
+        
+        public void EliminarInvitacionAPartida(string nombreJugador, LaOcaClient.LaOcaService.InvitacionPartida invitacion) {
+            base.Channel.EliminarInvitacionAPartida(nombreJugador, invitacion);
+        }
+        
+        public System.Threading.Tasks.Task EliminarInvitacionAPartidaAsync(string nombreJugador, LaOcaClient.LaOcaService.InvitacionPartida invitacion) {
+            return base.Channel.EliminarInvitacionAPartidaAsync(nombreJugador, invitacion);
+        }
+        
+        public LaOcaClient.LaOcaService.InvitacionPartida[] RecuperarInvitaciones(string nombreJugador) {
+            return base.Channel.RecuperarInvitaciones(nombreJugador);
+        }
+        
+        public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.InvitacionPartida[]> RecuperarInvitacionesAsync(string nombreJugador) {
+            return base.Channel.RecuperarInvitacionesAsync(nombreJugador);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioBuzon", CallbackContract=typeof(LaOcaClient.LaOcaService.IServicioBuzonCallback))]
+    public interface IServicioBuzon {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioBuzon/AgregarCanalCallbackBuzon", ReplyAction="http://tempuri.org/IServicioBuzon/AgregarCanalCallbackBuzonResponse")]
+        void AgregarCanalCallbackBuzon(string nombreJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioBuzon/AgregarCanalCallbackBuzon", ReplyAction="http://tempuri.org/IServicioBuzon/AgregarCanalCallbackBuzonResponse")]
+        System.Threading.Tasks.Task AgregarCanalCallbackBuzonAsync(string nombreJugador);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioBuzonCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioBuzon/MostrarNuevaInvitacionAPartida")]
+        void MostrarNuevaInvitacionAPartida(LaOcaClient.LaOcaService.InvitacionPartida invitacion);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioBuzonChannel : LaOcaClient.LaOcaService.IServicioBuzon, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ServicioBuzonClient : System.ServiceModel.DuplexClientBase<LaOcaClient.LaOcaService.IServicioBuzon>, LaOcaClient.LaOcaService.IServicioBuzon {
+        
+        public ServicioBuzonClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
+        }
+        
+        public ServicioBuzonClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
+        }
+        
+        public ServicioBuzonClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioBuzonClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioBuzonClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public void AgregarCanalCallbackBuzon(string nombreJugador) {
+            base.Channel.AgregarCanalCallbackBuzon(nombreJugador);
+        }
+        
+        public System.Threading.Tasks.Task AgregarCanalCallbackBuzonAsync(string nombreJugador) {
+            return base.Channel.AgregarCanalCallbackBuzonAsync(nombreJugador);
         }
     }
 }

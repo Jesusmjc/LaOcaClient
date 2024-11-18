@@ -55,7 +55,7 @@ namespace LaOcaClient
             InstanceContext contexto = new InstanceContext(this);
             clientePartida = new LaOcaService.ServicioPartidaClient(contexto);
 
-            clientePartida.AgregarCanalCallback(SingletonJugador.Instance.Jugador.NombreUsuario, sala.Codigo);
+            clientePartida.AgregarCanalCallbackPartida(SingletonJugador.Instance.Jugador.NombreUsuario, sala.Codigo);
         }
 
         private void MostrarJugadoresEnPartida()

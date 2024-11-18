@@ -232,6 +232,122 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IServicioJugadoresEnLinea_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IServicioActualizacionJugadoresEnLinea_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IServicioSocial_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IServicioBuzon_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -288,11 +404,29 @@
   <wsdl:message name="IServicioSala_IniciarPartida_OutputMessage">
     <wsdl:part name="parameters" element="tns:IniciarPartidaResponse" />
   </wsdl:message>
+  <wsdl:message name="IServicioSala_NotificarDesconexion_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotificarDesconexion" />
+  </wsdl:message>
+  <wsdl:message name="IServicioSala_NotificarDesconexion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NotificarDesconexionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioSala_EliminarSala_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarSala" />
+  </wsdl:message>
+  <wsdl:message name="IServicioSala_EliminarSala_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarSalaResponse" />
+  </wsdl:message>
   <wsdl:message name="IServicioSala_MostrarNuevoJugadorEnSala_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MostrarNuevoJugadorEnSala" />
   </wsdl:message>
   <wsdl:message name="IServicioSala_MostrarVentanaDePartida_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MostrarVentanaDePartida" />
+  </wsdl:message>
+  <wsdl:message name="IServicioSala_MostrarDesconexionJugador_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MostrarDesconexionJugador" />
+  </wsdl:message>
+  <wsdl:message name="IServicioSala_ExpulsarAMenúPrincipal_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ExpulsarAMenúPrincipal" />
   </wsdl:message>
   <wsdl:message name="IServicioRecuperarSala_RecuperarSala_InputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarSala" />
@@ -300,11 +434,14 @@
   <wsdl:message name="IServicioRecuperarSala_RecuperarSala_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarSalaResponse" />
   </wsdl:message>
-  <wsdl:message name="IServicioPartida_AgregarCanalCallback_InputMessage">
-    <wsdl:part name="parameters" element="tns:AgregarCanalCallback" />
+  <wsdl:message name="IServicioRecuperarSala_RecuperarSala_SalaExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/LaOcaService" name="detail" element="q2:SalaException" />
   </wsdl:message>
-  <wsdl:message name="IServicioPartida_AgregarCanalCallback_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AgregarCanalCallbackResponse" />
+  <wsdl:message name="IServicioPartida_AgregarCanalCallbackPartida_InputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarCanalCallbackPartida" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPartida_AgregarCanalCallbackPartida_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarCanalCallbackPartidaResponse" />
   </wsdl:message>
   <wsdl:message name="IServicioPartida_PasarTurnoASiguienteJugador_InputMessage">
     <wsdl:part name="parameters" element="tns:PasarTurnoASiguienteJugador" />
@@ -429,6 +566,63 @@
   <wsdl:message name="IServicioJugabilidad_ObtenerPosicionFicha_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerPosicionFichaResponse" />
   </wsdl:message>
+  <wsdl:message name="IServicioJugadoresEnLinea_AgregarJugadorConectado_InputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarJugadorConectado" />
+  </wsdl:message>
+  <wsdl:message name="IServicioJugadoresEnLinea_AgregarJugadorConectado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarJugadorConectadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioJugadoresEnLinea_EliminarJugadorDesconectado_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarJugadorDesconectado" />
+  </wsdl:message>
+  <wsdl:message name="IServicioJugadoresEnLinea_EliminarJugadorDesconectado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarJugadorDesconectadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioJugadoresEnLinea_RecuperarJugadoresConectados_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarJugadoresConectados" />
+  </wsdl:message>
+  <wsdl:message name="IServicioJugadoresEnLinea_RecuperarJugadoresConectados_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarJugadoresConectadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioActualizacionJugadoresEnLinea_AgregarCanalCallbackJugadoresEnLinea_InputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarCanalCallbackJugadoresEnLinea" />
+  </wsdl:message>
+  <wsdl:message name="IServicioActualizacionJugadoresEnLinea_AgregarCanalCallbackJugadoresEnLinea_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarCanalCallbackJugadoresEnLineaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioActualizacionJugadoresEnLinea_MostrarNuevoJugadorConectado_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MostrarNuevoJugadorConectado" />
+  </wsdl:message>
+  <wsdl:message name="IServicioActualizacionJugadoresEnLinea_OcultarJugadorDesconectado_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OcultarJugadorDesconectado" />
+  </wsdl:message>
+  <wsdl:message name="IServicioSocial_EnviarInvitacionAPartida_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnviarInvitacionAPartida" />
+  </wsdl:message>
+  <wsdl:message name="IServicioSocial_EnviarInvitacionAPartida_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnviarInvitacionAPartidaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioSocial_EliminarInvitacionAPartida_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarInvitacionAPartida" />
+  </wsdl:message>
+  <wsdl:message name="IServicioSocial_EliminarInvitacionAPartida_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarInvitacionAPartidaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioSocial_RecuperarInvitaciones_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarInvitaciones" />
+  </wsdl:message>
+  <wsdl:message name="IServicioSocial_RecuperarInvitaciones_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarInvitacionesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioBuzon_AgregarCanalCallbackBuzon_InputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarCanalCallbackBuzon" />
+  </wsdl:message>
+  <wsdl:message name="IServicioBuzon_AgregarCanalCallbackBuzon_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarCanalCallbackBuzonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioBuzon_MostrarNuevaInvitacionAPartida_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MostrarNuevaInvitacionAPartida" />
+  </wsdl:message>
   <wsdl:portType name="ILoginService">
     <wsdl:operation name="GetUser">
       <wsdl:input wsaw:Action="http://tempuri.org/ILoginService/GetUser" message="tns:ILoginService_GetUser_InputMessage" />
@@ -470,23 +664,38 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioSala/IniciarPartida" message="tns:IServicioSala_IniciarPartida_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioSala/IniciarPartidaResponse" message="tns:IServicioSala_IniciarPartida_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="NotificarDesconexion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioSala/NotificarDesconexion" message="tns:IServicioSala_NotificarDesconexion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioSala/NotificarDesconexionResponse" message="tns:IServicioSala_NotificarDesconexion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarSala">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioSala/EliminarSala" message="tns:IServicioSala_EliminarSala_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioSala/EliminarSalaResponse" message="tns:IServicioSala_EliminarSala_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="MostrarNuevoJugadorEnSala">
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioSala/MostrarNuevoJugadorEnSala" message="tns:IServicioSala_MostrarNuevoJugadorEnSala_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="MostrarVentanaDePartida">
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioSala/MostrarVentanaDePartida" message="tns:IServicioSala_MostrarVentanaDePartida_OutputCallbackMessage" />
     </wsdl:operation>
+    <wsdl:operation name="MostrarDesconexionJugador">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioSala/MostrarDesconexionJugador" message="tns:IServicioSala_MostrarDesconexionJugador_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExpulsarAMenúPrincipal">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioSala/ExpulsarAMenúPrincipal" message="tns:IServicioSala_ExpulsarAMenúPrincipal_OutputCallbackMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IServicioRecuperarSala">
     <wsdl:operation name="RecuperarSala">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioRecuperarSala/RecuperarSala" message="tns:IServicioRecuperarSala_RecuperarSala_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioRecuperarSala/RecuperarSalaResponse" message="tns:IServicioRecuperarSala_RecuperarSala_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IServicioRecuperarSala/RecuperarSalaSalaExceptionFault" name="SalaExceptionFault" message="tns:IServicioRecuperarSala_RecuperarSala_SalaExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IServicioPartida">
-    <wsdl:operation name="AgregarCanalCallback">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPartida/AgregarCanalCallback" message="tns:IServicioPartida_AgregarCanalCallback_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/AgregarCanalCallbackResponse" message="tns:IServicioPartida_AgregarCanalCallback_OutputMessage" />
+    <wsdl:operation name="AgregarCanalCallbackPartida">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPartida/AgregarCanalCallbackPartida" message="tns:IServicioPartida_AgregarCanalCallbackPartida_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/AgregarCanalCallbackPartidaResponse" message="tns:IServicioPartida_AgregarCanalCallbackPartida_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="PasarTurnoASiguienteJugador">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioPartida/PasarTurnoASiguienteJugador" message="tns:IServicioPartida_PasarTurnoASiguienteJugador_InputMessage" />
@@ -574,6 +783,55 @@
     <wsdl:operation name="ObtenerPosicionFicha">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioJugabilidad/ObtenerPosicionFicha" message="tns:IServicioJugabilidad_ObtenerPosicionFicha_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioJugabilidad/ObtenerPosicionFichaResponse" message="tns:IServicioJugabilidad_ObtenerPosicionFicha_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IServicioJugadoresEnLinea">
+    <wsdl:operation name="AgregarJugadorConectado">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioJugadoresEnLinea/AgregarJugadorConectado" message="tns:IServicioJugadoresEnLinea_AgregarJugadorConectado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioJugadoresEnLinea/AgregarJugadorConectadoResponse" message="tns:IServicioJugadoresEnLinea_AgregarJugadorConectado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarJugadorDesconectado">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioJugadoresEnLinea/EliminarJugadorDesconectado" message="tns:IServicioJugadoresEnLinea_EliminarJugadorDesconectado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioJugadoresEnLinea/EliminarJugadorDesconectadoResponse" message="tns:IServicioJugadoresEnLinea_EliminarJugadorDesconectado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarJugadoresConectados">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioJugadoresEnLinea/RecuperarJugadoresConectados" message="tns:IServicioJugadoresEnLinea_RecuperarJugadoresConectados_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioJugadoresEnLinea/RecuperarJugadoresConectadosResponse" message="tns:IServicioJugadoresEnLinea_RecuperarJugadoresConectados_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IServicioActualizacionJugadoresEnLinea">
+    <wsdl:operation name="AgregarCanalCallbackJugadoresEnLinea">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnLinea/AgregarCanalCallbackJugadoresEnLinea" message="tns:IServicioActualizacionJugadoresEnLinea_AgregarCanalCallbackJugadoresEnLinea_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnLinea/AgregarCanalCallbackJugadoresEnLineaResponse" message="tns:IServicioActualizacionJugadoresEnLinea_AgregarCanalCallbackJugadoresEnLinea_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarNuevoJugadorConectado">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnLinea/MostrarNuevoJugadorConectado" message="tns:IServicioActualizacionJugadoresEnLinea_MostrarNuevoJugadorConectado_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OcultarJugadorDesconectado">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnLinea/OcultarJugadorDesconectado" message="tns:IServicioActualizacionJugadoresEnLinea_OcultarJugadorDesconectado_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IServicioSocial">
+    <wsdl:operation name="EnviarInvitacionAPartida">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioSocial/EnviarInvitacionAPartida" message="tns:IServicioSocial_EnviarInvitacionAPartida_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioSocial/EnviarInvitacionAPartidaResponse" message="tns:IServicioSocial_EnviarInvitacionAPartida_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarInvitacionAPartida">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioSocial/EliminarInvitacionAPartida" message="tns:IServicioSocial_EliminarInvitacionAPartida_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioSocial/EliminarInvitacionAPartidaResponse" message="tns:IServicioSocial_EliminarInvitacionAPartida_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarInvitaciones">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioSocial/RecuperarInvitaciones" message="tns:IServicioSocial_RecuperarInvitaciones_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioSocial/RecuperarInvitacionesResponse" message="tns:IServicioSocial_RecuperarInvitaciones_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IServicioBuzon">
+    <wsdl:operation name="AgregarCanalCallbackBuzon">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioBuzon/AgregarCanalCallbackBuzon" message="tns:IServicioBuzon_AgregarCanalCallbackBuzon_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioBuzon/AgregarCanalCallbackBuzonResponse" message="tns:IServicioBuzon_AgregarCanalCallbackBuzon_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarNuevaInvitacionAPartida">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioBuzon/MostrarNuevaInvitacionAPartida" message="tns:IServicioBuzon_MostrarNuevaInvitacionAPartida_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_ILoginService" type="tns:ILoginService">
@@ -666,6 +924,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="NotificarDesconexion">
+      <soap12:operation soapAction="http://tempuri.org/IServicioSala/NotificarDesconexion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarSala">
+      <soap12:operation soapAction="http://tempuri.org/IServicioSala/EliminarSala" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="MostrarNuevoJugadorEnSala">
       <soap12:operation soapAction="http://tempuri.org/IServicioSala/MostrarNuevoJugadorEnSala" style="document" />
       <wsdl:output>
@@ -674,6 +950,18 @@
     </wsdl:operation>
     <wsdl:operation name="MostrarVentanaDePartida">
       <soap12:operation soapAction="http://tempuri.org/IServicioSala/MostrarVentanaDePartida" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarDesconexionJugador">
+      <soap12:operation soapAction="http://tempuri.org/IServicioSala/MostrarDesconexionJugador" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExpulsarAMenúPrincipal">
+      <soap12:operation soapAction="http://tempuri.org/IServicioSala/ExpulsarAMenúPrincipal" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
@@ -690,13 +978,16 @@
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="SalaExceptionFault">
+        <soap12:fault use="literal" name="SalaExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="NetTcpBinding_IServicioPartida" type="tns:IServicioPartida">
     <wsp:PolicyReference URI="#NetTcpBinding_IServicioPartida_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="AgregarCanalCallback">
-      <soap12:operation soapAction="http://tempuri.org/IServicioPartida/AgregarCanalCallback" style="document" />
+    <wsdl:operation name="AgregarCanalCallbackPartida">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPartida/AgregarCanalCallbackPartida" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -899,6 +1190,112 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IServicioJugadoresEnLinea" type="tns:IServicioJugadoresEnLinea">
+    <wsp:PolicyReference URI="#NetTcpBinding_IServicioJugadoresEnLinea_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="AgregarJugadorConectado">
+      <soap12:operation soapAction="http://tempuri.org/IServicioJugadoresEnLinea/AgregarJugadorConectado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarJugadorDesconectado">
+      <soap12:operation soapAction="http://tempuri.org/IServicioJugadoresEnLinea/EliminarJugadorDesconectado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarJugadoresConectados">
+      <soap12:operation soapAction="http://tempuri.org/IServicioJugadoresEnLinea/RecuperarJugadoresConectados" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IServicioActualizacionJugadoresEnLinea" type="tns:IServicioActualizacionJugadoresEnLinea">
+    <wsp:PolicyReference URI="#NetTcpBinding_IServicioActualizacionJugadoresEnLinea_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="AgregarCanalCallbackJugadoresEnLinea">
+      <soap12:operation soapAction="http://tempuri.org/IServicioActualizacionJugadoresEnLinea/AgregarCanalCallbackJugadoresEnLinea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarNuevoJugadorConectado">
+      <soap12:operation soapAction="http://tempuri.org/IServicioActualizacionJugadoresEnLinea/MostrarNuevoJugadorConectado" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OcultarJugadorDesconectado">
+      <soap12:operation soapAction="http://tempuri.org/IServicioActualizacionJugadoresEnLinea/OcultarJugadorDesconectado" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IServicioSocial" type="tns:IServicioSocial">
+    <wsp:PolicyReference URI="#NetTcpBinding_IServicioSocial_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="EnviarInvitacionAPartida">
+      <soap12:operation soapAction="http://tempuri.org/IServicioSocial/EnviarInvitacionAPartida" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarInvitacionAPartida">
+      <soap12:operation soapAction="http://tempuri.org/IServicioSocial/EliminarInvitacionAPartida" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarInvitaciones">
+      <soap12:operation soapAction="http://tempuri.org/IServicioSocial/RecuperarInvitaciones" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IServicioBuzon" type="tns:IServicioBuzon">
+    <wsp:PolicyReference URI="#NetTcpBinding_IServicioBuzon_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="AgregarCanalCallbackBuzon">
+      <soap12:operation soapAction="http://tempuri.org/IServicioBuzon/AgregarCanalCallbackBuzon" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarNuevaInvitacionAPartida">
+      <soap12:operation soapAction="http://tempuri.org/IServicioBuzon/MostrarNuevaInvitacionAPartida" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:service name="LaOcaService">
     <wsdl:port name="NetTcpBinding_ILoginService" binding="tns:NetTcpBinding_ILoginService">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
@@ -964,6 +1361,42 @@
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioJugabilidad" binding="tns:NetTcpBinding_IServicioJugabilidad">
+      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IServicioJugadoresEnLinea" binding="tns:NetTcpBinding_IServicioJugadoresEnLinea">
+      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IServicioActualizacionJugadoresEnLinea" binding="tns:NetTcpBinding_IServicioActualizacionJugadoresEnLinea">
+      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IServicioSocial" binding="tns:NetTcpBinding_IServicioSocial">
+      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IServicioBuzon" binding="tns:NetTcpBinding_IServicioBuzon">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>

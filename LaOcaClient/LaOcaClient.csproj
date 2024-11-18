@@ -62,6 +62,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Buzon.xaml.cs">
+      <DependentUpon>Buzon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ConfiguracionSala.xaml.cs">
       <DependentUpon>ConfiguracionSala.xaml</DependentUpon>
     </Compile>
@@ -75,13 +78,26 @@
       <DependentUpon>Sala.xaml</DependentUpon>
     </Compile>
     <Compile Include="SingletonJugador.cs" />
+    <Compile Include="Social.xaml.cs">
+      <DependentUpon>Social.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Amigo.xaml.cs">
+      <DependentUpon>Amigo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\JugadorEnSala.xaml.cs">
       <DependentUpon>JugadorEnSala.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Peticion.xaml.cs">
+      <DependentUpon>Peticion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilidad.cs" />
     <Compile Include="VentanaCierreAutomatico.xaml.cs">
       <DependentUpon>VentanaCierreAutomatico.xaml</DependentUpon>
     </Compile>
+    <Page Include="Buzon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Chat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -147,6 +163,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Social.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Amigo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\JugadorEnSala.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RecuperarContraseña.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Peticion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -213,6 +241,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\LaOcaService\LaOcaClient.LaOcaService.Cuenta.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\LaOcaService\LaOcaClient.LaOcaService.InvitacionPartida.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\LaOcaService\LaOcaClient.LaOcaService.Jugador.datasource">
@@ -278,6 +309,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\FichaOca.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\buzon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\icono_masopciones.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

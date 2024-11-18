@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.ServiceModel;
+using System.ServiceModel.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -112,6 +113,9 @@ namespace LaOcaClient
             {
                 jugadorInicioSesion = cliente.IniciarSesion(cuentaInicioSesion);
 
+                LaOcaService.ServicioJugadoresEnLineaClient clienteJugadoresEnLinea = new LaOcaService.ServicioJugadoresEnLineaClient();
+                clienteJugadoresEnLinea.AgregarJugadorConectado(jugadorInicioSesion);
+
                 SingletonJugador.Instance.Jugador = jugadorInicioSesion;
                 SingletonJugador.Instance.EsInvitado = false;
 
@@ -121,7 +125,7 @@ namespace LaOcaClient
             }
             catch (FaultException<InicioSesionException> ex)
             {
-                MessageBox.Show(ex.Detail.Mensaje + ex.Reason, "Error al iniciar sesión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Detail.Mensaje + "\n" + ex.Reason, "Error al iniciar sesión", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {

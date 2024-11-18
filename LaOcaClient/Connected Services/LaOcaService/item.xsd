@@ -111,6 +111,31 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="NotificarDesconexion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nombreJugadorDesconectado" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="codigoSala" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NotificarDesconexionResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarSala">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codigoSala" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarSalaResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="MostrarNuevoJugadorEnSala">
     <xs:complexType>
       <xs:sequence>
@@ -122,6 +147,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="partida" nillable="true" type="q7:Partida" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MostrarDesconexionJugador">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nombreJugador" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExpulsarAMenúPrincipal">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="motivo" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -139,7 +178,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AgregarCanalCallback">
+  <xs:element name="AgregarCanalCallbackPartida">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="nombreJugador" nillable="true" type="xs:string" />
@@ -147,7 +186,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AgregarCanalCallbackResponse">
+  <xs:element name="AgregarCanalCallbackPartidaResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
@@ -423,6 +462,132 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="ObtenerPosicionFichaResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AgregarJugadorConectado">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="nuevoJugadorConectado" nillable="true" type="q19:Jugador" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AgregarJugadorConectadoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AgregarJugadorConectadoResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarJugadorDesconectado">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="jugadorDesconectado" nillable="true" type="q20:Jugador" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarJugadorDesconectadoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecuperarJugadoresConectados">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecuperarJugadoresConectadosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="RecuperarJugadoresConectadosResult" nillable="true" type="q21:ArrayOfJugador" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AgregarCanalCallbackJugadoresEnLinea">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nombreJugador" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AgregarCanalCallbackJugadoresEnLineaResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MostrarNuevoJugadorConectado">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="nuevoJugadorConectado" nillable="true" type="q22:Jugador" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OcultarJugadorDesconectado">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="nombreJugadorDesconectado" nillable="true" type="q23:Jugador" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EnviarInvitacionAPartida">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nombreJugadorReceptor" nillable="true" type="xs:string" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="jugadorEmisor" nillable="true" type="q24:Jugador" />
+        <xs:element minOccurs="0" name="codigoSala" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EnviarInvitacionAPartidaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EnviarInvitacionAPartidaResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarInvitacionAPartida">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nombreJugador" nillable="true" type="xs:string" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="invitacion" nillable="true" type="q25:InvitacionPartida" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarInvitacionAPartidaResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecuperarInvitaciones">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nombreJugador" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecuperarInvitacionesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="RecuperarInvitacionesResult" nillable="true" type="q26:ArrayOfInvitacionPartida" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AgregarCanalCallbackBuzon">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nombreJugador" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AgregarCanalCallbackBuzonResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MostrarNuevaInvitacionAPartida">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="invitacion" nillable="true" type="q27:InvitacionPartida" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

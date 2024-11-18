@@ -20,8 +20,8 @@ namespace LaOcaClient.UserControls
     /// </summary>
     public partial class JugadorEnSala : UserControl
     {
-        private int idJugador;
-        private string nombreJugador;
+        public int idJugador;
+        public string nombreJugador;
 
         public JugadorEnSala(string nombreJugador, int idJugador)
         {

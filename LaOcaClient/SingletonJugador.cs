@@ -13,6 +13,7 @@ namespace LaOcaClient
         private static readonly object lockObject = new object();
 
         public Jugador Jugador {  get; set; }
+
         public bool EsInvitado { get; set; }
 
 
