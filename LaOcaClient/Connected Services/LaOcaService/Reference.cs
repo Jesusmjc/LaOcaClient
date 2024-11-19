@@ -153,6 +153,9 @@ namespace LaOcaClient.LaOcaService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NombreUsuarioField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TurnosPerdidosField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -289,6 +292,19 @@ namespace LaOcaClient.LaOcaService {
                 if ((object.ReferenceEquals(this.NombreUsuarioField, value) != true)) {
                     this.NombreUsuarioField = value;
                     this.RaisePropertyChanged("NombreUsuario");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TurnosPerdidos {
+            get {
+                return this.TurnosPerdidosField;
+            }
+            set {
+                if ((this.TurnosPerdidosField.Equals(value) != true)) {
+                    this.TurnosPerdidosField = value;
+                    this.RaisePropertyChanged("TurnosPerdidos");
                 }
             }
         }
