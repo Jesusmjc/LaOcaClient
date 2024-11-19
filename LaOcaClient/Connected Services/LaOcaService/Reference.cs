@@ -111,6 +111,8 @@ namespace LaOcaClient.LaOcaService {
     [System.Runtime.Serialization.DataContractAttribute(Name="Jugador", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Cuenta))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Amistad[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Amistad))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.InvitacionPartida[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.InvitacionPartida))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.InicioSesionException))]
@@ -119,12 +121,16 @@ namespace LaOcaClient.LaOcaService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.SalaException))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Aspecto))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Jugador[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.AmistadException))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<string, LaOcaClient.LaOcaService.Jugador>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(string[]))]
     public partial class Jugador : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private LaOcaClient.LaOcaService.Amistad[] AmistadesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private object CanalCallbackBuzonField;
@@ -166,6 +172,19 @@ namespace LaOcaClient.LaOcaService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public LaOcaClient.LaOcaService.Amistad[] Amistades {
+            get {
+                return this.AmistadesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AmistadesField, value) != true)) {
+                    this.AmistadesField = value;
+                    this.RaisePropertyChanged("Amistades");
+                }
             }
         }
         
@@ -308,6 +327,115 @@ namespace LaOcaClient.LaOcaService {
                 if ((object.ReferenceEquals(this.NombreUsuarioField, value) != true)) {
                     this.NombreUsuarioField = value;
                     this.RaisePropertyChanged("NombreUsuario");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Amistad", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
+    [System.SerializableAttribute()]
+    public partial class Amistad : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EstadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime FechaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdAmistadField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdJugadorReceptorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdJugadorSolicitanteField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Estado {
+            get {
+                return this.EstadoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EstadoField, value) != true)) {
+                    this.EstadoField = value;
+                    this.RaisePropertyChanged("Estado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Fecha {
+            get {
+                return this.FechaField;
+            }
+            set {
+                if ((this.FechaField.Equals(value) != true)) {
+                    this.FechaField = value;
+                    this.RaisePropertyChanged("Fecha");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdAmistad {
+            get {
+                return this.IdAmistadField;
+            }
+            set {
+                if ((this.IdAmistadField.Equals(value) != true)) {
+                    this.IdAmistadField = value;
+                    this.RaisePropertyChanged("IdAmistad");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdJugadorReceptor {
+            get {
+                return this.IdJugadorReceptorField;
+            }
+            set {
+                if ((this.IdJugadorReceptorField.Equals(value) != true)) {
+                    this.IdJugadorReceptorField = value;
+                    this.RaisePropertyChanged("IdJugadorReceptor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdJugadorSolicitante {
+            get {
+                return this.IdJugadorSolicitanteField;
+            }
+            set {
+                if ((this.IdJugadorSolicitanteField.Equals(value) != true)) {
+                    this.IdJugadorSolicitanteField = value;
+                    this.RaisePropertyChanged("IdJugadorSolicitante");
                 }
             }
         }
@@ -752,6 +880,51 @@ namespace LaOcaClient.LaOcaService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AmistadException", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
+    [System.SerializableAttribute()]
+    public partial class AmistadException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MensajeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Mensaje {
+            get {
+                return this.MensajeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MensajeField, value) != true)) {
+                    this.MensajeField = value;
+                    this.RaisePropertyChanged("Mensaje");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.ILoginService")]
     public interface ILoginService {
@@ -1095,6 +1268,53 @@ namespace LaOcaClient.LaOcaService {
         
         public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Sala> RecuperarSalaAsync(string codigoSala) {
             return base.Channel.RecuperarSalaAsync(codigoSala);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioExpulsionSala")]
+    public interface IServicioExpulsionSala {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioExpulsionSala/ExpulsarJugador", ReplyAction="http://tempuri.org/IServicioExpulsionSala/ExpulsarJugadorResponse")]
+        void ExpulsarJugador(string codigoSala, string nombreJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioExpulsionSala/ExpulsarJugador", ReplyAction="http://tempuri.org/IServicioExpulsionSala/ExpulsarJugadorResponse")]
+        System.Threading.Tasks.Task ExpulsarJugadorAsync(string codigoSala, string nombreJugador);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioExpulsionSalaChannel : LaOcaClient.LaOcaService.IServicioExpulsionSala, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ServicioExpulsionSalaClient : System.ServiceModel.ClientBase<LaOcaClient.LaOcaService.IServicioExpulsionSala>, LaOcaClient.LaOcaService.IServicioExpulsionSala {
+        
+        public ServicioExpulsionSalaClient() {
+        }
+        
+        public ServicioExpulsionSalaClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ServicioExpulsionSalaClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioExpulsionSalaClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioExpulsionSalaClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public void ExpulsarJugador(string codigoSala, string nombreJugador) {
+            base.Channel.ExpulsarJugador(codigoSala, nombreJugador);
+        }
+        
+        public System.Threading.Tasks.Task ExpulsarJugadorAsync(string codigoSala, string nombreJugador) {
+            return base.Channel.ExpulsarJugadorAsync(codigoSala, nombreJugador);
         }
     }
     
@@ -1716,6 +1936,100 @@ namespace LaOcaClient.LaOcaService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioAmistad")]
+    public interface IServicioAmistad {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAmistad/EnviarSolicitudAmistad", ReplyAction="http://tempuri.org/IServicioAmistad/EnviarSolicitudAmistadResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LaOcaClient.LaOcaService.AmistadException), Action="http://tempuri.org/IServicioAmistad/EnviarSolicitudAmistadAmistadExceptionFault", Name="AmistadException", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
+        void EnviarSolicitudAmistad(LaOcaClient.LaOcaService.Jugador jugadorSolicitante, LaOcaClient.LaOcaService.Jugador jugadorReceptor);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAmistad/EnviarSolicitudAmistad", ReplyAction="http://tempuri.org/IServicioAmistad/EnviarSolicitudAmistadResponse")]
+        System.Threading.Tasks.Task EnviarSolicitudAmistadAsync(LaOcaClient.LaOcaService.Jugador jugadorSolicitante, LaOcaClient.LaOcaService.Jugador jugadorReceptor);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAmistad/RecuperarAmistades", ReplyAction="http://tempuri.org/IServicioAmistad/RecuperarAmistadesResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LaOcaClient.LaOcaService.AmistadException), Action="http://tempuri.org/IServicioAmistad/RecuperarAmistadesAmistadExceptionFault", Name="AmistadException", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
+        LaOcaClient.LaOcaService.Amistad[] RecuperarAmistades(int idJugador, string estado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAmistad/RecuperarAmistades", ReplyAction="http://tempuri.org/IServicioAmistad/RecuperarAmistadesResponse")]
+        System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Amistad[]> RecuperarAmistadesAsync(int idJugador, string estado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAmistad/ActualizarSolicitudAmistad", ReplyAction="http://tempuri.org/IServicioAmistad/ActualizarSolicitudAmistadResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LaOcaClient.LaOcaService.AmistadException), Action="http://tempuri.org/IServicioAmistad/ActualizarSolicitudAmistadAmistadExceptionFau" +
+            "lt", Name="AmistadException", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
+        void ActualizarSolicitudAmistad(LaOcaClient.LaOcaService.Amistad solicitudAmistad, string nuevoEstado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAmistad/ActualizarSolicitudAmistad", ReplyAction="http://tempuri.org/IServicioAmistad/ActualizarSolicitudAmistadResponse")]
+        System.Threading.Tasks.Task ActualizarSolicitudAmistadAsync(LaOcaClient.LaOcaService.Amistad solicitudAmistad, string nuevoEstado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAmistad/RecuperarAmistad", ReplyAction="http://tempuri.org/IServicioAmistad/RecuperarAmistadResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LaOcaClient.LaOcaService.AmistadException), Action="http://tempuri.org/IServicioAmistad/RecuperarAmistadAmistadExceptionFault", Name="AmistadException", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
+        LaOcaClient.LaOcaService.Amistad RecuperarAmistad(int idJugadorSolicitante, int idJugadorReceptor);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAmistad/RecuperarAmistad", ReplyAction="http://tempuri.org/IServicioAmistad/RecuperarAmistadResponse")]
+        System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Amistad> RecuperarAmistadAsync(int idJugadorSolicitante, int idJugadorReceptor);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioAmistadChannel : LaOcaClient.LaOcaService.IServicioAmistad, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ServicioAmistadClient : System.ServiceModel.ClientBase<LaOcaClient.LaOcaService.IServicioAmistad>, LaOcaClient.LaOcaService.IServicioAmistad {
+        
+        public ServicioAmistadClient() {
+        }
+        
+        public ServicioAmistadClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ServicioAmistadClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioAmistadClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioAmistadClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public void EnviarSolicitudAmistad(LaOcaClient.LaOcaService.Jugador jugadorSolicitante, LaOcaClient.LaOcaService.Jugador jugadorReceptor) {
+            base.Channel.EnviarSolicitudAmistad(jugadorSolicitante, jugadorReceptor);
+        }
+        
+        public System.Threading.Tasks.Task EnviarSolicitudAmistadAsync(LaOcaClient.LaOcaService.Jugador jugadorSolicitante, LaOcaClient.LaOcaService.Jugador jugadorReceptor) {
+            return base.Channel.EnviarSolicitudAmistadAsync(jugadorSolicitante, jugadorReceptor);
+        }
+        
+        public LaOcaClient.LaOcaService.Amistad[] RecuperarAmistades(int idJugador, string estado) {
+            return base.Channel.RecuperarAmistades(idJugador, estado);
+        }
+        
+        public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Amistad[]> RecuperarAmistadesAsync(int idJugador, string estado) {
+            return base.Channel.RecuperarAmistadesAsync(idJugador, estado);
+        }
+        
+        public void ActualizarSolicitudAmistad(LaOcaClient.LaOcaService.Amistad solicitudAmistad, string nuevoEstado) {
+            base.Channel.ActualizarSolicitudAmistad(solicitudAmistad, nuevoEstado);
+        }
+        
+        public System.Threading.Tasks.Task ActualizarSolicitudAmistadAsync(LaOcaClient.LaOcaService.Amistad solicitudAmistad, string nuevoEstado) {
+            return base.Channel.ActualizarSolicitudAmistadAsync(solicitudAmistad, nuevoEstado);
+        }
+        
+        public LaOcaClient.LaOcaService.Amistad RecuperarAmistad(int idJugadorSolicitante, int idJugadorReceptor) {
+            return base.Channel.RecuperarAmistad(idJugadorSolicitante, idJugadorReceptor);
+        }
+        
+        public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Amistad> RecuperarAmistadAsync(int idJugadorSolicitante, int idJugadorReceptor) {
+            return base.Channel.RecuperarAmistadAsync(idJugadorSolicitante, idJugadorReceptor);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioBuzon", CallbackContract=typeof(LaOcaClient.LaOcaService.IServicioBuzonCallback))]
     public interface IServicioBuzon {
         
@@ -1731,6 +2045,9 @@ namespace LaOcaClient.LaOcaService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioBuzon/MostrarNuevaInvitacionAPartida")]
         void MostrarNuevaInvitacionAPartida(LaOcaClient.LaOcaService.InvitacionPartida invitacion);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioBuzon/MostrarNuevaSolicitudAmistad")]
+        void MostrarNuevaSolicitudAmistad(LaOcaClient.LaOcaService.Amistad solicitudAmistad);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

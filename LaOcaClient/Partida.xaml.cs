@@ -63,7 +63,11 @@ namespace LaOcaClient
             for (int i = 0; i < sala.Jugadores.Count; i++)
             {
                 Jugador jugador = sala.Jugadores[sala.Partida.NombresDeJugadoresEnOrdenDeTurnos[i]];
-                JugadorEnSala jugadorEnSala = new JugadorEnSala(jugador.NombreUsuario, jugador.IdJugador);
+                JugadorEnSala jugadorEnSala = new JugadorEnSala(jugador, sala.Codigo);
+                if (SingletonJugador.Instance.Jugador.NombreUsuario.Equals(sala.NombreHost))
+                {
+                    jugadorEnSala.CargarOpcionExpulsar();
+                }
 
                 gridsJugadores[i].Children.Add(jugadorEnSala);
             }

@@ -237,6 +237,9 @@
     <None Include="Connected Services\LaOcaService\item3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\LaOcaService\LaOcaClient.LaOcaService.Amistad.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\LaOcaService\LaOcaClient.LaOcaService.Aspecto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

@@ -12,6 +12,7 @@
   <xs:element name="Cuenta" nillable="true" type="tns:Cuenta" />
   <xs:complexType name="Jugador">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Amistades" nillable="true" type="tns:ArrayOfAmistad" />
       <xs:element minOccurs="0" name="CanalCallbackBuzon" nillable="true" type="xs:anyType" />
       <xs:element minOccurs="0" name="CanalCallbackChat" nillable="true" type="xs:anyType" />
       <xs:element minOccurs="0" name="CanalCallbackJugadoresEnLinea" nillable="true" type="xs:anyType" />
@@ -26,6 +27,22 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Jugador" nillable="true" type="tns:Jugador" />
+  <xs:complexType name="ArrayOfAmistad">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Amistad" nillable="true" type="tns:Amistad" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAmistad" nillable="true" type="tns:ArrayOfAmistad" />
+  <xs:complexType name="Amistad">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Estado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Fecha" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IdAmistad" type="xs:int" />
+      <xs:element minOccurs="0" name="IdJugadorReceptor" type="xs:int" />
+      <xs:element minOccurs="0" name="IdJugadorSolicitante" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Amistad" nillable="true" type="tns:Amistad" />
   <xs:complexType name="ArrayOfInvitacionPartida">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="InvitacionPartida" nillable="true" type="tns:InvitacionPartida" />
@@ -84,4 +101,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfJugador" nillable="true" type="tns:ArrayOfJugador" />
+  <xs:complexType name="AmistadException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AmistadException" nillable="true" type="tns:AmistadException" />
 </xs:schema>

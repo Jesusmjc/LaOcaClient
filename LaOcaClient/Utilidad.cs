@@ -61,4 +61,12 @@ namespace LaOcaClient
             return esContrasenaValida;
         }
     }
+
+    public static class EstadoAmistad
+    {
+        public const string SOLICITUD = "Solicitud";
+        public const string AMIGOS = "Amigos";
+        public const string BLOQUEO = "Bloqueo";
+        public const string RECHAZADA = "Rechazada";
+    }
 }

@@ -58,6 +58,11 @@ namespace LaOcaClient
             lbxPeticiones.Items.Insert(0, peticion);
         }
 
+        public void MostrarNuevaSolicitudAmistad(Amistad solicitudAmistad)
+        {
+            throw new NotImplementedException();
+        }
+
         private void MostrarInvitacionesPendientes()
         {
             try

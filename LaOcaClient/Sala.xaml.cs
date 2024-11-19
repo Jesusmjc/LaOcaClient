@@ -50,8 +50,8 @@ namespace LaOcaClient
             InitializeComponent();
 
             PrepararSala();
-            MostrarPrimerJugador();
             CrearSala(nombreSala, visibilidad);
+            MostrarPrimerJugador();
             UnirseAlChat();
         }
 
@@ -126,17 +126,17 @@ namespace LaOcaClient
 
         private void MostrarPrimerJugador()
         {
-            JugadorEnSala jugadorSala = new JugadorEnSala(SingletonJugador.Instance.Jugador.NombreUsuario, SingletonJugador.Instance.Jugador.IdJugador);
+            JugadorEnSala jugadorSala = new JugadorEnSala(SingletonJugador.Instance.Jugador, sala.Codigo);
             gridJugadorSala1.Children.Add(jugadorSala);
         }
 
         private void MostrarJugadoresEnSala()
         {
-            JugadorEnSala hostEnSala = new JugadorEnSala(sala.NombreHost, sala.Jugadores[sala.NombreHost].IdJugador);
+            JugadorEnSala hostEnSala = new JugadorEnSala(sala.Jugadores[sala.NombreHost], sala.Codigo);
             gridsJugadores[0].Children.Add(hostEnSala);
             jugadoresEnSala[0] = hostEnSala;
 
-            JugadorEnSala jugadorSala = new JugadorEnSala(SingletonJugador.Instance.Jugador.NombreUsuario, SingletonJugador.Instance.Jugador.IdJugador);
+            JugadorEnSala jugadorSala = new JugadorEnSala(SingletonJugador.Instance.Jugador, sala.Codigo);
             gridsJugadores[sala.Jugadores.Count].Children.Add(jugadorSala);
             jugadoresEnSala[sala.Jugadores.Count] = jugadorSala;
 
@@ -146,7 +146,7 @@ namespace LaOcaClient
             {
                 if (!parJugador.Key.Equals(SingletonJugador.Instance.Jugador.NombreUsuario) && !parJugador.Key.Equals(sala.NombreHost))
                 {
-                    JugadorEnSala jugadorEnSala = new JugadorEnSala(parJugador.Key, parJugador.Value.IdJugador);
+                    JugadorEnSala jugadorEnSala = new JugadorEnSala(parJugador.Value, sala.Codigo);
                    
                     gridsJugadores[posicion].Children.Add(jugadorEnSala);
                     jugadoresEnSala[posicion] = jugadorEnSala;
@@ -267,7 +267,11 @@ namespace LaOcaClient
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                JugadorEnSala nuevoJugadorEnSala = new JugadorEnSala(nuevoJugador.NombreUsuario, nuevoJugador.IdJugador);
+                JugadorEnSala nuevoJugadorEnSala = new JugadorEnSala(nuevoJugador, sala.Codigo);
+                if (SingletonJugador.Instance.Jugador.NombreUsuario.Equals(sala.NombreHost))
+                {
+                    nuevoJugadorEnSala.CargarOpcionExpulsar();
+                }
                 gridsJugadores[sala.Jugadores.Count].Children.Add(nuevoJugadorEnSala);
                 jugadoresEnSala[sala.Jugadores.Count] = nuevoJugadorEnSala;
 
@@ -345,7 +349,7 @@ namespace LaOcaClient
 
             for (int i = sala.Jugadores.Count; i >= 1; i--)
             {
-                if (jugadoresEnSala[i].nombreJugador.Equals(nombreJugadorDesconectado))
+                if (jugadoresEnSala[i].jugadorEnSala.NombreUsuario.Equals(nombreJugadorDesconectado))
                 {
                     posicionJugadorDesconectado = i;
                     gridsJugadores[i].Children.Clear();
@@ -366,6 +370,11 @@ namespace LaOcaClient
 
             gridsJugadores[sala.Jugadores.Count].Children.Clear();
             jugadoresEnSala[sala.Jugadores.Count] = null;
+
+            if (sala.Jugadores.Count < 2)
+            {
+                btnIniciarPartida.IsEnabled = false;
+            }
         }
 
         public void ExpulsarAMenúPrincipal(string motivo)

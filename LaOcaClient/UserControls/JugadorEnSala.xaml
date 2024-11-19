@@ -10,6 +10,12 @@
         <Image HorizontalAlignment="Center" Source="../Recursos/rectanguloazul.png" Height="100" VerticalAlignment="Top" Width="100"/>
         <Label x:Name="lbNombreJugador" Content="Holabel" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="19" Margin="0,73,0,0" VerticalAlignment="Top" Width="88" FontSize="8"/>
         <Image x:Name="imgFotoPerfil" HorizontalAlignment="Center" Source="../Recursos/icono_usuario.png" Height="60" VerticalAlignment="Top" Width="60" Margin="0,8,0,0"/>
+        <Image x:Name="imgMasOpciones" HorizontalAlignment="Right" Source="../Recursos/icono_masopciones.png" Width="15" Height="15" VerticalAlignment="Top" Margin="0,5,2,0" MouseLeftButtonUp="MostrarMenuPopup">
+            <Image.ContextMenu>
+                <ContextMenu x:Name="imgMasOpciones_MenuContextual">
+                </ContextMenu>
+            </Image.ContextMenu>
+        </Image>
 
     </Grid>
 </UserControl>
