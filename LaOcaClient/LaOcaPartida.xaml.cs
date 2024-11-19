@@ -34,7 +34,7 @@ namespace LaOcaClient
 
         private void MoverFicha(int pasos)
         {
-            _servicioJugabilidad.JugarTurno(pasos);
+            //_servicioJugabilidad.JugarTurno(pasos, sala.Codigo, nombreJugador);
             int nuevaPosicion = _servicioJugabilidad.ObtenerPosicionFicha();
             ActualizarInterfazGrafica(nuevaPosicion);
         }
@@ -43,8 +43,8 @@ namespace LaOcaClient
         {
             if (_posicionesCasillas.TryGetValue(nuevaPosicion, out Point nuevaPosicionCanvas))
             {
-                Canvas.SetLeft(FichaImage, nuevaPosicionCanvas.X);
-                Canvas.SetTop(FichaImage, nuevaPosicionCanvas.Y);
+                Canvas.SetLeft(FichaOcaAmarilla, nuevaPosicionCanvas.X);
+                Canvas.SetTop(FichaOcaAmarilla, nuevaPosicionCanvas.Y);
                 Console.WriteLine($"La ficha está ahora en la casilla {nuevaPosicion}");
             }
             else
@@ -123,6 +123,11 @@ namespace LaOcaClient
                 { 63, new Point(50, -25) },
             };
             return posiciones;
+        }
+
+        private void Btn_Regresar(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

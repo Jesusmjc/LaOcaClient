@@ -311,7 +311,15 @@
     <Resource Include="Recursos\TableroOca.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Recursos\FichaOca.png" />
+    <Resource Include="Recursos\FichaOcaAmarilla.png" />
+    <Resource Include="Recursos\FichaOcaAzul.png" />
+    <Resource Include="Recursos\FichaOcaRosa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\FichaOcaVerde.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\TableroOcaActualizado.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\buzon.png" />

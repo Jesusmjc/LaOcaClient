@@ -226,6 +226,14 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ActualizarPosicionFicha">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nuevaPosicion" type="xs:int" />
+        <xs:element minOccurs="0" name="nombreJugador" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="CrearCuenta">
     <xs:complexType>
       <xs:sequence>
@@ -458,6 +466,8 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="pasos" type="xs:int" />
+        <xs:element minOccurs="0" name="codigoSala" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="nombreJugador" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

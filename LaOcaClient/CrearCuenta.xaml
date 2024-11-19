@@ -6,38 +6,88 @@
         xmlns:local="clr-namespace:LaOcaClient"
         xmlns:p="clr-namespace:LaOcaClient.Properties"
         mc:Ignorable="d"
-        Title="CrearCuenta" Height="600" Width="900">
+        Title="Crear Cuenta"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
+        MinHeight="600" MinWidth="900">
 
-    <Grid Margin="0,-80,0,0">
-        <Label x:Name="globalCrearCuenta" Content="{x:Static p:Resources.globalCrearCuenta}" Margin="78,111,0,0" Height="76" FontSize="48" Width="488" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Visible"/>
-        <Label x:Name="globalNombreUsuario" Content="{x:Static p:Resources.globalNombreUsuario}" HorizontalAlignment="Left" Margin="78,226,0,0" VerticalAlignment="Top" FontSize="14" Width="182" Visibility="Visible"/>
-        <TextBox x:Name="tbNombreUsuario" HorizontalAlignment="Left" Margin="78,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" FontSize="14" Height="26" Visibility="Visible"/>
-        <Label x:Name="globalContraseña" Content="{x:Static p:Resources.globalContraseña}" HorizontalAlignment="Left" Margin="78,312,0,0" VerticalAlignment="Top" FontSize="14" Width="182" Visibility="Visible"/>
-        <PasswordBox x:Name="tbContraseña" HorizontalAlignment="Left" Margin="78,342,0,0" VerticalAlignment="Top" Width="182" FontSize="14" Height="26" Visibility="Visible"/>
-        <Label x:Name="globalConfirmarContraseña" Content="{x:Static p:Resources.globalConfirmarContraseña}" HorizontalAlignment="Left" Margin="78,410,0,0" VerticalAlignment="Top" FontSize="14" Width="182" Visibility="Visible"/>
-        <PasswordBox x:Name="tbConfirmarContraseña" HorizontalAlignment="Left" Margin="78,438,0,0" VerticalAlignment="Top" Width="182" FontSize="14" Height="26" Visibility="Visible"/>
-        <Label x:Name="globalCorreo" Content="{x:Static p:Resources.globalCorreo}" HorizontalAlignment="Left" Margin="78,514,0,0" VerticalAlignment="Top" FontSize="14" Width="184" Visibility="Visible"/>
-        <TextBox x:Name="tbCorreo" HorizontalAlignment="Left" Margin="78,542,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" FontSize="14" Height="26" Visibility="Visible"/>
-        <Button x:Name="btnSiguienteCrearCuenta" Content="{x:Static p:Resources.globalBtnSiguiente}" HorizontalAlignment="Left" Margin="691,590,0,0" VerticalAlignment="Top" Width="73" Click="btnSiguienteCrear_Click" Visibility="Visible"/>
-        <Button x:Name="btnSiguienteModificarCuenta" Content="Siguiente" HorizontalAlignment="Left" Margin="691,590,0,0" VerticalAlignment="Top" Width="73" Click="btnSiguienteModificar_Click" Visibility="Visible"/>
-        <Button x:Name="btnCancelar" Content="{x:Static p:Resources.globalCancelar}" HorizontalAlignment="Left" Margin="776,590,0,0" VerticalAlignment="Top" Width="56" Click="btnCancelar_Click" Visibility="Visible"/>
-        <Label x:Name="lbSeleccionarImagenPerfil" Content="{x:Static p:Resources.lbSeleccionarImagenPerfil}" HorizontalAlignment="Center" Margin="0,226,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.341,0.425" FontSize="14" Visibility="Visible" Width="192"/>
-        
-        <WrapPanel x:Name="wpImagenesPerfil" HorizontalAlignment="Left" Margin="354,268,0,0" VerticalAlignment="Top" Width="400" Height="300" Visibility="Visible">
-            <Image x:Name="imgOcaDeportista" Source="pack://application:,,,/LaOcaClient;component/Recursos/OcaDeportista.jpg" Width="100" Height="100" Margin="10" MouseLeftButtonUp="ImagenPerfil_MouseLeftButtonUp"/>
-            <Image x:Name="imgOcaDesastrosa" Source="pack://application:,,,/LaOcaClient;component/Recursos/OcaDesastrosa.jpg" Width="100" Height="100" Margin="10" MouseLeftButtonUp="ImagenPerfil_MouseLeftButtonUp"/>
-            <Image x:Name="imgOcaIngeniera" Source="pack://application:,,,/LaOcaClient;component/Recursos/OcaIngeniera.jpg" Width="100" Height="100" Margin="10" MouseLeftButtonUp="ImagenPerfil_MouseLeftButtonUp"/>
-            <Image x:Name="imgOcaProgramadora" Source="pack://application:,,,/LaOcaClient;component/Recursos/OcaProgramadora.jpg" Width="100" Height="100" Margin="10" MouseLeftButtonUp="ImagenPerfil_MouseLeftButtonUp"/>
-            <Image x:Name="imgOcaRockstar" Source="pack://application:,,,/LaOcaClient;component/Recursos/OcaRockstar.jpg" Width="100" Height="100" Margin="10" MouseLeftButtonUp="ImagenPerfil_MouseLeftButtonUp"/>
-            <Image x:Name="imgOcaUniversitaria" Source="pack://application:,,,/LaOcaClient;component/Recursos/OcaUniversitaria.jpg" Width="100" Height="100" Margin="10" MouseLeftButtonUp="ImagenPerfil_MouseLeftButtonUp"/>
-        </WrapPanel>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid x:Name="LayoutGrid" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <TextBox x:Name="tbCodigoVerificacion" Width="200" Height="30" Margin="125,190,125,144" Visibility="Collapsed" />
-        <Button x:Name="btnVerificarCodigo" Content="{x:Static p:Resources.btnVerificarCodigo}" Width="200" Height="30" Margin="125,238,125,96" Click="btnVerificarCodigo_Click" Visibility="Collapsed" />
-        <Label x:Name="lbIngresarCodigo" Content="{x:Static p:Resources.lbIngresarCodigo}" HorizontalAlignment="Left" Margin="188,178,0,0" VerticalAlignment="Top" FontSize="14" Visibility="Collapsed"/>
-        <Button x:Name="btnReenviarCodigo" Content="{x:Static p:Resources.btnReenviarCodigo}" HorizontalAlignment="Center" Margin="0,360,0,0" VerticalAlignment="Top" Visibility="Collapsed" Click="btnReenviarCodigo_Click"/>
-        <Label x:Name="lbReenviarCodigo" Content="{x:Static p:Resources.btnReenviarCodigo}" HorizontalAlignment="Center" Margin="0,334,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
-        <Button x:Name="btnVolverAtras" Content="{x:Static p:Resources.btnGlobalRegresar}" HorizontalAlignment="Left" Margin="487,408,0,0" VerticalAlignment="Top" Width="75" Click="btnVolverAtras_Click" Visibility="Collapsed"/>
-        <Button x:Name="btnCambiarContraseña" Content="{x:Static p:Resources.btnCambiarContraseña}" HorizontalAlignment="Left" Margin="78,385,0,0" VerticalAlignment="Top" Width="182" Height="26" Visibility="Collapsed" Click="btnCambiarContraseña_Click"/>
-    </Grid>
+            <!-- Título -->
+            <Label x:Name="globalCrearCuenta" Content="{x:Static p:Resources.globalCrearCuenta}"
+                   Grid.Row="0" Grid.Column="1"
+                   HorizontalAlignment="Center" FontSize="48" Margin="0,20,0,20"/>
+
+            <!-- Controles principales en el centro -->
+            <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Label x:Name="globalNombreUsuario" Content="{x:Static p:Resources.globalNombreUsuario}" Margin="0,10,0,0"/>
+                <TextBox x:Name="tbNombreUsuario" TextWrapping="Wrap" Height="26" FontSize="14" Margin="0,5,0,10"/>
+
+                <Label x:Name="globalContraseña" Content="{x:Static p:Resources.globalContraseña}" Margin="0,10,0,0"/>
+                <PasswordBox x:Name="tbContraseña" Height="26" FontSize="14" Margin="0,5,0,10"/>
+
+                <Label x:Name="globalConfirmarContraseña" Content="{x:Static p:Resources.globalConfirmarContraseña}" Margin="0,10,0,0"/>
+                <PasswordBox x:Name="tbConfirmarContraseña" Height="26" FontSize="14" Margin="0,5,0,10"/>
+
+                <Label x:Name="globalCorreo" Content="{x:Static p:Resources.globalCorreo}" Margin="0,10,0,0"/>
+                <TextBox x:Name="tbCorreo" TextWrapping="Wrap" Height="26" FontSize="14" Margin="0,5,0,20"/>
+
+                <!-- Botones de acción -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <Button x:Name="btnSiguienteCrearCuenta" Content="{x:Static p:Resources.globalBtnSiguiente}" Width="100" Margin="5,0" Click="btnSiguienteCrear_Click"/>
+                    <Button x:Name="btnSiguienteModificarCuenta" Content="Siguiente" Width="100" Margin="5,0" Click="btnSiguienteModificar_Click"/>
+                    <Button x:Name="btnCancelar" Content="{x:Static p:Resources.globalCancelar}" Width="80" Margin="5,0" Click="btnCancelar_Click"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Label para seleccionar imagen de perfil -->
+            <Label x:Name="lbSeleccionarImagenPerfil" Content="{x:Static p:Resources.lbSeleccionarImagenPerfil}"
+                   Grid.Row="1" Grid.Column="2"
+                   HorizontalAlignment="Left" FontSize="14" Margin="20,0,0,30"/>
+
+            <!-- Imágenes de perfil en la derecha -->
+            <WrapPanel x:Name="wpImagenesPerfil" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" Width="300" Margin="0,40,0,0">
+                <Image x:Name="imgOcaDeportista" Source="pack://application:,,,/LaOcaClient;component/Recursos/OcaDeportista.jpg" Width="100" Height="100" Margin="10" MouseLeftButtonUp="ImagenPerfil_MouseLeftButtonUp"/>
+                <Image x:Name="imgOcaDesastrosa" Source="pack://application:,,,/LaOcaClient;component/Recursos/OcaDesastrosa.jpg" Width="100" Height="100" Margin="10" MouseLeftButtonUp="ImagenPerfil_MouseLeftButtonUp"/>
+                <Image x:Name="imgOcaIngeniera" Source="pack://application:,,,/LaOcaClient;component/Recursos/OcaIngeniera.jpg" Width="100" Height="100" Margin="10" MouseLeftButtonUp="ImagenPerfil_MouseLeftButtonUp"/>
+                <Image x:Name="imgOcaProgramadora" Source="pack://application:,,,/LaOcaClient;component/Recursos/OcaProgramadora.jpg" Width="100" Height="100" Margin="10" MouseLeftButtonUp="ImagenPerfil_MouseLeftButtonUp"/>
+                <Image x:Name="imgOcaRockstar" Source="pack://application:,,,/LaOcaClient;component/Recursos/OcaRockstar.jpg" Width="100" Height="100" Margin="10" MouseLeftButtonUp="ImagenPerfil_MouseLeftButtonUp"/>
+                <Image x:Name="imgOcaUniversitaria" Source="pack://application:,,,/LaOcaClient;component/Recursos/OcaUniversitaria.jpg" Width="100" Height="100" Margin="10" MouseLeftButtonUp="ImagenPerfil_MouseLeftButtonUp"/>
+            </WrapPanel>
+
+            <!-- Campos y botones de verificación a la izquierda -->
+            <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="lbIngresarCodigo" Content="{x:Static p:Resources.lbIngresarCodigo}" FontSize="14" Visibility="Collapsed" Margin="0,10,0,0" Grid.Row="0"/>
+                <TextBox x:Name="tbCodigoVerificacion" Height="30" Visibility="Collapsed" Margin="0,10,0,0" Grid.Row="1"/>
+                <Button x:Name="btnVerificarCodigo" Content="{x:Static p:Resources.btnVerificarCodigo}" Width="150" Height="30" Click="btnVerificarCodigo_Click" Visibility="Collapsed" Margin="0,10,0,0" Grid.Row="2"/>
+                <Button x:Name="btnReenviarCodigo" Content="{x:Static p:Resources.btnReenviarCodigo}" Click="btnReenviarCodigo_Click" Visibility="Collapsed" Margin="0,10,0,0" Grid.Row="3"/>
+                <Label x:Name="lbReenviarCodigo" Content="{x:Static p:Resources.btnReenviarCodigo}" Visibility="Collapsed" Margin="0,10,0,0" Grid.Row="4"/>
+                <Button x:Name="btnVolverAtras" Content="{x:Static p:Resources.btnGlobalRegresar}" Width="150" Click="btnVolverAtras_Click" Visibility="Collapsed" Margin="0,10,0,0" Grid.Row="5"/>
+                <Button x:Name="btnCambiarContraseña" Content="{x:Static p:Resources.btnCambiarContraseña}" Width="150" Height="26" Click="btnCambiarContraseña_Click" Visibility="Collapsed" Margin="0,10,0,0" Grid.Row="6"/>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
 </Window>

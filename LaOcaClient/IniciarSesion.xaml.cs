@@ -162,9 +162,10 @@ namespace LaOcaClient
 
         private void btnJugarComoInvitado_Click(object sender, RoutedEventArgs e)
         {
-            LaOcaPartida laOcaPartida = new LaOcaPartida();
-            this.Close();
-            laOcaPartida.ShowDialog();
+            /*LaOcaClient.LaOcaService.Sala sala = new LaOcaClient.LaOcaService.Sala();
+            Partida partiidaVentana = new Partida(sala);
+            partiidaVentana.Show();
+            this.Close();*/
         }
 
         private void LimpiarTextoEjemplo(object sender, MouseButtonEventArgs e)

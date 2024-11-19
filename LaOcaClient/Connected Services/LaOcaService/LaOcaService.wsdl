@@ -516,6 +516,9 @@
   <wsdl:message name="IServicioPartida_MostrarNuevoJugadorEnTurno_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MostrarNuevoJugadorEnTurno" />
   </wsdl:message>
+  <wsdl:message name="IServicioPartida_ActualizarPosicionFicha_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarPosicionFicha" />
+  </wsdl:message>
   <wsdl:message name="IServicioCuenta_CrearCuenta_InputMessage">
     <wsdl:part name="parameters" element="tns:CrearCuenta" />
   </wsdl:message>
@@ -812,6 +815,9 @@
     </wsdl:operation>
     <wsdl:operation name="MostrarNuevoJugadorEnTurno">
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/MostrarNuevoJugadorEnTurno" message="tns:IServicioPartida_MostrarNuevoJugadorEnTurno_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarPosicionFicha">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/ActualizarPosicionFicha" message="tns:IServicioPartida_ActualizarPosicionFicha_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IServicioCuenta">
@@ -1153,6 +1159,12 @@
     </wsdl:operation>
     <wsdl:operation name="MostrarNuevoJugadorEnTurno">
       <soap12:operation soapAction="http://tempuri.org/IServicioPartida/MostrarNuevoJugadorEnTurno" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarPosicionFicha">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPartida/ActualizarPosicionFicha" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
@@ -1507,7 +1519,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+          <Upn>THELASTLAPTOPHP\Carim</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -1516,7 +1528,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+          <Upn>THELASTLAPTOPHP\Carim</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -1525,7 +1537,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+          <Upn>THELASTLAPTOPHP\Carim</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -1534,7 +1546,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+          <Upn>THELASTLAPTOPHP\Carim</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -1543,7 +1555,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+          <Upn>THELASTLAPTOPHP\Carim</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -1561,7 +1573,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+          <Upn>THELASTLAPTOPHP\Carim</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -1570,7 +1582,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+          <Upn>THELASTLAPTOPHP\Carim</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -1579,7 +1591,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>TAKEMIKAZUCHI\jesus</Upn>
+          <Upn>THELASTLAPTOPHP\Carim</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

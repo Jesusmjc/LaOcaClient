@@ -9,8 +9,12 @@
     <Grid Margin="0,0,0,-6">
         <Image Source="pack://application:,,,/LaOcaClient;component/Recursos/TableroOca.png" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Canvas Name="TableroCanvas" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Image Name="FichaImage" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOca.png" Width="50" Height="50" Canvas.Left="279" Canvas.Top="36" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Image Name="FichaOcaAmarilla" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaAmarilla.png" Width="50" Height="50" Canvas.Left="203" Canvas.Top="-85" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Image Name="FichaOcaAzul" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaAzul.png" Width="50" Height="50" Canvas.Left="203" Canvas.Top="-85" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Image Name="FichaOcaRosa" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaRosa.png" Width="50" Height="50" Canvas.Left="203" Canvas.Top="-85" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Image Name="FichaOcaVerde" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaVerde.png" Width="50" Height="50" Canvas.Left="203" Canvas.Top="-85" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
         <Button Content="Mover Ficha" HorizontalAlignment="Left" Margin="360,546,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Content="Regresar" HorizontalAlignment="Left" Margin="717,551,0,0" VerticalAlignment="Top" Click="Btn_Regresar"/>
     </Grid>
 </Window>

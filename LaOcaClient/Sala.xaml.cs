@@ -284,6 +284,7 @@ namespace LaOcaClient
             });
         }
 
+
         private void LimpiarTextoEjemplo(object sender, RoutedEventArgs e)
         {
             TextBox textBox = sender as TextBox;
