@@ -107,7 +107,7 @@ namespace LaOcaClient.UserControls
             opcionBloquearJugador.Click += (s, args) => BloquearJugador();
             imgMasOpciones_MenuContextual.Items.Add(opcionBloquearJugador);
 
-            _esHost = true;
+            _esJugadorActualHost = true;
         }
 
         private void CargarOpcionDesbloquear()

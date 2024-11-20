@@ -64,7 +64,7 @@ namespace LaOcaClient
         {
             InstanceContext contexto = new InstanceContext(this);
             _clientePartida = new LaOcaService.ServicioPartidaClient(contexto);
-            _clientePartida.AgregarCanalCallback(SingletonJugador.Instance.Jugador.NombreUsuario, _sala.Codigo);
+            _clientePartida.AgregarCanalCallbackPartida(SingletonJugador.Instance.Jugador.NombreUsuario, _sala.Codigo);
         }
 
         private void MostrarJugadoresEnPartida()
@@ -82,8 +82,8 @@ namespace LaOcaClient
                 ficha.Height = 85;
                 _fichasPorJugador[jugador.NombreUsuario] = ficha;
 
-                JugadorEnSala jugadorEnSala = new JugadorEnSala(jugador.NombreUsuario, jugador.IdJugador);
-                if (SingletonJugador.Instance.Jugador.NombreUsuario.Equals(sala.NombreHost))
+                JugadorEnSala jugadorEnSala = new JugadorEnSala(jugador, _sala.Codigo);
+                if (SingletonJugador.Instance.Jugador.NombreUsuario.Equals(_sala.NombreHost))
                 {
                     jugadorEnSala.CargarOpcionExpulsar();
                 }

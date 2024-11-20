@@ -18,12 +18,15 @@
       <xs:element minOccurs="0" name="CanalCallbackJugadoresEnLinea" nillable="true" type="xs:anyType" />
       <xs:element minOccurs="0" name="CanalCallbackPartida" nillable="true" type="xs:anyType" />
       <xs:element minOccurs="0" name="CanalCallbackSala" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Ficha" nillable="true" type="tns:Ficha" />
+      <xs:element minOccurs="0" name="FichaAsignada" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IdCuenta" type="xs:int" />
       <xs:element minOccurs="0" name="IdFotoPerfil" type="xs:int" />
       <xs:element minOccurs="0" name="IdJugador" type="xs:int" />
       <xs:element minOccurs="0" name="IdPuntuacion" type="xs:int" />
       <xs:element minOccurs="0" name="Invitaciones" nillable="true" type="tns:ArrayOfInvitacionPartida" />
       <xs:element minOccurs="0" name="NombreUsuario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TurnosPerdidos" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Jugador" nillable="true" type="tns:Jugador" />
@@ -43,6 +46,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Amistad" nillable="true" type="tns:Amistad" />
+  <xs:complexType name="Ficha">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PosicionActual" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Ficha" nillable="true" type="tns:Ficha" />
   <xs:complexType name="ArrayOfInvitacionPartida">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="InvitacionPartida" nillable="true" type="tns:InvitacionPartida" />

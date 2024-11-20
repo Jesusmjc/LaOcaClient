@@ -344,7 +344,7 @@ namespace LaOcaClient
             }
             catch (CommunicationException ex)
             {
-                MessageBox.Show($"Error de comunicación al verificar el código: {ex.Message}");
+                MessageBox.Show($"{Properties.Resources.globalSala} {ex.Message}");
             }
             catch (TimeoutException ex)
             {
