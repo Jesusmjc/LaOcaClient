@@ -319,13 +319,13 @@
     <Resource Include="Recursos\FichaOcaVerde.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Recursos\TableroOcaActualizado.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Recursos\buzon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\icono_masopciones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\TableroOcaActualizado.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

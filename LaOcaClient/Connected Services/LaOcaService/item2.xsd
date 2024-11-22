@@ -49,6 +49,7 @@
   <xs:complexType name="Ficha">
     <xs:sequence>
       <xs:element minOccurs="0" name="PosicionActual" type="xs:int" />
+      <xs:element minOccurs="0" name="PosicionAnterior" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Ficha" nillable="true" type="tns:Ficha" />

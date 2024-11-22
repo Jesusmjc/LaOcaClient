@@ -219,6 +219,15 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="NotificarMovimientoFicha">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="posicion" type="xs:int" />
+        <xs:element minOccurs="0" name="nombreJugador" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="codigoSala" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="MostrarNuevoJugadorEnTurno">
     <xs:complexType>
       <xs:sequence>
@@ -230,6 +239,14 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="nuevaPosicion" type="xs:int" />
+        <xs:element minOccurs="0" name="nombreJugador" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MovimientoFicha">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="posicion" type="xs:int" />
         <xs:element minOccurs="0" name="nombreJugador" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>

@@ -8,6 +8,7 @@ using System.Windows.Shapes;
 using System.Windows.Media;
 using LaOcaClient.UserControls;
 using System.Windows.Media.Imaging;
+using System.Threading.Tasks;
 
 namespace LaOcaClient
 {
@@ -31,6 +32,9 @@ namespace LaOcaClient
         private List<int> _casillasCarcel = new List<int> { 52 };
         private List<int> _casillasCalavera = new List<int> { 58 };
         private List<int> _casillasMeta = new List<int> { 63 };
+
+        Ficha ficha = new Ficha();
+        private int _pocisionAnterior;
 
         private List<string> fichasDisponibles = new List<string>
         {
@@ -121,10 +125,8 @@ namespace LaOcaClient
         {
             string nombreJugador = SingletonJugador.Instance.Jugador.NombreUsuario;
 
-            if (_posicionesJugadores.TryGetValue(nombreJugador, out int nuevaPosicion))
+            if (_sala.Jugadores.TryGetValue(nombreJugador, out Jugador jugador))
             {
-                Jugador jugador = _sala.Jugadores[nombreJugador];
-
                 if (jugador.TurnosPerdidos > 0)
                 {
                     MessageBox.Show($"Pierdes un turno. Turnos restantes: {jugador.TurnosPerdidos}");
@@ -132,104 +134,13 @@ namespace LaOcaClient
                     pasarTurnoSiguienteJugador();
                     return;
                 }
-
-                Random random = new Random();
-                int numeroAleatorio = random.Next(2, 7);
-                MessageBox.Show("Ha salido " + numeroAleatorio);
-                MoverFicha(numeroAleatorio, nombreJugador);
-
-                if (_posicionesJugadores.TryGetValue(nombreJugador, out nuevaPosicion))
-                {
-                    // Casillas tipo OCA
-                    if (_casillasDeOca.Contains(nuevaPosicion))
-                    {
-                        if (nuevaPosicion == 59)
-                        {
-                            MessageBox.Show("¡Has caído en la oca dorada y te lleva directo a la meta!");
-                            nuevaPosicion = 63;
-                            _posicionesJugadores[nombreJugador] = nuevaPosicion;
-                            ActualizarInterfazGrafica(nuevaPosicion, nombreJugador);
-                            MessageBox.Show("¡Felicidades! ¡Has ganado!");
-                            BtnDados.IsEnabled = false;
-                            return;
-                        }
-                        else
-                        {
-                            MessageBox.Show("¡De oca a oca y tiro porque me toca!");
-                            BtnDados.IsEnabled = true;
-                            return;
-                        }
-                    }
-
-                    // Casillas tipo PUENTE
-                    if (_casillasPuente.Contains(nuevaPosicion))
-                    {
-                        MessageBox.Show("¡Has caído en el puente! Avanzas automáticamente y vuelves a tirar.");
-                        BtnDados.IsEnabled = true;
-                        return;
-                    }
-
-                    // Casillas tipo POSADA
-                    if (_casillasPosada.Contains(nuevaPosicion))
-                    {
-                        MessageBox.Show("¡Caíste en la posada! Pierdes un turno.");
-                        jugador.TurnosPerdidos = 1;
-                        pasarTurnoSiguienteJugador();
-                        return;
-                    }
-
-                    // Casillas tipo DADO
-                    if (_casillasDado.Contains(nuevaPosicion))
-                    {
-                        MessageBox.Show("¡Caíste en la casilla de dados! Tira de nuevo.");
-                        BtnDados.IsEnabled = true;
-                        return;
-                    }
-
-                    // Casillas tipo POZO
-                    if (_casillasPozo.Contains(nuevaPosicion))
-                    {
-                        MessageBox.Show("¡Caíste en el pozo! Pierdes tres turnos.");
-                        jugador.TurnosPerdidos = 3;
-                        pasarTurnoSiguienteJugador();
-                        return;
-                    }
-
-                    // Casillas tipo LABERINTO
-                    if (_casillasLaberinto.Contains(nuevaPosicion))
-                    {
-                        MessageBox.Show("¡Entraste al laberinto! Retrocedes a la casilla 30.");
-                        pasarTurnoSiguienteJugador();
-                        return;
-                    }
-
-                    // Casillas tipo CARCEL
-                    if (_casillasCarcel.Contains(nuevaPosicion))
-                    {
-                        MessageBox.Show("¡Estás en la cárcel! Pierdes dos turnos.");
-                        jugador.TurnosPerdidos = 2;
-                        pasarTurnoSiguienteJugador();
-                        return;
-                    }
-
-                    // Casillas tipo CALAVERA
-                    if (_casillasCalavera.Contains(nuevaPosicion))
-                    {
-                        MessageBox.Show("¡Caíste en la calavera! Regresas al principio (casilla 1).");
-                        pasarTurnoSiguienteJugador();
-                        return;
-                    }
-
-                    // Casillas tipo META
-                    if (_casillasMeta.Contains(nuevaPosicion))
-                    {
-                        MessageBox.Show("¡Felicidades! ¡Has ganado!");
-                        BtnDados.IsEnabled = false;
-                        return;
-                    }
-                }
-                pasarTurnoSiguienteJugador();
             }
+
+            Random random = new Random();
+            int numeroAleatorio = random.Next(1, 7);
+            //int numeroAleatorio = 59;
+            MessageBox.Show($"¡Has lanzado el dado! Salió el número {numeroAleatorio}.");
+            MoverFicha(numeroAleatorio, nombreJugador);
         }
 
         private async void pasarTurnoSiguienteJugador()
@@ -249,39 +160,154 @@ namespace LaOcaClient
             }
         }
 
-        private void MoverFicha(int pasos, string nombreJugador)
+        private async void MoverFicha(int pasos, string nombreJugador)
         {
             if (_posicionesJugadores.TryGetValue(nombreJugador, out int posicionActual))
             {
                 int nuevaPosicion = posicionActual + pasos;
+                _pocisionAnterior = nuevaPosicion;
 
-                // Verificar si el movimiento excede la casilla final
                 if (nuevaPosicion > 63)
                 {
                     MessageBox.Show("Necesitas el número exacto para ganar.");
+                    pasarTurnoSiguienteJugador();
                     return;
                 }
 
-                // Verificar si el jugador está en la casilla 59 y no obtiene un 4 exacto
-                if (posicionActual == 59 && pasos != 4)
+                List<int> trayecto = GenerarTrayectoria(posicionActual, nuevaPosicion);
+
+                for (int i = 0; i < trayecto.Count; i++)
                 {
-                    MessageBox.Show("Necesitas un 4 exacto para ganar desde la casilla 59.");
-                    return;
+                    int posicion = trayecto[i];
+                    _posicionesJugadores[nombreJugador] = posicion;
+
+                    await _clientePartida.NotificarMovimientoFichaAsync(posicion, nombreJugador, _sala.Codigo);
+
+                    if (i == trayecto.Count - 1)
+                    {
+                        EvaluarCasilla(posicion, nombreJugador);
+                    }
+
+                    await Task.Delay(300);
                 }
 
-                if (nuevaPosicion < 0)
-                {
-                    nuevaPosicion = 1;
-                }
-                else if (nuevaPosicion >= _posicionesCasillas.Count)
-                {
-                    nuevaPosicion = _posicionesCasillas.Count - 1;
-                }
-
-                _posicionesJugadores[nombreJugador] = nuevaPosicion;
-                ActualizarInterfazGrafica(nuevaPosicion, nombreJugador);
                 _servicioJugabilidad.JugarTurno(pasos, _sala.Codigo, nombreJugador);
             }
+        }
+
+
+        public void MovimientoFicha(int posicion, string nombreJugador)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                ActualizarInterfazGrafica(posicion, nombreJugador);
+            });
+        }
+
+        private void EvaluarCasilla(int posicion, string nombreJugador)
+        {
+            Jugador jugador = _sala.Jugadores[nombreJugador];
+
+            if (_casillasDeOca.Contains(posicion))
+            {
+                if (posicion == 59 && ((_pocisionAnterior - posicion) == 54))
+                {
+                    pasarTurnoSiguienteJugador();
+                    return;
+                }
+                else if (posicion == 59)
+                {
+                    MessageBox.Show("¡Has caído en la oca dorada y te lleva directo a la meta!");
+                    _posicionesJugadores[nombreJugador] = 63;
+                    ActualizarInterfazGrafica(63, nombreJugador);
+                    MessageBox.Show("¡Felicidades! ¡Has ganado!");
+                    BtnDados.IsEnabled = false;
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("¡De oca a oca y tiro porque me toca!");
+                    BtnDados.IsEnabled = true;
+                    return;
+                }
+            }
+
+            if (_casillasPuente.Contains(posicion))
+            {
+                MessageBox.Show("¡Has caído en el puente! Avanzas automáticamente y vuelves a tirar.");
+                BtnDados.IsEnabled = true;
+                return;
+            }
+
+            if (_casillasPosada.Contains(posicion))
+            {
+                MessageBox.Show("¡Caíste en la posada! Pierdes un turno.");
+                jugador.TurnosPerdidos = 1;
+                pasarTurnoSiguienteJugador();
+                return;
+            }
+
+            if (_casillasDado.Contains(posicion))
+            {
+                MessageBox.Show("¡Caíste en la casilla de dados! Tira de nuevo.");
+                BtnDados.IsEnabled = true;
+                return;
+            }
+
+            if (_casillasPozo.Contains(posicion))
+            {
+                MessageBox.Show("¡Caíste en el pozo! Pierdes tres turnos.");
+                jugador.TurnosPerdidos = 3;
+                pasarTurnoSiguienteJugador();
+                return;
+            }
+
+            if (_casillasLaberinto.Contains(posicion))
+            {
+                MessageBox.Show("¡Entraste al laberinto! Retrocedes a la casilla 30.");
+                _posicionesJugadores[nombreJugador] = 30;
+                ActualizarInterfazGrafica(30, nombreJugador);
+                pasarTurnoSiguienteJugador();
+                return;
+            }
+
+            if (_casillasCarcel.Contains(posicion))
+            {
+                MessageBox.Show("¡Estás en la cárcel! Pierdes dos turnos.");
+                jugador.TurnosPerdidos = 2;
+                pasarTurnoSiguienteJugador();
+                return;
+            }
+
+            if (_casillasCalavera.Contains(posicion))
+            {
+                MessageBox.Show("¡Caíste en la calavera! Regresas al principio (casilla 1).");
+                _posicionesJugadores[nombreJugador] = 1;
+                ActualizarInterfazGrafica(1, nombreJugador);
+                pasarTurnoSiguienteJugador();
+                return;
+            }
+
+            if (_casillasMeta.Contains(posicion))
+            {
+                MessageBox.Show("¡Felicidades! ¡Has ganado!");
+                BtnDados.IsEnabled = false;
+                return;
+            }
+            pasarTurnoSiguienteJugador();
+        }
+
+        private List<int> GenerarTrayectoria(int posicionActual, int nuevaPosicion)
+        {
+            var trayecto = new List<int>();
+            if (nuevaPosicion > posicionActual)
+            {
+                for (int i = posicionActual + 1; i <= nuevaPosicion; i++)
+                {
+                    trayecto.Add(i);
+                }
+            }
+            return trayecto;
         }
 
         private void ActualizarInterfazGrafica(int nuevaPosicion, string nombreJugador)
@@ -290,8 +316,11 @@ namespace LaOcaClient
             {
                 if (_posicionesCasillas.TryGetValue(nuevaPosicion, out Point nuevaPosicionCanvas))
                 {
-                    Canvas.SetLeft(ficha, nuevaPosicionCanvas.X);
-                    Canvas.SetTop(ficha, nuevaPosicionCanvas.Y);
+                    Dispatcher.Invoke(() =>
+                    {
+                        Canvas.SetLeft(ficha, nuevaPosicionCanvas.X);
+                        Canvas.SetTop(ficha, nuevaPosicionCanvas.Y);
+                    });
                     Console.WriteLine($"La ficha de {nombreJugador} está ahora en la casilla {nuevaPosicion}");
                 }
                 else
