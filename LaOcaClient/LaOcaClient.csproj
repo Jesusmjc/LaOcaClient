@@ -65,6 +65,9 @@
     <Compile Include="Buzon.xaml.cs">
       <DependentUpon>Buzon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Victoria.xaml.cs">
+      <DependentUpon>Victoria.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ConfiguracionSala.xaml.cs">
       <DependentUpon>ConfiguracionSala.xaml</DependentUpon>
     </Compile>
@@ -106,6 +109,10 @@
       <DependentUpon>RecuperarContraseña.xaml</DependentUpon>
     </Compile>
     <Page Include="CambiarContraseña.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Victoria.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

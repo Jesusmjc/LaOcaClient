@@ -9,6 +9,7 @@ using System.Windows.Media;
 using LaOcaClient.UserControls;
 using System.Windows.Media.Imaging;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace LaOcaClient
 {
@@ -22,6 +23,8 @@ namespace LaOcaClient
         private Dictionary<string, int> _posicionesJugadores;
         private Dictionary<string, string> _fichaPorJugador = new Dictionary<string, string>();
         private Dictionary<string, Image> _fichasPorJugador = new Dictionary<string, Image>();
+        private Dictionary<string, int> _casillasRecorridasPorJugador = new Dictionary<string, int>();
+    
 
         private List<int> _casillasDeOca = new List<int> { 1, 5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59 };
         private List<int> _casillasPuente = new List<int> { 6, 12 };
@@ -86,6 +89,8 @@ namespace LaOcaClient
                 ficha.Height = 85;
                 _fichasPorJugador[jugador.NombreUsuario] = ficha;
 
+                _casillasRecorridasPorJugador[jugador.NombreUsuario] = 0; // Inicializar el contador
+
                 JugadorEnSala jugadorEnSala = new JugadorEnSala(jugador, _sala.Codigo);
                 if (SingletonJugador.Instance.Jugador.NombreUsuario.Equals(_sala.NombreHost))
                 {
@@ -136,9 +141,9 @@ namespace LaOcaClient
                 }
             }
 
-            Random random = new Random();
-            int numeroAleatorio = random.Next(1, 7);
-            //int numeroAleatorio = 59;
+            //Random random = new Random();
+            //int numeroAleatorio = random.Next(1, 7);
+            int numeroAleatorio = 59;
             MessageBox.Show($"¡Has lanzado el dado! Salió el número {numeroAleatorio}.");
             MoverFicha(numeroAleatorio, nombreJugador);
         }
@@ -162,6 +167,8 @@ namespace LaOcaClient
 
         private async void MoverFicha(int pasos, string nombreJugador)
         {
+            BtnDados.IsEnabled = false;
+
             if (_posicionesJugadores.TryGetValue(nombreJugador, out int posicionActual))
             {
                 int nuevaPosicion = posicionActual + pasos;
@@ -174,12 +181,25 @@ namespace LaOcaClient
                     return;
                 }
 
+                if (nuevaPosicion == 63)
+                {
+                    _posicionesJugadores[nombreJugador] = 63;
+                    ActualizarInterfazGrafica(63, nombreJugador);
+                    await _clientePartida.NotificarMovimientoFichaAsync(63, nombreJugador, _sala.Codigo);
+                    return;
+                }
+
                 List<int> trayecto = GenerarTrayectoria(posicionActual, nuevaPosicion);
 
                 for (int i = 0; i < trayecto.Count; i++)
                 {
                     int posicion = trayecto[i];
                     _posicionesJugadores[nombreJugador] = posicion;
+
+                    if (i > 0)
+                    {
+                        _casillasRecorridasPorJugador[nombreJugador]++;
+                    }
 
                     await _clientePartida.NotificarMovimientoFichaAsync(posicion, nombreJugador, _sala.Codigo);
 
@@ -188,11 +208,12 @@ namespace LaOcaClient
                         EvaluarCasilla(posicion, nombreJugador);
                     }
 
-                    await Task.Delay(300);
+                    await Task.Delay(300); // Pausa para animación
                 }
-
                 _servicioJugabilidad.JugarTurno(pasos, _sala.Codigo, nombreJugador);
             }
+
+            // Reactivar el botón solo cuando el movimiento y las evaluaciones hayan terminado
         }
 
 
@@ -204,7 +225,7 @@ namespace LaOcaClient
             });
         }
 
-        private void EvaluarCasilla(int posicion, string nombreJugador)
+        private async void EvaluarCasilla(int posicion, string nombreJugador)
         {
             Jugador jugador = _sala.Jugadores[nombreJugador];
 
@@ -218,12 +239,25 @@ namespace LaOcaClient
                 else if (posicion == 59)
                 {
                     MessageBox.Show("¡Has caído en la oca dorada y te lleva directo a la meta!");
+
+                    var trayecto = GenerarTrayectoria(58, 63);
+
+                    foreach (var pos in trayecto)
+                    {
+                        _posicionesJugadores[nombreJugador] = pos;
+                        ActualizarInterfazGrafica(pos, nombreJugador);
+
+                        await _clientePartida.NotificarMovimientoFichaAsync(pos, nombreJugador, _sala.Codigo);
+
+                        await Task.Delay(300);
+                    }
+
                     _posicionesJugadores[nombreJugador] = 63;
                     ActualizarInterfazGrafica(63, nombreJugador);
-                    MessageBox.Show("¡Felicidades! ¡Has ganado!");
-                    BtnDados.IsEnabled = false;
+                    MostrarPantallaVictoria();
                     return;
                 }
+
                 else
                 {
                     MessageBox.Show("¡De oca a oca y tiro porque me toca!");
@@ -290,25 +324,51 @@ namespace LaOcaClient
 
             if (_casillasMeta.Contains(posicion))
             {
-                MessageBox.Show("¡Felicidades! ¡Has ganado!");
-                BtnDados.IsEnabled = false;
+                _posicionesJugadores[nombreJugador] = 63;
+                ActualizarInterfazGrafica(63, nombreJugador);
+                MostrarPantallaVictoria();
                 return;
             }
+
             pasarTurnoSiguienteJugador();
         }
+
+        private void MostrarPantallaVictoria()
+        {
+            var jugadoresOrdenados = _casillasRecorridasPorJugador
+                .OrderByDescending(j => j.Value)
+                .ToList();
+
+            Victoria ventanaVictoria = new Victoria(jugadoresOrdenados);
+            ventanaVictoria.ShowDialog();
+        }
+
+
+        private List<Jugador> ObtenerJugadoresOrdenadosPorPosicion()
+        {
+            // Crear una lista de jugadores a partir del diccionario de jugadores en la sala
+            List<Jugador> jugadores = new List<Jugador>(_sala.Jugadores.Values);
+
+            // Ordenar la lista de jugadores por la posición en el tablero
+            jugadores.Sort((jugador1, jugador2) =>
+                _posicionesJugadores[jugador2.NombreUsuario].CompareTo(_posicionesJugadores[jugador1.NombreUsuario]));
+
+            return jugadores;
+        }
+
 
         private List<int> GenerarTrayectoria(int posicionActual, int nuevaPosicion)
         {
             var trayecto = new List<int>();
-            if (nuevaPosicion > posicionActual)
+
+            for (int i = posicionActual + 1; i <= nuevaPosicion && i <= 63; i++)
             {
-                for (int i = posicionActual + 1; i <= nuevaPosicion; i++)
-                {
-                    trayecto.Add(i);
-                }
+                trayecto.Add(i);
             }
+
             return trayecto;
         }
+
 
         private void ActualizarInterfazGrafica(int nuevaPosicion, string nombreJugador)
         {
