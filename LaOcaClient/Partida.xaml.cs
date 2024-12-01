@@ -11,9 +11,11 @@ using System.Windows.Media.Imaging;
 
 namespace LaOcaClient
 {
-    public partial class Partida : Window, IServicioPartidaCallback
+    public partial class Partida : Window, IVentanaSala, IServicioPartidaCallback
     {
-        private LaOcaService.Sala _sala;
+        public LaOcaService.Sala SalaActual { get; set; }
+        public ServicioActualizacionJugadoresEnSalaClient ClienteJugadoresEnSala { get; set; }
+
         private LaOcaService.ServicioPartidaClient _clientePartida;
         private IServicioJugabilidad _servicioJugabilidad;
         private Dictionary<int, Point> _posicionesCasillas;
@@ -47,7 +49,7 @@ namespace LaOcaClient
             _servicioJugabilidad = new ServicioJugabilidadClient();
             _posicionesCasillas = ObtenerPosicionesCasillas();
             _posicionesJugadores = new Dictionary<string, int>();
-            this._sala = sala;
+            this.SalaActual = sala;
 
             _gridsJugadores = new Grid[4];
             _gridsJugadores[0] = gridJugador1;
@@ -64,16 +66,16 @@ namespace LaOcaClient
         {
             InstanceContext contexto = new InstanceContext(this);
             _clientePartida = new LaOcaService.ServicioPartidaClient(contexto);
-            _clientePartida.AgregarCanalCallbackPartida(SingletonJugador.Instance.Jugador.NombreUsuario, _sala.Codigo);
+            _clientePartida.AgregarCanalCallbackPartida(SingletonJugador.Instance.Jugador.NombreUsuario, SalaActual.Codigo);
         }
 
         private void MostrarJugadoresEnPartida()
         {
             Point posicionInicial = _posicionesCasillas[0];
 
-            for (int i = 0; i < _sala.Jugadores.Count; i++)
+            for (int i = 0; i < SalaActual.Jugadores.Count; i++)
             {
-                Jugador jugador = _sala.Jugadores[_sala.Partida.NombresDeJugadoresEnOrdenDeTurnos[i]];
+                Jugador jugador = SalaActual.Jugadores[SalaActual.Partida.NombresDeJugadoresEnOrdenDeTurnos[i]];
 
                 string fichaPath = fichasDisponibles[i % fichasDisponibles.Count];
                 Image ficha = new Image();
@@ -82,11 +84,7 @@ namespace LaOcaClient
                 ficha.Height = 85;
                 _fichasPorJugador[jugador.NombreUsuario] = ficha;
 
-                JugadorEnSala jugadorEnSala = new JugadorEnSala(jugador, _sala.Codigo);
-                if (SingletonJugador.Instance.Jugador.NombreUsuario.Equals(_sala.NombreHost))
-                {
-                    jugadorEnSala.CargarOpcionExpulsar();
-                }
+                JugadorEnSala jugadorEnSala = new JugadorEnSala(jugador, this);
                 _gridsJugadores[i].Children.Add(jugadorEnSala);
                 _posicionesJugadores[jugador.NombreUsuario] = 0;
 
@@ -100,7 +98,7 @@ namespace LaOcaClient
 
         private void MostrarJugadorEnTurno()
         {
-            string nombreJugadorEnTurno = _sala.Partida.NombreJugadorEnTurno;
+            string nombreJugadorEnTurno = SalaActual.Partida.NombreJugadorEnTurno;
             lbNombreJugadorEnTurno.Content = nombreJugadorEnTurno;
 
             if (nombreJugadorEnTurno.Equals(SingletonJugador.Instance.Jugador.NombreUsuario))
@@ -123,7 +121,7 @@ namespace LaOcaClient
 
             if (_posicionesJugadores.TryGetValue(nombreJugador, out int nuevaPosicion))
             {
-                Jugador jugador = _sala.Jugadores[nombreJugador];
+                Jugador jugador = SalaActual.Jugadores[nombreJugador];
 
                 if (jugador.TurnosPerdidos > 0)
                 {
@@ -237,10 +235,10 @@ namespace LaOcaClient
             string nombreJugador = SingletonJugador.Instance.Jugador.NombreUsuario;
             try
             {
-                if (_sala.Partida.NombreJugadorEnTurno == nombreJugador)
+                if (SalaActual.Partida.NombreJugadorEnTurno == nombreJugador)
                 {
-                    int posicionJugador = Array.IndexOf(_sala.Partida.NombresDeJugadoresEnOrdenDeTurnos, nombreJugador);
-                    await _clientePartida.PasarTurnoASiguienteJugadorAsync(posicionJugador, _sala.Codigo);
+                    int posicionJugador = Array.IndexOf(SalaActual.Partida.NombresDeJugadoresEnOrdenDeTurnos, nombreJugador);
+                    await _clientePartida.PasarTurnoASiguienteJugadorAsync(posicionJugador, SalaActual.Codigo);
                 }
             }
             catch (Exception ex)
@@ -280,7 +278,7 @@ namespace LaOcaClient
 
                 _posicionesJugadores[nombreJugador] = nuevaPosicion;
                 ActualizarInterfazGrafica(nuevaPosicion, nombreJugador);
-                _servicioJugabilidad.JugarTurno(pasos, _sala.Codigo, nombreJugador);
+                _servicioJugabilidad.JugarTurno(pasos, SalaActual.Codigo, nombreJugador);
             }
         }
 
@@ -392,7 +390,7 @@ namespace LaOcaClient
 
         public void MostrarNuevoJugadorEnTurno(string nombreNuevoJugadorEnTurno)
         {
-            _sala.Partida.NombreJugadorEnTurno = nombreNuevoJugadorEnTurno;
+            SalaActual.Partida.NombreJugadorEnTurno = nombreNuevoJugadorEnTurno;
             lbNombreJugadorEnTurno.Content = nombreNuevoJugadorEnTurno;
 
             if (nombreNuevoJugadorEnTurno.Equals(SingletonJugador.Instance.Jugador.NombreUsuario))
@@ -407,6 +405,21 @@ namespace LaOcaClient
                 ventanaTurno.Show();
                 BtnDados.IsEnabled = false;
             }
+        }
+
+        public void MostrarDesconexionJugador(string nombreJugador)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ExpulsarAMenúPrincipal(string motivo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ActualizarEstadoAmistad(string nombreJugadorEmisor)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -22,18 +22,19 @@ namespace LaOcaClient
     /// <summary>
     /// Interaction logic for Sala.xaml
     /// </summary>
-    public partial class Sala : Window, IServicioChatCallback, IServicioSalaCallback
+    public partial class Sala : Window, IVentanaSala, IServicioChatCallback, IServicioSalaCallback
     {
-        public LaOcaService.Sala sala;
+        public LaOcaService.Sala SalaActual { get; set; }
+        public ServicioActualizacionJugadoresEnSalaClient ClienteJugadoresEnSala {  get; set; }
 
-        private InstanceContext contexto;
-        private LaOcaService.ServicioChatClient clienteChat;
-        private LaOcaService.ServicioSalaClient clienteSala;
+        private InstanceContext _contexto;
+        private LaOcaService.ServicioChatClient _clienteChat;
+        private LaOcaService.ServicioSalaClient _clienteSala;
 
-        private Grid[] gridsJugadores;
-        private JugadorEnSala[] jugadoresEnSala;
+        private Grid[] _gridsJugadores;
+        private JugadorEnSala[] _jugadoresEnSala;
 
-        private Social ventanaSocial;
+        private Social _ventanaSocial;
         private bool _ventanaEstaAbierta = true;
 
         public Sala()
@@ -59,9 +60,9 @@ namespace LaOcaClient
         {
             InitializeComponent();
 
-            this.sala = sala;
-            lbNombreSala.Content = sala.Nombre;
-            lbCodigoSala.Content = sala.Codigo;
+            this.SalaActual = sala;
+            lbNombreSala.Content = SalaActual.Nombre;
+            lbCodigoSala.Content = SalaActual.Codigo;
 
             PrepararSala();
             MostrarJugadoresEnSala();
@@ -71,17 +72,18 @@ namespace LaOcaClient
 
         private void PrepararSala()
         {
-            gridsJugadores = new Grid[4];
-            gridsJugadores[0] = gridJugadorSala1;
-            gridsJugadores[1] = gridJugadorSala2;
-            gridsJugadores[2] = gridJugadorSala3;
-            gridsJugadores[3] = gridJugadorSala4;
+            _gridsJugadores = new Grid[4];
+            _gridsJugadores[0] = gridJugadorSala1;
+            _gridsJugadores[1] = gridJugadorSala2;
+            _gridsJugadores[2] = gridJugadorSala3;
+            _gridsJugadores[3] = gridJugadorSala4;
 
-            jugadoresEnSala = new JugadorEnSala[4];
+            _jugadoresEnSala = new JugadorEnSala[4];
 
-            contexto = new InstanceContext(this);
-            clienteChat = new LaOcaService.ServicioChatClient(contexto);
-            clienteSala = new LaOcaService.ServicioSalaClient(contexto);
+            _contexto = new InstanceContext(this);
+            _clienteChat = new LaOcaService.ServicioChatClient(_contexto);
+            _clienteSala = new LaOcaService.ServicioSalaClient(_contexto);
+            ClienteJugadoresEnSala = new LaOcaService.ServicioActualizacionJugadoresEnSalaClient(_contexto);
         }
 
         private void CrearSala(string nombreSala, string visibilidad)
@@ -97,7 +99,7 @@ namespace LaOcaClient
                 NombreHost = SingletonJugador.Instance.Jugador.NombreUsuario
             };
             nuevaSala.Jugadores.Add(SingletonJugador.Instance.Jugador.NombreUsuario, SingletonJugador.Instance.Jugador);
-            sala = nuevaSala;
+            SalaActual = nuevaSala;
 
             lbNombreSala.Content = nuevaSala.Nombre;
             lbCodigoSala.Content = nuevaSala.Codigo;
@@ -106,7 +108,8 @@ namespace LaOcaClient
 
             try
             {
-                resultadoAgregarSala = clienteSala.AgregarNuevaSala(nuevaSala);
+                resultadoAgregarSala = _clienteSala.AgregarNuevaSala(nuevaSala);
+                ClienteJugadoresEnSala.AgregarCanalCallbackActualizacionJugadoresEnSala(SingletonJugador.Instance.Jugador.NombreUsuario, SalaActual.Codigo);
 
                 if (resultadoAgregarSala == 0)
                 {
@@ -126,30 +129,31 @@ namespace LaOcaClient
 
         private void MostrarPrimerJugador()
         {
-            JugadorEnSala jugadorSala = new JugadorEnSala(SingletonJugador.Instance.Jugador, sala.Codigo);
-            gridJugadorSala1.Children.Add(jugadorSala);
+            JugadorEnSala jugadorSala = new JugadorEnSala(SingletonJugador.Instance.Jugador, this);
+            _gridsJugadores[0].Children.Add(jugadorSala);
+            _jugadoresEnSala[0] = jugadorSala;
         }
 
         private void MostrarJugadoresEnSala()
         {
-            JugadorEnSala hostEnSala = new JugadorEnSala(sala.Jugadores[sala.NombreHost], sala.Codigo);
-            gridsJugadores[0].Children.Add(hostEnSala);
-            jugadoresEnSala[0] = hostEnSala;
+            JugadorEnSala hostEnSala = new JugadorEnSala(SalaActual.Jugadores[SalaActual.NombreHost], this);
+            _gridsJugadores[0].Children.Add(hostEnSala);
+            _jugadoresEnSala[0] = hostEnSala;
 
-            JugadorEnSala jugadorSala = new JugadorEnSala(SingletonJugador.Instance.Jugador, sala.Codigo);
-            gridsJugadores[sala.Jugadores.Count].Children.Add(jugadorSala);
-            jugadoresEnSala[sala.Jugadores.Count] = jugadorSala;
+            JugadorEnSala jugadorSala = new JugadorEnSala(SingletonJugador.Instance.Jugador, this);
+            _gridsJugadores[SalaActual.Jugadores.Count].Children.Add(jugadorSala);
+            _jugadoresEnSala[SalaActual.Jugadores.Count] = jugadorSala;
 
             int posicion = 1;
 
-            foreach (var parJugador in sala.Jugadores)
+            foreach (var parJugador in SalaActual.Jugadores)
             {
-                if (!parJugador.Key.Equals(SingletonJugador.Instance.Jugador.NombreUsuario) && !parJugador.Key.Equals(sala.NombreHost))
+                if (!parJugador.Key.Equals(SingletonJugador.Instance.Jugador.NombreUsuario) && !parJugador.Key.Equals(SalaActual.NombreHost))
                 {
-                    JugadorEnSala jugadorEnSala = new JugadorEnSala(parJugador.Value, sala.Codigo);
+                    JugadorEnSala jugadorEnSala = new JugadorEnSala(parJugador.Value, this);
                    
-                    gridsJugadores[posicion].Children.Add(jugadorEnSala);
-                    jugadoresEnSala[posicion] = jugadorEnSala;
+                    _gridsJugadores[posicion].Children.Add(jugadorEnSala);
+                    _jugadoresEnSala[posicion] = jugadorEnSala;
 
                     posicion++;
                 }
@@ -172,7 +176,7 @@ namespace LaOcaClient
 
                 try
                 {
-                    esCodigoUnico = clienteSala.VerificarCodigoSalaEsUnico(codigoSala);
+                    esCodigoUnico = _clienteSala.VerificarCodigoSalaEsUnico(codigoSala);
                 }
                 catch (TimeoutException)
                 {
@@ -189,11 +193,12 @@ namespace LaOcaClient
 
         private void AgregarJugadorASala()
         {
-            sala.Jugadores.Add(SingletonJugador.Instance.Jugador.NombreUsuario, SingletonJugador.Instance.Jugador);
+            SalaActual.Jugadores.Add(SingletonJugador.Instance.Jugador.NombreUsuario, SingletonJugador.Instance.Jugador);
 
             try
             {
-                clienteSala.AgregarJugadorASala(SingletonJugador.Instance.Jugador, sala.Codigo);
+                _clienteSala.AgregarJugadorASala(SingletonJugador.Instance.Jugador, SalaActual.Codigo);
+                ClienteJugadoresEnSala.AgregarCanalCallbackActualizacionJugadoresEnSala(SingletonJugador.Instance.Jugador.NombreUsuario, SalaActual.Codigo);
             }
             catch (TimeoutException)
             {
@@ -213,7 +218,7 @@ namespace LaOcaClient
         {
             try
             {
-                clienteChat.UnirseAlChat(SingletonJugador.Instance.Jugador.NombreUsuario, sala.Codigo);
+                _clienteChat.UnirseAlChat(SingletonJugador.Instance.Jugador.NombreUsuario, SalaActual.Codigo);
             }
             catch (TimeoutException)
             {
@@ -247,7 +252,7 @@ namespace LaOcaClient
                 {
                     try
                     {
-                        clienteChat.EnviarMensaje(SingletonJugador.Instance.Jugador.NombreUsuario, mensaje, sala.Codigo);
+                        _clienteChat.EnviarMensaje(SingletonJugador.Instance.Jugador.NombreUsuario, mensaje, SalaActual.Codigo);
                     }
                     catch (TimeoutException)
                     {
@@ -267,17 +272,13 @@ namespace LaOcaClient
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                JugadorEnSala nuevoJugadorEnSala = new JugadorEnSala(nuevoJugador, sala.Codigo);
-                if (SingletonJugador.Instance.Jugador.NombreUsuario.Equals(sala.NombreHost))
-                {
-                    nuevoJugadorEnSala.CargarOpcionExpulsar();
-                }
-                gridsJugadores[sala.Jugadores.Count].Children.Add(nuevoJugadorEnSala);
-                jugadoresEnSala[sala.Jugadores.Count] = nuevoJugadorEnSala;
+                JugadorEnSala nuevoJugadorEnSala = new JugadorEnSala(nuevoJugador, this);
+                _gridsJugadores[SalaActual.Jugadores.Count].Children.Add(nuevoJugadorEnSala);
+                _jugadoresEnSala[SalaActual.Jugadores.Count] = nuevoJugadorEnSala;
 
-                sala.Jugadores.Add(nuevoJugador.NombreUsuario, nuevoJugador);
+                SalaActual.Jugadores.Add(nuevoJugador.NombreUsuario, nuevoJugador);
 
-                if (sala.Jugadores.Count > 1)
+                if (SalaActual.Jugadores.Count > 1)
                 {
                     btnIniciarPartida.IsEnabled = true;
                 }
@@ -296,13 +297,13 @@ namespace LaOcaClient
 
         private void IniciarPartida(object sender, RoutedEventArgs e)
         {
-            if (sala.Jugadores.Count >= 2)
+            if (SalaActual.Jugadores.Count >= 2)
             {
-                LaOcaService.Partida nuevaPartida = clienteSala.IniciarPartida(sala.Codigo);
+                LaOcaService.Partida nuevaPartida = _clienteSala.IniciarPartida(SalaActual.Codigo);
 
-                sala.Partida = nuevaPartida;
+                SalaActual.Partida = nuevaPartida;
 
-                Partida ventanaPartida = new Partida(sala);
+                Partida ventanaPartida = new Partida(SalaActual);
                 this.Close();
                 ventanaPartida.ShowDialog();
             }
@@ -314,9 +315,9 @@ namespace LaOcaClient
 
         public void MostrarVentanaDePartida(LaOcaService.Partida partida)
         {
-            sala.Partida = partida;
+            SalaActual.Partida = partida;
 
-            Partida ventanaPartida = new Partida(sala);
+            Partida ventanaPartida = new Partida(SalaActual);
             this.Close();
             ventanaPartida.ShowDialog();
         }
@@ -327,13 +328,13 @@ namespace LaOcaClient
 
             if (resultado == MessageBoxResult.Yes)
             {
-                if (!SingletonJugador.Instance.Jugador.NombreUsuario.Equals(sala.NombreHost))
+                if (!SingletonJugador.Instance.Jugador.NombreUsuario.Equals(SalaActual.NombreHost))
                 {
-                    clienteSala.NotificarDesconexion(SingletonJugador.Instance.Jugador.NombreUsuario, sala.Codigo);
+                    ClienteJugadoresEnSala.NotificarDesconexion(SingletonJugador.Instance.Jugador.NombreUsuario, SalaActual.Codigo);
                 }
                 else
                 {
-                    clienteSala.EliminarSala(sala.Codigo);
+                    ClienteJugadoresEnSala.EliminarSala(SalaActual.Codigo);
                 }
 
                 MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
@@ -344,35 +345,35 @@ namespace LaOcaClient
 
         public void MostrarDesconexionJugador(string nombreJugadorDesconectado)
         {
-            sala.Jugadores.Remove(nombreJugadorDesconectado);
+            SalaActual.Jugadores.Remove(nombreJugadorDesconectado);
 
             int posicionJugadorDesconectado = 3;
 
-            for (int i = sala.Jugadores.Count; i >= 1; i--)
+            for (int i = SalaActual.Jugadores.Count; i >= 1; i--)
             {
-                if (jugadoresEnSala[i].jugadorEnSala.NombreUsuario.Equals(nombreJugadorDesconectado))
+                if (_jugadoresEnSala[i].jugadorEnSala.NombreUsuario.Equals(nombreJugadorDesconectado))
                 {
                     posicionJugadorDesconectado = i;
-                    gridsJugadores[i].Children.Clear();
-                    jugadoresEnSala[i] = null;
+                    _gridsJugadores[i].Children.Clear();
+                    _jugadoresEnSala[i] = null;
 
                     break;
                 }
             }
 
-            for (int i = posicionJugadorDesconectado;  i < sala.Jugadores.Count; i++)
+            for (int i = posicionJugadorDesconectado;  i < SalaActual.Jugadores.Count; i++)
             {
-                JugadorEnSala jugadorEnSalaTemp = jugadoresEnSala[i + 1];
+                JugadorEnSala jugadorEnSalaTemp = _jugadoresEnSala[i + 1];
 
-                gridsJugadores[i + 1].Children.Clear();
-                gridsJugadores[i].Children.Add(jugadorEnSalaTemp);
-                jugadoresEnSala[i] = jugadoresEnSala[i + 1];
+                _gridsJugadores[i + 1].Children.Clear();
+                _gridsJugadores[i].Children.Add(jugadorEnSalaTemp);
+                _jugadoresEnSala[i] = _jugadoresEnSala[i + 1];
             }
 
-            gridsJugadores[sala.Jugadores.Count].Children.Clear();
-            jugadoresEnSala[sala.Jugadores.Count] = null;
+            _gridsJugadores[SalaActual.Jugadores.Count].Children.Clear();
+            _jugadoresEnSala[SalaActual.Jugadores.Count] = null;
 
-            if (sala.Jugadores.Count < 2)
+            if (SalaActual.Jugadores.Count < 2)
             {
                 btnIniciarPartida.IsEnabled = false;
             }
@@ -383,7 +384,7 @@ namespace LaOcaClient
             MessageBox.Show(motivo, "Has sido expulsado de la sala", MessageBoxButton.OK, MessageBoxImage.Information);
 
             MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
-            ventanaSocial?.Close();
+            _ventanaSocial?.Close();
             _ventanaEstaAbierta = false;
             this.Close();
             ventanaMenuPrincipal.ShowDialog();
@@ -392,13 +393,28 @@ namespace LaOcaClient
         private void MostrarAmigos(object sender, RoutedEventArgs e)
         {
             Social ventanaAmigos = new Social(this);
-            this.ventanaSocial = ventanaAmigos;
+            this._ventanaSocial = ventanaAmigos;
 
             this.Hide();
             ventanaAmigos.ShowDialog();
             if (_ventanaEstaAbierta)
             {
                 this.Show();
+            }
+        }
+
+        public void ActualizarEstadoAmistad(string nombreJugadorEmisor)
+        {
+            for (int i = 0; i < SalaActual.Jugadores.Count; i++)
+            {
+                if (_jugadoresEnSala[i].jugadorEnSala.NombreUsuario.Equals(nombreJugadorEmisor))
+                {
+                    ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
+                    Amistad amistad = clienteAmistad.RecuperarAmistad(SingletonJugador.Instance.Jugador.IdJugador, _jugadoresEnSala[i].jugadorEnSala.IdJugador);
+
+                    _jugadoresEnSala[i].ActualizarOpcionesDeMenuPopupCallback(amistad.Estado);
+                    break;
+                }
             }
         }
     }

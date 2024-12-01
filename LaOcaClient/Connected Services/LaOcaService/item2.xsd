@@ -16,6 +16,7 @@
       <xs:element minOccurs="0" name="CanalCallbackBuzon" nillable="true" type="xs:anyType" />
       <xs:element minOccurs="0" name="CanalCallbackChat" nillable="true" type="xs:anyType" />
       <xs:element minOccurs="0" name="CanalCallbackJugadoresEnLinea" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="CanalCallbackJugadoresEnSala" nillable="true" type="xs:anyType" />
       <xs:element minOccurs="0" name="CanalCallbackPartida" nillable="true" type="xs:anyType" />
       <xs:element minOccurs="0" name="CanalCallbackSala" nillable="true" type="xs:anyType" />
       <xs:element minOccurs="0" name="Ficha" nillable="true" type="tns:Ficha" />

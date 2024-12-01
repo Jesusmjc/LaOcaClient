@@ -24,12 +24,13 @@ namespace LaOcaClient.UserControls
     {
         public Jugador jugadorEnSala;
 
+        private IVentanaSala _ventanaPadre;
+
         private ServicioAmistadClient _clienteAmistad;
         private Amistad _amistad;
-        private string _codigoSala;
         private bool _esJugadorActualHost = false;
 
-        public JugadorEnSala(Jugador jugadorEnSala, string codigoSala)
+        public JugadorEnSala(Jugador jugadorEnSala, IVentanaSala ventanaSala)
         {
             InitializeComponent();
 
@@ -38,7 +39,7 @@ namespace LaOcaClient.UserControls
             lbNombreJugador.Content = jugadorEnSala.NombreUsuario;
 
             _clienteAmistad = new ServicioAmistadClient();
-            _codigoSala = codigoSala;
+            _ventanaPadre = ventanaSala;
 
             if (SingletonJugador.Instance.Jugador.Equals(jugadorEnSala))
             {
@@ -46,16 +47,22 @@ namespace LaOcaClient.UserControls
             }
             else
             {
-                RecuperarAmistadConJugador();
-                CargarMenuPopup();
+                AjustarMenuPopupSegunAmistad();
+            }
+
+
+            if (SingletonJugador.Instance.Jugador.Equals(_ventanaPadre.SalaActual.NombreHost))
+            {
+                _esJugadorActualHost = true;
             }
         }
 
-        private void RecuperarAmistadConJugador()
+        public void AjustarMenuPopupSegunAmistad()
         {
             try
             {
                 _amistad = _clienteAmistad.RecuperarAmistad(SingletonJugador.Instance.Jugador.IdJugador, jugadorEnSala.IdJugador);
+                CargarMenuPopup();
             }
             catch (FaultException<AmistadException> ex)
             {
@@ -73,24 +80,31 @@ namespace LaOcaClient.UserControls
 
         private void CargarMenuPopup()
         {
+            imgMasOpciones_MenuContextual.Items.Clear();
+
             switch (_amistad.Estado)
             {
                 case "Solicitud":
-                    CargarOpcionBloquear();
-                    break;
-
                 case "Amigos":
                     CargarOpcionBloquear();
                     break;
 
                 case "Bloqueo":
-                    CargarOpcionDesbloquear();
+                    if (_amistad.IdJugadorReceptor != SingletonJugador.Instance.Jugador.IdJugador)
+                    {
+                        CargarOpcionDesbloquear();
+                    }
                     break;
 
-                default:
+                default: // "Rechazada" o No existe amistad
                     CargarOpcionEnviarSolicitudAmistad();
                     CargarOpcionBloquear();
                     break;
+            }
+
+            if (_esJugadorActualHost)
+            {
+                CargarOpcionExpulsar();
             }
         }
 
@@ -106,8 +120,6 @@ namespace LaOcaClient.UserControls
             MenuItem opcionBloquearJugador = new MenuItem { Header = "Bloquear" };
             opcionBloquearJugador.Click += (s, args) => BloquearJugador();
             imgMasOpciones_MenuContextual.Items.Add(opcionBloquearJugador);
-
-            _esJugadorActualHost = true;
         }
 
         private void CargarOpcionDesbloquear()
@@ -117,7 +129,7 @@ namespace LaOcaClient.UserControls
             imgMasOpciones_MenuContextual.Items.Add(opcionDesbloquearJugador);
         }
 
-        public void CargarOpcionExpulsar()
+        private void CargarOpcionExpulsar()
         {
             MenuItem opcionExpulsar = new MenuItem { Header = "Expulsar" };
             opcionExpulsar.Click += (s, args) => ExpulsarJugador();
@@ -126,15 +138,31 @@ namespace LaOcaClient.UserControls
 
         private void MostrarMenuPopup(object sender, MouseButtonEventArgs e)
         {
-            imgMasOpciones_MenuContextual.IsOpen = true;
+            if (_amistad.Estado == EstadoAmistad.BLOQUEO && _amistad.IdJugadorReceptor == SingletonJugador.Instance.Jugador.IdJugador)
+            {
+                MessageBox.Show("Parece que el jugador te ha bloqueado.", "Estás bloqueado", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                imgMasOpciones_MenuContextual.IsOpen = true;
+            }
         }
 
         private void EnviarSolicitudAmistad()
         {
             try
             {
-                _clienteAmistad.EnviarSolicitudAmistad(SingletonJugador.Instance.Jugador, jugadorEnSala);
-                ActualizarOpcionesDeMenúPopup(EstadoAmistad.SOLICITUD);
+                if (_amistad.IdAmistad == 0)
+                {
+                    _clienteAmistad.EnviarSolicitudAmistad(SingletonJugador.Instance.Jugador, jugadorEnSala);
+                }
+                else
+                {
+                    _clienteAmistad.ActualizarSolicitudAmistad(_amistad, EstadoAmistad.SOLICITUD);
+                }
+                
+                _ventanaPadre.ClienteJugadoresEnSala.NotificarCambioEnAmistad(_ventanaPadre.SalaActual.Codigo, SingletonJugador.Instance.Jugador.NombreUsuario, jugadorEnSala.NombreUsuario);
+                ActualizarOpcionesDeMenuPopupLocal(EstadoAmistad.SOLICITUD);
             }
             catch (FaultException<AmistadException> ex)
             {
@@ -144,9 +172,9 @@ namespace LaOcaClient.UserControls
             {
                 MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (CommunicationException)
+            catch (CommunicationException ex)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde." + ex.Message, "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -154,8 +182,15 @@ namespace LaOcaClient.UserControls
         {
             try
             {
+                if (_amistad.IdJugadorReceptor.Equals(SingletonJugador.Instance.Jugador.IdJugador))
+                {
+                    _amistad.IdJugadorReceptor = _amistad.IdJugadorSolicitante;
+                    _amistad.IdJugadorSolicitante = SingletonJugador.Instance.Jugador.IdJugador;
+                }
+
                 _clienteAmistad.ActualizarSolicitudAmistad(_amistad, EstadoAmistad.BLOQUEO);
-                ActualizarOpcionesDeMenúPopup(EstadoAmistad.BLOQUEO);
+                _ventanaPadre.ClienteJugadoresEnSala.NotificarCambioEnAmistad(_ventanaPadre.SalaActual.Codigo, SingletonJugador.Instance.Jugador.NombreUsuario, jugadorEnSala.NombreUsuario);
+                ActualizarOpcionesDeMenuPopupLocal(EstadoAmistad.BLOQUEO);
             }
             catch (FaultException<AmistadException> ex)
             {
@@ -173,8 +208,7 @@ namespace LaOcaClient.UserControls
 
         private void ExpulsarJugador()
         {
-            ServicioExpulsionSalaClient clienteExpulsionSala = new ServicioExpulsionSalaClient();
-            clienteExpulsionSala.ExpulsarJugador(_codigoSala, jugadorEnSala.NombreUsuario);
+            _ventanaPadre.ClienteJugadoresEnSala?.ExpulsarJugador(_ventanaPadre.SalaActual.Codigo, jugadorEnSala.NombreUsuario);
         }
 
         private void DesbloquearJugador()
@@ -182,7 +216,8 @@ namespace LaOcaClient.UserControls
             try
             {
                 _clienteAmistad.ActualizarSolicitudAmistad(_amistad, EstadoAmistad.RECHAZADA);
-                ActualizarOpcionesDeMenúPopup(EstadoAmistad.RECHAZADA);
+                _ventanaPadre.ClienteJugadoresEnSala.NotificarCambioEnAmistad(_ventanaPadre.SalaActual.Codigo, SingletonJugador.Instance.Jugador.NombreUsuario, jugadorEnSala.NombreUsuario);
+                ActualizarOpcionesDeMenuPopupLocal(EstadoAmistad.RECHAZADA);
             }
             catch (FaultException<AmistadException> ex)
             {
@@ -198,16 +233,20 @@ namespace LaOcaClient.UserControls
             }
         }
 
-        private void ActualizarOpcionesDeMenúPopup(string nuevoEstadoAmistad)
+        public void ActualizarOpcionesDeMenuPopupLocal(string nuevoEstadoAmistad)
         {
             imgMasOpciones_MenuContextual.Items.Clear();
             _amistad.Estado = nuevoEstadoAmistad;
-            CargarMenuPopup();
 
-            if (_esJugadorActualHost)
-            {
-                CargarOpcionExpulsar();
-            }
+            CargarMenuPopup();
+        }
+
+        public void ActualizarOpcionesDeMenuPopupCallback(string nuevoEstadoAmistad)
+        {
+            imgMasOpciones_MenuContextual.Items.Clear();
+            _amistad = _clienteAmistad.RecuperarAmistad(SingletonJugador.Instance.Jugador.IdJugador, jugadorEnSala.IdJugador);
+
+            CargarMenuPopup();
         }
     }
 }

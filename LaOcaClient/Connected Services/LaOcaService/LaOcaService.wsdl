@@ -145,7 +145,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IServicioExpulsionSala_policy">
+  <wsp:Policy wsu:Id="NetTcpBinding_IServicioPartida_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
@@ -174,7 +174,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IServicioPartida_policy">
+  <wsp:Policy wsu:Id="NetTcpBinding_IServicioActualizacionJugadoresEnSala_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
@@ -462,29 +462,11 @@
   <wsdl:message name="IServicioSala_IniciarPartida_OutputMessage">
     <wsdl:part name="parameters" element="tns:IniciarPartidaResponse" />
   </wsdl:message>
-  <wsdl:message name="IServicioSala_NotificarDesconexion_InputMessage">
-    <wsdl:part name="parameters" element="tns:NotificarDesconexion" />
-  </wsdl:message>
-  <wsdl:message name="IServicioSala_NotificarDesconexion_OutputMessage">
-    <wsdl:part name="parameters" element="tns:NotificarDesconexionResponse" />
-  </wsdl:message>
-  <wsdl:message name="IServicioSala_EliminarSala_InputMessage">
-    <wsdl:part name="parameters" element="tns:EliminarSala" />
-  </wsdl:message>
-  <wsdl:message name="IServicioSala_EliminarSala_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EliminarSalaResponse" />
-  </wsdl:message>
   <wsdl:message name="IServicioSala_MostrarNuevoJugadorEnSala_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MostrarNuevoJugadorEnSala" />
   </wsdl:message>
   <wsdl:message name="IServicioSala_MostrarVentanaDePartida_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MostrarVentanaDePartida" />
-  </wsdl:message>
-  <wsdl:message name="IServicioSala_MostrarDesconexionJugador_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:MostrarDesconexionJugador" />
-  </wsdl:message>
-  <wsdl:message name="IServicioSala_ExpulsarAMenúPrincipal_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:ExpulsarAMenúPrincipal" />
   </wsdl:message>
   <wsdl:message name="IServicioRecuperarSala_RecuperarSala_InputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarSala" />
@@ -494,12 +476,6 @@
   </wsdl:message>
   <wsdl:message name="IServicioRecuperarSala_RecuperarSala_SalaExceptionFault_FaultMessage">
     <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/LaOcaService" name="detail" element="q2:SalaException" />
-  </wsdl:message>
-  <wsdl:message name="IServicioExpulsionSala_ExpulsarJugador_InputMessage">
-    <wsdl:part name="parameters" element="tns:ExpulsarJugador" />
-  </wsdl:message>
-  <wsdl:message name="IServicioExpulsionSala_ExpulsarJugador_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ExpulsarJugadorResponse" />
   </wsdl:message>
   <wsdl:message name="IServicioPartida_AgregarCanalCallbackPartida_InputMessage">
     <wsdl:part name="parameters" element="tns:AgregarCanalCallbackPartida" />
@@ -518,6 +494,45 @@
   </wsdl:message>
   <wsdl:message name="IServicioPartida_ActualizarPosicionFicha_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ActualizarPosicionFicha" />
+  </wsdl:message>
+  <wsdl:message name="IServicioActualizacionJugadoresEnSala_AgregarCanalCallbackActualizacionJugadoresEnSala_InputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarCanalCallbackActualizacionJugadoresEnSala" />
+  </wsdl:message>
+  <wsdl:message name="IServicioActualizacionJugadoresEnSala_AgregarCanalCallbackActualizacionJugadoresEnSala_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarCanalCallbackActualizacionJugadoresEnSalaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioActualizacionJugadoresEnSala_NotificarDesconexion_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotificarDesconexion" />
+  </wsdl:message>
+  <wsdl:message name="IServicioActualizacionJugadoresEnSala_NotificarDesconexion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NotificarDesconexionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioActualizacionJugadoresEnSala_EliminarSala_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarSala" />
+  </wsdl:message>
+  <wsdl:message name="IServicioActualizacionJugadoresEnSala_EliminarSala_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarSalaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioActualizacionJugadoresEnSala_ExpulsarJugador_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExpulsarJugador" />
+  </wsdl:message>
+  <wsdl:message name="IServicioActualizacionJugadoresEnSala_ExpulsarJugador_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExpulsarJugadorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioActualizacionJugadoresEnSala_NotificarCambioEnAmistad_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotificarCambioEnAmistad" />
+  </wsdl:message>
+  <wsdl:message name="IServicioActualizacionJugadoresEnSala_NotificarCambioEnAmistad_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NotificarCambioEnAmistadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioActualizacionJugadoresEnSala_MostrarDesconexionJugador_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MostrarDesconexionJugador" />
+  </wsdl:message>
+  <wsdl:message name="IServicioActualizacionJugadoresEnSala_ExpulsarAMenúPrincipal_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ExpulsarAMenúPrincipal" />
+  </wsdl:message>
+  <wsdl:message name="IServicioActualizacionJugadoresEnSala_ActualizarEstadoAmistad_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarEstadoAmistad" />
   </wsdl:message>
   <wsdl:message name="IServicioCuenta_CrearCuenta_InputMessage">
     <wsdl:part name="parameters" element="tns:CrearCuenta" />
@@ -770,25 +785,11 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioSala/IniciarPartida" message="tns:IServicioSala_IniciarPartida_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioSala/IniciarPartidaResponse" message="tns:IServicioSala_IniciarPartida_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="NotificarDesconexion">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioSala/NotificarDesconexion" message="tns:IServicioSala_NotificarDesconexion_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioSala/NotificarDesconexionResponse" message="tns:IServicioSala_NotificarDesconexion_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="EliminarSala">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioSala/EliminarSala" message="tns:IServicioSala_EliminarSala_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioSala/EliminarSalaResponse" message="tns:IServicioSala_EliminarSala_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="MostrarNuevoJugadorEnSala">
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioSala/MostrarNuevoJugadorEnSala" message="tns:IServicioSala_MostrarNuevoJugadorEnSala_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="MostrarVentanaDePartida">
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioSala/MostrarVentanaDePartida" message="tns:IServicioSala_MostrarVentanaDePartida_OutputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="MostrarDesconexionJugador">
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioSala/MostrarDesconexionJugador" message="tns:IServicioSala_MostrarDesconexionJugador_OutputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ExpulsarAMenúPrincipal">
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioSala/ExpulsarAMenúPrincipal" message="tns:IServicioSala_ExpulsarAMenúPrincipal_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IServicioRecuperarSala">
@@ -796,12 +797,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioRecuperarSala/RecuperarSala" message="tns:IServicioRecuperarSala_RecuperarSala_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioRecuperarSala/RecuperarSalaResponse" message="tns:IServicioRecuperarSala_RecuperarSala_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IServicioRecuperarSala/RecuperarSalaSalaExceptionFault" name="SalaExceptionFault" message="tns:IServicioRecuperarSala_RecuperarSala_SalaExceptionFault_FaultMessage" />
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:portType name="IServicioExpulsionSala">
-    <wsdl:operation name="ExpulsarJugador">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioExpulsionSala/ExpulsarJugador" message="tns:IServicioExpulsionSala_ExpulsarJugador_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioExpulsionSala/ExpulsarJugadorResponse" message="tns:IServicioExpulsionSala_ExpulsarJugador_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IServicioPartida">
@@ -818,6 +813,37 @@
     </wsdl:operation>
     <wsdl:operation name="ActualizarPosicionFicha">
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/ActualizarPosicionFicha" message="tns:IServicioPartida_ActualizarPosicionFicha_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IServicioActualizacionJugadoresEnSala">
+    <wsdl:operation name="AgregarCanalCallbackActualizacionJugadoresEnSala">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/AgregarCanalCallbackActualizacionJugadoresEnSala" message="tns:IServicioActualizacionJugadoresEnSala_AgregarCanalCallbackActualizacionJugadoresEnSala_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/AgregarCanalCallbackActualizacionJugadoresEnSalaResponse" message="tns:IServicioActualizacionJugadoresEnSala_AgregarCanalCallbackActualizacionJugadoresEnSala_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NotificarDesconexion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/NotificarDesconexion" message="tns:IServicioActualizacionJugadoresEnSala_NotificarDesconexion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/NotificarDesconexionResponse" message="tns:IServicioActualizacionJugadoresEnSala_NotificarDesconexion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarSala">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/EliminarSala" message="tns:IServicioActualizacionJugadoresEnSala_EliminarSala_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/EliminarSalaResponse" message="tns:IServicioActualizacionJugadoresEnSala_EliminarSala_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExpulsarJugador">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/ExpulsarJugador" message="tns:IServicioActualizacionJugadoresEnSala_ExpulsarJugador_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/ExpulsarJugadorResponse" message="tns:IServicioActualizacionJugadoresEnSala_ExpulsarJugador_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NotificarCambioEnAmistad">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/NotificarCambioEnAmistad" message="tns:IServicioActualizacionJugadoresEnSala_NotificarCambioEnAmistad_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/NotificarCambioEnAmistadResponse" message="tns:IServicioActualizacionJugadoresEnSala_NotificarCambioEnAmistad_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarDesconexionJugador">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/MostrarDesconexionJugador" message="tns:IServicioActualizacionJugadoresEnSala_MostrarDesconexionJugador_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExpulsarAMenúPrincipal">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/ExpulsarAMenúPrincipal" message="tns:IServicioActualizacionJugadoresEnSala_ExpulsarAMenúPrincipal_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarEstadoAmistad">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/ActualizarEstadoAmistad" message="tns:IServicioActualizacionJugadoresEnSala_ActualizarEstadoAmistad_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IServicioCuenta">
@@ -1064,24 +1090,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="NotificarDesconexion">
-      <soap12:operation soapAction="http://tempuri.org/IServicioSala/NotificarDesconexion" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="EliminarSala">
-      <soap12:operation soapAction="http://tempuri.org/IServicioSala/EliminarSala" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="MostrarNuevoJugadorEnSala">
       <soap12:operation soapAction="http://tempuri.org/IServicioSala/MostrarNuevoJugadorEnSala" style="document" />
       <wsdl:output>
@@ -1090,18 +1098,6 @@
     </wsdl:operation>
     <wsdl:operation name="MostrarVentanaDePartida">
       <soap12:operation soapAction="http://tempuri.org/IServicioSala/MostrarVentanaDePartida" style="document" />
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="MostrarDesconexionJugador">
-      <soap12:operation soapAction="http://tempuri.org/IServicioSala/MostrarDesconexionJugador" style="document" />
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ExpulsarAMenúPrincipal">
-      <soap12:operation soapAction="http://tempuri.org/IServicioSala/ExpulsarAMenúPrincipal" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
@@ -1121,19 +1117,6 @@
       <wsdl:fault name="SalaExceptionFault">
         <soap12:fault use="literal" name="SalaExceptionFault" namespace="" />
       </wsdl:fault>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:binding name="NetTcpBinding_IServicioExpulsionSala" type="tns:IServicioExpulsionSala">
-    <wsp:PolicyReference URI="#NetTcpBinding_IServicioExpulsionSala_policy" />
-    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="ExpulsarJugador">
-      <soap12:operation soapAction="http://tempuri.org/IServicioExpulsionSala/ExpulsarJugador" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="NetTcpBinding_IServicioPartida" type="tns:IServicioPartida">
@@ -1165,6 +1148,73 @@
     </wsdl:operation>
     <wsdl:operation name="ActualizarPosicionFicha">
       <soap12:operation soapAction="http://tempuri.org/IServicioPartida/ActualizarPosicionFicha" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IServicioActualizacionJugadoresEnSala" type="tns:IServicioActualizacionJugadoresEnSala">
+    <wsp:PolicyReference URI="#NetTcpBinding_IServicioActualizacionJugadoresEnSala_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="AgregarCanalCallbackActualizacionJugadoresEnSala">
+      <soap12:operation soapAction="http://tempuri.org/IServicioActualizacionJugadoresEnSala/AgregarCanalCallbackActualizacionJugadoresEnSala" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotificarDesconexion">
+      <soap12:operation soapAction="http://tempuri.org/IServicioActualizacionJugadoresEnSala/NotificarDesconexion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarSala">
+      <soap12:operation soapAction="http://tempuri.org/IServicioActualizacionJugadoresEnSala/EliminarSala" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExpulsarJugador">
+      <soap12:operation soapAction="http://tempuri.org/IServicioActualizacionJugadoresEnSala/ExpulsarJugador" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotificarCambioEnAmistad">
+      <soap12:operation soapAction="http://tempuri.org/IServicioActualizacionJugadoresEnSala/NotificarCambioEnAmistad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarDesconexionJugador">
+      <soap12:operation soapAction="http://tempuri.org/IServicioActualizacionJugadoresEnSala/MostrarDesconexionJugador" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExpulsarAMenúPrincipal">
+      <soap12:operation soapAction="http://tempuri.org/IServicioActualizacionJugadoresEnSala/ExpulsarAMenúPrincipal" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarEstadoAmistad">
+      <soap12:operation soapAction="http://tempuri.org/IServicioActualizacionJugadoresEnSala/ActualizarEstadoAmistad" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
@@ -1559,7 +1609,7 @@
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
-    <wsdl:port name="NetTcpBinding_IServicioExpulsionSala" binding="tns:NetTcpBinding_IServicioExpulsionSala">
+    <wsdl:port name="NetTcpBinding_IServicioPartida" binding="tns:NetTcpBinding_IServicioPartida">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
@@ -1568,7 +1618,7 @@
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
-    <wsdl:port name="NetTcpBinding_IServicioPartida" binding="tns:NetTcpBinding_IServicioPartida">
+    <wsdl:port name="NetTcpBinding_IServicioActualizacionJugadoresEnSala" binding="tns:NetTcpBinding_IServicioActualizacionJugadoresEnSala">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>

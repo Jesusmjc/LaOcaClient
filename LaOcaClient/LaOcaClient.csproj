@@ -68,6 +68,7 @@
     <Compile Include="ConfiguracionSala.xaml.cs">
       <DependentUpon>ConfiguracionSala.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IVentanaSala.cs" />
     <Compile Include="Partida.xaml.cs">
       <DependentUpon>Partida.xaml</DependentUpon>
     </Compile>

@@ -143,6 +143,9 @@ namespace LaOcaClient.LaOcaService {
         private object CanalCallbackJugadoresEnLineaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object CanalCallbackJugadoresEnSalaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private object CanalCallbackPartidaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -233,6 +236,19 @@ namespace LaOcaClient.LaOcaService {
                 if ((object.ReferenceEquals(this.CanalCallbackJugadoresEnLineaField, value) != true)) {
                     this.CanalCallbackJugadoresEnLineaField = value;
                     this.RaisePropertyChanged("CanalCallbackJugadoresEnLinea");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object CanalCallbackJugadoresEnSala {
+            get {
+                return this.CanalCallbackJugadoresEnSalaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CanalCallbackJugadoresEnSalaField, value) != true)) {
+                    this.CanalCallbackJugadoresEnSalaField = value;
+                    this.RaisePropertyChanged("CanalCallbackJugadoresEnSala");
                 }
             }
         }
@@ -1210,18 +1226,6 @@ namespace LaOcaClient.LaOcaService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSala/IniciarPartida", ReplyAction="http://tempuri.org/IServicioSala/IniciarPartidaResponse")]
         System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Partida> IniciarPartidaAsync(string codigoSala);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSala/NotificarDesconexion", ReplyAction="http://tempuri.org/IServicioSala/NotificarDesconexionResponse")]
-        void NotificarDesconexion(string nombreJugadorDesconectado, string codigoSala);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSala/NotificarDesconexion", ReplyAction="http://tempuri.org/IServicioSala/NotificarDesconexionResponse")]
-        System.Threading.Tasks.Task NotificarDesconexionAsync(string nombreJugadorDesconectado, string codigoSala);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSala/EliminarSala", ReplyAction="http://tempuri.org/IServicioSala/EliminarSalaResponse")]
-        void EliminarSala(string codigoSala);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioSala/EliminarSala", ReplyAction="http://tempuri.org/IServicioSala/EliminarSalaResponse")]
-        System.Threading.Tasks.Task EliminarSalaAsync(string codigoSala);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1232,12 +1236,6 @@ namespace LaOcaClient.LaOcaService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioSala/MostrarVentanaDePartida")]
         void MostrarVentanaDePartida(LaOcaClient.LaOcaService.Partida partida);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioSala/MostrarDesconexionJugador")]
-        void MostrarDesconexionJugador(string nombreJugador);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioSala/ExpulsarAMenúPrincipal")]
-        void ExpulsarAMenúPrincipal(string motivo);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1299,22 +1297,6 @@ namespace LaOcaClient.LaOcaService {
         public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Partida> IniciarPartidaAsync(string codigoSala) {
             return base.Channel.IniciarPartidaAsync(codigoSala);
         }
-        
-        public void NotificarDesconexion(string nombreJugadorDesconectado, string codigoSala) {
-            base.Channel.NotificarDesconexion(nombreJugadorDesconectado, codigoSala);
-        }
-        
-        public System.Threading.Tasks.Task NotificarDesconexionAsync(string nombreJugadorDesconectado, string codigoSala) {
-            return base.Channel.NotificarDesconexionAsync(nombreJugadorDesconectado, codigoSala);
-        }
-        
-        public void EliminarSala(string codigoSala) {
-            base.Channel.EliminarSala(codigoSala);
-        }
-        
-        public System.Threading.Tasks.Task EliminarSalaAsync(string codigoSala) {
-            return base.Channel.EliminarSalaAsync(codigoSala);
-        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1362,53 +1344,6 @@ namespace LaOcaClient.LaOcaService {
         
         public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Sala> RecuperarSalaAsync(string codigoSala) {
             return base.Channel.RecuperarSalaAsync(codigoSala);
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioExpulsionSala")]
-    public interface IServicioExpulsionSala {
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioExpulsionSala/ExpulsarJugador", ReplyAction="http://tempuri.org/IServicioExpulsionSala/ExpulsarJugadorResponse")]
-        void ExpulsarJugador(string codigoSala, string nombreJugador);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioExpulsionSala/ExpulsarJugador", ReplyAction="http://tempuri.org/IServicioExpulsionSala/ExpulsarJugadorResponse")]
-        System.Threading.Tasks.Task ExpulsarJugadorAsync(string codigoSala, string nombreJugador);
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServicioExpulsionSalaChannel : LaOcaClient.LaOcaService.IServicioExpulsionSala, System.ServiceModel.IClientChannel {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServicioExpulsionSalaClient : System.ServiceModel.ClientBase<LaOcaClient.LaOcaService.IServicioExpulsionSala>, LaOcaClient.LaOcaService.IServicioExpulsionSala {
-        
-        public ServicioExpulsionSalaClient() {
-        }
-        
-        public ServicioExpulsionSalaClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
-        }
-        
-        public ServicioExpulsionSalaClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
-        }
-        
-        public ServicioExpulsionSalaClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
-        }
-        
-        public ServicioExpulsionSalaClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
-        }
-        
-        public void ExpulsarJugador(string codigoSala, string nombreJugador) {
-            base.Channel.ExpulsarJugador(codigoSala, nombreJugador);
-        }
-        
-        public System.Threading.Tasks.Task ExpulsarJugadorAsync(string codigoSala, string nombreJugador) {
-            return base.Channel.ExpulsarJugadorAsync(codigoSala, nombreJugador);
         }
     }
     
@@ -1481,6 +1416,134 @@ namespace LaOcaClient.LaOcaService {
         
         public System.Threading.Tasks.Task<string> PasarTurnoASiguienteJugadorAsync(int posicionJugadorTurnoActual, string codigoSala) {
             return base.Channel.PasarTurnoASiguienteJugadorAsync(posicionJugadorTurnoActual, codigoSala);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioActualizacionJugadoresEnSala", CallbackContract=typeof(LaOcaClient.LaOcaService.IServicioActualizacionJugadoresEnSalaCallback))]
+    public interface IServicioActualizacionJugadoresEnSala {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/AgregarCanalCallbackActu" +
+            "alizacionJugadoresEnSala", ReplyAction="http://tempuri.org/IServicioActualizacionJugadoresEnSala/AgregarCanalCallbackActu" +
+            "alizacionJugadoresEnSalaResponse")]
+        void AgregarCanalCallbackActualizacionJugadoresEnSala(string nombreJugador, string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/AgregarCanalCallbackActu" +
+            "alizacionJugadoresEnSala", ReplyAction="http://tempuri.org/IServicioActualizacionJugadoresEnSala/AgregarCanalCallbackActu" +
+            "alizacionJugadoresEnSalaResponse")]
+        System.Threading.Tasks.Task AgregarCanalCallbackActualizacionJugadoresEnSalaAsync(string nombreJugador, string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/NotificarDesconexion", ReplyAction="http://tempuri.org/IServicioActualizacionJugadoresEnSala/NotificarDesconexionResp" +
+            "onse")]
+        void NotificarDesconexion(string nombreJugadorDesconectado, string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/NotificarDesconexion", ReplyAction="http://tempuri.org/IServicioActualizacionJugadoresEnSala/NotificarDesconexionResp" +
+            "onse")]
+        System.Threading.Tasks.Task NotificarDesconexionAsync(string nombreJugadorDesconectado, string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/EliminarSala", ReplyAction="http://tempuri.org/IServicioActualizacionJugadoresEnSala/EliminarSalaResponse")]
+        void EliminarSala(string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/EliminarSala", ReplyAction="http://tempuri.org/IServicioActualizacionJugadoresEnSala/EliminarSalaResponse")]
+        System.Threading.Tasks.Task EliminarSalaAsync(string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/ExpulsarJugador", ReplyAction="http://tempuri.org/IServicioActualizacionJugadoresEnSala/ExpulsarJugadorResponse")]
+        void ExpulsarJugador(string codigoSala, string nombreJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/ExpulsarJugador", ReplyAction="http://tempuri.org/IServicioActualizacionJugadoresEnSala/ExpulsarJugadorResponse")]
+        System.Threading.Tasks.Task ExpulsarJugadorAsync(string codigoSala, string nombreJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/NotificarCambioEnAmistad" +
+            "", ReplyAction="http://tempuri.org/IServicioActualizacionJugadoresEnSala/NotificarCambioEnAmistad" +
+            "Response")]
+        void NotificarCambioEnAmistad(string codigoSala, string nombreJugadorEmisor, string nombreJugadorObjetivo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/NotificarCambioEnAmistad" +
+            "", ReplyAction="http://tempuri.org/IServicioActualizacionJugadoresEnSala/NotificarCambioEnAmistad" +
+            "Response")]
+        System.Threading.Tasks.Task NotificarCambioEnAmistadAsync(string codigoSala, string nombreJugadorEmisor, string nombreJugadorObjetivo);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioActualizacionJugadoresEnSalaCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/MostrarDesconexionJugado" +
+            "r")]
+        void MostrarDesconexionJugador(string nombreJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/ExpulsarAMenúPrincipal")]
+        void ExpulsarAMenúPrincipal(string motivo);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioActualizacionJugadoresEnSala/ActualizarEstadoAmistad")]
+        void ActualizarEstadoAmistad(string nombreJugadorEmisor);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioActualizacionJugadoresEnSalaChannel : LaOcaClient.LaOcaService.IServicioActualizacionJugadoresEnSala, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ServicioActualizacionJugadoresEnSalaClient : System.ServiceModel.DuplexClientBase<LaOcaClient.LaOcaService.IServicioActualizacionJugadoresEnSala>, LaOcaClient.LaOcaService.IServicioActualizacionJugadoresEnSala {
+        
+        public ServicioActualizacionJugadoresEnSalaClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
+        }
+        
+        public ServicioActualizacionJugadoresEnSalaClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
+        }
+        
+        public ServicioActualizacionJugadoresEnSalaClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioActualizacionJugadoresEnSalaClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioActualizacionJugadoresEnSalaClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public void AgregarCanalCallbackActualizacionJugadoresEnSala(string nombreJugador, string codigoSala) {
+            base.Channel.AgregarCanalCallbackActualizacionJugadoresEnSala(nombreJugador, codigoSala);
+        }
+        
+        public System.Threading.Tasks.Task AgregarCanalCallbackActualizacionJugadoresEnSalaAsync(string nombreJugador, string codigoSala) {
+            return base.Channel.AgregarCanalCallbackActualizacionJugadoresEnSalaAsync(nombreJugador, codigoSala);
+        }
+        
+        public void NotificarDesconexion(string nombreJugadorDesconectado, string codigoSala) {
+            base.Channel.NotificarDesconexion(nombreJugadorDesconectado, codigoSala);
+        }
+        
+        public System.Threading.Tasks.Task NotificarDesconexionAsync(string nombreJugadorDesconectado, string codigoSala) {
+            return base.Channel.NotificarDesconexionAsync(nombreJugadorDesconectado, codigoSala);
+        }
+        
+        public void EliminarSala(string codigoSala) {
+            base.Channel.EliminarSala(codigoSala);
+        }
+        
+        public System.Threading.Tasks.Task EliminarSalaAsync(string codigoSala) {
+            return base.Channel.EliminarSalaAsync(codigoSala);
+        }
+        
+        public void ExpulsarJugador(string codigoSala, string nombreJugador) {
+            base.Channel.ExpulsarJugador(codigoSala, nombreJugador);
+        }
+        
+        public System.Threading.Tasks.Task ExpulsarJugadorAsync(string codigoSala, string nombreJugador) {
+            return base.Channel.ExpulsarJugadorAsync(codigoSala, nombreJugador);
+        }
+        
+        public void NotificarCambioEnAmistad(string codigoSala, string nombreJugadorEmisor, string nombreJugadorObjetivo) {
+            base.Channel.NotificarCambioEnAmistad(codigoSala, nombreJugadorEmisor, nombreJugadorObjetivo);
+        }
+        
+        public System.Threading.Tasks.Task NotificarCambioEnAmistadAsync(string codigoSala, string nombreJugadorEmisor, string nombreJugadorObjetivo) {
+            return base.Channel.NotificarCambioEnAmistadAsync(codigoSala, nombreJugadorEmisor, nombreJugadorObjetivo);
         }
     }
     
