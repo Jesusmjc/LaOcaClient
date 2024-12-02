@@ -244,6 +244,9 @@
     <None Include="Connected Services\LaOcaService\item3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\LaOcaService\item4.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\LaOcaService\LaOcaClient.LaOcaService.Amistad.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -333,6 +336,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\TableroOcaActualizado.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\FondoLogin.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

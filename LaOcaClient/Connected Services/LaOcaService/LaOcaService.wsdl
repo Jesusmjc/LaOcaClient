@@ -412,6 +412,7 @@
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/LaOcaService" />
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ILoginService_GetUser_InputMessage">
@@ -525,6 +526,9 @@
   <wsdl:message name="IServicioPartida_MovimientoFicha_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MovimientoFicha" />
   </wsdl:message>
+  <wsdl:message name="IServicioPartida_MostrarPantallaVictoria_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MostrarPantallaVictoria" />
+  </wsdl:message>
   <wsdl:message name="IServicioCuenta_CrearCuenta_InputMessage">
     <wsdl:part name="parameters" element="tns:CrearCuenta" />
   </wsdl:message>
@@ -621,11 +625,23 @@
   <wsdl:message name="IServicioCuenta_CorreoExiste_OutputMessage">
     <wsdl:part name="parameters" element="tns:CorreoExisteResponse" />
   </wsdl:message>
-  <wsdl:message name="IServicioCuenta_NombreUsuarioExiste_InputMessage">
-    <wsdl:part name="parameters" element="tns:NombreUsuarioExiste" />
+  <wsdl:message name="IServicioCuenta_NombreUsuarioExisteCrear_InputMessage">
+    <wsdl:part name="parameters" element="tns:NombreUsuarioExisteCrear" />
   </wsdl:message>
-  <wsdl:message name="IServicioCuenta_NombreUsuarioExiste_OutputMessage">
-    <wsdl:part name="parameters" element="tns:NombreUsuarioExisteResponse" />
+  <wsdl:message name="IServicioCuenta_NombreUsuarioExisteCrear_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NombreUsuarioExisteCrearResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_NombreUsuarioExisteModificar_InputMessage">
+    <wsdl:part name="parameters" element="tns:NombreUsuarioExisteModificar" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_NombreUsuarioExisteModificar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NombreUsuarioExisteModificarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_SincronizarAspectos_InputMessage">
+    <wsdl:part name="parameters" element="tns:SincronizarAspectos" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_SincronizarAspectos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SincronizarAspectosResponse" />
   </wsdl:message>
   <wsdl:message name="IServicioJugabilidad_JugarTurno_InputMessage">
     <wsdl:part name="parameters" element="tns:JugarTurno" />
@@ -831,6 +847,9 @@
     <wsdl:operation name="MovimientoFicha">
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/MovimientoFicha" message="tns:IServicioPartida_MovimientoFicha_OutputCallbackMessage" />
     </wsdl:operation>
+    <wsdl:operation name="MostrarPantallaVictoria">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/MostrarPantallaVictoria" message="tns:IServicioPartida_MostrarPantallaVictoria_OutputCallbackMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IServicioCuenta">
     <wsdl:operation name="CrearCuenta">
@@ -897,9 +916,17 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/CorreoExiste" message="tns:IServicioCuenta_CorreoExiste_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/CorreoExisteResponse" message="tns:IServicioCuenta_CorreoExiste_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="NombreUsuarioExiste">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/NombreUsuarioExiste" message="tns:IServicioCuenta_NombreUsuarioExiste_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteResponse" message="tns:IServicioCuenta_NombreUsuarioExiste_OutputMessage" />
+    <wsdl:operation name="NombreUsuarioExisteCrear">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteCrear" message="tns:IServicioCuenta_NombreUsuarioExisteCrear_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteCrearResponse" message="tns:IServicioCuenta_NombreUsuarioExisteCrear_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NombreUsuarioExisteModificar">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteModificar" message="tns:IServicioCuenta_NombreUsuarioExisteModificar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteModificarResponse" message="tns:IServicioCuenta_NombreUsuarioExisteModificar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SincronizarAspectos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/SincronizarAspectos" message="tns:IServicioCuenta_SincronizarAspectos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/SincronizarAspectosResponse" message="tns:IServicioCuenta_SincronizarAspectos_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IServicioJugabilidad">
@@ -1193,6 +1220,12 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="MostrarPantallaVictoria">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPartida/MostrarPantallaVictoria" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="endpointCrearCuenta" type="tns:IServicioCuenta">
     <wsp:PolicyReference URI="#endpointCrearCuenta_policy" />
@@ -1341,8 +1374,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="NombreUsuarioExiste">
-      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/NombreUsuarioExiste" style="document" />
+    <wsdl:operation name="NombreUsuarioExisteCrear">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteCrear" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NombreUsuarioExisteModificar">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteModificar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SincronizarAspectos">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/SincronizarAspectos" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

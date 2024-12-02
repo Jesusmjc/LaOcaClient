@@ -52,6 +52,7 @@ namespace LaOcaClient
             _modo = modo;
             AjustarInterfazSegunModo();
             _resourceManager = new ResourceManager("LaOcaClient.Resources", typeof(CrearCuenta).Assembly);
+            _servicioCuenta.SincronizarAspectos(referenciaToIdMap);
 
         }
 
@@ -119,6 +120,12 @@ namespace LaOcaClient
 
             try
             {
+                if (_servicioCuenta.NombreUsuarioExisteCrear(jugador.NombreUsuario))
+                {
+                    MessageBox.Show("El nombre de usuario ya está en uso por otro jugador. Por favor, elija otro nombre.");
+                    return;
+                }
+
                 _servicioCuenta.EnviarCodigoVerificacion(tbCorreo.Text);
                 MessageBox.Show("Se han guardado los datos de tu cuenta. Por favor revisa el código de verificación que se envió a tu correo electrónico.");
                 ActualizarVentanaCrearCuenta();
@@ -172,6 +179,12 @@ namespace LaOcaClient
 
             try
             {
+                if (_servicioCuenta.NombreUsuarioExisteModificar(jugador.NombreUsuario, jugador.IdJugador))
+                {
+                    MessageBox.Show("El nombre de usuario ya está en uso por otro jugador. Por favor, elija otro nombre.");
+                    return;
+                }
+
                 _servicioCuenta.ModificarCuenta(cuenta);
                 _servicioJugador.ModificarJugador(jugador);
                 MessageBox.Show("Cuenta modificada exitosamente.");
@@ -179,6 +192,10 @@ namespace LaOcaClient
                 MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
                 ventanaMenuPrincipal.Show();
                 this.Close();
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show($"Error al modificar el jugador: {ex.Message}");
             }
             catch (CommunicationException ex)
             {
@@ -217,13 +234,6 @@ namespace LaOcaClient
             if (!Utilidad.ValidarNombreJugador(nombreUsuario))
             {
                 MessageBox.Show("El nombre de usuario debe tener al menos 6 caracteres.");
-                return false;
-            }
-
-            if (_servicioCuenta.NombreUsuarioExiste(nombreUsuario) &&
-               (_modo == ModoCuenta.Crear || nombreUsuario != SingletonJugador.Instance.Jugador.NombreUsuario))
-            {
-                MessageBox.Show("El nombre de usuario ya está en uso. Por favor, elija otro nombre.");
                 return false;
             }
 
@@ -411,6 +421,11 @@ namespace LaOcaClient
             { "pack://application:,,,/LaOcaClient;component/Recursos/OcaRockstar.jpg", 5 },
             { "pack://application:,,,/LaOcaClient;component/Recursos/OcaUniversitaria.jpg", 6 }
         };
+
+        public void SincronizarAspectosConServidor()
+        {
+            _servicioCuenta.SincronizarAspectos(referenciaToIdMap);
+        }
 
         private int ObtenerIdAspectoPorReferencia(string referencia)
         {

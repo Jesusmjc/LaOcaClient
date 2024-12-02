@@ -125,6 +125,9 @@ namespace LaOcaClient.LaOcaService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.AmistadException))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<string, LaOcaClient.LaOcaService.Jugador>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(string[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<string, int>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.KeyValuePair<string, int>[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.KeyValuePair<string, int>))]
     public partial class Jugador : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -158,6 +161,9 @@ namespace LaOcaClient.LaOcaService {
         private string FichaAsignadaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool HaLlegadoAMetaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdCuentaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -177,6 +183,9 @@ namespace LaOcaClient.LaOcaService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int TurnosPerdidosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UltimaPosicionField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -306,6 +315,19 @@ namespace LaOcaClient.LaOcaService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HaLlegadoAMeta {
+            get {
+                return this.HaLlegadoAMetaField;
+            }
+            set {
+                if ((this.HaLlegadoAMetaField.Equals(value) != true)) {
+                    this.HaLlegadoAMetaField = value;
+                    this.RaisePropertyChanged("HaLlegadoAMeta");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int IdCuenta {
             get {
                 return this.IdCuentaField;
@@ -392,6 +414,19 @@ namespace LaOcaClient.LaOcaService {
                 if ((this.TurnosPerdidosField.Equals(value) != true)) {
                     this.TurnosPerdidosField = value;
                     this.RaisePropertyChanged("TurnosPerdidos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UltimaPosicion {
+            get {
+                return this.UltimaPosicionField;
+            }
+            set {
+                if ((this.UltimaPosicionField.Equals(value) != true)) {
+                    this.UltimaPosicionField = value;
+                    this.RaisePropertyChanged("UltimaPosicion");
                 }
             }
         }
@@ -1478,6 +1513,9 @@ namespace LaOcaClient.LaOcaService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioPartida/MovimientoFicha")]
         void MovimientoFicha(int posicion, string nombreJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioPartida/MostrarPantallaVictoria")]
+        void MostrarPantallaVictoria(System.Collections.Generic.KeyValuePair<string, int>[] jugadoresOrdenados);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1633,11 +1671,23 @@ namespace LaOcaClient.LaOcaService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/CorreoExiste", ReplyAction="http://tempuri.org/IServicioCuenta/CorreoExisteResponse")]
         System.Threading.Tasks.Task<bool> CorreoExisteAsync(string correoElectronico);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/NombreUsuarioExiste", ReplyAction="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteResponse")]
-        bool NombreUsuarioExiste(string nombreUsuario);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteCrear", ReplyAction="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteCrearResponse")]
+        bool NombreUsuarioExisteCrear(string nombreUsuario);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/NombreUsuarioExiste", ReplyAction="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteResponse")]
-        System.Threading.Tasks.Task<bool> NombreUsuarioExisteAsync(string nombreUsuario);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteCrear", ReplyAction="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteCrearResponse")]
+        System.Threading.Tasks.Task<bool> NombreUsuarioExisteCrearAsync(string nombreUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteModificar", ReplyAction="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteModificarResponse")]
+        bool NombreUsuarioExisteModificar(string nombreUsuario, int idJugadorActual);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteModificar", ReplyAction="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteModificarResponse")]
+        System.Threading.Tasks.Task<bool> NombreUsuarioExisteModificarAsync(string nombreUsuario, int idJugadorActual);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/SincronizarAspectos", ReplyAction="http://tempuri.org/IServicioCuenta/SincronizarAspectosResponse")]
+        void SincronizarAspectos(System.Collections.Generic.Dictionary<string, int> referenciaToIdMap);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/SincronizarAspectos", ReplyAction="http://tempuri.org/IServicioCuenta/SincronizarAspectosResponse")]
+        System.Threading.Tasks.Task SincronizarAspectosAsync(System.Collections.Generic.Dictionary<string, int> referenciaToIdMap);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1795,12 +1845,28 @@ namespace LaOcaClient.LaOcaService {
             return base.Channel.CorreoExisteAsync(correoElectronico);
         }
         
-        public bool NombreUsuarioExiste(string nombreUsuario) {
-            return base.Channel.NombreUsuarioExiste(nombreUsuario);
+        public bool NombreUsuarioExisteCrear(string nombreUsuario) {
+            return base.Channel.NombreUsuarioExisteCrear(nombreUsuario);
         }
         
-        public System.Threading.Tasks.Task<bool> NombreUsuarioExisteAsync(string nombreUsuario) {
-            return base.Channel.NombreUsuarioExisteAsync(nombreUsuario);
+        public System.Threading.Tasks.Task<bool> NombreUsuarioExisteCrearAsync(string nombreUsuario) {
+            return base.Channel.NombreUsuarioExisteCrearAsync(nombreUsuario);
+        }
+        
+        public bool NombreUsuarioExisteModificar(string nombreUsuario, int idJugadorActual) {
+            return base.Channel.NombreUsuarioExisteModificar(nombreUsuario, idJugadorActual);
+        }
+        
+        public System.Threading.Tasks.Task<bool> NombreUsuarioExisteModificarAsync(string nombreUsuario, int idJugadorActual) {
+            return base.Channel.NombreUsuarioExisteModificarAsync(nombreUsuario, idJugadorActual);
+        }
+        
+        public void SincronizarAspectos(System.Collections.Generic.Dictionary<string, int> referenciaToIdMap) {
+            base.Channel.SincronizarAspectos(referenciaToIdMap);
+        }
+        
+        public System.Threading.Tasks.Task SincronizarAspectosAsync(System.Collections.Generic.Dictionary<string, int> referenciaToIdMap) {
+            return base.Channel.SincronizarAspectosAsync(referenciaToIdMap);
         }
     }
     

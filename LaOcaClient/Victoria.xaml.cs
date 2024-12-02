@@ -9,7 +9,6 @@ namespace LaOcaClient
         {
             InitializeComponent();
 
-            // Asignar los datos de los jugadores a los TextBlocks
             if (jugadoresOrdenados.Count > 0)
             {
                 PrimerLugar.Text = jugadoresOrdenados[0].Key;
@@ -35,10 +34,12 @@ namespace LaOcaClient
             }
         }
 
+
         private void RegresarAlInicio_Click(object sender, RoutedEventArgs e)
         {
+            MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
+            ventanaMenuPrincipal.Show();
             this.Close();
         }
     }
-
 }

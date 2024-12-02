@@ -90,20 +90,24 @@ namespace LaOcaClient
                 }
                 else if (!Utilidad.ValidarCorreoElectronico(correoElectronico))
                 {
-                    lbCorreoInvalido.Visibility = Visibility.Visible;
-                    lbCaracteristicasCorreoValido.Visibility = Visibility.Visible;
+                    MessageBox.Show("Correo electrónico inválido\n" + Properties.Resources.lbCaracteristicasCorreoValido, "Error de validación", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
-                    lbContrasenaInvalida.Visibility = Visibility.Visible;
-                    lbCaracteristicasContrasenaValida.Visibility = Visibility.Visible;
+                    MessageBox.Show("Contraseña inválida\n" + Properties.Resources.lbCaracteristicasContraseñaValida, "Error de validación", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                lbCamposVacios.Visibility = Visibility.Visible;
+                MessageBox.Show("Por favor, complete todos los campos", "Error de validación", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void OcultarMensajesError()
+        {
+            // Ya no es necesario ocultar las etiquetas de error, ya que se mostrarán como ventanas emergentes.
+        }
+
 
         private void IniciarSesionEnServidor(Cuenta cuentaInicioSesion)
         {
@@ -137,14 +141,14 @@ namespace LaOcaClient
             }
         }
 
-        private void OcultarMensajesError()
+        /*private void OcultarMensajesError()
         {
             lbCamposVacios.Visibility = Visibility.Hidden;
             lbCorreoInvalido.Visibility = Visibility.Hidden;
             lbCaracteristicasCorreoValido.Visibility = Visibility.Hidden;
             lbContrasenaInvalida.Visibility = Visibility.Hidden;
             lbCaracteristicasContrasenaValida.Visibility = Visibility.Hidden;
-        }
+        }*/
 
         private void btnOlvideMiContraseña_Click(object sender, RoutedEventArgs e)
         {
