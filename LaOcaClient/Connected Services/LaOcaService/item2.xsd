@@ -19,6 +19,7 @@
       <xs:element minOccurs="0" name="CanalCallbackJugadoresEnSala" nillable="true" type="xs:anyType" />
       <xs:element minOccurs="0" name="CanalCallbackPartida" nillable="true" type="xs:anyType" />
       <xs:element minOccurs="0" name="CanalCallbackSala" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="EsInvitado" type="xs:boolean" />
       <xs:element minOccurs="0" name="Ficha" nillable="true" type="tns:Ficha" />
       <xs:element minOccurs="0" name="FichaAsignada" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IdCuenta" type="xs:int" />

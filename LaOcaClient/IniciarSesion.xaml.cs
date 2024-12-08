@@ -21,12 +21,12 @@ namespace LaOcaClient
 {
     public partial class IniciarSesion : Window
     {
-        LaOcaService.ServicioInicioSesionClient cliente;
+        LaOcaService.ServicioInicioSesionClient _clienteInicioSesion;
 
         public IniciarSesion()
         {
             InitializeComponent();
-            cliente = new LaOcaService.ServicioInicioSesionClient();
+            _clienteInicioSesion = new LaOcaService.ServicioInicioSesionClient();
         }
 
         private void CbIdioma_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -111,13 +111,13 @@ namespace LaOcaClient
 
             try
             {
-                jugadorInicioSesion = cliente.IniciarSesion(cuentaInicioSesion);
+                jugadorInicioSesion = _clienteInicioSesion.IniciarSesion(cuentaInicioSesion);
+                jugadorInicioSesion.EsInvitado = false;
 
                 LaOcaService.ServicioJugadoresEnLineaClient clienteJugadoresEnLinea = new LaOcaService.ServicioJugadoresEnLineaClient();
                 clienteJugadoresEnLinea.AgregarJugadorConectado(jugadorInicioSesion);
 
                 SingletonJugador.Instance.Jugador = jugadorInicioSesion;
-                SingletonJugador.Instance.EsInvitado = false;
 
                 MenuPrincipal menuPrincipalWindow = new MenuPrincipal();
                 menuPrincipalWindow.Show();
@@ -146,26 +146,18 @@ namespace LaOcaClient
             lbCaracteristicasContrasenaValida.Visibility = Visibility.Hidden;
         }
 
-        private void btnOlvideMiContraseña_Click(object sender, RoutedEventArgs e)
+        private void BtnOlvideMiContraseña_Click(object sender, RoutedEventArgs e)
         {
             RecuperarContraseña ventanaRecuperarContraseña = new RecuperarContraseña();
             ventanaRecuperarContraseña.Show();
             this.Close();
         }
 
-        private void btnCrearCuentaNueva_Click(object sender, RoutedEventArgs e)
+        private void BtnCrearCuentaNueva_Click(object sender, RoutedEventArgs e)
         {
             CrearCuenta crearCuentaWindow = new CrearCuenta(ModoCuenta.Crear);
             crearCuentaWindow.Show();
             this.Close();
-        }
-
-        private void btnJugarComoInvitado_Click(object sender, RoutedEventArgs e)
-        {
-            /*LaOcaClient.LaOcaService.Sala sala = new LaOcaClient.LaOcaService.Sala();
-            Partida partiidaVentana = new Partida(sala);
-            partiidaVentana.Show();
-            this.Close();*/
         }
 
         private void LimpiarTextoEjemplo(object sender, MouseButtonEventArgs e)
@@ -173,6 +165,35 @@ namespace LaOcaClient
             if (tbxCorreoElectronico.Text.ToString().Equals("Correo Electronico"))
             {
                 tbxCorreoElectronico.Text = "";
+            }
+        }
+
+        private void EntrarComoInvitado(object sender, RoutedEventArgs e)
+        {
+            Jugador jugadorInvitado = new Jugador
+            {
+                EsInvitado = true,
+                NombreUsuario = "Invitado" + DateTime.Now.Second.ToString("D2") + DateTime.Now.Minute.ToString("D2")
+                                + DateTime.Now.Hour.ToString("D2") + DateTime.Now.Day.ToString("D2")
+            };
+            SingletonJugador.Instance.Jugador = jugadorInvitado;
+            
+            try
+            {
+                LaOcaService.ServicioJugadoresEnLineaClient clienteJugadoresEnLinea = new LaOcaService.ServicioJugadoresEnLineaClient();
+                clienteJugadoresEnLinea.AgregarJugadorConectado(jugadorInvitado);
+
+                MenuPrincipal menuPrincipalWindow = new MenuPrincipal();
+                menuPrincipalWindow.Show();
+                this.Close();
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

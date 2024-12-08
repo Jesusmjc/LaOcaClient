@@ -346,8 +346,6 @@ namespace LaOcaClient
 
         public void MostrarDesconexionJugador(string nombreJugadorDesconectado)
         {
-            SalaActual.Jugadores.Remove(nombreJugadorDesconectado);
-
             int posicionJugadorDesconectado = 0;
 
             for (int i = 1; i < SalaActual.Jugadores.Count ; i++)
@@ -359,6 +357,8 @@ namespace LaOcaClient
                 }
             }
 
+            SalaActual.Jugadores.Remove(nombreJugadorDesconectado);
+
             LimpiarGrids();
             switch(posicionJugadorDesconectado)
             {
@@ -368,6 +368,10 @@ namespace LaOcaClient
                 
                 case 2:
                     EliminarJugadorEnSalaEnTerceraPosicion();
+                    break;
+
+                case 3:
+                    EliminarJugadorEnSalaEnCuartaPosicion();
                     break;
             }
 
@@ -388,7 +392,7 @@ namespace LaOcaClient
                 _gridsJugadores[1].Children.Add(_jugadoresEnSala[1]);
                 _gridsJugadores[2].Children.Add(_jugadoresEnSala[2]);
             }
-            else
+            else if (SalaActual.Jugadores.Count == 2)
             {
                 _jugadoresEnSala[1] = _jugadoresEnSala[2];
                 _jugadoresEnSala[2] = null;
@@ -407,6 +411,21 @@ namespace LaOcaClient
                 _gridsJugadores[1].Children.Add(_jugadoresEnSala[1]);
                 _gridsJugadores[2].Children.Add(_jugadoresEnSala[2]);
             }
+            else
+            {
+                _jugadoresEnSala[2] = null;
+                _jugadoresEnSala[3] = null;
+
+                _gridsJugadores[1].Children.Add(_jugadoresEnSala[1]);
+            }
+        }
+
+        private void EliminarJugadorEnSalaEnCuartaPosicion()
+        {
+            _jugadoresEnSala[3] = null;
+
+            _gridsJugadores[1].Children.Add(_jugadoresEnSala[1]);
+            _gridsJugadores[2].Children.Add(_jugadoresEnSala[2]);
         }
 
         private void LimpiarGrids()

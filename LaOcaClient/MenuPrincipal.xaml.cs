@@ -21,9 +21,14 @@ namespace LaOcaClient
         public MenuPrincipal()
         {
             InitializeComponent();
+
+            if (SingletonJugador.Instance.Jugador.EsInvitado)
+            {
+                MostrarModoInvitado();
+            }
         }
 
-        private void btnModificarCuenta_Click(object sender, RoutedEventArgs e)
+        private void BtnModificarCuenta_Click(object sender, RoutedEventArgs e)
         {
             int idCuenta = SingletonJugador.Instance.Jugador.IdCuenta;
             int idJugador = SingletonJugador.Instance.Jugador.IdJugador;
@@ -40,11 +45,6 @@ namespace LaOcaClient
             this.Close();
         }
 
-        private void CrearSala(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void IrAConfiguracionSala(object sender, RoutedEventArgs e)
         {
             ConfiguracionSala ventanaConfiguracionSala = new ConfiguracionSala();
@@ -55,7 +55,7 @@ namespace LaOcaClient
         private void UnirseASala(object sender, RoutedEventArgs e)
         {
             string codigoSalaObjetivo = tbxCodigoSala.Text.ToString();
-            LaOcaService.Sala salaObjetivo = new LaOcaService.Sala();
+            LaOcaService.Sala salaObjetivo;
 
             if (!string.IsNullOrWhiteSpace(codigoSalaObjetivo))
             {
@@ -96,6 +96,13 @@ namespace LaOcaClient
                     MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private void MostrarModoInvitado()
+        {
+            btnModificarCuenta.Visibility = Visibility.Hidden;
+            btnCrearSala.Visibility = Visibility.Hidden;
+            btnSocial.Visibility = Visibility.Hidden;
         }
 
         private void MostrarListaAmigos(object sender, RoutedEventArgs e)

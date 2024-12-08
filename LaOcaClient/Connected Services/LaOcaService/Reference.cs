@@ -152,6 +152,9 @@ namespace LaOcaClient.LaOcaService {
         private object CanalCallbackSalaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool EsInvitadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private LaOcaClient.LaOcaService.Ficha FichaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -275,6 +278,19 @@ namespace LaOcaClient.LaOcaService {
                 if ((object.ReferenceEquals(this.CanalCallbackSalaField, value) != true)) {
                     this.CanalCallbackSalaField = value;
                     this.RaisePropertyChanged("CanalCallbackSala");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool EsInvitado {
+            get {
+                return this.EsInvitadoField;
+            }
+            set {
+                if ((this.EsInvitadoField.Equals(value) != true)) {
+                    this.EsInvitadoField = value;
+                    this.RaisePropertyChanged("EsInvitado");
                 }
             }
         }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,14 +41,33 @@ namespace LaOcaClient.UserControls
             _clienteAmistad = new ServicioAmistadClient();
             _ventanaPadre = ventanaSala;
 
-            if (SingletonJugador.Instance.Jugador.Equals(jugadorEnSala))
+            MostrarImagenMasOpciones();
+        }
+
+        private void MostrarImagenMasOpciones()
+        {
+            bool soyHost = SingletonJugador.Instance.Jugador.NombreUsuario.Equals(_ventanaPadre.SalaActual.NombreHost);
+            bool soyYo = SingletonJugador.Instance.Jugador.Equals(jugadorEnSala);
+
+            if (soyYo)
             {
                 imgMasOpciones.Visibility = Visibility.Hidden;
             }
-            else
+            else if (!jugadorEnSala.EsInvitado)
             {
                 AjustarMenuPopupSegunAmistad();
-            } 
+            }
+            else
+            {
+                if (soyHost)
+                {
+                    CargarOpcionExpulsar();
+                }
+                else
+                {
+                    imgMasOpciones.Visibility = Visibility.Hidden;
+                }
+            }
         }
 
         public void AjustarMenuPopupSegunAmistad()
@@ -131,16 +151,30 @@ namespace LaOcaClient.UserControls
 
         private void MostrarMenuPopup(object sender, MouseButtonEventArgs e)
         {
-            if (_amistad.Estado == EstadoAmistad.BLOQUEO && _amistad.IdJugadorReceptor == SingletonJugador.Instance.Jugador.IdJugador)
+            bool soyHost = SingletonJugador.Instance.Jugador.NombreUsuario.Equals(_ventanaPadre.SalaActual.NombreHost);
+            bool estoyBloqueado = false;
+            if (_amistad != null && _amistad.IdAmistad > 0)
             {
-                MessageBox.Show("Parece que el jugador te ha bloqueado.", "Estás bloqueado", MessageBoxButton.OK, MessageBoxImage.Information);
+                estoyBloqueado = _amistad.Estado.Equals(EstadoAmistad.BLOQUEO) && _amistad.IdJugadorReceptor == SingletonJugador.Instance.Jugador.IdJugador;
+            }
 
-                if (SingletonJugador.Instance.Jugador.NombreUsuario.Equals(_ventanaPadre.SalaActual.NombreHost))
+            if (!jugadorEnSala.EsInvitado)
+            {
+                if (estoyBloqueado)
+                {
+                    MessageBox.Show("Parece que el jugador te ha bloqueado.", "Estás bloqueado", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    if (soyHost)
+                    {
+                        imgMasOpciones_MenuContextual.IsOpen = true;
+                    }
+                }
+                else
                 {
                     imgMasOpciones_MenuContextual.IsOpen = true;
                 }
             }
-            else
+            else if (soyHost)
             {
                 imgMasOpciones_MenuContextual.IsOpen = true;
             }
