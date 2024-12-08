@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LaOcaClient"
         xmlns:p="clr-namespace:LaOcaClient.Properties"
         mc:Ignorable="d"
-        Title="Crear Cuenta"
+        Title="{x:Static p:Resources.globalCrearCuenta}"
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         MinHeight="600" MinWidth="900">
@@ -43,7 +43,7 @@
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
                     <Button x:Name="btnSiguienteCrearCuenta" Content="{x:Static p:Resources.globalBtnSiguiente}" Width="100" Margin="5,0" Click="btnSiguienteCrear_Click"/>
-                    <Button x:Name="btnSiguienteModificarCuenta" Content="Siguiente" Width="100" Margin="5,0" Click="btnSiguienteModificar_Click"/>
+                    <Button x:Name="btnSiguienteModificarCuenta" Content="{x:Static p:Resources.globalBtnSiguiente}" Width="100" Margin="5,0" Click="btnSiguienteModificar_Click"/>
                     <Button x:Name="btnCancelar" Content="{x:Static p:Resources.globalCancelar}" Width="80" Margin="5,0" Click="btnCancelar_Click"/>
                 </StackPanel>
             </StackPanel>

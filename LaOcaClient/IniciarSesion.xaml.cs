@@ -72,7 +72,6 @@ namespace LaOcaClient
             string correoElectronico = tbxCorreoElectronico.Text.ToString();
             string contrasena = pwbContrasena.Password.ToString();
 
-            OcultarMensajesError();
 
             if (!string.IsNullOrWhiteSpace(correoElectronico) && !string.IsNullOrWhiteSpace(contrasena))
             {
@@ -90,24 +89,18 @@ namespace LaOcaClient
                 }
                 else if (!Utilidad.ValidarCorreoElectronico(correoElectronico))
                 {
-                    MessageBox.Show("Correo electrónico inválido\n" + Properties.Resources.lbCaracteristicasCorreoValido, "Error de validación", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Properties.Resources.lbIngreseCorreoValido, Properties.Resources.tituloCorreoInvalido, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
-                    MessageBox.Show("Contraseña inválida\n" + Properties.Resources.lbCaracteristicasContraseñaValida, "Error de validación", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Properties.Resources.lbContraseñaValida, Properties.Resources.tituloContraseñaInvalida, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Por favor, complete todos los campos", "Error de validación", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.camposVaciosLogin, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        private void OcultarMensajesError()
-        {
-            // Ya no es necesario ocultar las etiquetas de error, ya que se mostrarán como ventanas emergentes.
-        }
-
 
         private void IniciarSesionEnServidor(Cuenta cuentaInicioSesion)
         {
@@ -129,15 +122,15 @@ namespace LaOcaClient
             }
             catch (FaultException<InicioSesionException> ex)
             {
-                MessageBox.Show(ex.Detail.Mensaje + "\n" + ex.Reason, "Error al iniciar sesión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Detail.Mensaje + "\n" + ex.Reason, Properties.Resources.globalErrorLogin, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -174,7 +167,7 @@ namespace LaOcaClient
 
         private void LimpiarTextoEjemplo(object sender, MouseButtonEventArgs e)
         {
-            if (tbxCorreoElectronico.Text.ToString().Equals("Correo Electronico"))
+            if (tbxCorreoElectronico.Text.ToString().Equals(Properties.Resources.globalCorreo))
             {
                 tbxCorreoElectronico.Text = "";
             }

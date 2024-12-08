@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:LaOcaClient.Properties"
         mc:Ignorable="d"
-        Title="Ranking Global"
+        Title="{x:Static p:Resources.lbRanking}"
         WindowStartupLocation="CenterScreen"
         Height="400" Width="600">
     <Grid>
@@ -17,7 +18,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Ranking Global de Jugadores" FontSize="24" FontWeight="Bold" 
+        <TextBlock Text="{x:Static p:Resources.lbRanking}" FontSize="24" FontWeight="Bold" 
                    TextAlignment="Center" Grid.Row="0" Margin="10"/>
 
         <DataGrid x:Name="dgRanking" 
@@ -29,14 +30,14 @@
           CanUserResizeRows="False"
           HeadersVisibility="Column">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Posición" Binding="{Binding Posicion}" Width="*"/>
-                <DataGridTextColumn Header="Jugador" Binding="{Binding NombreUsuario}" Width="*"/>
-                <DataGridTextColumn Header="Casillas Recorridas" Binding="{Binding CasillasRecorridas}" Width="*"/>
-                <DataGridTextColumn Header="Partidas Ganadas" Binding="{Binding PartidasGanadas}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static p:Resources.colJugador}" Binding="{Binding Posicion}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static p:Resources.colPosicion}" Binding="{Binding NombreUsuario}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static p:Resources.txtCasillasRecorridas}" Binding="{Binding CasillasRecorridas}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static p:Resources.txtPartidasGanadas}" Binding="{Binding PartidasGanadas}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="Cerrar" Width="100" Height="30" Margin="10" Click="BtnCerrar_Click" 
+        <Button Content="{x:Static p:Resources.btnGlobalRegresar}" Width="100" Height="30" Margin="10" Click="BtnCerrar_Click" 
                 Grid.Row="2" HorizontalAlignment="Center"/>
     </Grid>
 </Window>

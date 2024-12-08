@@ -4,9 +4,6 @@ using System.Windows;
 
 namespace LaOcaClient
 {
-    /// <summary>
-    /// Lógica de interacción para EstadísticasJugador.xaml
-    /// </summary>
     public partial class EstadisticasJugador : Window
     {
         private int idJugador;
@@ -26,12 +23,15 @@ namespace LaOcaClient
                 string estadisticas = clienteServicio.ConsultarEstadisticasJugador(idJugador);
                 var estadisticasArray = estadisticas.Split(',');
 
-                txtCasillasRecorridas.Text = estadisticasArray[0].Trim();
-                txtPartidasGanadas.Text = estadisticasArray[1].Trim();
+                string casillasRecorridas = Properties.Resources.txtCasillasRecorridas;
+                string partidasGanadas = Properties.Resources.txtPartidasGanadas;
+
+                txtCasillasRecorridas.Text = casillasRecorridas + estadisticasArray[0].Trim();
+                txtPartidasGanadas.Text = partidasGanadas + estadisticasArray[1].Trim();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error al consultar estadísticas: {ex.Message}", "Error");
+                MessageBox.Show(Properties.Resources.msgErrorEstadisticas, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

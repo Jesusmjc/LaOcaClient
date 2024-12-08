@@ -145,7 +145,7 @@
     <value>Verify</value>
   </data>
   <data name="camposVaciosLogin" xml:space="preserve">
-    <value>Please fill in all fields</value>
+    <value>Please fill in all fields.</value>
   </data>
   <data name="caracteresInvalidosLogin" xml:space="preserve">
     <value>The username or password contains invalid characters</value>
@@ -235,7 +235,7 @@
     <value>Social</value>
   </data>
   <data name="globalVisibilidad" xml:space="preserve">
-    <value>Visibility</value>
+    <value>Visibility:</value>
   </data>
   <data name="lbConfirmarNuevaContraseña" xml:space="preserve">
     <value>Confirm new password:</value>
@@ -322,15 +322,360 @@
     <value>Create game</value>
   </data>
   <data name="lbIngreseCorreoValido" xml:space="preserve">
-    <value>Please enter a valid email address</value>
+    <value>Please enter a valid email address.</value>
   </data>
   <data name="lbContraseñaValida" xml:space="preserve">
     <value>Please enter a valid password</value>
   </data>
   <data name="lbCaracteristicasCorreoValido" xml:space="preserve">
-    <value>A valid email address must meet the following&amp;#xD;&amp;#xA;crtieria:&amp;#xA;- Between 5 y 20 characters before the @.&amp;#xA;- Contains only letters, numbers, underscore &amp;#xA;   or hyphen.&amp;#xA;- Contains one of the following domains:&amp;#xA;   gmail, outlook, hotmail.&amp;#xA;- Ends with .com</value>
+    <value>The email is not valid. It must be a Gmail, Outlook or Hotmail email.</value>
   </data>
   <data name="lbCaracteristicasContraseñaValida" xml:space="preserve">
-    <value>A valid password must contain:&amp;#xA;- Between 8 and 16 characters.&amp;#xA;- At least one lower case letter.&amp;#xA;- At least one upper case letter.&amp;#xA;- At least one number.&amp;#xA;- At least one of the following characters. &amp;#xA;  ($, @, !, %, *, ?, &amp;amp;, #, (.), (, ), _, -)</value>
+    <value>The password does not meet the requirements. It must be between 8 and 16 characters, and include at least one uppercase letter, one lowercase letter, one number, and one special character.</value>
+  </data>
+  <data name="tituloCorreoInvalido" xml:space="preserve">
+    <value>Invalid email</value>
+  </data>
+  <data name="tituloContraseñaInvalida" xml:space="preserve">
+    <value>Invalid password</value>
+  </data>
+  <data name="globalErrorValidacion" xml:space="preserve">
+    <value>Validation error</value>
+  </data>
+  <data name="globalErrorLogin" xml:space="preserve">
+    <value>Error logging in</value>
+  </data>
+  <data name="tituloTimeOut" xml:space="preserve">
+    <value>Connection error</value>
+  </data>
+  <data name="msgComunnicationEx" xml:space="preserve">
+    <value>An error occurred while trying to connect to the Server. Please try again later.</value>
+  </data>
+  <data name="msgTimeoutEx" xml:space="preserve">
+    <value>The server took too long to respond.</value>
+  </data>
+  <data name="msgCorreoNoIngresado" xml:space="preserve">
+    <value>Please enter your email.</value>
+  </data>
+  <data name="msgCodigoEnviado" xml:space="preserve">
+    <value>A reset code has been sent to your email.</value>
+  </data>
+  <data name="msgCodigoNoIngresado" xml:space="preserve">
+    <value>Please enter the verification code.</value>
+  </data>
+  <data name="msgCodigoIncorrecto" xml:space="preserve">
+    <value>Incorrect verification code.</value>
+  </data>
+  <data name="msgCodigoCorrecto" xml:space="preserve">
+    <value>Verification code correct.</value>
+  </data>
+  <data name="msgContraseñaRestablecida" xml:space="preserve">
+    <value>Password reset successfully.</value>
+  </data>
+  <data name="msgRefImagenInvalida" xml:space="preserve">
+    <value>The selected image reference is invalid.</value>
+  </data>
+  <data name="msgNombreUsuarioExiste" xml:space="preserve">
+    <value>The username is already in use by another player. Please choose another name.</value>
+  </data>
+  <data name="msgCodigoEnviadoCrearCuenta" xml:space="preserve">
+    <value>Your account data has been saved. Please check the verification code that was sent to your email.</value>
+  </data>
+  <data name="msgCuentaModificada" xml:space="preserve">
+    <value>Account modified successfully.</value>
+  </data>
+  <data name="msgErrorModificarJugador" xml:space="preserve">
+    <value>Sorry, an error occurred while modifying the player.</value>
+  </data>
+  <data name="msgCaracteristicasNombreUsuario" xml:space="preserve">
+    <value>The username must be at least 6 characters.</value>
+  </data>
+  <data name="msgCorreoYaExiste" xml:space="preserve">
+    <value>The email is already registered by another account, please enter another one.</value>
+  </data>
+  <data name="msgImagenNoSeleccionada" xml:space="preserve">
+    <value>You must select a profile picture.</value>
+  </data>
+  <data name="msgCodigoReenviado" xml:space="preserve">
+    <value>The verification code has been resent to your email.</value>
+  </data>
+  <data name="tituloCancelarCrearCuenta" xml:space="preserve">
+    <value>Cancel account creation</value>
+  </data>
+  <data name="msgCancelarModificacionCuenta" xml:space="preserve">
+    <value>Are you sure you want to cancel the account modification?</value>
+  </data>
+  <data name="tituloCancelarModificacionCuenta" xml:space="preserve">
+    <value>Cancel account modification</value>
+  </data>
+  <data name="msgCuentaNoEncontrada" xml:space="preserve">
+    <value>Account not found.</value>
+  </data>
+  <data name="msgJugadorNoEncontrado" xml:space="preserve">
+    <value>Player not found.</value>
+  </data>
+  <data name="msgImagenPerfilNoEncontrada" xml:space="preserve">
+    <value>Profile picture not found.</value>
+  </data>
+  <data name="msgContraseñaActualIncorrecta" xml:space="preserve">
+    <value>The current password is incorrect.</value>
+  </data>
+  <data name="globalTituloError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="tituloErrorSala" xml:space="preserve">
+    <value>Error with the room</value>
+  </data>
+  <data name="msgSalaLlena" xml:space="preserve">
+    <value>It seems the room is already full.</value>
+  </data>
+  <data name="msgErrorCodigoSala" xml:space="preserve">
+    <value>There is no room with the entered code.</value>
+  </data>
+  <data name="tituloMenuPrincipal" xml:space="preserve">
+    <value>Main menu</value>
+  </data>
+  <data name="lbCodigoSala" xml:space="preserve">
+    <value>Room code: </value>
+  </data>
+  <data name="btnVerRankingGlobal" xml:space="preserve">
+    <value>See Global Ranking</value>
+  </data>
+  <data name="btnVerEstdísticas" xml:space="preserve">
+    <value>View My Statistics</value>
+  </data>
+  <data name="msgErrorEstadisticas" xml:space="preserve">
+    <value>Error querying statistics.</value>
+  </data>
+  <data name="globalMisEstadisticas" xml:space="preserve">
+    <value>My Statistics</value>
+  </data>
+  <data name="txtCasillasRecorridas" xml:space="preserve">
+    <value>Boxes traveled</value>
+  </data>
+  <data name="txtPartidasGanadas" xml:space="preserve">
+    <value>Games won</value>
+  </data>
+  <data name="colJugador" xml:space="preserve">
+    <value>Player</value>
+  </data>
+  <data name="colPosicion" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="msgErrorRanking" xml:space="preserve">
+    <value>Error loading global ranking.</value>
+  </data>
+  <data name="lbRanking" xml:space="preserve">
+    <value>Global Player Ranking</value>
+  </data>
+  <data name="lbAmigos" xml:space="preserve">
+    <value>Friends</value>
+  </data>
+  <data name="lbEnLinea" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="tituloBuzon" xml:space="preserve">
+    <value>Mailbox</value>
+  </data>
+  <data name="btnInvitaciones" xml:space="preserve">
+    <value>Invitations to game</value>
+  </data>
+  <data name="btnSolicitudes" xml:space="preserve">
+    <value>Friend requests</value>
+  </data>
+  <data name="tituloRegresarAlMenu" xml:space="preserve">
+    <value>You will return to the Main Menu</value>
+  </data>
+  <data name="msgAbandonoHost" xml:space="preserve">
+    <value>It appears the host has left the room.</value>
+  </data>
+  <data name="tituloInvitacionEnviada" xml:space="preserve">
+    <value>Invitation Sent</value>
+  </data>
+  <data name="msgInvitacionEnviada" xml:space="preserve">
+    <value>The request has been sent.</value>
+  </data>
+  <data name="tituloInvitacionNoEnviada" xml:space="preserve">
+    <value>The invitation could not be sent</value>
+  </data>
+  <data name="msgInvitacionYaEnviada" xml:space="preserve">
+    <value>It looks like you've already sent an invite to this player.</value>
+  </data>
+  <data name="lbEliminarAmigo" xml:space="preserve">
+    <value>Remove friend</value>
+  </data>
+  <data name="lbInvitarAPartida" xml:space="preserve">
+    <value>Invite to game</value>
+  </data>
+  <data name="tituloErrorBloqueo" xml:space="preserve">
+    <value>Error processing lock</value>
+  </data>
+  <data name="lbBloquear" xml:space="preserve">
+    <value>Lock</value>
+  </data>
+  <data name="lbDesbloquear" xml:space="preserve">
+    <value>Unlock</value>
+  </data>
+  <data name="lbExpulsar" xml:space="preserve">
+    <value>Expel</value>
+  </data>
+  <data name="tituloErrorBuscarSala" xml:space="preserve">
+    <value>Error searching for the room</value>
+  </data>
+  <data name="globalRechazar" xml:space="preserve">
+    <value>Decline</value>
+  </data>
+  <data name="lbSalaDe" xml:space="preserve">
+    <value>Room of </value>
+  </data>
+  <data name="tituloConfiguracionSala" xml:space="preserve">
+    <value>Room configuration</value>
+  </data>
+  <data name="lbCrearSala" xml:space="preserve">
+    <value>Create room</value>
+  </data>
+  <data name="lbNombreSala" xml:space="preserve">
+    <value>Room name:</value>
+  </data>
+  <data name="msgErrorCrearSala" xml:space="preserve">
+    <value>An error occurred while creating the room.</value>
+  </data>
+  <data name="msgErrorEnviarMsg" xml:space="preserve">
+    <value>Error sending message.</value>
+  </data>
+  <data name="lbEscribeUnMsg" xml:space="preserve">
+    <value>Write a message</value>
+  </data>
+  <data name="tituloMasJugadores" xml:space="preserve">
+    <value>More players needed</value>
+  </data>
+  <data name="msgDosOMasJugadores" xml:space="preserve">
+    <value>At least two players are required to start the game.</value>
+  </data>
+  <data name="tituloAbandonarPartida" xml:space="preserve">
+    <value>You are about to leave the game</value>
+  </data>
+  <data name="msgAbandonarSala" xml:space="preserve">
+    <value>Are you sure you want to exit to the Main Menu?</value>
+  </data>
+  <data name="tituloExpulsadoSala" xml:space="preserve">
+    <value>You have been kicked out of the room</value>
+  </data>
+  <data name="btnIniciarPartida" xml:space="preserve">
+    <value>Start game</value>
+  </data>
+  <data name="lbJugadoresEnPartida" xml:space="preserve">
+    <value>Players in game:</value>
+  </data>
+  <data name="tituloHoraDeJugar" xml:space="preserve">
+    <value>Time to play</value>
+  </data>
+  <data name="msgEsTuTurno" xml:space="preserve">
+    <value>It's your turn to throw!</value>
+  </data>
+  <data name="lbEsTurnoDe" xml:space="preserve">
+    <value>It's time for: </value>
+  </data>
+  <data name="msgPierdesUnTurno" xml:space="preserve">
+    <value>You lose a turn. Turns remaining: </value>
+  </data>
+  <data name="msgLanzarDado" xml:space="preserve">
+    <value>You rolled the die! The number that came up is: </value>
+  </data>
+  <data name="msgJugadorNoEstaEnListaTurnos" xml:space="preserve">
+    <value>The current player is not in the turn list.</value>
+  </data>
+  <data name="msgPartidaTerminadaSoloUnJugador" xml:space="preserve">
+    <value>The game is over because there is only one player left.</value>
+  </data>
+  <data name="msgErrorCambiarTurno" xml:space="preserve">
+    <value>Error when changing shift.</value>
+  </data>
+  <data name="msgNecesitasNumeroExacto" xml:space="preserve">
+    <value>You need the exact number to win.</value>
+  </data>
+  <data name="msgOcaDorada" xml:space="preserve">
+    <value>You've landed on the golden goose and it's taking you straight to the finish line!</value>
+  </data>
+  <data name="msgDeOcaAOca" xml:space="preserve">
+    <value>From goose to goose and I shoot because it's my turn!</value>
+  </data>
+  <data name="msgPuente" xml:space="preserve">
+    <value>You have landed on the bridge! You move forward automatically and roll again.</value>
+  </data>
+  <data name="msgPosada" xml:space="preserve">
+    <value>You fell into the inn! You lose a turn.</value>
+  </data>
+  <data name="msgDados" xml:space="preserve">
+    <value>You landed on the dice box! Roll again.</value>
+  </data>
+  <data name="msgPozo" xml:space="preserve">
+    <value>You fell into the pit! You lose three turns.</value>
+  </data>
+  <data name="msgLaberinto" xml:space="preserve">
+    <value>You have entered the maze! Go back to square 30.</value>
+  </data>
+  <data name="msgCarcel" xml:space="preserve">
+    <value>You're in jail! You lose two turns.</value>
+  </data>
+  <data name="msgCalavera" xml:space="preserve">
+    <value>You landed on the skull! You return to the beginning (square 1).</value>
+  </data>
+  <data name="msgAbandonarPartidaEnCurso" xml:space="preserve">
+    <value>Are you sure you want to leave the game?</value>
+  </data>
+  <data name="tituloConfirmacion" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="msgHaAbandonadoLaPartida" xml:space="preserve">
+    <value>has left the game.</value>
+  </data>
+  <data name="msgPartidaAbandonada" xml:space="preserve">
+    <value>You have left the game. You will be redirected to the main menu.</value>
+  </data>
+  <data name="msgErrorAbandonoPartida" xml:space="preserve">
+    <value>Error leaving game.</value>
+  </data>
+  <data name="tituloPartida" xml:space="preserve">
+    <value>Game</value>
+  </data>
+  <data name="btnLanzarDado" xml:space="preserve">
+    <value>Roll Dice</value>
+  </data>
+  <data name="btnAbandonarPartida" xml:space="preserve">
+    <value>Leave Game</value>
+  </data>
+  <data name="tituloVictoria" xml:space="preserve">
+    <value>Victory</value>
+  </data>
+  <data name="lbPartidaTerminada" xml:space="preserve">
+    <value>The game is over</value>
+  </data>
+  <data name="lbPrimerLugar" xml:space="preserve">
+    <value>First place: </value>
+  </data>
+  <data name="lbSegundoLugar" xml:space="preserve">
+    <value>Second place: </value>
+  </data>
+  <data name="lbTercerLugar" xml:space="preserve">
+    <value>Third place: </value>
+  </data>
+  <data name="msgCuartoLugar" xml:space="preserve">
+    <value>Fourth place: </value>
+  </data>
+  <data name="msgCasillasPrimerLugar" xml:space="preserve">
+    <value>Boxes visited by the first place: </value>
+  </data>
+  <data name="msgCasillasSegundoLugar" xml:space="preserve">
+    <value>Boxes visited by the second place:</value>
+  </data>
+  <data name="msgCasillasTercerLugar" xml:space="preserve">
+    <value>Boxes visited by the third place: </value>
+  </data>
+  <data name="msgCasillasCuartoLugar" xml:space="preserve">
+    <value>Boxes visited by the fourth place: </value>
+  </data>
+  <data name="btnRegresarAlInicio" xml:space="preserve">
+    <value>Return to main menu</value>
   </data>
 </root>

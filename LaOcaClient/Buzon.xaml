@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LaOcaClient"
         mc:Ignorable="d"
-        Title="Buzon" Height="450" Width="800">
+        xmlns:p="clr-namespace:LaOcaClient.Properties"
+        Title="{x:Static p:Resources.tituloBuzon}" Height="450" Width="800">
     <Grid>
-        <Label x:Name="lbBuzon" Content="Buzón" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="300,20,300,0" VerticalAlignment="Top" Height="50" FontSize="24"/>
+        <Label x:Name="lbBuzon" Content="{x:Static p:Resources.tituloBuzon}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="300,20,300,0" VerticalAlignment="Top" Height="50" FontSize="24"/>
         <Image x:Name="imgVolver" Margin="20,20,0,0" Source="/Recursos/icono_volver.png" Stretch="Fill" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40" MouseLeftButtonDown="RegresarASocial"/>
         <ListBox x:Name="lbxPeticiones" Margin="20,140,20,20"/>
-        <Button x:Name="btnInvitaciones" Content="Invitaciones a Partida" HorizontalAlignment="Left" Margin="150,80,0,0" VerticalAlignment="Top" Width="200" Height="30"/>
-        <Button x:Name="btnSolicitudes" Content="Solicitudes de Amistad" HorizontalAlignment="Right" Margin="0,80,150,0" VerticalAlignment="Top" Width="200" Height="30"/>
+        <Button x:Name="btnInvitaciones" Content="{x:Static p:Resources.btnInvitaciones}" HorizontalAlignment="Left" Margin="150,80,0,0" VerticalAlignment="Top" Width="200" Height="30"/>
+        <Button x:Name="btnSolicitudes" Content="{x:Static p:Resources.btnSolicitudes}" HorizontalAlignment="Right" Margin="0,80,150,0" VerticalAlignment="Top" Width="200" Height="30"/>
 
     </Grid>
 </Window>

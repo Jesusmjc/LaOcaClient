@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LaOcaClient"
         xmlns:p="clr-namespace:LaOcaClient.Properties"
         mc:Ignorable="d"
-        Title="Cambiar Contraseña" Height="450" Width="800">
+        Title="{x:Static p:Resources.btnCambiarContraseña}" Height="450" Width="800">
     <Grid>
         <StackPanel Margin="40">
             <TextBlock Text="{x:Static p:Resources.lbContraseñaActual}" Margin="0,0,0,10"/>

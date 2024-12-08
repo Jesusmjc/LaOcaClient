@@ -43,9 +43,9 @@ namespace LaOcaClient
                 {
                     cliente.UnirseAlChat(nombreJugador, "0");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show($"Error al enviar mensaje: {ex.Message}");
+                    MessageBox.Show(Properties.Resources.msgErrorEnviarMsg);
                 }
             } 
         }
@@ -62,7 +62,7 @@ namespace LaOcaClient
             } 
             catch (Exception ex) when (ex is CommunicationException | ex is TimeoutException)
             {
-                    MessageBox.Show("Ha ocurrido un error al enviar el mensaje.", "Error de conexión.", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Properties.Resources.msgErrorEnviarMsg, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
         }
 

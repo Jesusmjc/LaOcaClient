@@ -82,7 +82,7 @@ namespace LaOcaClient
 
             FichasJugadoresPanel.Children.Add(new TextBlock
             {
-                Text = "Jugadores en partida:",
+                Text = Properties.Resources.lbJugadoresEnPartida,
                 FontWeight = FontWeights.Bold,
                 FontSize = 16,
                 Margin = new Thickness(0, 0, 0, 10)
@@ -167,8 +167,6 @@ namespace LaOcaClient
                 TableroCanvas.Children.Add(ficha);
                 Canvas.SetLeft(ficha, posicionInicial.X + (i));
                 Canvas.SetTop(ficha, posicionInicial.Y);
-
-                Console.WriteLine($"Jugador {jugador.NombreUsuario} con ficha {fichaPath} añadido a la interfaz en la posición inicial.");
             }
         }
 
@@ -179,14 +177,14 @@ namespace LaOcaClient
 
             if (nombreJugadorEnTurno.Equals(SingletonJugador.Instance.Jugador.NombreUsuario))
             {
-                VentanaCierreAutomatico ventanaTurno = new VentanaCierreAutomatico("¡Es tu turno de tirar!", "Hora de jugar", 3);
+                VentanaCierreAutomatico ventanaTurno = new VentanaCierreAutomatico(Properties.Resources.msgEsTuTurno, Properties.Resources.tituloHoraDeJugar, 3);
                 ventanaTurno.Show();
                 BtnDados.IsEnabled = true;
                 BtnAbandonar.IsEnabled = true;
             }
             else
             {
-                VentanaCierreAutomatico ventanaTurno = new VentanaCierreAutomatico("Es turno de " + nombreJugadorEnTurno, "Hora de jugar", 3);
+                VentanaCierreAutomatico ventanaTurno = new VentanaCierreAutomatico(Properties.Resources.lbEsTurnoDe + nombreJugadorEnTurno, Properties.Resources.tituloHoraDeJugar, 3);
                 ventanaTurno.Show();
                 BtnDados.IsEnabled = false;
                 BtnAbandonar.IsEnabled = false;
@@ -201,7 +199,7 @@ namespace LaOcaClient
             {
                 if (jugador.TurnosPerdidos > 0)
                 {
-                    MessageBox.Show($"Pierdes un turno. Turnos restantes: {jugador.TurnosPerdidos}");
+                    MessageBox.Show(Properties.Resources.msgPierdesUnTurno + $"{jugador.TurnosPerdidos}");
                     jugador.TurnosPerdidos--;
                     pasarTurnoSiguienteJugador();
                     return;
@@ -211,7 +209,7 @@ namespace LaOcaClient
             Random random = new Random();
             int numeroAleatorio = random.Next(1, 7);
             //int numeroAleatorio = 54;
-            MessageBox.Show($"¡Has lanzado el dado! Salió el número {numeroAleatorio}.");
+            MessageBox.Show(Properties.Resources.msgLanzarDado + $"{numeroAleatorio}.");
             MoverFicha(numeroAleatorio, nombreJugador);
         }
 
@@ -231,17 +229,17 @@ namespace LaOcaClient
                     }
                     else
                     {
-                        MessageBox.Show("El jugador actual no está en la lista de turnos.");
+                        MessageBox.Show(Properties.Resources.msgJugadorNoEstaEnListaTurnos);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("La partida ha terminado. Solo queda un jugador.");
+                    MessageBox.Show(Properties.Resources.msgPartidaTerminadaSoloUnJugador);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error al cambiar de turno: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgErrorCambiarTurno);
             }
         }
 
@@ -257,7 +255,7 @@ namespace LaOcaClient
 
                 if (nuevaPosicion > 63)
                 {
-                    MessageBox.Show("Necesitas el número exacto para ganar.");
+                    MessageBox.Show(Properties.Resources.msgNecesitasNumeroExacto);
                     pasarTurnoSiguienteJugador();
                     return;
                 }
@@ -308,7 +306,7 @@ namespace LaOcaClient
                 }
                 else if (posicion == 59)
                 {
-                    MessageBox.Show("¡Has caído en la oca dorada y te lleva directo a la meta!");
+                    MessageBox.Show(Properties.Resources.msgOcaDorada);
                     var trayecto = GenerarTrayectoria(59, 63);
 
                     foreach (var pos in trayecto)
@@ -324,7 +322,7 @@ namespace LaOcaClient
                 }
                 else
                 {
-                    MessageBox.Show("¡De oca a oca y tiro porque me toca!");
+                    MessageBox.Show(Properties.Resources.msgDeOcaAOca);
                     BtnDados.IsEnabled = true;
                     BtnAbandonar.IsEnabled = true;
                     return;
@@ -333,7 +331,7 @@ namespace LaOcaClient
 
             if (_casillasPuente.Contains(posicion))
             {
-                MessageBox.Show("¡Has caído en el puente! Avanzas automáticamente y vuelves a tirar.");
+                MessageBox.Show(Properties.Resources.msgPuente);
                 BtnDados.IsEnabled = true;
                 BtnAbandonar.IsEnabled = true;
                 return;
@@ -341,7 +339,7 @@ namespace LaOcaClient
 
             if (_casillasPosada.Contains(posicion))
             {
-                MessageBox.Show("¡Caíste en la posada! Pierdes un turno.");
+                MessageBox.Show(Properties.Resources.msgPosada);
                 jugador.TurnosPerdidos = 1;
                 pasarTurnoSiguienteJugador();
                 return;
@@ -349,7 +347,7 @@ namespace LaOcaClient
 
             if (_casillasDado.Contains(posicion))
             {
-                MessageBox.Show("¡Caíste en la casilla de dados! Tira de nuevo.");
+                MessageBox.Show(Properties.Resources.msgDados);
                 BtnDados.IsEnabled = true;
                 BtnAbandonar.IsEnabled = true;
                 return;
@@ -357,7 +355,7 @@ namespace LaOcaClient
 
             if (_casillasPozo.Contains(posicion))
             {
-                MessageBox.Show("¡Caíste en el pozo! Pierdes tres turnos.");
+                MessageBox.Show(Properties.Resources.msgPozo);
                 jugador.TurnosPerdidos = 3;
                 pasarTurnoSiguienteJugador();
                 return;
@@ -365,7 +363,7 @@ namespace LaOcaClient
 
             if (_casillasLaberinto.Contains(posicion))
             {
-                MessageBox.Show("¡Entraste al laberinto! Retrocedes a la casilla 30.");
+                MessageBox.Show(Properties.Resources.msgLaberinto);
                 _posicionesJugadores[nombreJugador] = 30;
                 ActualizarInterfazGrafica(30, nombreJugador);
                 pasarTurnoSiguienteJugador();
@@ -374,7 +372,7 @@ namespace LaOcaClient
 
             if (_casillasCarcel.Contains(posicion))
             {
-                MessageBox.Show("¡Estás en la cárcel! Pierdes dos turnos.");
+                MessageBox.Show(Properties.Resources.msgCarcel);
                 jugador.TurnosPerdidos = 2;
                 pasarTurnoSiguienteJugador();
                 return;
@@ -382,7 +380,7 @@ namespace LaOcaClient
 
             if (_casillasCalavera.Contains(posicion))
             {
-                MessageBox.Show("¡Caíste en la calavera! Regresas al principio (casilla 1).");
+                MessageBox.Show(Properties.Resources.msgCalavera);
                 _posicionesJugadores[nombreJugador] = 1;
                 ActualizarInterfazGrafica(1, nombreJugador);
                 pasarTurnoSiguienteJugador();
@@ -431,16 +429,7 @@ namespace LaOcaClient
                         Canvas.SetLeft(ficha, nuevaPosicionCanvas.X);
                         Canvas.SetTop(ficha, nuevaPosicionCanvas.Y);
                     });
-                    Console.WriteLine($"La ficha de {nombreJugador} está ahora en la casilla {nuevaPosicion}");
                 }
-                else
-                {
-                    Console.WriteLine($"Posición {nuevaPosicion} no encontrada en el tablero.");
-                }
-            }
-            else
-            {
-                Console.WriteLine($"Ficha para el jugador {nombreJugador} no encontrada.");
             }
         }
 
@@ -523,10 +512,6 @@ namespace LaOcaClient
                 _posicionesJugadores[nombreJugador] = nuevaPosicion;
                 ActualizarInterfazGrafica(nuevaPosicion, nombreJugador);
             }
-            else
-            {
-                Console.WriteLine($"Jugador {nombreJugador} no encontrado en el diccionario de posiciones.");
-            }
         }
 
         public void MostrarNuevoJugadorEnTurno(string nombreNuevoJugadorEnTurno)
@@ -536,14 +521,14 @@ namespace LaOcaClient
 
             if (nombreNuevoJugadorEnTurno.Equals(SingletonJugador.Instance.Jugador.NombreUsuario))
             {
-                VentanaCierreAutomatico ventanaTurno = new VentanaCierreAutomatico("¡Es tu turno de tirar!", "Tu turno", 2);
+                VentanaCierreAutomatico ventanaTurno = new VentanaCierreAutomatico(Properties.Resources.msgEsTuTurno, Properties.Resources.tituloHoraDeJugar, 2);
                 ventanaTurno.Show();
                 BtnDados.IsEnabled = true;
                 BtnAbandonar.IsEnabled = true;
             }
             else
             {
-                VentanaCierreAutomatico ventanaTurno = new VentanaCierreAutomatico("Es turno de " + nombreNuevoJugadorEnTurno, "Hora de jugar", 2);
+                VentanaCierreAutomatico ventanaTurno = new VentanaCierreAutomatico(Properties.Resources.lbEsTurnoDe + nombreNuevoJugadorEnTurno, Properties.Resources.tituloHoraDeJugar, 2);
                 ventanaTurno.Show();
                 BtnDados.IsEnabled = false;
                 BtnAbandonar.IsEnabled = false;
@@ -554,12 +539,7 @@ namespace LaOcaClient
         {
             string nombreJugador = SingletonJugador.Instance.Jugador.NombreUsuario;
 
-            MessageBoxResult resultado = MessageBox.Show(
-                "¿Estás seguro de que deseas abandonar la partida?",
-                "Confirmación",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Warning
-            );
+            MessageBoxResult resultado = MessageBox.Show(Properties.Resources.msgAbandonarPartidaEnCurso, Properties.Resources.tituloConfirmacion, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
             if (resultado == MessageBoxResult.Yes)
             {
@@ -577,23 +557,19 @@ namespace LaOcaClient
 
                         Dispatcher.Invoke(() =>
                         {
-                            lbNotificacion.Content = $"{nombreJugador} ha abandonado la partida.";
+                            lbNotificacion.Content = $"{nombreJugador}" + Properties.Resources.msgHaAbandonadoLaPartida;
                             lbNotificacion.Visibility = Visibility.Visible;
                         });
 
-                        MessageBox.Show("Has abandonado la partida. Serás redirigido al menú principal.");
+                        MessageBox.Show(Properties.Resources.msgPartidaAbandonada);
                         MenuPrincipal menu = new MenuPrincipal();
                         menu.Show();
                         this.Close();
                     }
-                    else
-                    {
-                        MessageBox.Show("No estás en esta partida.");
-                    }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show($"Error al abandonar la partida: {ex.Message}");
+                    MessageBox.Show(Properties.Resources.msgErrorAbandonoPartida);
                 }
             }
         }
@@ -602,7 +578,7 @@ namespace LaOcaClient
         {
             Dispatcher.Invoke(() =>
             {
-                lbNotificacion.Content = $"{nombreJugador} ha abandonado la partida.";
+                lbNotificacion.Content = $"{nombreJugador}" + Properties.Resources.msgHaAbandonadoLaPartida;
                 lbNotificacion.Visibility = Visibility.Visible;
 
                 if (_fichasPorJugador.TryGetValue(nombreJugador, out Image ficha))

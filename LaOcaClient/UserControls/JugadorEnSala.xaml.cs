@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace LaOcaClient.UserControls
 {
-    /// <summary>
-    /// Interaction logic for JugadorEnSala.xaml
-    /// </summary>
     public partial class JugadorEnSala : UserControl
     {
         public Jugador jugadorEnSala;
@@ -47,15 +44,15 @@ namespace LaOcaClient.UserControls
             }
             catch (FaultException<AmistadException> ex)
             {
-                MessageBox.Show(ex.Detail.Mensaje + "\n" + ex.Reason, "Error al enviar la solicitud.", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Detail.Mensaje + "\n" + ex.Reason, Properties.Resources.tituloInvitacionNoEnviada, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -84,14 +81,14 @@ namespace LaOcaClient.UserControls
 
         private void CargarOpcionEnviarSolicitudAmistad()
         {
-            MenuItem opcionEnviarSolicitudAmistad = new MenuItem { Header = "Enviar Solicitud de Amistad" };
+            MenuItem opcionEnviarSolicitudAmistad = new MenuItem { Header = Properties.Resources.lbEnviarSolicitudAmistad };
             opcionEnviarSolicitudAmistad.Click += (s, args) => EnviarSolicitudAmistad();
             imgMasOpciones_MenuContextual.Items.Add(opcionEnviarSolicitudAmistad);
         }
 
         private void CargarOpcionBloquear()
         {
-            MenuItem opcionBloquearJugador = new MenuItem { Header = "Bloquear" };
+            MenuItem opcionBloquearJugador = new MenuItem { Header = Properties.Resources.lbBloquear };
             opcionBloquearJugador.Click += (s, args) => BloquearJugador();
             imgMasOpciones_MenuContextual.Items.Add(opcionBloquearJugador);
 
@@ -100,14 +97,14 @@ namespace LaOcaClient.UserControls
 
         private void CargarOpcionDesbloquear()
         {
-            MenuItem opcionDesbloquearJugador = new MenuItem { Header = "Desbloquear" };
+            MenuItem opcionDesbloquearJugador = new MenuItem { Header = Properties.Resources.lbDesbloquear };
             opcionDesbloquearJugador.Click += (s, args) => DesbloquearJugador();
             imgMasOpciones_MenuContextual.Items.Add(opcionDesbloquearJugador);
         }
 
         public void CargarOpcionExpulsar()
         {
-            MenuItem opcionExpulsar = new MenuItem { Header = "Expulsar" };
+            MenuItem opcionExpulsar = new MenuItem { Header = Properties.Resources.lbExpulsar };
             opcionExpulsar.Click += (s, args) => ExpulsarJugador();
             imgMasOpciones_MenuContextual.Items.Add(opcionExpulsar);
         }
@@ -126,15 +123,15 @@ namespace LaOcaClient.UserControls
             }
             catch (FaultException<AmistadException> ex)
             {
-                MessageBox.Show(ex.Detail.Mensaje + "\n" + ex.Reason, "Error al enviar la solicitud.", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Detail.Mensaje + "\n" + ex.Reason, Properties.Resources.tituloInvitacionNoEnviada, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -147,15 +144,15 @@ namespace LaOcaClient.UserControls
             }
             catch (FaultException<AmistadException> ex)
             {
-                MessageBox.Show(ex.Detail.Mensaje + "\n" + ex.Reason, "Error al procesar el bloqueo.", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Detail.Mensaje + "\n" + ex.Reason, Properties.Resources.tituloErrorBloqueo, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -174,15 +171,15 @@ namespace LaOcaClient.UserControls
             }
             catch (FaultException<AmistadException> ex)
             {
-                MessageBox.Show(ex.Detail.Mensaje + "\n" + ex.Reason, "Error al procesar el bloqueo.", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Detail.Mensaje + "\n" + ex.Reason, Properties.Resources.tituloErrorBloqueo, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

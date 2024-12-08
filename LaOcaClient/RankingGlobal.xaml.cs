@@ -37,7 +37,7 @@ namespace LaOcaClient
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al cargar el ranking global: {ex.Message}", "Error");
+                MessageBox.Show(Properties.Resources.msgErrorRanking, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
+             xmlns:p="clr-namespace:LaOcaClient.Properties"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"
              Margin="10"
@@ -12,7 +13,7 @@
         <Rectangle Height="100" Stroke="#FF00384A" Fill="LightSkyBlue" VerticalAlignment="Center"/>
         <Image x:Name="imgFotoPerfil" HorizontalAlignment="Left" Height="60" VerticalAlignment="Center" Width="60" Margin="20,0,0,0" Stretch="UniformToFill"/>
         <Label x:Name="lbMensaje" Content="Mensaje" Margin="100,0,220,0" VerticalAlignment="Center" FontSize="16"/>
-        <Button x:Name="btnRechazar" Content="Rechazar" Margin="0,0,20,0" VerticalAlignment="Center" Height="40" HorizontalAlignment="Right" Width="80" Background="#FFFA9999" BorderBrush="#FF030000" Click="EliminarPeticion"/>
-        <Button x:Name="btnAceptar" Content="Aceptar" Margin="0,0,120,0" VerticalAlignment="Center" Height="40" HorizontalAlignment="Right" Width="80" Background="#FFC3FD9B" BorderBrush="#FF020000" Click="UnirseASala"/>
+        <Button x:Name="btnRechazar" Content="{x:Static p:Resources.globalRechazar}" Margin="0,0,20,0" VerticalAlignment="Center" Height="40" HorizontalAlignment="Right" Width="80" Background="#FFFA9999" BorderBrush="#FF030000" Click="EliminarPeticion"/>
+        <Button x:Name="btnAceptar" Content="{x:Static p:Resources.globalAceptar}" Margin="0,0,120,0" VerticalAlignment="Center" Height="40" HorizontalAlignment="Right" Width="80" Background="#FFC3FD9B" BorderBrush="#FF020000" Click="UnirseASala"/>
     </Grid>
 </UserControl>

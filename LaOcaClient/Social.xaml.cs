@@ -1,6 +1,7 @@
 ﻿using LaOcaClient.LaOcaService;
 using LaOcaClient.UserControls;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -40,11 +41,11 @@ namespace LaOcaClient
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             MostrarJugadoresConectados();
@@ -68,11 +69,11 @@ namespace LaOcaClient
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -87,7 +88,7 @@ namespace LaOcaClient
                 {
                     if (!jugador.NombreUsuario.Equals(SingletonJugador.Instance.Jugador.NombreUsuario))
                     {
-                        Amigo entradaAmigo = new Amigo(jugador, "En Línea", this);
+                        Amigo entradaAmigo = new Amigo(jugador, Properties.Resources.lbEnLinea, this);
                         lbxListaAmigos.Items.Add(entradaAmigo);
                         amigos.Add(jugador.NombreUsuario, entradaAmigo);
                     }
@@ -95,17 +96,17 @@ namespace LaOcaClient
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         public void MostrarNuevoJugadorConectado(Jugador nuevoJugadorConectado)
         {
-            Amigo entradaNuevoAmigoConectado = new Amigo(nuevoJugadorConectado, "En Línea", this);
+            Amigo entradaNuevoAmigoConectado = new Amigo(nuevoJugadorConectado, Properties.Resources.lbEnLinea, this);
             lbxListaAmigos.Items.Insert(0, entradaNuevoAmigoConectado);
             amigos.Add(nuevoJugadorConectado.NombreUsuario, entradaNuevoAmigoConectado);
         }

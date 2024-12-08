@@ -35,23 +35,23 @@ namespace LaOcaClient
                 cuenta = _servicioCuenta.ObtenerCuentaPorId(idCuenta);
                 if (cuenta == null)
                 {
-                    MessageBox.Show("Cuenta no encontrada.");
+                    MessageBox.Show(Properties.Resources.msgCuentaNoEncontrada, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
                     Close();
                 }
             }
-            catch (CommunicationException ex)
+            catch (CommunicationException)
             {
-                MessageBox.Show($"Error de comunicación al cargar los datos de la cuenta: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
                 Close();
             }
-            catch (TimeoutException ex)
+            catch (TimeoutException)
             {
-                MessageBox.Show($"La carga de los datos de la cuenta ha superado el tiempo de espera: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
                 Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error inesperado al cargar los datos de la cuenta: {ex.Message}");
+                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
                 Close();
             }
         }
@@ -64,19 +64,19 @@ namespace LaOcaClient
 
             if (string.IsNullOrEmpty(contraseñaActual) || string.IsNullOrEmpty(nuevaContraseña) || string.IsNullOrEmpty(confirmarNuevaContraseña))
             {
-                MessageBox.Show("Todos los campos son obligatorios.");
+                MessageBox.Show(Properties.Resources.camposVaciosLogin, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (!Utilidad.ValidarContrasena(nuevaContraseña))
             {
-                MessageBox.Show("La nueva contraseña no cumple con los requisitos. Debe tener entre 8 y 16 caracteres, incluir al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.");
+                MessageBox.Show(Properties.Resources.lbCaracteristicasContraseñaValida, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (nuevaContraseña != confirmarNuevaContraseña)
             {
-                MessageBox.Show("Las nuevas contraseñas no coinciden.");
+                MessageBox.Show(Properties.Resources.globalContraseñasNoCoinciden, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -87,25 +87,25 @@ namespace LaOcaClient
                 {
                     cuenta.Contrasena = Utilidad.HashearConSha256(nuevaContraseña);
                     _servicioCuenta.ModificarCuenta(cuenta);
-                    MessageBox.Show("Contraseña actualizada exitosamente.");
+                    MessageBox.Show(Properties.Resources.msgContraseñaRestablecida, "", MessageBoxButton.OK, MessageBoxImage.Information);
                     CerrarSesion();
                 }
                 else
                 {
-                    MessageBox.Show("La contraseña actual es incorrecta.");
+                    MessageBox.Show(Properties.Resources.msgContraseñaActualIncorrecta, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (CommunicationException ex)
+            catch (CommunicationException)
             {
-                MessageBox.Show($"Error de comunicación al actualizar la contraseña: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (TimeoutException ex)
+            catch (TimeoutException)
             {
-                MessageBox.Show($"La actualización de la contraseña ha superado el tiempo de espera: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error inesperado al actualizar la contraseña: {ex.Message}");
+                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -119,11 +119,11 @@ namespace LaOcaClient
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             IniciarSesion ventanaIniciarSesion = new IniciarSesion();
             this.Close();

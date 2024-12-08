@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:LaOcaClient"
         xmlns:p="clr-namespace:LaOcaClient.Properties"
-        Title="Restablecer Contraseña" Height="245" Width="379">
+        Title="{x:Static p:Resources.globalRecuperarContraseña}" Height="245" Width="379">
     <Grid>
 
         <Button Content="{x:Static p:Resources.btnGlobalRegresar}" Margin="0,0,0,-150" Click="btnVolver_Click" Height="20" Width="60"/>

@@ -34,7 +34,6 @@ namespace LaOcaClient
             }
         }
 
-
         private void RegresarAlInicio_Click(object sender, RoutedEventArgs e)
         {
             MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();

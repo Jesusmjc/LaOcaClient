@@ -20,6 +20,8 @@ using System.ServiceModel;
 using System.Windows.Threading;
 using System.Resources;
 using System.Globalization;
+using System.ServiceModel.Security;
+using System.Security.Permissions;
 
 namespace LaOcaClient
 {
@@ -60,8 +62,9 @@ namespace LaOcaClient
         {
             if (modo == ModoCuenta.Modificar)
             {
-                globalCrearCuenta.Content = "Modificar cuenta";
-                btnSiguienteModificarCuenta.Content = "Guardar cambios";
+                this.Title = Properties.Resources.lbModificarCuenta;
+                globalCrearCuenta.Content = Properties.Resources.lbModificarCuenta;
+                btnSiguienteModificarCuenta.Content = Properties.Resources.btnGuardarCambios;
                 CargarDatosJugador(idCuenta, idJugador);
             }
         }
@@ -108,7 +111,7 @@ namespace LaOcaClient
             }
             catch (ArgumentException)
             {
-                MessageBox.Show("La referencia de la imagen seleccionada no es válida.");
+                MessageBox.Show(Properties.Resources.msgRefImagenInvalida, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -122,26 +125,26 @@ namespace LaOcaClient
             {
                 if (_servicioCuenta.NombreUsuarioExisteCrear(jugador.NombreUsuario))
                 {
-                    MessageBox.Show("El nombre de usuario ya está en uso por otro jugador. Por favor, elija otro nombre.");
+                    MessageBox.Show(Properties.Resources.msgNombreUsuarioExiste, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
                 _servicioCuenta.EnviarCodigoVerificacion(tbCorreo.Text);
-                MessageBox.Show("Se han guardado los datos de tu cuenta. Por favor revisa el código de verificación que se envió a tu correo electrónico.");
+                MessageBox.Show(Properties.Resources.msgCodigoEnviadoCrearCuenta, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 ActualizarVentanaCrearCuenta();
                 IniciarTemporizador();
             }
-            catch (CommunicationException ex)
+            catch (CommunicationException)
             {
-                MessageBox.Show($"Error de comunicación al enviar el código de verificación: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (TimeoutException ex)
+            catch (TimeoutException)
             {
-                MessageBox.Show($"El envío del código de verificación ha superado el tiempo de espera: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error inesperado al enviar el código de verificación: {ex.Message}");
+                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -166,7 +169,7 @@ namespace LaOcaClient
             }
             catch (ArgumentException)
             {
-                MessageBox.Show("La referencia de la imagen seleccionada no es válida.");
+                MessageBox.Show(Properties.Resources.msgRefImagenInvalida, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -181,33 +184,33 @@ namespace LaOcaClient
             {
                 if (_servicioCuenta.NombreUsuarioExisteModificar(jugador.NombreUsuario, jugador.IdJugador))
                 {
-                    MessageBox.Show("El nombre de usuario ya está en uso por otro jugador. Por favor, elija otro nombre.");
+                    MessageBox.Show(Properties.Resources.msgNombreUsuarioExiste, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
                 _servicioCuenta.ModificarCuenta(cuenta);
                 _servicioJugador.ModificarJugador(jugador);
-                MessageBox.Show("Cuenta modificada exitosamente.");
+                MessageBox.Show(Properties.Resources.msgCuentaModificada, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 CargarDatosJugador(SingletonJugador.Instance.Jugador.IdCuenta, SingletonJugador.Instance.Jugador.IdJugador);
                 MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
                 ventanaMenuPrincipal.Show();
                 this.Close();
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
-                MessageBox.Show($"Error al modificar el jugador: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgErrorModificarJugador, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (CommunicationException ex)
+            catch (CommunicationException)
             {
-                MessageBox.Show($"Error de comunicación al modificar la cuenta: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (TimeoutException ex)
+            catch (TimeoutException)
             {
-                MessageBox.Show($"La modificación de la cuenta ha superado el tiempo de espera: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error inesperado al modificar la cuenta: {ex.Message}");
+                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -227,13 +230,13 @@ namespace LaOcaClient
 
             if (string.IsNullOrWhiteSpace(nombreUsuario))
             {
-                MessageBox.Show("Todos los campos son obligatorios.");
+                MessageBox.Show(Properties.Resources.camposVaciosLogin, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
             if (!Utilidad.ValidarNombreJugador(nombreUsuario))
             {
-                MessageBox.Show("El nombre de usuario debe tener al menos 6 caracteres.");
+                MessageBox.Show(Properties.Resources.msgCaracteristicasNombreUsuario, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
@@ -247,19 +250,19 @@ namespace LaOcaClient
 
             if (string.IsNullOrWhiteSpace(contrasena) || string.IsNullOrWhiteSpace(confirmarContrasena))
             {
-                MessageBox.Show("Todos los campos son obligatorios.");
+                MessageBox.Show(Properties.Resources.camposVaciosLogin, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
             if (!Utilidad.ValidarContrasena(contrasena))
             {
-                MessageBox.Show("La contraseña no cumple con los requisitos. Debe tener entre 8 y 16 caracteres, incluir al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.");
+                MessageBox.Show(Properties.Resources.lbCaracteristicasContraseñaValida, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
             if (contrasena != confirmarContrasena)
             {
-                MessageBox.Show("Las contraseñas no coinciden.");
+                MessageBox.Show(Properties.Resources.globalContraseñasNoCoinciden, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
@@ -272,19 +275,19 @@ namespace LaOcaClient
 
             if (string.IsNullOrWhiteSpace(correo))
             {
-                MessageBox.Show("Todos los campos son obligatorios.");
+                MessageBox.Show(Properties.Resources.camposVaciosLogin, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
             if (!Utilidad.ValidarCorreoElectronico(correo))
             {
-                MessageBox.Show("El correo electrónico no es válido. Debe ser un correo de gmail, outlook o hotmail.");
+                MessageBox.Show(Properties.Resources.lbCaracteristicasCorreoValido, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
             if (_servicioCuenta.CorreoExiste(correo))
             {
-                MessageBox.Show("El correo electrónico ya está registrado.");
+                MessageBox.Show(Properties.Resources.msgCorreoYaExiste, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
@@ -295,7 +298,7 @@ namespace LaOcaClient
         {
             if (string.IsNullOrEmpty(_imagenPerfilSeleccionada))
             {
-                MessageBox.Show("Debe seleccionar una imagen de perfil.");
+                MessageBox.Show(Properties.Resources.msgImagenNoSeleccionada, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
@@ -312,7 +315,7 @@ namespace LaOcaClient
                 bool esCodigoCorrecto = _servicioCuenta.VerificarCodigoCrearCuenta(correo, codigoIngresado);
                 if (esCodigoCorrecto)
                 {
-                    MessageBox.Show("Código de verificación correcto. Creando cuenta...");
+                    MessageBox.Show(Properties.Resources.msgCodigoCorrecto, "", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     var cuenta = new Cuenta
                     {
@@ -329,40 +332,40 @@ namespace LaOcaClient
                     try
                     {
                         _servicioCuenta.CrearCuenta(cuenta, jugador, _imagenPerfilSeleccionada);
-                        MessageBox.Show("Cuenta creada exitosamente.");
+                        MessageBox.Show(Properties.Resources.msgCuentaCreada, "", MessageBoxButton.OK, MessageBoxImage.Information);
                         IniciarSesion ventanaIniciarSesion = new IniciarSesion();
                         ventanaIniciarSesion.Show();
                         this.Close();
                     }
-                    catch (CommunicationException ex)
+                    catch (CommunicationException)
                     {
-                        MessageBox.Show($"Error de comunicación al crear la cuenta: {ex.Message}");
+                        MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                    catch (TimeoutException ex)
+                    catch (TimeoutException)
                     {
-                        MessageBox.Show($"La creación de la cuenta ha superado el tiempo de espera: {ex.Message}");
+                        MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        MessageBox.Show($"Error inesperado al crear la cuenta: {ex.Message}");
+                        MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Código de verificación incorrecto.");
+                    MessageBox.Show(Properties.Resources.msgCodigoIncorrecto, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (CommunicationException ex)
+            catch (CommunicationException)
             {
-                MessageBox.Show($"{Properties.Resources.globalSala} {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (TimeoutException ex)
+            catch (TimeoutException)
             {
-                MessageBox.Show($"La verificación del código ha superado el tiempo de espera: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error inesperado al verificar el código: {ex.Message}");
+                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -373,20 +376,20 @@ namespace LaOcaClient
             try
             {
                 _servicioCuenta.EnviarCodigoVerificacion(correo);
-                MessageBox.Show("Se ha reenviado el código de verificación a tu correo electrónico.");
+                MessageBox.Show(Properties.Resources.msgCodigoReenviado, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 IniciarTemporizador();
             }
-            catch (CommunicationException ex)
+            catch (CommunicationException)
             {
-                MessageBox.Show($"Error de comunicación al reenviar el código de verificación: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (TimeoutException ex)
+            catch (TimeoutException)
             {
-                MessageBox.Show($"El reenvío del código de verificación ha superado el tiempo de espera: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error inesperado al reenviar el código de verificación: {ex.Message}");
+                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -397,11 +400,11 @@ namespace LaOcaClient
             {
                 _timer.Stop();
                 btnReenviarCodigo.IsEnabled = true;
-                lbReenviarCodigo.Content = "Reenviar código";
+                lbReenviarCodigo.Content = Properties.Resources.btnReenviarCodigo;
             }
             else
             {
-                lbReenviarCodigo.Content = $"Reenviar código ({_tiempoRestante}s)";
+                lbReenviarCodigo.Content = Properties.Resources.btnReenviarCodigo + $" ({_tiempoRestante}s)";
             }
         }
 
@@ -435,7 +438,7 @@ namespace LaOcaClient
             }
             else
             {
-                throw new ArgumentException("Referencia no válida", nameof(referencia));
+                throw new ArgumentException(Properties.Resources.msgRefImagenInvalida);
             }
         }
 
@@ -448,16 +451,16 @@ namespace LaOcaClient
         {
             if (modo == ModoCuenta.Crear)
             {
-                if (MessageBoxResult.Yes == MessageBox.Show("¿Estás seguro de que deseas cancelar la creación de la cuenta?", "Cancelar creación de cuenta", MessageBoxButton.YesNo, MessageBoxImage.Warning))
+                if (MessageBoxResult.Yes == MessageBox.Show(Properties.Resources.msgCancelarCreacionCuenta, Properties.Resources.tituloCancelarCrearCuenta, MessageBoxButton.YesNo, MessageBoxImage.Warning))
                 {
                     IniciarSesion ventanaIniciarSesion = new IniciarSesion();
                     ventanaIniciarSesion.Show();
                     this.Close();
                 }
             }
-            else if(modo == ModoCuenta.Modificar)
+            else if (modo == ModoCuenta.Modificar)
             {
-                if (MessageBoxResult.Yes == MessageBox.Show("¿Estás seguro de que deseas cancelar la modificación de la cuenta?", "Cancelar modificación de cuenta", MessageBoxButton.YesNo, MessageBoxImage.Warning))
+                if (MessageBoxResult.Yes == MessageBox.Show(Properties.Resources.msgCancelarModificacionCuenta, Properties.Resources.tituloCancelarModificacionCuenta, MessageBoxButton.YesNo, MessageBoxImage.Warning))
                 {
                     MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
                     ventanaMenuPrincipal.Show();
@@ -470,8 +473,6 @@ namespace LaOcaClient
         {
             Image imagenSeleccionada = sender as Image;
             _imagenPerfilSeleccionada = imagenSeleccionada.Source.ToString();
-
-            //MessageBox.Show($"Referencia de la imagen seleccionada: {_imagenPerfilSeleccionada}");
 
             foreach (var child in wpImagenesPerfil.Children)
             {
@@ -541,14 +542,14 @@ namespace LaOcaClient
                 var cuenta = _servicioCuenta.ObtenerCuentaPorId(idCuenta);
                 if (cuenta == null)
                 {
-                    MessageBox.Show("Cuenta no encontrada.");
+                    MessageBox.Show(Properties.Resources.msgCuentaNoEncontrada, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
                 var jugador = _servicioJugador.ObtenerJugadorPorId(idJugador);
                 if (jugador == null)
                 {
-                    MessageBox.Show("Jugador no encontrado.");
+                    MessageBox.Show(Properties.Resources.msgJugadorNoEncontrado, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
@@ -575,20 +576,20 @@ namespace LaOcaClient
                 }
                 else
                 {
-                    MessageBox.Show("Imagen de perfil no encontrada.");
+                    MessageBox.Show(Properties.Resources.msgImagenPerfilNoEncontrada, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (CommunicationException ex)
+            catch (CommunicationException)
             {
-                MessageBox.Show($"Error de comunicación al cargar los datos del jugador: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (TimeoutException ex)
+            catch (TimeoutException)
             {
-                MessageBox.Show($"La carga de los datos del jugador ha superado el tiempo de espera: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error inesperado al cargar los datos del jugador: {ex.Message}");
+                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
