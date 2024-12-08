@@ -22,13 +22,15 @@ namespace LaOcaClient
     /// </summary>
     public partial class Buzon : Window, IServicioBuzonCallback
     {
-        private LaOcaService.ServicioSocialClient clienteSocial;
+        private LaOcaService.ServicioSocialClient _clienteSocial;
 
         public Buzon()
         {
             InitializeComponent();
 
-            clienteSocial = new LaOcaService.ServicioSocialClient();
+            btnInvitaciones.IsEnabled = false;
+
+            _clienteSocial = new LaOcaService.ServicioSocialClient();
 
             InstanceContext contexto = new InstanceContext(this);
             LaOcaService.ServicioBuzonClient clienteBuzon = new LaOcaService.ServicioBuzonClient(contexto);
@@ -47,38 +49,90 @@ namespace LaOcaClient
             {
                 MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
 
         public void MostrarNuevaInvitacionAPartida(InvitacionPartida invitacion)
         {
-            Peticion peticion = new Peticion(invitacion);
-            peticion.VentanaBuzon = this;
+            Peticion peticion = new Peticion(invitacion)
+            {
+                VentanaBuzon = this
+            };
 
             lbxPeticiones.Items.Insert(0, peticion);
         }
 
-        public void MostrarNuevaSolicitudAmistad(Amistad solicitudAmistad)
-        {
-            throw new NotImplementedException();
-        }
-
         private void MostrarInvitacionesPendientes()
         {
+            List<InvitacionPartida> invitaciones = RecuperarInvitacionesDelServidor();
+
+            foreach (var invitacion in invitaciones)
+            {
+                Peticion peticion = new Peticion(invitacion);
+                peticion.VentanaBuzon = this;
+
+                lbxPeticiones.Items.Add(peticion);
+            }
+        }
+
+        private List<InvitacionPartida> RecuperarInvitacionesDelServidor()
+        {
+            List<InvitacionPartida> invitaciones = new List<InvitacionPartida>();
+
             try
             {
-                InvitacionPartida[] invitaciones = clienteSocial.RecuperarInvitaciones(SingletonJugador.Instance.Jugador.NombreUsuario);
+                InvitacionPartida[] invitacionesDelServidor = _clienteSocial.RecuperarInvitaciones(SingletonJugador.Instance.Jugador.NombreUsuario);
 
-                if (invitaciones != null)
+                foreach (InvitacionPartida invitacion in invitacionesDelServidor)
                 {
-                    foreach (var invitacion in invitaciones)
-                    {
-                        Peticion peticion = new Peticion(invitacion);
-                        peticion.VentanaBuzon = this;
-
-                        lbxPeticiones.Items.Add(peticion);
-                    }
+                    invitaciones.Add(invitacion);
                 }
+            }
+            catch (FaultException<AmistadException> ex)
+            {
+                MessageBox.Show(ex.Detail.Mensaje, ex.Reason.ToString(), MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return invitaciones;
+        }
+
+        private void RegresarASocial(object sender, MouseButtonEventArgs e)
+        {
+            Social ventanaSocial = new Social();
+            this.Close();
+            ventanaSocial.ShowDialog();
+        }
+
+        private void MostrarSolicitudesAmistad(object sender, RoutedEventArgs e)
+        {
+            btnSolicitudes.IsEnabled = false;
+            btnInvitaciones.IsEnabled = true;
+
+            lbxPeticiones.Items.Clear();
+
+            try
+            {
+                ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
+                Amistad[] solicitudesDeAmistadDeJugador = clienteAmistad.RecuperarAmistades(SingletonJugador.Instance.Jugador.IdJugador, EstadoAmistad.SOLICITUD);
+
+                foreach (Amistad solicitudAmistad in solicitudesDeAmistadDeJugador)
+                {
+                    Peticion peticion = new Peticion(solicitudAmistad);
+                    peticion.VentanaBuzon = this;
+
+                    lbxPeticiones.Items.Add(peticion);
+                }
+            }
+            catch (FaultException<AmistadException> ex)
+            {
+                MessageBox.Show(ex.Detail.Mensaje, ex.Reason.ToString(), MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
@@ -90,11 +144,14 @@ namespace LaOcaClient
             }
         }
 
-        private void RegresarASocial(object sender, MouseButtonEventArgs e)
+        private void MostrarInvitacionesAPartida(object sender, RoutedEventArgs e)
         {
-            Social ventanaSocial = new Social();
-            this.Close();
-            ventanaSocial.ShowDialog();
+            btnInvitaciones.IsEnabled = false;
+            btnSolicitudes.IsEnabled = true;
+
+            lbxPeticiones.Items.Clear();
+
+            MostrarInvitacionesPendientes();
         }
     }
 }

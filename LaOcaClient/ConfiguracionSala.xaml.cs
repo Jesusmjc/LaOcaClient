@@ -52,5 +52,12 @@ namespace LaOcaClient
             this.Close();
             ventanaSala.ShowDialog();
         }
+
+        private void RegresarAVentanaAnterior(object sender, MouseButtonEventArgs e)
+        {
+            MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
+            this.Close();
+            ventanaMenuPrincipal.ShowDialog();
+        }
     }
 }

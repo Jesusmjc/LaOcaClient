@@ -678,6 +678,9 @@
   <wsdl:message name="IServicioActualizacionJugadoresEnLinea_OcultarJugadorDesconectado_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:OcultarJugadorDesconectado" />
   </wsdl:message>
+  <wsdl:message name="IServicioActualizacionJugadoresEnLinea_OcultarJugadorQueTerminoAmistad_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OcultarJugadorQueTerminoAmistad" />
+  </wsdl:message>
   <wsdl:message name="IServicioSocial_EnviarInvitacionAPartida_InputMessage">
     <wsdl:part name="parameters" element="tns:EnviarInvitacionAPartida" />
   </wsdl:message>
@@ -696,13 +699,13 @@
   <wsdl:message name="IServicioSocial_RecuperarInvitaciones_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarInvitacionesResponse" />
   </wsdl:message>
-  <wsdl:message name="IServicioAmistad_EnviarSolicitudAmistad_InputMessage">
-    <wsdl:part name="parameters" element="tns:EnviarSolicitudAmistad" />
+  <wsdl:message name="IServicioAmistad_RegistrarNuevaAmistad_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarNuevaAmistad" />
   </wsdl:message>
-  <wsdl:message name="IServicioAmistad_EnviarSolicitudAmistad_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EnviarSolicitudAmistadResponse" />
+  <wsdl:message name="IServicioAmistad_RegistrarNuevaAmistad_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarNuevaAmistadResponse" />
   </wsdl:message>
-  <wsdl:message name="IServicioAmistad_EnviarSolicitudAmistad_AmistadExceptionFault_FaultMessage">
+  <wsdl:message name="IServicioAmistad_RegistrarNuevaAmistad_AmistadExceptionFault_FaultMessage">
     <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/LaOcaService" name="detail" element="q3:AmistadException" />
   </wsdl:message>
   <wsdl:message name="IServicioAmistad_RecuperarAmistades_InputMessage">
@@ -740,9 +743,6 @@
   </wsdl:message>
   <wsdl:message name="IServicioBuzon_MostrarNuevaInvitacionAPartida_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MostrarNuevaInvitacionAPartida" />
-  </wsdl:message>
-  <wsdl:message name="IServicioBuzon_MostrarNuevaSolicitudAmistad_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:MostrarNuevaSolicitudAmistad" />
   </wsdl:message>
   <wsdl:portType name="ILoginService">
     <wsdl:operation name="GetUser">
@@ -951,6 +951,9 @@
     <wsdl:operation name="OcultarJugadorDesconectado">
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnLinea/OcultarJugadorDesconectado" message="tns:IServicioActualizacionJugadoresEnLinea_OcultarJugadorDesconectado_OutputCallbackMessage" />
     </wsdl:operation>
+    <wsdl:operation name="OcultarJugadorQueTerminoAmistad">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioActualizacionJugadoresEnLinea/OcultarJugadorQueTerminoAmistad" message="tns:IServicioActualizacionJugadoresEnLinea_OcultarJugadorQueTerminoAmistad_OutputCallbackMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IServicioSocial">
     <wsdl:operation name="EnviarInvitacionAPartida">
@@ -967,10 +970,10 @@
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IServicioAmistad">
-    <wsdl:operation name="EnviarSolicitudAmistad">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioAmistad/EnviarSolicitudAmistad" message="tns:IServicioAmistad_EnviarSolicitudAmistad_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioAmistad/EnviarSolicitudAmistadResponse" message="tns:IServicioAmistad_EnviarSolicitudAmistad_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IServicioAmistad/EnviarSolicitudAmistadAmistadExceptionFault" name="AmistadExceptionFault" message="tns:IServicioAmistad_EnviarSolicitudAmistad_AmistadExceptionFault_FaultMessage" />
+    <wsdl:operation name="RegistrarNuevaAmistad">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioAmistad/RegistrarNuevaAmistad" message="tns:IServicioAmistad_RegistrarNuevaAmistad_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioAmistad/RegistrarNuevaAmistadResponse" message="tns:IServicioAmistad_RegistrarNuevaAmistad_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IServicioAmistad/RegistrarNuevaAmistadAmistadExceptionFault" name="AmistadExceptionFault" message="tns:IServicioAmistad_RegistrarNuevaAmistad_AmistadExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="RecuperarAmistades">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioAmistad/RecuperarAmistades" message="tns:IServicioAmistad_RecuperarAmistades_InputMessage" />
@@ -995,9 +998,6 @@
     </wsdl:operation>
     <wsdl:operation name="MostrarNuevaInvitacionAPartida">
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioBuzon/MostrarNuevaInvitacionAPartida" message="tns:IServicioBuzon_MostrarNuevaInvitacionAPartida_OutputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="MostrarNuevaSolicitudAmistad">
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioBuzon/MostrarNuevaSolicitudAmistad" message="tns:IServicioBuzon_MostrarNuevaSolicitudAmistad_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_ILoginService" type="tns:ILoginService">
@@ -1454,6 +1454,12 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="OcultarJugadorQueTerminoAmistad">
+      <soap12:operation soapAction="http://tempuri.org/IServicioActualizacionJugadoresEnLinea/OcultarJugadorQueTerminoAmistad" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="NetTcpBinding_IServicioSocial" type="tns:IServicioSocial">
     <wsp:PolicyReference URI="#NetTcpBinding_IServicioSocial_policy" />
@@ -1489,8 +1495,8 @@
   <wsdl:binding name="NetTcpBinding_IServicioAmistad" type="tns:IServicioAmistad">
     <wsp:PolicyReference URI="#NetTcpBinding_IServicioAmistad_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="EnviarSolicitudAmistad">
-      <soap12:operation soapAction="http://tempuri.org/IServicioAmistad/EnviarSolicitudAmistad" style="document" />
+    <wsdl:operation name="RegistrarNuevaAmistad">
+      <soap12:operation soapAction="http://tempuri.org/IServicioAmistad/RegistrarNuevaAmistad" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1552,12 +1558,6 @@
     </wsdl:operation>
     <wsdl:operation name="MostrarNuevaInvitacionAPartida">
       <soap12:operation soapAction="http://tempuri.org/IServicioBuzon/MostrarNuevaInvitacionAPartida" style="document" />
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="MostrarNuevaSolicitudAmistad">
-      <soap12:operation soapAction="http://tempuri.org/IServicioBuzon/MostrarNuevaSolicitudAmistad" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

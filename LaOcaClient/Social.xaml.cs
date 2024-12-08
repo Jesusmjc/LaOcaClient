@@ -22,8 +22,8 @@ namespace LaOcaClient
     /// </summary>
     public partial class Social : Window, IServicioActualizacionJugadoresEnLineaCallback
     {
-        private LaOcaService.ServicioActualizacionJugadoresEnLineaClient clienteActualizacionJugadoresEnLinea;
-        private Dictionary<string, Amigo> amigos = new Dictionary<string, Amigo>();
+        private LaOcaService.ServicioActualizacionJugadoresEnLineaClient _clienteActualizacionJugadoresEnLinea;
+        private Dictionary<string, Amigo> _amigos = new Dictionary<string, Amigo>();
 
         public Sala ventanaSala;
 
@@ -32,11 +32,11 @@ namespace LaOcaClient
             InitializeComponent();
 
             InstanceContext contexto = new InstanceContext(this);
-            clienteActualizacionJugadoresEnLinea = new ServicioActualizacionJugadoresEnLineaClient(contexto);
+            _clienteActualizacionJugadoresEnLinea = new ServicioActualizacionJugadoresEnLineaClient(contexto);
 
             try
             {
-                clienteActualizacionJugadoresEnLinea.AgregarCanalCallbackJugadoresEnLinea(SingletonJugador.Instance.Jugador.NombreUsuario);
+                _clienteActualizacionJugadoresEnLinea.AgregarCanalCallbackJugadoresEnLinea(SingletonJugador.Instance.Jugador.NombreUsuario);
             }
             catch (TimeoutException)
             {
@@ -47,7 +47,7 @@ namespace LaOcaClient
                 MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            MostrarJugadoresConectados();
+            MostrarAmigos();
         }
 
         public Social(Sala ventanaSala)
@@ -55,15 +55,15 @@ namespace LaOcaClient
             InitializeComponent();
 
             InstanceContext contexto = new InstanceContext(this);
-            clienteActualizacionJugadoresEnLinea = new ServicioActualizacionJugadoresEnLineaClient(contexto);
+            _clienteActualizacionJugadoresEnLinea = new ServicioActualizacionJugadoresEnLineaClient(contexto);
 
             try
             {
-                clienteActualizacionJugadoresEnLinea.AgregarCanalCallbackJugadoresEnLinea(SingletonJugador.Instance.Jugador.NombreUsuario);
+                _clienteActualizacionJugadoresEnLinea.AgregarCanalCallbackJugadoresEnLinea(SingletonJugador.Instance.Jugador.NombreUsuario);
 
                 this.ventanaSala = ventanaSala;
 
-                MostrarJugadoresConectados();
+                MostrarAmigos();
                 imgBuzon.Visibility = Visibility.Hidden;
             }
             catch (TimeoutException)
@@ -76,21 +76,65 @@ namespace LaOcaClient
             }
         }
 
-        private void MostrarJugadoresConectados()
+        private void MostrarAmigos()
         {
-            LaOcaService.ServicioJugadoresEnLineaClient clienteJugadoresEnLinea = new LaOcaService.ServicioJugadoresEnLineaClient();
+            List<Jugador> amigos = RecuperarAmigos();
+            Dictionary<string, Jugador> jugadoresConectados = RecuperarJugadoresConectados();
+            List<Jugador> amigosConectados = new List<Jugador>();
+
+            foreach (Jugador amigo in amigos)
+            {
+                if (ventanaSala != null)
+                {
+                    if (ventanaSala.SalaActual.Jugadores.ContainsKey(amigo.NombreUsuario))
+                    {
+                        continue;
+                    }
+                }
+
+                if (!jugadoresConectados.ContainsKey(amigo.NombreUsuario))
+                {
+                    if (ventanaSala != null)
+                    {
+                        Amigo entradaAmigo = new Amigo(amigo, "Desconectado", this);
+                        _amigos.Add(amigo.NombreUsuario, entradaAmigo);
+
+                        continue;
+                    }
+
+                    MostrarAmigo(amigo, "Desconectado");             
+                }
+                else
+                {
+                    amigosConectados.Add(amigo);
+                }
+            }
+
+            foreach (Jugador amigoConectado in amigosConectados)
+            {
+                MostrarAmigo(amigoConectado, "En línea");
+            }
+        }
+
+        private void MostrarAmigo(Jugador amigo, string estadoConexion)
+        {
+            Amigo entradaAmigo = new Amigo(amigo, estadoConexion, this);
+            lbxListaAmigos.Items.Insert(0, entradaAmigo);
+            _amigos.Add(amigo.NombreUsuario, entradaAmigo);
+        }
+
+        private Dictionary<string, Jugador> RecuperarJugadoresConectados()
+        {
+            Dictionary<string, Jugador> jugadores = new Dictionary<string, Jugador>();
+
             try
             {
+                LaOcaService.ServicioJugadoresEnLineaClient clienteJugadoresEnLinea = new LaOcaService.ServicioJugadoresEnLineaClient();
                 Jugador[] jugadoresConectados = clienteJugadoresEnLinea.RecuperarJugadoresConectados();
 
                 foreach (Jugador jugador in jugadoresConectados)
                 {
-                    if (!jugador.NombreUsuario.Equals(SingletonJugador.Instance.Jugador.NombreUsuario))
-                    {
-                        Amigo entradaAmigo = new Amigo(jugador, "En Línea", this);
-                        lbxListaAmigos.Items.Add(entradaAmigo);
-                        amigos.Add(jugador.NombreUsuario, entradaAmigo);
-                    }
+                    jugadores.Add(jugador.NombreUsuario, jugador);
                 }
             }
             catch (TimeoutException)
@@ -101,19 +145,81 @@ namespace LaOcaClient
             {
                 MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+            return jugadores;
+        }
+
+        private List<Jugador> RecuperarAmigos()
+        {
+            List<Jugador> amigos = new List<Jugador>();
+
+            try
+            {
+                ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
+                Amistad[] amistades = clienteAmistad.RecuperarAmistades(SingletonJugador.Instance.Jugador.IdJugador, EstadoAmistad.AMIGOS);
+
+                ServicioCuentaClient clienteCuenta = new ServicioCuentaClient();
+
+                Jugador jugadorAmigo = new Jugador();
+
+                foreach (Amistad amistad in amistades)
+                {
+                    if (amistad.IdJugadorSolicitante == SingletonJugador.Instance.Jugador.IdJugador)
+                    {
+                        jugadorAmigo = clienteCuenta.ObtenerJugadorPorId(amistad.IdJugadorReceptor);
+                    } 
+                    else
+                    {
+                        jugadorAmigo = clienteCuenta.ObtenerJugadorPorId(amistad.IdJugadorSolicitante);
+                    }
+                    
+                    amigos.Add(jugadorAmigo);
+                }
+            }
+            catch (FaultException<AmistadException> ex)
+            {
+                MessageBox.Show(ex.Detail.Mensaje, ex.Reason.ToString(), MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return amigos;
         }
 
         public void MostrarNuevoJugadorConectado(Jugador nuevoJugadorConectado)
         {
-            Amigo entradaNuevoAmigoConectado = new Amigo(nuevoJugadorConectado, "En Línea", this);
-            lbxListaAmigos.Items.Insert(0, entradaNuevoAmigoConectado);
-            amigos.Add(nuevoJugadorConectado.NombreUsuario, entradaNuevoAmigoConectado);
+            if (_amigos.ContainsKey(nuevoJugadorConectado.NombreUsuario))
+            {
+                Amigo amigoConectado = _amigos[nuevoJugadorConectado.NombreUsuario];
+                lbxListaAmigos.Items.Remove(amigoConectado);
+
+                amigoConectado.estado = "En línea";
+                amigoConectado.lbEstado.Content = "En línea";
+
+                lbxListaAmigos.Items.Insert(0, amigoConectado);
+            } 
         }
 
         public void OcultarJugadorDesconectado(Jugador jugadorDesconectado)
         {
-            lbxListaAmigos.Items.Remove(amigos[jugadorDesconectado.NombreUsuario]);
-            amigos.Remove(jugadorDesconectado.NombreUsuario);
+            if (_amigos.ContainsKey(jugadorDesconectado.NombreUsuario))
+            {
+                Amigo amigoDesconectado = _amigos[jugadorDesconectado.NombreUsuario];
+                lbxListaAmigos.Items.Remove(amigoDesconectado);
+
+                if (ventanaSala == null)
+                {
+                    amigoDesconectado.estado = "Desconectado";
+                    amigoDesconectado.lbEstado.Content = "Desconectado";
+                    lbxListaAmigos.Items.Add(amigoDesconectado);
+                }
+            }
         }
 
         private void RegresarAVentanaAnterior(object sender, MouseButtonEventArgs e)
@@ -140,6 +246,27 @@ namespace LaOcaClient
             Buzon ventanaBuzon = new Buzon();
             this.Close();
             ventanaBuzon.ShowDialog();
+        }
+
+        public void OcultarJugadorQueTerminoAmistad(int idJugadorQueTerminoAmistad)
+        {
+            try
+            {
+                ServicioCuentaClient clienteCuenta = new ServicioCuentaClient();
+                Jugador exAmigo = clienteCuenta.ObtenerJugadorPorId(idJugadorQueTerminoAmistad);
+
+                Amigo entradaExAmigo = _amigos[exAmigo.NombreUsuario];
+                lbxListaAmigos.Items.Remove(entradaExAmigo);
+                _amigos.Remove(exAmigo.NombreUsuario);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

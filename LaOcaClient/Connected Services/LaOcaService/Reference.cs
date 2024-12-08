@@ -1981,6 +1981,10 @@ namespace LaOcaClient.LaOcaService {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioActualizacionJugadoresEnLinea/OcultarJugadorDesconect" +
             "ado")]
         void OcultarJugadorDesconectado(LaOcaClient.LaOcaService.Jugador nombreJugadorDesconectado);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioActualizacionJugadoresEnLinea/OcultarJugadorQueTermin" +
+            "oAmistad")]
+        void OcultarJugadorQueTerminoAmistad(int idJugadorQueTerminoAmistad);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2099,12 +2103,12 @@ namespace LaOcaClient.LaOcaService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioAmistad")]
     public interface IServicioAmistad {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAmistad/EnviarSolicitudAmistad", ReplyAction="http://tempuri.org/IServicioAmistad/EnviarSolicitudAmistadResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(LaOcaClient.LaOcaService.AmistadException), Action="http://tempuri.org/IServicioAmistad/EnviarSolicitudAmistadAmistadExceptionFault", Name="AmistadException", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
-        void EnviarSolicitudAmistad(LaOcaClient.LaOcaService.Jugador jugadorSolicitante, LaOcaClient.LaOcaService.Jugador jugadorReceptor);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAmistad/RegistrarNuevaAmistad", ReplyAction="http://tempuri.org/IServicioAmistad/RegistrarNuevaAmistadResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LaOcaClient.LaOcaService.AmistadException), Action="http://tempuri.org/IServicioAmistad/RegistrarNuevaAmistadAmistadExceptionFault", Name="AmistadException", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
+        int RegistrarNuevaAmistad(LaOcaClient.LaOcaService.Amistad nuevaAmistad, string nombreJugadorReceptor);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAmistad/EnviarSolicitudAmistad", ReplyAction="http://tempuri.org/IServicioAmistad/EnviarSolicitudAmistadResponse")]
-        System.Threading.Tasks.Task EnviarSolicitudAmistadAsync(LaOcaClient.LaOcaService.Jugador jugadorSolicitante, LaOcaClient.LaOcaService.Jugador jugadorReceptor);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAmistad/RegistrarNuevaAmistad", ReplyAction="http://tempuri.org/IServicioAmistad/RegistrarNuevaAmistadResponse")]
+        System.Threading.Tasks.Task<int> RegistrarNuevaAmistadAsync(LaOcaClient.LaOcaService.Amistad nuevaAmistad, string nombreJugadorReceptor);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAmistad/RecuperarAmistades", ReplyAction="http://tempuri.org/IServicioAmistad/RecuperarAmistadesResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(LaOcaClient.LaOcaService.AmistadException), Action="http://tempuri.org/IServicioAmistad/RecuperarAmistadesAmistadExceptionFault", Name="AmistadException", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
@@ -2156,12 +2160,12 @@ namespace LaOcaClient.LaOcaService {
                 base(binding, remoteAddress) {
         }
         
-        public void EnviarSolicitudAmistad(LaOcaClient.LaOcaService.Jugador jugadorSolicitante, LaOcaClient.LaOcaService.Jugador jugadorReceptor) {
-            base.Channel.EnviarSolicitudAmistad(jugadorSolicitante, jugadorReceptor);
+        public int RegistrarNuevaAmistad(LaOcaClient.LaOcaService.Amistad nuevaAmistad, string nombreJugadorReceptor) {
+            return base.Channel.RegistrarNuevaAmistad(nuevaAmistad, nombreJugadorReceptor);
         }
         
-        public System.Threading.Tasks.Task EnviarSolicitudAmistadAsync(LaOcaClient.LaOcaService.Jugador jugadorSolicitante, LaOcaClient.LaOcaService.Jugador jugadorReceptor) {
-            return base.Channel.EnviarSolicitudAmistadAsync(jugadorSolicitante, jugadorReceptor);
+        public System.Threading.Tasks.Task<int> RegistrarNuevaAmistadAsync(LaOcaClient.LaOcaService.Amistad nuevaAmistad, string nombreJugadorReceptor) {
+            return base.Channel.RegistrarNuevaAmistadAsync(nuevaAmistad, nombreJugadorReceptor);
         }
         
         public LaOcaClient.LaOcaService.Amistad[] RecuperarAmistades(int idJugador, string estado) {
@@ -2205,9 +2209,6 @@ namespace LaOcaClient.LaOcaService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioBuzon/MostrarNuevaInvitacionAPartida")]
         void MostrarNuevaInvitacionAPartida(LaOcaClient.LaOcaService.InvitacionPartida invitacion);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioBuzon/MostrarNuevaSolicitudAmistad")]
-        void MostrarNuevaSolicitudAmistad(LaOcaClient.LaOcaService.Amistad solicitudAmistad);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

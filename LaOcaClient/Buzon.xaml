@@ -10,8 +10,8 @@
         <Label x:Name="lbBuzon" Content="Buzón" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="300,20,300,0" VerticalAlignment="Top" Height="50" FontSize="24"/>
         <Image x:Name="imgVolver" Margin="20,20,0,0" Source="/Recursos/icono_volver.png" Stretch="Fill" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40" MouseLeftButtonDown="RegresarASocial"/>
         <ListBox x:Name="lbxPeticiones" Margin="20,140,20,20"/>
-        <Button x:Name="btnInvitaciones" Content="Invitaciones a Partida" HorizontalAlignment="Left" Margin="150,80,0,0" VerticalAlignment="Top" Width="200" Height="30"/>
-        <Button x:Name="btnSolicitudes" Content="Solicitudes de Amistad" HorizontalAlignment="Right" Margin="0,80,150,0" VerticalAlignment="Top" Width="200" Height="30"/>
+        <Button x:Name="btnInvitaciones" Content="Invitaciones a Partida" HorizontalAlignment="Left" Margin="150,80,0,0" VerticalAlignment="Top" Width="200" Height="30" Click="MostrarInvitacionesAPartida"/>
+        <Button x:Name="btnSolicitudes" Content="Solicitudes de Amistad" HorizontalAlignment="Right" Margin="0,80,150,0" VerticalAlignment="Top" Width="200" Height="30" Click="MostrarSolicitudesAmistad"/>
 
     </Grid>
 </Window>

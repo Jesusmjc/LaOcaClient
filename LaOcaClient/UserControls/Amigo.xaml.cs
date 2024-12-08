@@ -70,7 +70,7 @@ namespace LaOcaClient.UserControls
 
                     if (resultado)
                     {
-                        MessageBox.Show("Se ha enviado la solicitud.", "Invitación enviada", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Se ha enviado la invitación.", "Invitación enviada", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                     {
@@ -99,7 +99,30 @@ namespace LaOcaClient.UserControls
 
         private void EliminarAmigo()
         {
+            try
+            {
+                ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
+                Amistad amistad = clienteAmistad.RecuperarAmistad(SingletonJugador.Instance.Jugador.IdJugador, amigo.IdJugador);
 
+                amistad.IdJugadorSolicitante = SingletonJugador.Instance.Jugador.IdJugador;
+                amistad.IdJugadorReceptor = amigo.IdJugador;
+
+                clienteAmistad.ActualizarSolicitudAmistad(amistad, EstadoAmistad.RECHAZADA);
+
+                VentanaSocial.lbxListaAmigos.Items.Remove(this);
+            }
+            catch (FaultException<AmistadException> ex)
+            {
+                MessageBox.Show(ex.Detail.Mensaje, ex.Reason.ToString(), MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

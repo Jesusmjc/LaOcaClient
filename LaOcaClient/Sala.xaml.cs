@@ -253,6 +253,7 @@ namespace LaOcaClient
                     try
                     {
                         _clienteChat.EnviarMensaje(SingletonJugador.Instance.Jugador.NombreUsuario, mensaje, SalaActual.Codigo);
+                        MostrarMensaje(SingletonJugador.Instance.Jugador.NombreUsuario, mensaje);
                     }
                     catch (TimeoutException)
                     {
@@ -347,36 +348,72 @@ namespace LaOcaClient
         {
             SalaActual.Jugadores.Remove(nombreJugadorDesconectado);
 
-            int posicionJugadorDesconectado = 3;
+            int posicionJugadorDesconectado = 0;
 
-            for (int i = SalaActual.Jugadores.Count; i >= 1; i--)
+            for (int i = 1; i < SalaActual.Jugadores.Count ; i++)
             {
                 if (_jugadoresEnSala[i].jugadorEnSala.NombreUsuario.Equals(nombreJugadorDesconectado))
                 {
                     posicionJugadorDesconectado = i;
-                    _gridsJugadores[i].Children.Clear();
-                    _jugadoresEnSala[i] = null;
-
                     break;
                 }
             }
 
-            for (int i = posicionJugadorDesconectado;  i < SalaActual.Jugadores.Count; i++)
+            LimpiarGrids();
+            switch(posicionJugadorDesconectado)
             {
-                JugadorEnSala jugadorEnSalaTemp = _jugadoresEnSala[i + 1];
-
-                _gridsJugadores[i + 1].Children.Clear();
-                _gridsJugadores[i].Children.Add(jugadorEnSalaTemp);
-                _jugadoresEnSala[i] = _jugadoresEnSala[i + 1];
+                case 1:
+                    EliminarJugadorEnSalaEnSegundaPosicion();
+                    break;
+                
+                case 2:
+                    EliminarJugadorEnSalaEnTerceraPosicion();
+                    break;
             }
-
-            _gridsJugadores[SalaActual.Jugadores.Count].Children.Clear();
-            _jugadoresEnSala[SalaActual.Jugadores.Count] = null;
 
             if (SalaActual.Jugadores.Count < 2)
             {
                 btnIniciarPartida.IsEnabled = false;
             }
+        }
+
+        private void EliminarJugadorEnSalaEnSegundaPosicion()
+        {
+            if (SalaActual.Jugadores.Count == 3)
+            {
+                _jugadoresEnSala[1] = _jugadoresEnSala[2];
+                _jugadoresEnSala[2] = _jugadoresEnSala[3];
+                _jugadoresEnSala[3] = null;
+
+                _gridsJugadores[1].Children.Add(_jugadoresEnSala[1]);
+                _gridsJugadores[2].Children.Add(_jugadoresEnSala[2]);
+            }
+            else
+            {
+                _jugadoresEnSala[1] = _jugadoresEnSala[2];
+                _jugadoresEnSala[2] = null;
+
+                _gridsJugadores[1].Children.Add(_jugadoresEnSala[1]);
+            }
+        }
+
+        private void EliminarJugadorEnSalaEnTerceraPosicion()
+        {
+            if (SalaActual.Jugadores.Count == 3)
+            {
+                _jugadoresEnSala[2] = _jugadoresEnSala[3];
+                _jugadoresEnSala[3] = null;
+
+                _gridsJugadores[1].Children.Add(_jugadoresEnSala[1]);
+                _gridsJugadores[2].Children.Add(_jugadoresEnSala[2]);
+            }
+        }
+
+        private void LimpiarGrids()
+        {
+            _gridsJugadores[3].Children.Clear();
+            _gridsJugadores[2].Children.Clear();
+            _gridsJugadores[1].Children.Clear();
         }
 
         public void ExpulsarAMenúPrincipal(string motivo)
@@ -412,7 +449,7 @@ namespace LaOcaClient
                     ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
                     Amistad amistad = clienteAmistad.RecuperarAmistad(SingletonJugador.Instance.Jugador.IdJugador, _jugadoresEnSala[i].jugadorEnSala.IdJugador);
 
-                    _jugadoresEnSala[i].ActualizarOpcionesDeMenuPopupCallback(amistad.Estado);
+                    _jugadoresEnSala[i].ActualizarOpcionesDeMenuPopupCallback(amistad);
                     break;
                 }
             }

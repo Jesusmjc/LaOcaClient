@@ -13,7 +13,7 @@
         <Rectangle Height="100" Margin="0,0,0,0" Stroke="#FF00384A" Fill="LightSkyBlue" VerticalAlignment="Center"/>
         <Image x:Name="imgFotoPerfil" HorizontalAlignment="Left" Source="/Recursos/icono_usuario.png" Height="60" VerticalAlignment="Center" Width="60" Margin="20,0,0,0"/>
         <Label x:Name="lbMensaje" Content="Mensaje" Margin="100,0,220,0" VerticalAlignment="Center" FontSize="16"/>
-        <Button x:Name="btnRechazar" Content="Rechazar" Margin="0,0,20,0" VerticalAlignment="Center" Height="40" HorizontalAlignment="Right" Width="80" Background="#FFFA9999" BorderBrush="#FF030000" Click="EliminarPeticion"/>
-        <Button x:Name="btnAceptar" Content="Aceptar" Margin="0,0,120,0" VerticalAlignment="Center" Height="40" HorizontalAlignment="Right" Width="80" Background="#FFC3FD9B" BorderBrush="#FF020000" Click="UnirseASala"/>
+        <Button x:Name="btnRechazar" Content="Rechazar" Margin="0,0,20,0" VerticalAlignment="Center" Height="40" HorizontalAlignment="Right" Width="80" Background="#FFFA9999" BorderBrush="#FF030000" Click="RechazarPeticion"/>
+        <Button x:Name="btnAceptar" Content="Aceptar" Margin="0,0,120,0" VerticalAlignment="Center" Height="40" HorizontalAlignment="Right" Width="80" Background="#FFC3FD9B" BorderBrush="#FF020000" Click="AceptarPeticion"/>
     </Grid>
 </UserControl>
