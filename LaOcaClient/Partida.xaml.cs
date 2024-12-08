@@ -65,6 +65,8 @@ namespace LaOcaClient
             AgregarCanalCallbackDePartida();
             MostrarJugadoresEnPartida();
             MostrarJugadorEnTurno();
+            MostrarFichasYJugadores();
+
         }
 
         private void AgregarCanalCallbackDePartida()
@@ -73,6 +75,53 @@ namespace LaOcaClient
             _clientePartida = new LaOcaService.ServicioPartidaClient(contexto);
             _clientePartida.AgregarCanalCallbackPartida(SingletonJugador.Instance.Jugador.NombreUsuario, _sala.Codigo);
         }
+
+        private void MostrarFichasYJugadores()
+        {
+            FichasJugadoresPanel.Children.Clear();
+
+            FichasJugadoresPanel.Children.Add(new TextBlock
+            {
+                Text = "Jugadores en partida:",
+                FontWeight = FontWeights.Bold,
+                FontSize = 16,
+                Margin = new Thickness(0, 0, 0, 10)
+            });
+
+            foreach (var jugador in _sala.Jugadores.Values)
+            {
+                StackPanel panelJugador = new StackPanel
+                {
+                    Orientation = Orientation.Horizontal,
+                    Margin = new Thickness(0, 5, 0, 5)
+                };
+
+                if (_fichasPorJugador.TryGetValue(jugador.NombreUsuario, out Image ficha))
+                {
+                    Image imagenFicha = new Image
+                    {
+                        Source = ficha.Source,
+                        Width = 30,
+                        Height = 30,
+                        Margin = new Thickness(0, 0, 10, 0)
+                    };
+
+                    panelJugador.Children.Add(imagenFicha);
+                }
+
+                TextBlock nombreJugador = new TextBlock
+                {
+                    Text = jugador.NombreUsuario,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    FontSize = 14,
+                    Margin = new Thickness(0, 0, 10, 0)
+                };
+                panelJugador.Children.Add(nombreJugador);
+                FichasJugadoresPanel.Children.Add(panelJugador);
+            }
+        }
+
+
 
         private void MostrarJugadoresEnPartida()
         {
@@ -83,12 +132,27 @@ namespace LaOcaClient
                 Jugador jugador = _sala.Jugadores[_sala.Partida.NombresDeJugadoresEnOrdenDeTurnos[i]];
 
                 string fichaPath = fichasDisponibles[i % fichasDisponibles.Count];
-                Image ficha = new Image();
-                ficha.Source = new BitmapImage(new Uri(fichaPath));
-                ficha.Width = 85;
-                ficha.Height = 85;
-                _fichasPorJugador[jugador.NombreUsuario] = ficha;
+                Image ficha = new Image
+                {
+                    Source = new BitmapImage(new Uri(fichaPath)),
+                    Width = 85,
+                    Height = 85
+                };
 
+                if (SingletonJugador.Instance.Jugador.NombreUsuario == jugador.NombreUsuario)
+                {
+                    ficha.Effect = new System.Windows.Media.Effects.DropShadowEffect
+                    {
+                        Color = Colors.Magenta,
+                        Direction = 0,
+                        ShadowDepth = 0,
+                        Opacity = 1,
+                        BlurRadius = 30
+                    };
+                }
+
+
+                _fichasPorJugador[jugador.NombreUsuario] = ficha;
                 _casillasRecorridasPorJugador[jugador.NombreUsuario] = 0;
 
                 JugadorEnSala jugadorEnSala = new JugadorEnSala(jugador, _sala.Codigo);
@@ -96,6 +160,7 @@ namespace LaOcaClient
                 {
                     jugadorEnSala.CargarOpcionExpulsar();
                 }
+
                 _gridsJugadores[i].Children.Add(jugadorEnSala);
                 _posicionesJugadores[jugador.NombreUsuario] = 0;
 
@@ -117,12 +182,14 @@ namespace LaOcaClient
                 VentanaCierreAutomatico ventanaTurno = new VentanaCierreAutomatico("¡Es tu turno de tirar!", "Hora de jugar", 3);
                 ventanaTurno.Show();
                 BtnDados.IsEnabled = true;
+                BtnAbandonar.IsEnabled = true;
             }
             else
             {
                 VentanaCierreAutomatico ventanaTurno = new VentanaCierreAutomatico("Es turno de " + nombreJugadorEnTurno, "Hora de jugar", 3);
                 ventanaTurno.Show();
                 BtnDados.IsEnabled = false;
+                BtnAbandonar.IsEnabled = false;
             }
         }
 
@@ -150,13 +217,26 @@ namespace LaOcaClient
 
         private async void pasarTurnoSiguienteJugador()
         {
-            string nombreJugador = SingletonJugador.Instance.Jugador.NombreUsuario;
             try
             {
-                if (_sala.Partida.NombreJugadorEnTurno == nombreJugador)
+                var jugadoresEnOrden = _sala.Partida.NombresDeJugadoresEnOrdenDeTurnos.ToList();
+
+                if (jugadoresEnOrden.Count > 1)
                 {
-                    int posicionJugador = Array.IndexOf(_sala.Partida.NombresDeJugadoresEnOrdenDeTurnos, nombreJugador);
-                    await _clientePartida.PasarTurnoASiguienteJugadorAsync(posicionJugador, _sala.Codigo);
+                    int posicionJugador = jugadoresEnOrden.IndexOf(SingletonJugador.Instance.Jugador.NombreUsuario);
+
+                    if (posicionJugador >= 0)
+                    {
+                        await _clientePartida.PasarTurnoASiguienteJugadorAsync(posicionJugador, _sala.Codigo);
+                    }
+                    else
+                    {
+                        MessageBox.Show("El jugador actual no está en la lista de turnos.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("La partida ha terminado. Solo queda un jugador.");
                 }
             }
             catch (Exception ex)
@@ -168,6 +248,7 @@ namespace LaOcaClient
         private async void MoverFicha(int pasos, string nombreJugador)
         {
             BtnDados.IsEnabled = false;
+            BtnAbandonar.IsEnabled = false;
 
             if (_posicionesJugadores.TryGetValue(nombreJugador, out int posicionActual))
             {
@@ -180,14 +261,6 @@ namespace LaOcaClient
                     pasarTurnoSiguienteJugador();
                     return;
                 }
-
-                /*if (nuevaPosicion == 63)
-                {
-                    _posicionesJugadores[nombreJugador] = 63;
-                    ActualizarInterfazGrafica(63, nombreJugador);
-                    await _clientePartida.NotificarMovimientoFichaAsync(63, nombreJugador, _sala.Codigo);
-                    return;
-                }*/
 
                 List<int> trayecto = GenerarTrayectoria(posicionActual, nuevaPosicion);
 
@@ -249,11 +322,11 @@ namespace LaOcaClient
                     await _clientePartida.NotificarMovimientoFichaAsync(posicion, nombreJugador, _sala.Codigo);
                     return;
                 }
-
                 else
                 {
                     MessageBox.Show("¡De oca a oca y tiro porque me toca!");
                     BtnDados.IsEnabled = true;
+                    BtnAbandonar.IsEnabled = true;
                     return;
                 }
             }
@@ -262,6 +335,7 @@ namespace LaOcaClient
             {
                 MessageBox.Show("¡Has caído en el puente! Avanzas automáticamente y vuelves a tirar.");
                 BtnDados.IsEnabled = true;
+                BtnAbandonar.IsEnabled = true;
                 return;
             }
 
@@ -277,6 +351,7 @@ namespace LaOcaClient
             {
                 MessageBox.Show("¡Caíste en la casilla de dados! Tira de nuevo.");
                 BtnDados.IsEnabled = true;
+                BtnAbandonar.IsEnabled = true;
                 return;
             }
 
@@ -344,7 +419,6 @@ namespace LaOcaClient
 
             return trayecto;
         }
-
 
         private void ActualizarInterfazGrafica(int nuevaPosicion, string nombreJugador)
         {
@@ -465,13 +539,100 @@ namespace LaOcaClient
                 VentanaCierreAutomatico ventanaTurno = new VentanaCierreAutomatico("¡Es tu turno de tirar!", "Tu turno", 2);
                 ventanaTurno.Show();
                 BtnDados.IsEnabled = true;
+                BtnAbandonar.IsEnabled = true;
             }
             else
             {
                 VentanaCierreAutomatico ventanaTurno = new VentanaCierreAutomatico("Es turno de " + nombreNuevoJugadorEnTurno, "Hora de jugar", 2);
                 ventanaTurno.Show();
                 BtnDados.IsEnabled = false;
+                BtnAbandonar.IsEnabled = false;
             }
+        }
+
+        private async void BtnAbandonar_Click(object sender, RoutedEventArgs e)
+        {
+            string nombreJugador = SingletonJugador.Instance.Jugador.NombreUsuario;
+
+            MessageBoxResult resultado = MessageBox.Show(
+                "¿Estás seguro de que deseas abandonar la partida?",
+                "Confirmación",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning
+            );
+
+            if (resultado == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    if (_sala.Jugadores.ContainsKey(nombreJugador))
+                    {
+                        await _clientePartida.AbandonarPartidaAsync(nombreJugador, _sala.Codigo);
+
+                        if (_fichasPorJugador.TryGetValue(nombreJugador, out Image ficha))
+                        {
+                            TableroCanvas.Children.Remove(ficha);
+                            _fichasPorJugador.Remove(nombreJugador);
+                        }
+
+                        Dispatcher.Invoke(() =>
+                        {
+                            lbNotificacion.Content = $"{nombreJugador} ha abandonado la partida.";
+                            lbNotificacion.Visibility = Visibility.Visible;
+                        });
+
+                        MessageBox.Show("Has abandonado la partida. Serás redirigido al menú principal.");
+                        MenuPrincipal menu = new MenuPrincipal();
+                        menu.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No estás en esta partida.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al abandonar la partida: {ex.Message}");
+                }
+            }
+        }
+
+        public void NotificarAbandonoJugador(string nombreJugador)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                lbNotificacion.Content = $"{nombreJugador} ha abandonado la partida.";
+                lbNotificacion.Visibility = Visibility.Visible;
+
+                if (_fichasPorJugador.TryGetValue(nombreJugador, out Image ficha))
+                {
+                    TableroCanvas.Children.Remove(ficha);
+                    _fichasPorJugador.Remove(nombreJugador);
+                }
+
+                foreach (var panelJugador in FichasJugadoresPanel.Children.OfType<StackPanel>())
+                {
+                    var nombreTextBlock = panelJugador.Children.OfType<TextBlock>().FirstOrDefault();
+                    if (nombreTextBlock != null && nombreTextBlock.Text == nombreJugador)
+                    {
+                        nombreTextBlock.Foreground = Brushes.Red;
+                        break;
+                    }
+                }
+
+                foreach (var grid in _gridsJugadores)
+                {
+                    foreach (var child in grid.Children.OfType<JugadorEnSala>().ToList())
+                    {
+                        if (child.lbNombreJugador.Content.ToString() == nombreJugador)
+                        {
+                            grid.Children.Remove(child);
+                            break;
+                        }
+                    }
+                }
+            });
         }
     }
 }

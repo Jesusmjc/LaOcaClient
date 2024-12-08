@@ -65,6 +65,12 @@
     <Compile Include="Buzon.xaml.cs">
       <DependentUpon>Buzon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EstadísticasJugador.xaml.cs">
+      <DependentUpon>EstadísticasJugador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RankingGlobal.xaml.cs">
+      <DependentUpon>RankingGlobal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Victoria.xaml.cs">
       <DependentUpon>Victoria.xaml</DependentUpon>
     </Compile>
@@ -109,6 +115,14 @@
       <DependentUpon>RecuperarContraseña.xaml</DependentUpon>
     </Compile>
     <Page Include="CambiarContraseña.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EstadísticasJugador.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RankingGlobal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -339,6 +353,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\FondoLogin.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Dado.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

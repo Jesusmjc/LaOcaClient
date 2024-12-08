@@ -28,6 +28,7 @@
       <xs:element minOccurs="0" name="IdPuntuacion" type="xs:int" />
       <xs:element minOccurs="0" name="Invitaciones" nillable="true" type="tns:ArrayOfInvitacionPartida" />
       <xs:element minOccurs="0" name="NombreUsuario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PartidasGanadas" type="xs:int" />
       <xs:element minOccurs="0" name="TurnosPerdidos" type="xs:int" />
       <xs:element minOccurs="0" name="UltimaPosicion" type="xs:int" />
     </xs:sequence>

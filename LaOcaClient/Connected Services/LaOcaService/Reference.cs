@@ -182,6 +182,9 @@ namespace LaOcaClient.LaOcaService {
         private string NombreUsuarioField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PartidasGanadasField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int TurnosPerdidosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -401,6 +404,19 @@ namespace LaOcaClient.LaOcaService {
                 if ((object.ReferenceEquals(this.NombreUsuarioField, value) != true)) {
                     this.NombreUsuarioField = value;
                     this.RaisePropertyChanged("NombreUsuario");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PartidasGanadas {
+            get {
+                return this.PartidasGanadasField;
+            }
+            set {
+                if ((this.PartidasGanadasField.Equals(value) != true)) {
+                    this.PartidasGanadasField = value;
+                    this.RaisePropertyChanged("PartidasGanadas");
                 }
             }
         }
@@ -1500,6 +1516,12 @@ namespace LaOcaClient.LaOcaService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioPartida/NotificarMovimientoFicha")]
         System.Threading.Tasks.Task NotificarMovimientoFichaAsync(int posicion, string nombreJugador, string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioPartida/AbandonarPartida")]
+        void AbandonarPartida(string nombreJugador, string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioPartida/AbandonarPartida")]
+        System.Threading.Tasks.Task AbandonarPartidaAsync(string nombreJugador, string codigoSala);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1516,6 +1538,9 @@ namespace LaOcaClient.LaOcaService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioPartida/MostrarPantallaVictoria")]
         void MostrarPantallaVictoria(System.Collections.Generic.KeyValuePair<string, int>[] jugadoresOrdenados);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioPartida/NotificarAbandonoJugador")]
+        void NotificarAbandonoJugador(string nombreJugador);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1568,6 +1593,14 @@ namespace LaOcaClient.LaOcaService {
         
         public System.Threading.Tasks.Task NotificarMovimientoFichaAsync(int posicion, string nombreJugador, string codigoSala) {
             return base.Channel.NotificarMovimientoFichaAsync(posicion, nombreJugador, codigoSala);
+        }
+        
+        public void AbandonarPartida(string nombreJugador, string codigoSala) {
+            base.Channel.AbandonarPartida(nombreJugador, codigoSala);
+        }
+        
+        public System.Threading.Tasks.Task AbandonarPartidaAsync(string nombreJugador, string codigoSala) {
+            return base.Channel.AbandonarPartidaAsync(nombreJugador, codigoSala);
         }
     }
     
@@ -1688,6 +1721,18 @@ namespace LaOcaClient.LaOcaService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/SincronizarAspectos", ReplyAction="http://tempuri.org/IServicioCuenta/SincronizarAspectosResponse")]
         System.Threading.Tasks.Task SincronizarAspectosAsync(System.Collections.Generic.Dictionary<string, int> referenciaToIdMap);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ConsultarEstadisticasJugador", ReplyAction="http://tempuri.org/IServicioCuenta/ConsultarEstadisticasJugadorResponse")]
+        string ConsultarEstadisticasJugador(int idJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ConsultarEstadisticasJugador", ReplyAction="http://tempuri.org/IServicioCuenta/ConsultarEstadisticasJugadorResponse")]
+        System.Threading.Tasks.Task<string> ConsultarEstadisticasJugadorAsync(int idJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ObtenerRankingGlobal", ReplyAction="http://tempuri.org/IServicioCuenta/ObtenerRankingGlobalResponse")]
+        LaOcaClient.LaOcaService.Jugador[] ObtenerRankingGlobal();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ObtenerRankingGlobal", ReplyAction="http://tempuri.org/IServicioCuenta/ObtenerRankingGlobalResponse")]
+        System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Jugador[]> ObtenerRankingGlobalAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1867,6 +1912,22 @@ namespace LaOcaClient.LaOcaService {
         
         public System.Threading.Tasks.Task SincronizarAspectosAsync(System.Collections.Generic.Dictionary<string, int> referenciaToIdMap) {
             return base.Channel.SincronizarAspectosAsync(referenciaToIdMap);
+        }
+        
+        public string ConsultarEstadisticasJugador(int idJugador) {
+            return base.Channel.ConsultarEstadisticasJugador(idJugador);
+        }
+        
+        public System.Threading.Tasks.Task<string> ConsultarEstadisticasJugadorAsync(int idJugador) {
+            return base.Channel.ConsultarEstadisticasJugadorAsync(idJugador);
+        }
+        
+        public LaOcaClient.LaOcaService.Jugador[] ObtenerRankingGlobal() {
+            return base.Channel.ObtenerRankingGlobal();
+        }
+        
+        public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Jugador[]> ObtenerRankingGlobalAsync() {
+            return base.Channel.ObtenerRankingGlobalAsync();
         }
     }
     

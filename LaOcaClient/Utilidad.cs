@@ -69,4 +69,29 @@ namespace LaOcaClient
         public const string BLOQUEO = "Bloqueo";
         public const string RECHAZADA = "Rechazada";
     }
+
+    public static class FotoPerfilUtils
+    {
+        private static readonly Dictionary<int, string> FotoPerfilMap = new Dictionary<int, string>
+        {
+            {1, "pack://application:,,,/LaOcaClient;component/Recursos/OcaDeportista.jpg"},
+            {2, "pack://application:,,,/LaOcaClient;component/Recursos/OcaDesastrosa.jpg"},
+            {3, "pack://application:,,,/LaOcaClient;component/Recursos/OcaIngeniera.jpg"},
+            {4, "pack://application:,,,/LaOcaClient;component/Recursos/OcaProgramadora.jpg"},
+            {5, "pack://application:,,,/LaOcaClient;component/Recursos/OcaRockstar.jpg"},
+            {6, "pack://application:,,,/LaOcaClient;component/Recursos/OcaUniversitaria.jpg"}
+        };
+
+        /// <summary>
+        /// Obtiene la ruta de la foto de perfil para un IdFotoPerfil dado.
+        /// </summary>
+        /// <param name="idFotoPerfil">El ID de la foto de perfil.</param>
+        /// <returns>La ruta de la imagen correspondiente o una ruta predeterminada si no existe el ID.</returns>
+        public static string ObtenerRutaFotoPerfil(int idFotoPerfil)
+        {
+            return FotoPerfilMap.ContainsKey(idFotoPerfil)
+                ? FotoPerfilMap[idFotoPerfil]
+                : "../Recursos/icono_usuario.png";
+        }
+    }
 }

@@ -1,26 +1,13 @@
 ﻿using LaOcaClient.LaOcaService;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LaOcaClient.UserControls
 {
-    /// <summary>
-    /// Interaction logic for Peticion.xaml
-    /// </summary>
     public partial class Peticion : UserControl
     {
         public string codigoSala;
@@ -31,9 +18,13 @@ namespace LaOcaClient.UserControls
         {
             InitializeComponent();
 
-            lbMensaje.Content = invitacion.JugadorEmisor.NombreUsuario;
-            this.codigoSala = invitacion.CodigoSalaObjetivo;
             this.invitacion = invitacion;
+            this.codigoSala = invitacion.CodigoSalaObjetivo;
+
+            lbMensaje.Content = invitacion.JugadorEmisor.NombreUsuario;
+
+            string rutaFotoPerfil = FotoPerfilUtils.ObtenerRutaFotoPerfil(invitacion.JugadorEmisor.IdFotoPerfil);
+            imgFotoPerfil.Source = new BitmapImage(new Uri(rutaFotoPerfil, UriKind.RelativeOrAbsolute));
         }
 
         private void UnirseASala(object sender, RoutedEventArgs e)

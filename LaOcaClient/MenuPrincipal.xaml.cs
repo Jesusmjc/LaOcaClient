@@ -33,18 +33,6 @@ namespace LaOcaClient
             this.Close();
         }
 
-        private void BtnSalir_Click(object sender, RoutedEventArgs e)
-        {
-            IniciarSesion ventanaIniciarSesion = new IniciarSesion();
-            ventanaIniciarSesion.Show();
-            this.Close();
-        }
-
-        private void CrearSala(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void IrAConfiguracionSala(object sender, RoutedEventArgs e)
         {
             ConfiguracionSala ventanaConfiguracionSala = new ConfiguracionSala();
@@ -105,6 +93,21 @@ namespace LaOcaClient
             ventanaSocial.ShowDialog();
         }
 
+        private void BtnVerEstadisticas_Click(object sender, RoutedEventArgs e)
+        {
+            int idJugador = SingletonJugador.Instance.Jugador.IdJugador;
+
+            var ventanaEstadisticas = new EstadisticasJugador(idJugador);
+            ventanaEstadisticas.ShowDialog();
+        }
+
+        private void BtnVerRankingGlobal_Click(object sender, RoutedEventArgs e)
+        {
+            var ventanaRanking = new RankingGlobal();
+            ventanaRanking.ShowDialog();
+        }
+
+
         private void CerrarSesion(object sender, RoutedEventArgs e)
         {
             LaOcaService.ServicioJugadoresEnLineaClient clienteJugadoresEnLinea = new LaOcaService.ServicioJugadoresEnLineaClient();
@@ -121,8 +124,9 @@ namespace LaOcaClient
             {
                 MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
+            IniciarSesion ventanaIniciarSesion = new IniciarSesion();
             this.Close();
+            ventanaIniciarSesion.ShowDialog();
         }
     }
 }

@@ -1,25 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using LaOcaClient.LaOcaService;
 
 namespace LaOcaClient.UserControls
 {
-    /// <summary>
-    /// Interaction logic for Amigo.xaml
-    /// </summary>
     public partial class Amigo : UserControl
     {
         public Jugador amigo;
@@ -37,6 +26,9 @@ namespace LaOcaClient.UserControls
 
             lbNombreAmigo.Content = amigo.NombreUsuario;
             lbEstado.Content = estado;
+
+            string rutaFotoPerfil = FotoPerfilUtils.ObtenerRutaFotoPerfil(amigo.IdFotoPerfil);
+            imgFotoPerfil.Source = new BitmapImage(new Uri(rutaFotoPerfil, UriKind.RelativeOrAbsolute));
 
             MenuItem opcionEliminarAmigo = new MenuItem { Header = "Eliminar Amigo" };
             opcionEliminarAmigo.Click += (s, args) => EliminarAmigo();
@@ -62,10 +54,10 @@ namespace LaOcaClient.UserControls
                 LaOcaService.ServicioRecuperarSalaClient clienteSala = new LaOcaService.ServicioRecuperarSalaClient();
                 LaOcaService.Sala salaActual = clienteSala.RecuperarSala(VentanaSocial.ventanaSala.sala.Codigo);
 
+
                 if (salaActual != null)
                 {
                     LaOcaService.ServicioSocialClient clienteSocial = new LaOcaService.ServicioSocialClient();
-
                     bool resultado = clienteSocial.EnviarInvitacionAPartida(amigo.NombreUsuario, SingletonJugador.Instance.Jugador, VentanaSocial.ventanaSala.sala.Codigo);
 
                     if (resultado)
@@ -76,13 +68,11 @@ namespace LaOcaClient.UserControls
                     {
                         MessageBox.Show("Parece que ya has enviado una invitación a este jugador.", "No se pudo enviar la invitación", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-
                 }
             }
             catch (FaultException<SalaException>)
             {
                 MessageBox.Show("Parece que el host ha abandonado la sala.", "Regresarás al Menú Principal", MessageBoxButton.OK, MessageBoxImage.Error);
-
                 MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
                 VentanaSocial.Close();
                 ventanaMenuPrincipal.ShowDialog();
@@ -99,7 +89,7 @@ namespace LaOcaClient.UserControls
 
         private void EliminarAmigo()
         {
-
+            // Lógica para eliminar amigo
         }
     }
 }

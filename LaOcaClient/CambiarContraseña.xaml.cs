@@ -88,9 +88,7 @@ namespace LaOcaClient
                     cuenta.Contrasena = Utilidad.HashearConSha256(nuevaContraseña);
                     _servicioCuenta.ModificarCuenta(cuenta);
                     MessageBox.Show("Contraseña actualizada exitosamente.");
-                    IniciarSesion ventanaIniciarSesion = new IniciarSesion();
-                    ventanaIniciarSesion.Show();
-                    this.Close();
+                    CerrarSesion();
                 }
                 else
                 {
@@ -109,6 +107,27 @@ namespace LaOcaClient
             {
                 MessageBox.Show($"Error inesperado al actualizar la contraseña: {ex.Message}");
             }
+        }
+
+        private void CerrarSesion()
+        {
+            LaOcaService.ServicioJugadoresEnLineaClient clienteJugadoresEnLinea = new LaOcaService.ServicioJugadoresEnLineaClient();
+
+            try
+            {
+                clienteJugadoresEnLinea.EliminarJugadorDesconectado(SingletonJugador.Instance.Jugador);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            IniciarSesion ventanaIniciarSesion = new IniciarSesion();
+            this.Close();
+            ventanaIniciarSesion.ShowDialog();
         }
 
         private void btnVolver_Click(object sender, RoutedEventArgs e)

@@ -33,22 +33,10 @@ namespace LaOcaClient.UserControls
         {
             InitializeComponent();
 
-            this.jugadorEnSala = jugadorEnSala;
-
             lbNombreJugador.Content = jugadorEnSala.NombreUsuario;
 
-            _clienteAmistad = new ServicioAmistadClient();
-            _codigoSala = codigoSala;
-
-            if (SingletonJugador.Instance.Jugador.Equals(jugadorEnSala))
-            {
-                imgMasOpciones.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                RecuperarAmistadConJugador();
-                CargarMenuPopup();
-            }
+            string rutaFotoPerfil = FotoPerfilUtils.ObtenerRutaFotoPerfil(jugadorEnSala.IdFotoPerfil);
+            imgFotoPerfil.Source = new BitmapImage(new Uri(rutaFotoPerfil, UriKind.RelativeOrAbsolute));
         }
 
         private void RecuperarAmistadConJugador()
