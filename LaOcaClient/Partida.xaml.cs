@@ -90,7 +90,7 @@ namespace LaOcaClient
                 Margin = new Thickness(0, 0, 0, 10)
             });
 
-            foreach (var jugador in _sala.Jugadores.Values)
+            foreach (var jugador in SalaActual.Jugadores.Values)
             {
                 StackPanel panelJugador = new StackPanel
                 {
@@ -158,7 +158,7 @@ namespace LaOcaClient
                 _casillasRecorridasPorJugador[jugador.NombreUsuario] = 0;
 
                 JugadorEnSala jugadorEnSala = new JugadorEnSala(jugador, this);
-                if (SingletonJugador.Instance.Jugador.NombreUsuario.Equals(_sala.NombreHost))
+                if (SingletonJugador.Instance.Jugador.NombreUsuario.Equals(SalaActual.NombreHost))
                 {
                     jugadorEnSala.CargarOpcionExpulsar();
                 }
@@ -197,9 +197,8 @@ namespace LaOcaClient
         {
             string nombreJugador = SingletonJugador.Instance.Jugador.NombreUsuario;
 
-            if (_sala.Jugadores.TryGetValue(nombreJugador, out Jugador jugador))
+            if (SalaActual.Jugadores.TryGetValue(nombreJugador, out Jugador jugador))
             {
-                Jugador jugador = SalaActual.Jugadores[nombreJugador];
 
                 if (jugador.TurnosPerdidos > 0)
                 {
@@ -221,7 +220,7 @@ namespace LaOcaClient
         {
             try
             {
-                var jugadoresEnOrden = _sala.Partida.NombresDeJugadoresEnOrdenDeTurnos.ToList();
+                var jugadoresEnOrden = SalaActual.Partida.NombresDeJugadoresEnOrdenDeTurnos.ToList();
 
                 if (jugadoresEnOrden.Count > 1)
                 {
@@ -229,7 +228,7 @@ namespace LaOcaClient
 
                     if (posicionJugador >= 0)
                     {
-                        await _clientePartida.PasarTurnoASiguienteJugadorAsync(posicionJugador, _sala.Codigo);
+                        await _clientePartida.PasarTurnoASiguienteJugadorAsync(posicionJugador, SalaActual.Codigo);
                     }
                     else
                     {
@@ -276,7 +275,7 @@ namespace LaOcaClient
                         _casillasRecorridasPorJugador[nombreJugador]++;
                     }
 
-                    await _clientePartida.NotificarMovimientoFichaAsync(posicion, nombreJugador, _sala.Codigo);
+                    await _clientePartida.NotificarMovimientoFichaAsync(posicion, nombreJugador, SalaActual.Codigo);
 
                     if (i == trayecto.Count - 1)
                     {
@@ -285,7 +284,7 @@ namespace LaOcaClient
 
                     await Task.Delay(300);
                 }
-                _servicioJugabilidad.JugarTurno(pasos, _sala.Codigo, nombreJugador);
+                _servicioJugabilidad.JugarTurno(pasos, SalaActual.Codigo, nombreJugador);
             }
         }
 
@@ -299,7 +298,7 @@ namespace LaOcaClient
 
         private async void EvaluarCasilla(int posicion, string nombreJugador)
         {
-            Jugador jugador = _sala.Jugadores[nombreJugador];
+            Jugador jugador = SalaActual.Jugadores[nombreJugador];
 
             if (_casillasDeOca.Contains(posicion))
             {
@@ -317,11 +316,11 @@ namespace LaOcaClient
                     {
                         _posicionesJugadores[nombreJugador] = pos;
                         ActualizarInterfazGrafica(pos, nombreJugador);
-                        await _clientePartida.NotificarMovimientoFichaAsync(pos, nombreJugador, _sala.Codigo);
+                        await _clientePartida.NotificarMovimientoFichaAsync(pos, nombreJugador, SalaActual.Codigo);
                         await Task.Delay(300);
                     }
 
-                    await _clientePartida.NotificarMovimientoFichaAsync(posicion, nombreJugador, _sala.Codigo);
+                    await _clientePartida.NotificarMovimientoFichaAsync(posicion, nombreJugador, SalaActual.Codigo);
                     return;
                 }
                 else
@@ -393,7 +392,7 @@ namespace LaOcaClient
 
             if (_casillasMeta.Contains(posicion))
             {
-                await _clientePartida.NotificarMovimientoFichaAsync(posicion, nombreJugador, _sala.Codigo);
+                await _clientePartida.NotificarMovimientoFichaAsync(posicion, nombreJugador, SalaActual.Codigo);
                 return;
             }
 
@@ -564,9 +563,9 @@ namespace LaOcaClient
             {
                 try
                 {
-                    if (_sala.Jugadores.ContainsKey(nombreJugador))
+                    if (SalaActual.Jugadores.ContainsKey(nombreJugador))
                     {
-                        await _clientePartida.AbandonarPartidaAsync(nombreJugador, _sala.Codigo);
+                        await _clientePartida.AbandonarPartidaAsync(nombreJugador, SalaActual.Codigo);
 
                         if (_fichasPorJugador.TryGetValue(nombreJugador, out Image ficha))
                         {

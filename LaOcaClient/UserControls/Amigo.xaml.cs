@@ -55,11 +55,10 @@ namespace LaOcaClient.UserControls
                 LaOcaService.ServicioRecuperarSalaClient clienteSala = new LaOcaService.ServicioRecuperarSalaClient();
                 LaOcaService.Sala salaActual = clienteSala.RecuperarSala(VentanaSocial.ventanaSala.SalaActual.Codigo);
 
-
                 if (salaActual != null)
                 {
                     LaOcaService.ServicioSocialClient clienteSocial = new LaOcaService.ServicioSocialClient();
-                    bool resultado = clienteSocial.EnviarInvitacionAPartida(amigo.NombreUsuario, SingletonJugador.Instance.Jugador, VentanaSocial.ventanaSala.sala.Codigo);
+                    bool resultado = clienteSocial.EnviarInvitacionAPartida(amigo.NombreUsuario, SingletonJugador.Instance.Jugador, VentanaSocial.ventanaSala.SalaActual.Codigo);
 
                     if (resultado)
                     {

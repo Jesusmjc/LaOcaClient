@@ -26,13 +26,5 @@ namespace LaOcaClient
         {
             InitializeComponent();
         }
-
-        private void ProbarConexión(object sender, RoutedEventArgs e)
-        {
-            LaOcaService.LoginServiceClient cliente = new LaOcaService.LoginServiceClient();
-            int resultado = cliente.GetUser("pepito");
-
-            MessageBox.Show("Resultado de la prueba (debería ser 0): " + resultado);
-        }
     }
 }

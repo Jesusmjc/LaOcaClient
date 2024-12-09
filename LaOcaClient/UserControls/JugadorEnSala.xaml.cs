@@ -32,6 +32,7 @@ namespace LaOcaClient.UserControls
             InitializeComponent();
 
             lbNombreJugador.Content = jugadorEnSala.NombreUsuario;
+            this.jugadorEnSala = jugadorEnSala;
 
             _clienteAmistad = new ServicioAmistadClient();
             _ventanaPadre = ventanaSala;
@@ -141,7 +142,7 @@ namespace LaOcaClient.UserControls
             imgMasOpciones_MenuContextual.Items.Add(opcionDesbloquearJugador);
         }
 
-        private void CargarOpcionExpulsar()
+        public void CargarOpcionExpulsar()
         {
             MenuItem opcionExpulsar = new MenuItem { Header = Properties.Resources.lbExpulsar };
             opcionExpulsar.Click += (s, args) => ExpulsarJugador();

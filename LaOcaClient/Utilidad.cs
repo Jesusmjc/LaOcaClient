@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LaOcaClient
 {
-    internal class Utilidad
+    public class Utilidad
     {
         public static string HashearConSha256(string entrada)
         {

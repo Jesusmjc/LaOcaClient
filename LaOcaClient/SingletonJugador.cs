@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LaOcaClient
 {
-    internal class SingletonJugador
+    public class SingletonJugador
     {
         private static SingletonJugador instance;
         private static readonly object lockObject = new object();
