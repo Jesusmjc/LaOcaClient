@@ -32,33 +32,33 @@ namespace LaOcaClient
 
             if (string.IsNullOrEmpty(correo))
             {
-                MessageBox.Show("Por favor, ingrese su correo electrónico.");
+                MessageBox.Show(Properties.Resources.msgCorreoNoIngresado, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (!Utilidad.ValidarCorreoElectronico(correo))
             {
-                MessageBox.Show("El correo electrónico no es válido. Debe ser un correo de gmail, outlook o hotmail.");
+                MessageBox.Show(Properties.Resources.lbIngreseCorreoValido, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             try
             {
                 _servicioCuenta.EnviarCodigoVerificacion(correo);
-                MessageBox.Show("Se ha enviado un código de restablecimiento a su correo.");
+                MessageBox.Show(Properties.Resources.msgCodigoEnviado, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 ActualizarVentanaCodigoVerificacion();
             }
-            catch (CommunicationException ex)
+            catch (CommunicationException)
             {
-                MessageBox.Show($"Error de comunicación al enviar el código de restablecimiento: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (TimeoutException ex)
+            catch (TimeoutException)
             {
-                MessageBox.Show($"El envío del código de restablecimiento ha superado el tiempo de espera: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error inesperado al enviar el código de restablecimiento: {ex.Message}");
+                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -69,15 +69,9 @@ namespace LaOcaClient
             string correo = tbCorreoElectronico.Text;
             string codigoIngresado = tbCodigoRestablecimiento.Text;
 
-            if (string.IsNullOrEmpty(correo))
-            {
-                MessageBox.Show("Por favor, ingrese su correo electrónico.");
-                return;
-            }
-
             if (string.IsNullOrEmpty(codigoIngresado))
             {
-                MessageBox.Show("Por favor, ingrese el código de verificación.");
+                MessageBox.Show(Properties.Resources.msgCodigoNoIngresado, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -88,25 +82,25 @@ namespace LaOcaClient
                 if (cuentaId > 0)
                 {
                     idCuenta = cuentaId;
-                    MessageBox.Show("Código de verificación correcto.");
+                    MessageBox.Show(Properties.Resources.msgCodigoCorrecto, "", MessageBoxButton.OK, MessageBoxImage.Information);
                     ActualizarVentanaRestablecerContrasena();
                 }
                 else
                 {
-                    MessageBox.Show("Código de verificación incorrecto.");
+                    MessageBox.Show(Properties.Resources.msgCodigoIncorrecto, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (CommunicationException ex)
+            catch (CommunicationException)
             {
-                MessageBox.Show($"Error de comunicación al verificar el código: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (TimeoutException ex)
+            catch (TimeoutException)
             {
-                MessageBox.Show($"La verificación del código ha superado el tiempo de espera: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error inesperado al verificar el código: {ex.Message}");
+                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -129,47 +123,41 @@ namespace LaOcaClient
 
             if (string.IsNullOrEmpty(nuevaContrasena) || string.IsNullOrEmpty(confirmarContrasena))
             {
-                MessageBox.Show("Todos los campos son obligatorios.");
+                MessageBox.Show(Properties.Resources.camposVaciosLogin, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (!Utilidad.ValidarContrasena(nuevaContrasena))
             {
-                MessageBox.Show("La nueva contraseña no cumple con los requisitos. Debe tener entre 8 y 16 caracteres, incluir al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.");
+                MessageBox.Show(Properties.Resources.lbCaracteristicasContraseñaValida, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (nuevaContrasena != confirmarContrasena)
             {
-                MessageBox.Show("Las contraseñas no coinciden.");
-                return;
-            }
-
-            if (idCuenta <= 0)
-            {
-                MessageBox.Show("Primero verifique el código de recuperación.");
+                MessageBox.Show(Properties.Resources.globalContraseñasNoCoinciden, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             try
             {
                 _servicioCuenta.ModificarContraseña(idCuenta, Utilidad.HashearConSha256(nuevaContrasena));
-                MessageBox.Show("Contraseña restablecida exitosamente.");
+                MessageBox.Show(Properties.Resources.msgContraseñaRestablecida, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 IniciarSesion ventanaIniciarSesion = new IniciarSesion();
                 ventanaIniciarSesion.Show();
                 this.Close();
             }
-            catch (CommunicationException ex)
+            catch (CommunicationException)
             {
-                MessageBox.Show($"Error de comunicación al restablecer la contraseña: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (TimeoutException ex)
+            catch (TimeoutException)
             {
-                MessageBox.Show($"El restablecimiento de la contraseña ha superado el tiempo de espera: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error inesperado al restablecer la contraseña: {ex.Message}");
+                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

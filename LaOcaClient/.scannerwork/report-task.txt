@@ -1,0 +1,6 @@
+projectKey=PRUEBA
+serverUrl=http://localhost:9000
+serverVersion=10.7.0.96327
+dashboardUrl=http://localhost:9000/dashboard?id=PRUEBA
+ceTaskId=549dcc2c-c0fa-4638-8988-d175428ce936
+ceTaskUrl=http://localhost:9000/api/ce/task?id=549dcc2c-c0fa-4638-8988-d175428ce936

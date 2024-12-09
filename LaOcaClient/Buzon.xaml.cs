@@ -17,9 +17,6 @@ using LaOcaClient.UserControls;
 
 namespace LaOcaClient
 {
-    /// <summary>
-    /// Interaction logic for Buzon.xaml
-    /// </summary>
     public partial class Buzon : Window, IServicioBuzonCallback
     {
         private LaOcaService.ServicioSocialClient _clienteSocial;
@@ -43,11 +40,11 @@ namespace LaOcaClient
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -136,11 +133,11 @@ namespace LaOcaClient
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

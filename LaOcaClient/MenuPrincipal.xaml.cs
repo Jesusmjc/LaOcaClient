@@ -38,13 +38,6 @@ namespace LaOcaClient
             this.Close();
         }
 
-        private void BtnSalir_Click(object sender, RoutedEventArgs e)
-        {
-            IniciarSesion ventanaIniciarSesion = new IniciarSesion();
-            ventanaIniciarSesion.Show();
-            this.Close();
-        }
-
         private void IrAConfiguracionSala(object sender, RoutedEventArgs e)
         {
             ConfiguracionSala ventanaConfiguracionSala = new ConfiguracionSala();
@@ -74,26 +67,26 @@ namespace LaOcaClient
                         }
                         else
                         {
-                            MessageBox.Show("Parece que la sala ya está llena.", "Error con la sala", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(Properties.Resources.msgSalaLlena, Properties.Resources.tituloErrorSala, MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("No existe una sala con el código ingresado.", "Error con la sala", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Properties.Resources.msgErrorCodigoSala, Properties.Resources.tituloErrorSala, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     
                 }
                 catch (FaultException<SalaException> ex)
                 {
-                    MessageBox.Show(ex.Detail.Mensaje + "\n" + ex.Reason, "Error al buscar la Sala", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(ex.Detail.Mensaje + "\n" + ex.Reason, Properties.Resources.tituloErrorSala, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 catch (TimeoutException)
                 {
-                    MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 catch (CommunicationException)
                 {
-                    MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -112,6 +105,21 @@ namespace LaOcaClient
             ventanaSocial.ShowDialog();
         }
 
+        private void BtnVerEstadisticas_Click(object sender, RoutedEventArgs e)
+        {
+            int idJugador = SingletonJugador.Instance.Jugador.IdJugador;
+
+            var ventanaEstadisticas = new EstadisticasJugador(idJugador);
+            ventanaEstadisticas.ShowDialog();
+        }
+
+        private void BtnVerRankingGlobal_Click(object sender, RoutedEventArgs e)
+        {
+            var ventanaRanking = new RankingGlobal();
+            ventanaRanking.ShowDialog();
+        }
+
+
         private void CerrarSesion(object sender, RoutedEventArgs e)
         {
             LaOcaService.ServicioJugadoresEnLineaClient clienteJugadoresEnLinea = new LaOcaService.ServicioJugadoresEnLineaClient();
@@ -122,14 +130,15 @@ namespace LaOcaClient
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
+            IniciarSesion ventanaIniciarSesion = new IniciarSesion();
             this.Close();
+            ventanaIniciarSesion.ShowDialog();
         }
     }
 }

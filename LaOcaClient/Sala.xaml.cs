@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
 using System.ServiceModel;
+using System.ServiceModel.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -113,16 +114,16 @@ namespace LaOcaClient
 
                 if (resultadoAgregarSala == 0)
                 {
-                    MessageBox.Show("Ha ocurrido un error al crear la sala.", "Error con la sala", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Properties.Resources.msgErrorCrearSala, Properties.Resources.tituloErrorSala, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
@@ -180,11 +181,11 @@ namespace LaOcaClient
                 }
                 catch (TimeoutException)
                 {
-                    MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 catch (CommunicationException)
                 {
-                    MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             } while (!esCodigoUnico);
 
@@ -202,15 +203,15 @@ namespace LaOcaClient
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error al enviar mensaje: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgErrorEnviarMsg, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -222,15 +223,15 @@ namespace LaOcaClient
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show($"Error al enviar mensaje: {ex.Message}");
+                MessageBox.Show(Properties.Resources.msgErrorEnviarMsg, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -257,11 +258,11 @@ namespace LaOcaClient
                     }
                     catch (TimeoutException)
                     {
-                        MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     catch (CommunicationException)
                     {
-                        MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
 
@@ -290,7 +291,7 @@ namespace LaOcaClient
         private void LimpiarTextoEjemplo(object sender, RoutedEventArgs e)
         {
             TextBox textBox = sender as TextBox;
-            if (textBox != null && tbxMensaje.Text.ToString().Equals("Escribe un mensaje"))
+            if (textBox != null && tbxMensaje.Text.ToString().Equals(Properties.Resources.lbEscribeUnMsg))
             {
                 textBox.Clear();
             }
@@ -310,7 +311,7 @@ namespace LaOcaClient
             }
             else
             {
-                MessageBox.Show("Se necesitan al menos dos jugadores para iniciar partida.", "Se necesitan más jugadores", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgDosOMasJugadores, Properties.Resources.tituloMasJugadores, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -325,7 +326,7 @@ namespace LaOcaClient
 
         private void RegresarAMenuPrincipal(object sender, MouseButtonEventArgs e)
         {
-            MessageBoxResult resultado = MessageBox.Show("¿Estás seguro de que quieres salir al Menú Principal?", "Estás a punto de abandonar la partida", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult resultado = MessageBox.Show(Properties.Resources.msgAbandonarSala, Properties.Resources.tituloAbandonarPartida, MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (resultado == MessageBoxResult.Yes)
             {
@@ -437,7 +438,7 @@ namespace LaOcaClient
 
         public void ExpulsarAMenúPrincipal(string motivo)
         {
-            MessageBox.Show(motivo, "Has sido expulsado de la sala", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(motivo, Properties.Resources.tituloExpulsadoSala, MessageBoxButton.OK, MessageBoxImage.Information);
 
             MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
             _ventanaSocial?.Close();

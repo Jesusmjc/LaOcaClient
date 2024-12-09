@@ -1,0 +1,43 @@
+﻿C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Buzon.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\ConfiguracionSala.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Partida.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\LaOcaPartida.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Sala.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\SingletonJugador.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Social.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\UserControls\Amigo.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\UserControls\JugadorEnSala.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\UserControls\Peticion.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Utilidad.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\VentanaCierreAutomatico.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\RecuperarContraseña.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\App.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Chat.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\CambiarContraseña.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\CrearCuenta.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\IniciarSesion.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\MainWindow.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\MenuPrincipal.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Properties\AssemblyInfo.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Properties\Resources.en-US.resx
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Properties\Resources.es-MX.resx
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Properties\Resources.resx
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\item.xsd
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\item1.xsd
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\item2.xsd
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\item3.xsd
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\LaOcaClient.LaOcaService.Amistad.datasource
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\LaOcaClient.LaOcaService.Aspecto.datasource
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\LaOcaClient.LaOcaService.Cuenta.datasource
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\LaOcaClient.LaOcaService.InvitacionPartida.datasource
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\LaOcaClient.LaOcaService.Jugador.datasource
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\LaOcaClient.LaOcaService.Partida.datasource
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\LaOcaClient.LaOcaService.Sala.datasource
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\LaOcaService.wsdl
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\packages.config
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Properties\Settings.settings
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\App.config
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\item.disco
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\configuration91.svcinfo
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\configuration.svcinfo
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\Reference.svcmap

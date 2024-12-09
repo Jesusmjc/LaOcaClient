@@ -1,0 +1,67 @@
+﻿<Window x:Class="LaOcaClient.Victoria"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:p="clr-namespace:LaOcaClient.Properties"
+        Title="{x:Static p:Resources.tituloVictoria}"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
+        Height="400"
+        Width="600">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+            <TextBlock Text="{x:Static p:Resources.lbPartidaTerminada}" FontSize="24" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center"/>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{x:Static p:Resources.lbPrimerLugar}" Grid.Row="0" Grid.Column="0" FontSize="16" Margin="5"/>
+                <TextBlock x:Name="PrimerLugar" Grid.Row="0" Grid.Column="1" FontSize="16" Margin="5"/>
+
+                <TextBlock Text="{x:Static p:Resources.lbSegundoLugar}" Grid.Row="1" Grid.Column="0" FontSize="16" Margin="5"/>
+                <TextBlock x:Name="SegundoLugar" Grid.Row="1" Grid.Column="1" FontSize="16" Margin="5"/>
+
+                <TextBlock Text="{x:Static p:Resources.lbTercerLugar}" Grid.Row="2" Grid.Column="0" FontSize="16" Margin="5"/>
+                <TextBlock x:Name="TercerLugar" Grid.Row="2" Grid.Column="1" FontSize="16" Margin="5"/>
+
+                <TextBlock Text="{x:Static p:Resources.msgCuartoLugar}" Grid.Row="3" Grid.Column="0" FontSize="16" Margin="5"/>
+                <TextBlock x:Name="CuartoLugar" Grid.Row="3" Grid.Column="1" FontSize="16" Margin="5"/>
+            </Grid>
+
+            <Grid Margin="20,10,20,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{x:Static p:Resources.msgCasillasPrimerLugar}" Grid.Row="0" Grid.Column="0" FontSize="16" Margin="5"/>
+                <TextBlock x:Name="CasillasPrimerLugar" Grid.Row="0" Grid.Column="1" FontSize="16" Margin="5"/>
+
+                <TextBlock Text="{x:Static p:Resources.msgCasillasSegundoLugar}" Grid.Row="1" Grid.Column="0" FontSize="16" Margin="5"/>
+                <TextBlock x:Name="CasillasSegundoLugar" Grid.Row="1" Grid.Column="1" FontSize="16" Margin="5"/>
+
+                <TextBlock Text="{x:Static p:Resources.msgCasillasTercerLugar}" Grid.Row="2" Grid.Column="0" FontSize="16" Margin="5"/>
+                <TextBlock x:Name="CasillasTercerLugar" Grid.Row="2" Grid.Column="1" FontSize="16" Margin="5"/>
+
+                <TextBlock Text="{x:Static p:Resources.msgCasillasCuartoLugar}" Grid.Row="3" Grid.Column="0" FontSize="16" Margin="5"/>
+                <TextBlock x:Name="CasillasCuartoLugar" Grid.Row="3" Grid.Column="1" FontSize="16" Margin="5"/>
+            </Grid>
+
+            <Button Content="{x:Static p:Resources.btnRegresarAlInicio}" Width="204" Height="40" FontSize="16" Click="RegresarAlInicio_Click" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -72,7 +72,6 @@ namespace LaOcaClient
             string correoElectronico = tbxCorreoElectronico.Text.ToString();
             string contrasena = pwbContrasena.Password.ToString();
 
-            OcultarMensajesError();
 
             if (!string.IsNullOrWhiteSpace(correoElectronico) && !string.IsNullOrWhiteSpace(contrasena))
             {
@@ -90,18 +89,16 @@ namespace LaOcaClient
                 }
                 else if (!Utilidad.ValidarCorreoElectronico(correoElectronico))
                 {
-                    lbCorreoInvalido.Visibility = Visibility.Visible;
-                    lbCaracteristicasCorreoValido.Visibility = Visibility.Visible;
+                    MessageBox.Show(Properties.Resources.lbIngreseCorreoValido, Properties.Resources.tituloCorreoInvalido, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
-                    lbContrasenaInvalida.Visibility = Visibility.Visible;
-                    lbCaracteristicasContrasenaValida.Visibility = Visibility.Visible;
+                    MessageBox.Show(Properties.Resources.lbContraseñaValida, Properties.Resources.tituloContraseñaInvalida, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                lbCamposVacios.Visibility = Visibility.Visible;
+                MessageBox.Show(Properties.Resources.camposVaciosLogin, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -125,26 +122,26 @@ namespace LaOcaClient
             }
             catch (FaultException<InicioSesionException> ex)
             {
-                MessageBox.Show(ex.Detail.Mensaje + "\n" + ex.Reason, "Error al iniciar sesión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Detail.Mensaje + "\n" + ex.Reason, Properties.Resources.globalErrorLogin, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        private void OcultarMensajesError()
+        /*private void OcultarMensajesError()
         {
             lbCamposVacios.Visibility = Visibility.Hidden;
             lbCorreoInvalido.Visibility = Visibility.Hidden;
             lbCaracteristicasCorreoValido.Visibility = Visibility.Hidden;
             lbContrasenaInvalida.Visibility = Visibility.Hidden;
             lbCaracteristicasContrasenaValida.Visibility = Visibility.Hidden;
-        }
+        }*/
 
         private void BtnOlvideMiContraseña_Click(object sender, RoutedEventArgs e)
         {
@@ -162,7 +159,7 @@ namespace LaOcaClient
 
         private void LimpiarTextoEjemplo(object sender, MouseButtonEventArgs e)
         {
-            if (tbxCorreoElectronico.Text.ToString().Equals("Correo Electronico"))
+            if (tbxCorreoElectronico.Text.ToString().Equals(Properties.Resources.globalCorreo))
             {
                 tbxCorreoElectronico.Text = "";
             }

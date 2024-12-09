@@ -145,7 +145,7 @@
     <value>Verificar</value>
   </data>
   <data name="camposVaciosLogin" xml:space="preserve">
-    <value>Por favor llena todos los campos</value>
+    <value>Por favor llena todos los campos.</value>
   </data>
   <data name="caracteresInvalidosLogin" xml:space="preserve">
     <value>El nombre de usuario o contraseña contienen caracteres inválidos</value>
@@ -235,7 +235,7 @@
     <value>Social</value>
   </data>
   <data name="globalVisibilidad" xml:space="preserve">
-    <value>Visibilidad</value>
+    <value>Visibilidad:</value>
   </data>
   <data name="lbConfirmarNuevaContraseña" xml:space="preserve">
     <value>Confirmar la nueva contraseña:</value>
@@ -322,15 +322,360 @@
     <value>Crear partida</value>
   </data>
   <data name="lbIngreseCorreoValido" xml:space="preserve">
-    <value>Ingrese un correo electrónico válido</value>
+    <value>Por favor ingrese un correo electrónico válido.</value>
   </data>
   <data name="lbContraseñaValida" xml:space="preserve">
     <value>Ingrese una contraseña válida</value>
   </data>
   <data name="lbCaracteristicasCorreoValido" xml:space="preserve">
-    <value>Características de un correo válido:&amp;#xD;&amp;#xA;- Entre 5 y 20 caracteres antes del @.&amp;#xD;&amp;#xA;- Contiene solo letras, dígitos, guion bajo &amp;#xD;&amp;#xA;   o guion medio.&amp;#xD;&amp;#xA;- Pertenece a uno de los siguientes dominios:&amp;#xD;&amp;#xA;   gmail, outlook, hotmail.&amp;#xD;&amp;#xA;- Termina en .com</value>
+    <value>El correo electrónico no es válido. Debe ser un correo de gmail, outlook o hotmail.</value>
   </data>
   <data name="lbCaracteristicasContraseñaValida" xml:space="preserve">
-    <value>Características de una contraseña válida:&amp;#xD;&amp;#xA;- Entre 8 y 16 caracteres.&amp;#xD;&amp;#xA;- Al menos una letra minúscula.&amp;#xD;&amp;#xA;- Al menos una letra mayúscula.&amp;#xD;&amp;#xA;- Al menos un número.&amp;#xD;&amp;#xA;- Al menos un caracter especial &amp;#xD;&amp;#xA;  ($, @, !, %, *, ?, &amp;amp;, #, (.), (, ), _, -)</value>
+    <value>La contraseña no cumple con los requisitos. Debe tener entre 8 y 16 caracteres, incluir al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.</value>
+  </data>
+  <data name="tituloCorreoInvalido" xml:space="preserve">
+    <value>Correo inválido</value>
+  </data>
+  <data name="tituloContraseñaInvalida" xml:space="preserve">
+    <value>Contraseña inválida</value>
+  </data>
+  <data name="globalErrorValidacion" xml:space="preserve">
+    <value>Error de validación</value>
+  </data>
+  <data name="globalErrorLogin" xml:space="preserve">
+    <value>Error al iniciar sesión</value>
+  </data>
+  <data name="tituloTimeOut" xml:space="preserve">
+    <value>Error de conexión</value>
+  </data>
+  <data name="msgComunnicationEx" xml:space="preserve">
+    <value>Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.</value>
+  </data>
+  <data name="msgTimeoutEx" xml:space="preserve">
+    <value>El servidor ha tardado demasiado en responder.</value>
+  </data>
+  <data name="msgCorreoNoIngresado" xml:space="preserve">
+    <value>Por favor, ingrese su correo electrónico.</value>
+  </data>
+  <data name="msgCodigoEnviado" xml:space="preserve">
+    <value>Se ha enviado un código de restablecimiento a su correo.</value>
+  </data>
+  <data name="msgCodigoNoIngresado" xml:space="preserve">
+    <value>Por favor, ingrese el código de verificación.</value>
+  </data>
+  <data name="msgCodigoIncorrecto" xml:space="preserve">
+    <value>Código de verificación incorrecto.</value>
+  </data>
+  <data name="msgCodigoCorrecto" xml:space="preserve">
+    <value>Código de verificación correcto.</value>
+  </data>
+  <data name="msgContraseñaRestablecida" xml:space="preserve">
+    <value>Contraseña restablecida exitosamente.</value>
+  </data>
+  <data name="msgRefImagenInvalida" xml:space="preserve">
+    <value>La referencia de la imagen seleccionada no es válida.</value>
+  </data>
+  <data name="msgNombreUsuarioExiste" xml:space="preserve">
+    <value>El nombre de usuario ya está en uso por otro jugador. Por favor, elija otro nombre.</value>
+  </data>
+  <data name="msgCodigoEnviadoCrearCuenta" xml:space="preserve">
+    <value>Se han guardado los datos de tu cuenta. Por favor revisa el código de verificación que se envió a tu correo electrónico. </value>
+  </data>
+  <data name="msgCuentaModificada" xml:space="preserve">
+    <value>Cuenta modificada correctamente.</value>
+  </data>
+  <data name="msgErrorModificarJugador" xml:space="preserve">
+    <value>Lo sentimos, ocurrió un error al modificar el jugador.</value>
+  </data>
+  <data name="msgCaracteristicasNombreUsuario" xml:space="preserve">
+    <value>El nombre de usuario debe tener al menos 6 caracteres.</value>
+  </data>
+  <data name="msgCorreoYaExiste" xml:space="preserve">
+    <value>El correo electrónico ya está registrado por otra cuenta, por favor coloque otro.</value>
+  </data>
+  <data name="msgImagenNoSeleccionada" xml:space="preserve">
+    <value>Debes seleccionar una imagen de perfil.</value>
+  </data>
+  <data name="msgCodigoReenviado" xml:space="preserve">
+    <value>Se ha reenviado el código de verificación a tu correo electrónico.</value>
+  </data>
+  <data name="tituloCancelarCrearCuenta" xml:space="preserve">
+    <value>Cancelar creación de la cuenta</value>
+  </data>
+  <data name="msgCancelarModificacionCuenta" xml:space="preserve">
+    <value>¿Estás seguro de que deseas cancelar la modificación de la cuenta?</value>
+  </data>
+  <data name="tituloCancelarModificacionCuenta" xml:space="preserve">
+    <value>Cancelar modificación de la cuenta</value>
+  </data>
+  <data name="msgCuentaNoEncontrada" xml:space="preserve">
+    <value>Cuenta no encontrada.</value>
+  </data>
+  <data name="msgJugadorNoEncontrado" xml:space="preserve">
+    <value>Jugador no encontrado.</value>
+  </data>
+  <data name="msgImagenPerfilNoEncontrada" xml:space="preserve">
+    <value>Imagen de perfil no encontrada.</value>
+  </data>
+  <data name="msgContraseñaActualIncorrecta" xml:space="preserve">
+    <value>La contraseña actual es incorrecta.</value>
+  </data>
+  <data name="globalTituloError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="tituloErrorSala" xml:space="preserve">
+    <value>Error con la sala</value>
+  </data>
+  <data name="msgSalaLlena" xml:space="preserve">
+    <value>Parece que la sala ya está llena.</value>
+  </data>
+  <data name="msgErrorCodigoSala" xml:space="preserve">
+    <value>No existe una sala con el código ingresado.</value>
+  </data>
+  <data name="tituloMenuPrincipal" xml:space="preserve">
+    <value>Menú principal</value>
+  </data>
+  <data name="lbCodigoSala" xml:space="preserve">
+    <value>Código de sala:</value>
+  </data>
+  <data name="btnVerRankingGlobal" xml:space="preserve">
+    <value>Ver Ranking Global</value>
+  </data>
+  <data name="btnVerEstdísticas" xml:space="preserve">
+    <value>Ver Mis Estadísticas</value>
+  </data>
+  <data name="msgErrorEstadisticas" xml:space="preserve">
+    <value>Error al consultar estadísticas.</value>
+  </data>
+  <data name="globalMisEstadisticas" xml:space="preserve">
+    <value>Mis Estadísticas</value>
+  </data>
+  <data name="txtCasillasRecorridas" xml:space="preserve">
+    <value>Casillas recorridas</value>
+  </data>
+  <data name="txtPartidasGanadas" xml:space="preserve">
+    <value>Partidas ganadas</value>
+  </data>
+  <data name="colJugador" xml:space="preserve">
+    <value>Jugador</value>
+  </data>
+  <data name="colPosicion" xml:space="preserve">
+    <value>Posición</value>
+  </data>
+  <data name="msgErrorRanking" xml:space="preserve">
+    <value>Error al cargar el ranking global.</value>
+  </data>
+  <data name="lbRanking" xml:space="preserve">
+    <value>Ranking Global de Jugadores</value>
+  </data>
+  <data name="lbAmigos" xml:space="preserve">
+    <value>Amigos</value>
+  </data>
+  <data name="lbEnLinea" xml:space="preserve">
+    <value>En Línea</value>
+  </data>
+  <data name="tituloBuzon" xml:space="preserve">
+    <value>Buzón</value>
+  </data>
+  <data name="btnInvitaciones" xml:space="preserve">
+    <value>Invitaciones a partida</value>
+  </data>
+  <data name="btnSolicitudes" xml:space="preserve">
+    <value>Solicitudes de amistad</value>
+  </data>
+  <data name="tituloRegresarAlMenu" xml:space="preserve">
+    <value>Regresarás al Menú Principal</value>
+  </data>
+  <data name="msgAbandonoHost" xml:space="preserve">
+    <value>Parece que el host ha abandonado la sala.</value>
+  </data>
+  <data name="tituloInvitacionEnviada" xml:space="preserve">
+    <value>Invitación Enviada</value>
+  </data>
+  <data name="msgInvitacionEnviada" xml:space="preserve">
+    <value>Se ha enviado la solicitud.</value>
+  </data>
+  <data name="tituloInvitacionNoEnviada" xml:space="preserve">
+    <value>No se pudo enviar la invitación</value>
+  </data>
+  <data name="msgInvitacionYaEnviada" xml:space="preserve">
+    <value>Parece que ya has enviado una invitación a este jugador.</value>
+  </data>
+  <data name="lbEliminarAmigo" xml:space="preserve">
+    <value>Eliminar amigo</value>
+  </data>
+  <data name="lbInvitarAPartida" xml:space="preserve">
+    <value>Invitar a partida</value>
+  </data>
+  <data name="tituloErrorBloqueo" xml:space="preserve">
+    <value>Error al procesar el bloqueo</value>
+  </data>
+  <data name="lbBloquear" xml:space="preserve">
+    <value>Bloquear</value>
+  </data>
+  <data name="lbDesbloquear" xml:space="preserve">
+    <value>Desbloquear</value>
+  </data>
+  <data name="lbExpulsar" xml:space="preserve">
+    <value>Expulsar</value>
+  </data>
+  <data name="tituloErrorBuscarSala" xml:space="preserve">
+    <value>Error al buscar la Sala</value>
+  </data>
+  <data name="globalRechazar" xml:space="preserve">
+    <value>Rechazar</value>
+  </data>
+  <data name="lbSalaDe" xml:space="preserve">
+    <value>Sala de </value>
+  </data>
+  <data name="tituloConfiguracionSala" xml:space="preserve">
+    <value>Configuración sala</value>
+  </data>
+  <data name="lbCrearSala" xml:space="preserve">
+    <value>Crear sala</value>
+  </data>
+  <data name="lbNombreSala" xml:space="preserve">
+    <value>Nombre de la sala:</value>
+  </data>
+  <data name="msgErrorCrearSala" xml:space="preserve">
+    <value>Ha ocurrido un error al crear la sala.</value>
+  </data>
+  <data name="msgErrorEnviarMsg" xml:space="preserve">
+    <value>Error al enviar mensaje.</value>
+  </data>
+  <data name="lbEscribeUnMsg" xml:space="preserve">
+    <value>Escribe un mensaje</value>
+  </data>
+  <data name="tituloMasJugadores" xml:space="preserve">
+    <value>Se necesitan más jugadores</value>
+  </data>
+  <data name="msgDosOMasJugadores" xml:space="preserve">
+    <value>Se necesitan al menos dos jugadores para iniciar partida.</value>
+  </data>
+  <data name="tituloAbandonarPartida" xml:space="preserve">
+    <value>Estás a punto de abandonar la partida</value>
+  </data>
+  <data name="msgAbandonarSala" xml:space="preserve">
+    <value>¿Estás seguro de que quieres salir al Menú Principal?</value>
+  </data>
+  <data name="tituloExpulsadoSala" xml:space="preserve">
+    <value>Has sido expulsado de la sala</value>
+  </data>
+  <data name="btnIniciarPartida" xml:space="preserve">
+    <value>Iniciar partida</value>
+  </data>
+  <data name="lbJugadoresEnPartida" xml:space="preserve">
+    <value>Jugadores en partida:</value>
+  </data>
+  <data name="tituloHoraDeJugar" xml:space="preserve">
+    <value>Hora de jugar</value>
+  </data>
+  <data name="msgEsTuTurno" xml:space="preserve">
+    <value>¡Es tu turno de tirar!</value>
+  </data>
+  <data name="lbEsTurnoDe" xml:space="preserve">
+    <value>Es turno de: </value>
+  </data>
+  <data name="msgPierdesUnTurno" xml:space="preserve">
+    <value>Pierdes un turno. Turnos restantes: </value>
+  </data>
+  <data name="msgLanzarDado" xml:space="preserve">
+    <value>¡Has lanzado el dado! Salió el número </value>
+  </data>
+  <data name="msgJugadorNoEstaEnListaTurnos" xml:space="preserve">
+    <value>El jugador actual no está en la lista de turnos.</value>
+  </data>
+  <data name="msgPartidaTerminadaSoloUnJugador" xml:space="preserve">
+    <value>La partida ha terminado debido a que sólo queda un jugador.</value>
+  </data>
+  <data name="msgErrorCambiarTurno" xml:space="preserve">
+    <value>Error al cambiar de turno.</value>
+  </data>
+  <data name="msgNecesitasNumeroExacto" xml:space="preserve">
+    <value>Necesitas el número exacto para ganar.</value>
+  </data>
+  <data name="msgOcaDorada" xml:space="preserve">
+    <value>¡Has caído en la oca dorada y te lleva directo a la meta!</value>
+  </data>
+  <data name="msgDeOcaAOca" xml:space="preserve">
+    <value>¡De oca a oca y tiro porque me toca!</value>
+  </data>
+  <data name="msgPuente" xml:space="preserve">
+    <value>¡Has caído en el puente! Avanzas automáticamente y vuelves a tirar.</value>
+  </data>
+  <data name="msgPosada" xml:space="preserve">
+    <value>¡Caíste en la posada! Pierdes un turno.</value>
+  </data>
+  <data name="msgDados" xml:space="preserve">
+    <value>¡Caíste en la casilla de dados! Tira de nuevo.</value>
+  </data>
+  <data name="msgPozo" xml:space="preserve">
+    <value>¡Caíste en el pozo! Pierdes tres turnos.</value>
+  </data>
+  <data name="msgLaberinto" xml:space="preserve">
+    <value>¡Entraste al laberinto! Retrocedes a la casilla 30.</value>
+  </data>
+  <data name="msgCarcel" xml:space="preserve">
+    <value>¡Estás en la cárcel! Pierdes dos turnos.</value>
+  </data>
+  <data name="msgCalavera" xml:space="preserve">
+    <value>¡Caíste en la calavera! Regresas al principio (casilla 1).</value>
+  </data>
+  <data name="msgAbandonarPartidaEnCurso" xml:space="preserve">
+    <value>¿Estás seguro de que deseas abandonar la partida?</value>
+  </data>
+  <data name="tituloConfirmacion" xml:space="preserve">
+    <value>Confirmación</value>
+  </data>
+  <data name="msgHaAbandonadoLaPartida" xml:space="preserve">
+    <value>ha habandonado la partida.</value>
+  </data>
+  <data name="msgPartidaAbandonada" xml:space="preserve">
+    <value>Has abandonado la partida. Serás redirigido al menú principal.</value>
+  </data>
+  <data name="msgErrorAbandonoPartida" xml:space="preserve">
+    <value>Error al abandonar la partida.</value>
+  </data>
+  <data name="tituloPartida" xml:space="preserve">
+    <value>Partida</value>
+  </data>
+  <data name="btnLanzarDado" xml:space="preserve">
+    <value>Lanzar Dado</value>
+  </data>
+  <data name="btnAbandonarPartida" xml:space="preserve">
+    <value>Abandonar Partida</value>
+  </data>
+  <data name="tituloVictoria" xml:space="preserve">
+    <value>Victoria</value>
+  </data>
+  <data name="lbPartidaTerminada" xml:space="preserve">
+    <value>La partida ha terminado</value>
+  </data>
+  <data name="lbPrimerLugar" xml:space="preserve">
+    <value>Primer lugar: </value>
+  </data>
+  <data name="lbSegundoLugar" xml:space="preserve">
+    <value>Segundo lugar: </value>
+  </data>
+  <data name="lbTercerLugar" xml:space="preserve">
+    <value>Tercer lugar: </value>
+  </data>
+  <data name="msgCuartoLugar" xml:space="preserve">
+    <value>Cuarto lugar: </value>
+  </data>
+  <data name="msgCasillasPrimerLugar" xml:space="preserve">
+    <value>Casillas recorridas por el primer lugar: </value>
+  </data>
+  <data name="msgCasillasSegundoLugar" xml:space="preserve">
+    <value>Casillas recorridas por el segundo lugar: </value>
+  </data>
+  <data name="msgCasillasTercerLugar" xml:space="preserve">
+    <value>Casillas recorridas por el tercer lugar: </value>
+  </data>
+  <data name="msgCasillasCuartoLugar" xml:space="preserve">
+    <value>Casillas recorridas por el cuerto lugar: </value>
+  </data>
+  <data name="btnRegresarAlInicio" xml:space="preserve">
+    <value>Regresar al inicio</value>
   </data>
 </root>

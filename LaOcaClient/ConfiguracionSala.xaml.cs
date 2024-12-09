@@ -14,18 +14,15 @@ using System.Windows.Shapes;
 
 namespace LaOcaClient
 {
-    /// <summary>
-    /// Interaction logic for ConfiguracionSala.xaml
-    /// </summary>
     public partial class ConfiguracionSala : Window
     {
         public ConfiguracionSala()
         {
             InitializeComponent();
-            cbVisibilidad.Items.Add("Pública");
-            cbVisibilidad.Items.Add("Privada");
+            cbVisibilidad.Items.Add(Properties.Resources.globalPublica);
+            cbVisibilidad.Items.Add(Properties.Resources.globalPrivada);
 
-            tbxNombreSala.Text = "Sala de " + SingletonJugador.Instance.Jugador.NombreUsuario;
+            tbxNombreSala.Text = Properties.Resources.lbSalaDe + SingletonJugador.Instance.Jugador.NombreUsuario;
             cbVisibilidad.SelectedIndex = 0;
         }
 

@@ -6,16 +6,17 @@
         xmlns:local="clr-namespace:LaOcaClient"
         xmlns:Properties="clr-namespace:LaOcaClient.Properties" x:Class="LaOcaClient.ConfiguracionSala"
         mc:Ignorable="d"
-        Title="ConfiguracionSala" Height="450" Width="800">
+        xmlns:p="clr-namespace:LaOcaClient.Properties"
+        Title="{x:Static p:Resources.tituloConfiguracionSala}" Height="450" Width="800">
     <Grid>
-        <Label x:Name="lbConfiguracionSala" Content="Crear Sala" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Height="50" Width="196" FontSize="24"/>
-        <Label Content="Nombre de la Sala:&#xA;" HorizontalAlignment="Left" Margin="201,125,0,0" VerticalAlignment="Top" Height="30"/>
-        <Label Content="Visibilidad:" HorizontalAlignment="Left" Margin="244,171,0,0" VerticalAlignment="Top" Height="29"/>
+        <Label x:Name="lbConfiguracionSala" Content="{x:Static p:Resources.lbCrearSala}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Height="50" Width="196" FontSize="24"/>
+        <Label Content="{x:Static p:Resources.lbNombreSala}" HorizontalAlignment="Left" Margin="201,125,0,0" VerticalAlignment="Top" Height="30"/>
+        <Label Content="{x:Static p:Resources.globalVisibilidad}" HorizontalAlignment="Left" Margin="244,171,0,0" VerticalAlignment="Top" Height="29"/>
 
-        <TextBox x:Name="tbxNombreSala" MaxLength="50" HorizontalAlignment="Left" Margin="351,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Height="26" Tag="{x:Static Properties:Resources.usuarioLogin}" Foreground="Black"/>
+        <TextBox x:Name="tbxNombreSala"  Text="{x:Static p:Resources.lbSalaDe}"  MaxLength="50" HorizontalAlignment="Left" Margin="351,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Height="26" Tag="{x:Static Properties:Resources.usuarioLogin}" Foreground="Black"/>
         <ComboBox x:Name="cbVisibilidad" HorizontalAlignment="Left" Margin="353,173,0,0" VerticalAlignment="Top" Width="246" Height="26"/>
-        <Button x:Name="btnCrearSala" Content="Crear Sala" HorizontalAlignment="Left" Margin="660,369,0,0" VerticalAlignment="Top" Height="29" Width="80" Click="IrASala"/>
-        <Label x:Name="lbCamposVacios" Content="Por favor llene todos los campos para continuar." HorizontalAlignment="Center" Margin="0,276,0,0" VerticalAlignment="Top" Foreground="Red" Visibility="Hidden"/>
+        <Button x:Name="btnCrearSala" Content="{x:Static p:Resources.lbCrearSala}" HorizontalAlignment="Left" Margin="660,369,0,0" VerticalAlignment="Top" Height="29" Width="80" Click="IrASala"/>
+        <Label x:Name="lbCamposVacios" Content="{x:Static p:Resources.camposVaciosLogin}" HorizontalAlignment="Center" Margin="0,276,0,0" VerticalAlignment="Top" Foreground="Red" Visibility="Hidden"/>
         <Image x:Name="imgVolver" Margin="20,20,0,0" Source="/Recursos/icono_volver.png" Stretch="Fill" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40" MouseLeftButtonDown="RegresarAVentanaAnterior"/>
 
     </Grid>

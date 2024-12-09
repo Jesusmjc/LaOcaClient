@@ -1,25 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
+using System.ServiceModel.Security;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using LaOcaClient.LaOcaService;
 
 namespace LaOcaClient.UserControls
 {
-    /// <summary>
-    /// Interaction logic for Amigo.xaml
-    /// </summary>
     public partial class Amigo : UserControl
     {
         public Jugador amigo;
@@ -38,13 +28,16 @@ namespace LaOcaClient.UserControls
             lbNombreAmigo.Content = amigo.NombreUsuario;
             lbEstado.Content = estado;
 
-            MenuItem opcionEliminarAmigo = new MenuItem { Header = "Eliminar Amigo" };
+            string rutaFotoPerfil = FotoPerfilUtils.ObtenerRutaFotoPerfil(amigo.IdFotoPerfil);
+            imgFotoPerfil.Source = new BitmapImage(new Uri(rutaFotoPerfil, UriKind.RelativeOrAbsolute));
+
+            MenuItem opcionEliminarAmigo = new MenuItem { Header = Properties.Resources.lbEliminarAmigo };
             opcionEliminarAmigo.Click += (s, args) => EliminarAmigo();
             imgMasOpciones_MenuContextual.Items.Add(opcionEliminarAmigo);
 
             if (VentanaSocial.ventanaSala != null)
             {
-                MenuItem opcionInvitarAPartida = new MenuItem { Header = "Invitar a Partida" };
+                MenuItem opcionInvitarAPartida = new MenuItem { Header = Properties.Resources.lbInvitarAPartida };
                 opcionInvitarAPartida.Click += (s, args) => EnviarInvitacionAPartida();
                 imgMasOpciones_MenuContextual.Items.Add(opcionInvitarAPartida);
             }
@@ -62,38 +55,36 @@ namespace LaOcaClient.UserControls
                 LaOcaService.ServicioRecuperarSalaClient clienteSala = new LaOcaService.ServicioRecuperarSalaClient();
                 LaOcaService.Sala salaActual = clienteSala.RecuperarSala(VentanaSocial.ventanaSala.SalaActual.Codigo);
 
+
                 if (salaActual != null)
                 {
                     LaOcaService.ServicioSocialClient clienteSocial = new LaOcaService.ServicioSocialClient();
-
-                    bool resultado = clienteSocial.EnviarInvitacionAPartida(amigo.NombreUsuario, SingletonJugador.Instance.Jugador, VentanaSocial.ventanaSala.SalaActual.Codigo);
+                    bool resultado = clienteSocial.EnviarInvitacionAPartida(amigo.NombreUsuario, SingletonJugador.Instance.Jugador, VentanaSocial.ventanaSala.sala.Codigo);
 
                     if (resultado)
                     {
-                        MessageBox.Show("Se ha enviado la invitación.", "Invitación enviada", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(Properties.Resources.msgInvitacionEnviada, Properties.Resources.tituloInvitacionEnviada, MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                     {
-                        MessageBox.Show("Parece que ya has enviado una invitación a este jugador.", "No se pudo enviar la invitación", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Properties.Resources.msgInvitacionYaEnviada, Properties.Resources.tituloInvitacionNoEnviada, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-
                 }
             }
             catch (FaultException<SalaException>)
             {
-                MessageBox.Show("Parece que el host ha abandonado la sala.", "Regresarás al Menú Principal", MessageBoxButton.OK, MessageBoxImage.Error);
-
+                MessageBox.Show(Properties.Resources.msgAbandonoHost, Properties.Resources.tituloRegresarAlMenu, MessageBoxButton.OK, MessageBoxImage.Error);
                 MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
                 VentanaSocial.Close();
                 ventanaMenuPrincipal.ShowDialog();
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

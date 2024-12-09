@@ -27,6 +27,7 @@
     <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="66ec56f1-a7c3-4078-b651-ca3754e929b2" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd2" />
     <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="30702c43-2562-4da3-b00c-e62daad5e3cd" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd3" />
     <MetadataFile FileName="item.disco" MetadataType="Disco" ID="3c010e5d-226a-4704-9a2f-c4deb5c5f618" SourceId="1" SourceUrl="http://localhost:8082/?disco" />
+    <MetadataFile FileName="item4.xsd" MetadataType="Schema" ID="6cbe2164-5095-42f8-819c-223f02e26b2a" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd4" />
     <MetadataFile FileName="LaOcaService.wsdl" MetadataType="Wsdl" ID="6798cf65-a8dc-416e-bd49-93d0f7ebbddf" SourceId="1" SourceUrl="http://localhost:8082/?wsdl" />
   </Metadata>
   <Extensions>
