@@ -65,6 +65,11 @@
     <Compile Include="Buzon.xaml.cs">
       <DependentUpon>Buzon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\LaOcaService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="EstadísticasJugador.xaml.cs">
       <DependentUpon>EstadísticasJugador.xaml</DependentUpon>
     </Compile>
@@ -153,11 +158,6 @@
     </Compile>
     <Compile Include="CambiarContraseña.xaml.cs">
       <DependentUpon>CambiarContraseña.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Connected Services\LaOcaService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="CrearCuenta.xaml.cs">
       <DependentUpon>CrearCuenta.xaml</DependentUpon>
@@ -294,24 +294,6 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\LaOcaService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\LaOcaService\item.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\LaOcaService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\LaOcaService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\LaOcaService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Recursos\icono_volver.png" />
   </ItemGroup>
   <ItemGroup>
@@ -354,6 +336,24 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Dado.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\LaOcaService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LaOcaService\item.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LaOcaService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LaOcaService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LaOcaService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

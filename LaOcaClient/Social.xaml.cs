@@ -113,7 +113,7 @@ namespace LaOcaClient
 
             foreach (Jugador amigoConectado in amigosConectados)
             {
-                MostrarAmigo(amigoConectado, "En línea");
+                MostrarAmigo(amigoConectado, Properties.Resources.lbEnLinea);
             }
         }
 
@@ -183,11 +183,11 @@ namespace LaOcaClient
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             return amigos;
@@ -200,8 +200,8 @@ namespace LaOcaClient
                 Amigo amigoConectado = _amigos[nuevoJugadorConectado.NombreUsuario];
                 lbxListaAmigos.Items.Remove(amigoConectado);
 
-                amigoConectado.estado = "En línea";
-                amigoConectado.lbEstado.Content = "En línea";
+                amigoConectado.estado = Properties.Resources.lbEnLinea;
+                amigoConectado.lbEstado.Content = Properties.Resources.lbEnLinea;
 
                 lbxListaAmigos.Items.Insert(0, amigoConectado);
             } 
@@ -262,11 +262,11 @@ namespace LaOcaClient
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

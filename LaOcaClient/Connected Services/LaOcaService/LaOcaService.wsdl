@@ -440,7 +440,7 @@
   <wsdl:message name="IServicioRecuperarSala_RecuperarSala_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarSalaResponse" />
   </wsdl:message>
-  <wsdl:message name="IServicioRecuperarSala_RecuperarSalaSalaActualExceptionFault_FaultMessage">
+  <wsdl:message name="IServicioRecuperarSala_RecuperarSala_SalaExceptionFault_FaultMessage">
     <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/LaOcaService" name="detail" element="q2:SalaException" />
   </wsdl:message>
   <wsdl:message name="IServicioPartida_AgregarCanalCallbackPartida_InputMessage">
@@ -795,7 +795,7 @@
     <wsdl:operation name="RecuperarSala">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioRecuperarSala/RecuperarSala" message="tns:IServicioRecuperarSala_RecuperarSala_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioRecuperarSala/RecuperarSalaResponse" message="tns:IServicioRecuperarSala_RecuperarSala_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IServicioRecuperarSala/RecuperarSalaSalaExceptionFault" name="SalaExceptionFault" message="tns:IServicioRecuperarSala_RecuperarSalaSalaActualExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IServicioRecuperarSala/RecuperarSalaSalaExceptionFault" name="SalaExceptionFault" message="tns:IServicioRecuperarSala_RecuperarSala_SalaExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IServicioPartida">

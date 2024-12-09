@@ -96,6 +96,8 @@ namespace LaOcaClient
             btnModificarCuenta.Visibility = Visibility.Hidden;
             btnCrearSala.Visibility = Visibility.Hidden;
             btnSocial.Visibility = Visibility.Hidden;
+            btnRankingGlobal.Visibility = Visibility.Hidden;
+            btnEstadisticas.Visibility = Visibility.Hidden;
         }
 
         private void MostrarListaAmigos(object sender, RoutedEventArgs e)

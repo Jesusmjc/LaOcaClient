@@ -48,24 +48,42 @@ namespace LaOcaClient.UserControls
             bool soyHost = SingletonJugador.Instance.Jugador.NombreUsuario.Equals(_ventanaPadre.SalaActual.NombreHost);
             bool soyYo = SingletonJugador.Instance.Jugador.Equals(jugadorEnSala);
 
-            if (soyYo)
+            if (_ventanaPadre is Partida)
             {
                 imgMasOpciones.Visibility = Visibility.Hidden;
+                return;
             }
-            else if (!jugadorEnSala.EsInvitado)
+
+            if (!SingletonJugador.Instance.Jugador.EsInvitado)
             {
-                AjustarMenuPopupSegunAmistad();
-            }
-            else
-            {
-                if (soyHost)
+                if (_ventanaPadre is Partida)
                 {
-                    CargarOpcionExpulsar();
+                    imgMasOpciones.Visibility |= Visibility.Hidden;
                 }
-                else
+                if (soyYo)
                 {
                     imgMasOpciones.Visibility = Visibility.Hidden;
                 }
+                else if (!jugadorEnSala.EsInvitado)
+                {
+                    AjustarMenuPopupSegunAmistad();
+
+                }
+                else
+                {
+                    if (soyHost)
+                    {
+                        CargarOpcionExpulsar();
+                    }
+                    else
+                    {
+                        imgMasOpciones.Visibility = Visibility.Hidden;
+                    }
+                }
+            }
+            else
+            {
+                imgMasOpciones.Visibility = Visibility.Hidden;
             }
             
         }
