@@ -69,6 +69,9 @@ namespace LaOcaClient
             MostrarJugadorEnTurno();
             MostrarFichasYJugadores();
 
+            _ = VerificarConexionConServidor();
+
+
         }
 
         private void AgregarCanalCallbackDePartida()
@@ -76,6 +79,7 @@ namespace LaOcaClient
             InstanceContext contexto = new InstanceContext(this);
             _clientePartida = new LaOcaService.ServicioPartidaClient(contexto);
             _clientePartida.AgregarCanalCallbackPartida(SingletonJugador.Instance.Jugador.NombreUsuario, SalaActual.Codigo);
+
         }
 
         private void MostrarFichasYJugadores()
@@ -197,24 +201,34 @@ namespace LaOcaClient
         {
             string nombreJugador = SingletonJugador.Instance.Jugador.NombreUsuario;
 
-            if (SalaActual.Jugadores.TryGetValue(nombreJugador, out Jugador jugador))
+            try
             {
-
-                if (jugador.TurnosPerdidos > 0)
+                if (SalaActual.Jugadores.TryGetValue(nombreJugador, out Jugador jugador))
                 {
-                    MessageBox.Show(Properties.Resources.msgPierdesUnTurno + $"{jugador.TurnosPerdidos}");
-                    jugador.TurnosPerdidos--;
-                    pasarTurnoSiguienteJugador();
-                    return;
+                    if (jugador.TurnosPerdidos > 0)
+                    {
+                        MessageBox.Show(Properties.Resources.msgPierdesUnTurno + $"{jugador.TurnosPerdidos}");
+                        jugador.TurnosPerdidos--;
+                        pasarTurnoSiguienteJugador();
+                        return;
+                    }
                 }
-            }
 
-            Random random = new Random();
-            int numeroAleatorio = random.Next(1, 7);
-            //int numeroAleatorio = 54;
-            MessageBox.Show(Properties.Resources.msgLanzarDado + $"{numeroAleatorio}.");
-            MoverFicha(numeroAleatorio, nombreJugador);
+                Random random = new Random();
+                int numeroAleatorio = random.Next(1, 7);
+                MessageBox.Show(Properties.Resources.msgLanzarDado + $"{numeroAleatorio}.");
+                MoverFicha(numeroAleatorio, nombreJugador);
+            }
+            catch (CommunicationException)
+            {
+                ManejarCaidaServidor();
+            }
+            catch (TimeoutException)
+            {
+                ManejarCaidaServidor();
+            }
         }
+
 
         private async void pasarTurnoSiguienteJugador()
         {
@@ -555,6 +569,7 @@ namespace LaOcaClient
         
         private async void BtnAbandonar_Click(object sender, RoutedEventArgs e)
         {
+
             string nombreJugador = SingletonJugador.Instance.Jugador.NombreUsuario;
 
             MessageBoxResult resultado = MessageBox.Show(Properties.Resources.msgAbandonarPartidaEnCurso, Properties.Resources.tituloConfirmacion, MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -628,5 +643,66 @@ namespace LaOcaClient
                 }
             });
         }
+
+
+        private void ManejarCaidaServidor()
+        {
+            MessageBox.Show(
+                "El servidor se encuentra fuera de servicio. La aplicación se cerrará automáticamente.",
+                "Servidor no disponible",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error
+            );
+
+            Application.Current.Shutdown();
+        }
+
+
+        private async Task VerificarConexionConServidor()
+        {
+            while (true)
+            {
+                try
+                {
+                    await _clientePartida.HeartbeatAsync();
+                }
+                catch (CommunicationException)
+                {
+                    ManejarCaidaServidor();
+                    break;
+                }
+                catch (TimeoutException)
+                {
+                    ManejarCaidaServidor();
+                    break;
+                }
+
+                await Task.Delay(5000);
+            }
+        }
+        private async Task GuardarEstadisticasAsync(int idJugador, int casillasRecorridas, bool ganoPartida)
+        {
+            try
+            {
+                await _clientePartida.GuardarEstadisticasJugadorAsync(idJugador, casillasRecorridas, ganoPartida);
+                MessageBox.Show("Estadísticas guardadas correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (FaultException)
+            {
+                var resultado = MessageBox.Show(
+                    "Hubo un error al guardar las estadísticas. ¿Deseas reintentar?",
+                    "Error",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning);
+
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    await GuardarEstadisticasAsync(idJugador, casillasRecorridas, ganoPartida);
+                }
+            }
+        }
+
+
+
     }
 }
