@@ -664,7 +664,7 @@ namespace LaOcaClient
             {
                 try
                 {
-                    await _clientePartida.HeartbeatAsync();
+                    //await _clientePartida.HeartbeatAsync();
                 }
                 catch (CommunicationException)
                 {
@@ -684,7 +684,7 @@ namespace LaOcaClient
         {
             try
             {
-                await _clientePartida.GuardarEstadisticasJugadorAsync(idJugador, casillasRecorridas, ganoPartida);
+                //await _clientePartida.GuardarEstadisticasJugadorAsync(idJugador, casillasRecorridas, ganoPartida);
                 MessageBox.Show("Estadísticas guardadas correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (FaultException)

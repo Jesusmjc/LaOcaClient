@@ -172,25 +172,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Heartbeat">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GuardarEstadisticasJugador">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="idJugador" type="xs:int" />
-        <xs:element minOccurs="0" name="casillasRecorridas" type="xs:int" />
-        <xs:element minOccurs="0" name="ganoPartida" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GuardarEstadisticasJugadorResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="MostrarNuevoJugadorEnTurno">
     <xs:complexType>
       <xs:sequence>
@@ -340,30 +321,6 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ModificarJugador">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="jugador" nillable="true" type="q13:Jugador" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ModificarJugadorResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ModificarAspecto">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="aspecto" nillable="true" type="q14:Aspecto" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ModificarAspectoResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="ObtenerCuentaPorId">
     <xs:complexType>
       <xs:sequence>
@@ -374,89 +331,7 @@
   <xs:element name="ObtenerCuentaPorIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="ObtenerCuentaPorIdResult" nillable="true" type="q15:Cuenta" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ObtenerJugadorPorId">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="idJugador" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ObtenerJugadorPorIdResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="ObtenerJugadorPorIdResult" nillable="true" type="q16:Jugador" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CrearAspecto">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="aspecto" nillable="true" type="q17:Aspecto" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CrearAspectoResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ObtenerAspectoPorId">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="idAspecto" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ObtenerAspectoPorIdResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="ObtenerAspectoPorIdResult" nillable="true" type="q18:Aspecto" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EnviarCodigoVerificacion">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="correoElectronico" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EnviarCodigoVerificacionResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="VerificarCodigoCrearCuenta">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="correo" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="codigo" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="VerificarCodigoCrearCuentaResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="VerificarCodigoCrearCuentaResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="VerificarCodigoRecuperarContraseña">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="correo" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="codigo" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="VerificarCodigoRecuperarContraseñaResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="VerificarCodigoRecuperarContraseñaResult" type="xs:int" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="ObtenerCuentaPorIdResult" nillable="true" type="q13:Cuenta" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -510,7 +385,7 @@
   <xs:element name="ObtenerCuentaPorCodigoVerificacionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="ObtenerCuentaPorCodigoVerificacionResult" nillable="true" type="q19:Cuenta" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="ObtenerCuentaPorCodigoVerificacionResult" nillable="true" type="q14:Cuenta" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -557,16 +432,42 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SincronizarAspectos">
+  <xs:element name="ObtenerRankingGlobal">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerRankingGlobalResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="referenciaToIdMap" nillable="true" type="q20:ArrayOfKeyValueOfstringint" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="ObtenerRankingGlobalResult" nillable="true" type="q15:ArrayOfJugador" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SincronizarAspectosResponse">
+  <xs:element name="ModificarJugador">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="jugador" nillable="true" type="q16:Jugador" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModificarJugadorResponse">
     <xs:complexType>
       <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerJugadorPorId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idJugador" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerJugadorPorIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="ObtenerJugadorPorIdResult" nillable="true" type="q17:Jugador" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ConsultarEstadisticasJugador">
@@ -583,15 +484,95 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ObtenerRankingGlobal">
+  <xs:element name="ModificarAspecto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="aspecto" nillable="true" type="q18:Aspecto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModificarAspectoResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ObtenerRankingGlobalResponse">
+  <xs:element name="CrearAspecto">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="ObtenerRankingGlobalResult" nillable="true" type="q21:ArrayOfJugador" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="aspecto" nillable="true" type="q19:Aspecto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CrearAspectoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerAspectoPorId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idAspecto" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerAspectoPorIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/LaOcaService" minOccurs="0" name="ObtenerAspectoPorIdResult" nillable="true" type="q20:Aspecto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SincronizarAspectos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="referenciaToIdMap" nillable="true" type="q21:ArrayOfKeyValueOfstringint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SincronizarAspectosResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EnviarCodigoVerificacion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="correoElectronico" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EnviarCodigoVerificacionResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerificarCodigoCrearCuenta">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="correo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="codigo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerificarCodigoCrearCuentaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="VerificarCodigoCrearCuentaResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerificarCodigoRecuperarContraseña">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="correo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="codigo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerificarCodigoRecuperarContraseñaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="VerificarCodigoRecuperarContraseñaResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

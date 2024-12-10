@@ -103,6 +103,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="SalaException" nillable="true" type="tns:SalaException" />
+  <xs:complexType name="ArrayOfJugador">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Jugador" nillable="true" type="tns:Jugador" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJugador" nillable="true" type="tns:ArrayOfJugador" />
   <xs:complexType name="Aspecto">
     <xs:sequence>
       <xs:element minOccurs="0" name="IdAspecto" type="xs:int" />
@@ -111,12 +117,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Aspecto" nillable="true" type="tns:Aspecto" />
-  <xs:complexType name="ArrayOfJugador">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Jugador" nillable="true" type="tns:Jugador" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfJugador" nillable="true" type="tns:ArrayOfJugador" />
   <xs:complexType name="AmistadException">
     <xs:sequence>
       <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />

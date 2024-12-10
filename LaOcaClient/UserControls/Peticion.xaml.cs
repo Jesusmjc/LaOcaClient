@@ -34,9 +34,9 @@ namespace LaOcaClient.UserControls
         {
             InitializeComponent();
 
-            ServicioCuentaClient clienteCuenta = new ServicioCuentaClient();
+            ServicioJugadorClient clienteJugador = new ServicioJugadorClient();
 
-            Jugador jugadorEmisor = clienteCuenta.ObtenerJugadorPorId(amistad.IdJugadorSolicitante);
+            Jugador jugadorEmisor = clienteJugador.ObtenerJugadorPorId(amistad.IdJugadorSolicitante);
 
             lbMensaje.Content = jugadorEmisor.NombreUsuario + " quiere ser tu amigo.";
             _amistad = amistad;

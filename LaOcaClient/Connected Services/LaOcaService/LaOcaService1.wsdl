@@ -4,27 +4,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -33,27 +12,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -62,27 +20,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -91,27 +28,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -120,27 +36,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -149,27 +44,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -178,27 +52,30 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IServicioJugador_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IServicioAspecto_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IServicioCodigo_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -207,27 +84,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -236,27 +92,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -265,27 +100,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -294,27 +108,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -323,27 +116,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -352,27 +124,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -461,15 +212,6 @@
   <wsdl:message name="IServicioPartida_AbandonarPartida_InputMessage">
     <wsdl:part name="parameters" element="tns:AbandonarPartida" />
   </wsdl:message>
-  <wsdl:message name="IServicioPartida_Heartbeat_InputMessage">
-    <wsdl:part name="parameters" element="tns:Heartbeat" />
-  </wsdl:message>
-  <wsdl:message name="IServicioPartida_GuardarEstadisticasJugador_InputMessage">
-    <wsdl:part name="parameters" element="tns:GuardarEstadisticasJugador" />
-  </wsdl:message>
-  <wsdl:message name="IServicioPartida_GuardarEstadisticasJugador_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GuardarEstadisticasJugadorResponse" />
-  </wsdl:message>
   <wsdl:message name="IServicioPartida_MostrarNuevoJugadorEnTurno_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MostrarNuevoJugadorEnTurno" />
   </wsdl:message>
@@ -536,59 +278,11 @@
   <wsdl:message name="IServicioCuenta_ModificarCuenta_OutputMessage">
     <wsdl:part name="parameters" element="tns:ModificarCuentaResponse" />
   </wsdl:message>
-  <wsdl:message name="IServicioCuenta_ModificarJugador_InputMessage">
-    <wsdl:part name="parameters" element="tns:ModificarJugador" />
-  </wsdl:message>
-  <wsdl:message name="IServicioCuenta_ModificarJugador_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ModificarJugadorResponse" />
-  </wsdl:message>
-  <wsdl:message name="IServicioCuenta_ModificarAspecto_InputMessage">
-    <wsdl:part name="parameters" element="tns:ModificarAspecto" />
-  </wsdl:message>
-  <wsdl:message name="IServicioCuenta_ModificarAspecto_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ModificarAspectoResponse" />
-  </wsdl:message>
   <wsdl:message name="IServicioCuenta_ObtenerCuentaPorId_InputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerCuentaPorId" />
   </wsdl:message>
   <wsdl:message name="IServicioCuenta_ObtenerCuentaPorId_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerCuentaPorIdResponse" />
-  </wsdl:message>
-  <wsdl:message name="IServicioCuenta_ObtenerJugadorPorId_InputMessage">
-    <wsdl:part name="parameters" element="tns:ObtenerJugadorPorId" />
-  </wsdl:message>
-  <wsdl:message name="IServicioCuenta_ObtenerJugadorPorId_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ObtenerJugadorPorIdResponse" />
-  </wsdl:message>
-  <wsdl:message name="IServicioCuenta_CrearAspecto_InputMessage">
-    <wsdl:part name="parameters" element="tns:CrearAspecto" />
-  </wsdl:message>
-  <wsdl:message name="IServicioCuenta_CrearAspecto_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CrearAspectoResponse" />
-  </wsdl:message>
-  <wsdl:message name="IServicioCuenta_ObtenerAspectoPorId_InputMessage">
-    <wsdl:part name="parameters" element="tns:ObtenerAspectoPorId" />
-  </wsdl:message>
-  <wsdl:message name="IServicioCuenta_ObtenerAspectoPorId_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ObtenerAspectoPorIdResponse" />
-  </wsdl:message>
-  <wsdl:message name="IServicioCuenta_EnviarCodigoVerificacion_InputMessage">
-    <wsdl:part name="parameters" element="tns:EnviarCodigoVerificacion" />
-  </wsdl:message>
-  <wsdl:message name="IServicioCuenta_EnviarCodigoVerificacion_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EnviarCodigoVerificacionResponse" />
-  </wsdl:message>
-  <wsdl:message name="IServicioCuenta_VerificarCodigoCrearCuenta_InputMessage">
-    <wsdl:part name="parameters" element="tns:VerificarCodigoCrearCuenta" />
-  </wsdl:message>
-  <wsdl:message name="IServicioCuenta_VerificarCodigoCrearCuenta_OutputMessage">
-    <wsdl:part name="parameters" element="tns:VerificarCodigoCrearCuentaResponse" />
-  </wsdl:message>
-  <wsdl:message name="IServicioCuenta_VerificarCodigoRecuperarContraseña_InputMessage">
-    <wsdl:part name="parameters" element="tns:VerificarCodigoRecuperarContraseña" />
-  </wsdl:message>
-  <wsdl:message name="IServicioCuenta_VerificarCodigoRecuperarContraseña_OutputMessage">
-    <wsdl:part name="parameters" element="tns:VerificarCodigoRecuperarContraseñaResponse" />
   </wsdl:message>
   <wsdl:message name="IServicioCuenta_VerificarContraseñaActual_InputMessage">
     <wsdl:part name="parameters" element="tns:VerificarContraseñaActual" />
@@ -632,23 +326,71 @@
   <wsdl:message name="IServicioCuenta_NombreUsuarioExisteModificar_OutputMessage">
     <wsdl:part name="parameters" element="tns:NombreUsuarioExisteModificarResponse" />
   </wsdl:message>
-  <wsdl:message name="IServicioCuenta_SincronizarAspectos_InputMessage">
-    <wsdl:part name="parameters" element="tns:SincronizarAspectos" />
-  </wsdl:message>
-  <wsdl:message name="IServicioCuenta_SincronizarAspectos_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SincronizarAspectosResponse" />
-  </wsdl:message>
-  <wsdl:message name="IServicioCuenta_ConsultarEstadisticasJugador_InputMessage">
-    <wsdl:part name="parameters" element="tns:ConsultarEstadisticasJugador" />
-  </wsdl:message>
-  <wsdl:message name="IServicioCuenta_ConsultarEstadisticasJugador_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ConsultarEstadisticasJugadorResponse" />
-  </wsdl:message>
   <wsdl:message name="IServicioCuenta_ObtenerRankingGlobal_InputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerRankingGlobal" />
   </wsdl:message>
   <wsdl:message name="IServicioCuenta_ObtenerRankingGlobal_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerRankingGlobalResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioJugador_ModificarJugador_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarJugador" />
+  </wsdl:message>
+  <wsdl:message name="IServicioJugador_ModificarJugador_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarJugadorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioJugador_ObtenerJugadorPorId_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerJugadorPorId" />
+  </wsdl:message>
+  <wsdl:message name="IServicioJugador_ObtenerJugadorPorId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerJugadorPorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioJugador_ConsultarEstadisticasJugador_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarEstadisticasJugador" />
+  </wsdl:message>
+  <wsdl:message name="IServicioJugador_ConsultarEstadisticasJugador_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarEstadisticasJugadorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioAspecto_ModificarAspecto_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarAspecto" />
+  </wsdl:message>
+  <wsdl:message name="IServicioAspecto_ModificarAspecto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarAspectoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioAspecto_CrearAspecto_InputMessage">
+    <wsdl:part name="parameters" element="tns:CrearAspecto" />
+  </wsdl:message>
+  <wsdl:message name="IServicioAspecto_CrearAspecto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearAspectoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioAspecto_ObtenerAspectoPorId_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAspectoPorId" />
+  </wsdl:message>
+  <wsdl:message name="IServicioAspecto_ObtenerAspectoPorId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAspectoPorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioAspecto_SincronizarAspectos_InputMessage">
+    <wsdl:part name="parameters" element="tns:SincronizarAspectos" />
+  </wsdl:message>
+  <wsdl:message name="IServicioAspecto_SincronizarAspectos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SincronizarAspectosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCodigo_EnviarCodigoVerificacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnviarCodigoVerificacion" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCodigo_EnviarCodigoVerificacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnviarCodigoVerificacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCodigo_VerificarCodigoCrearCuenta_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerificarCodigoCrearCuenta" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCodigo_VerificarCodigoCrearCuenta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerificarCodigoCrearCuentaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCodigo_VerificarCodigoRecuperarContraseña_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerificarCodigoRecuperarContraseña" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCodigo_VerificarCodigoRecuperarContraseña_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerificarCodigoRecuperarContraseñaResponse" />
   </wsdl:message>
   <wsdl:message name="IServicioJugabilidad_JugarTurno_InputMessage">
     <wsdl:part name="parameters" element="tns:JugarTurno" />
@@ -822,13 +564,6 @@
     <wsdl:operation name="AbandonarPartida">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioPartida/AbandonarPartida" message="tns:IServicioPartida_AbandonarPartida_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Heartbeat">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPartida/Heartbeat" message="tns:IServicioPartida_Heartbeat_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GuardarEstadisticasJugador">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPartida/GuardarEstadisticasJugador" message="tns:IServicioPartida_GuardarEstadisticasJugador_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/GuardarEstadisticasJugadorResponse" message="tns:IServicioPartida_GuardarEstadisticasJugador_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="MostrarNuevoJugadorEnTurno">
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/MostrarNuevoJugadorEnTurno" message="tns:IServicioPartida_MostrarNuevoJugadorEnTurno_OutputCallbackMessage" />
     </wsdl:operation>
@@ -885,41 +620,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ModificarCuenta" message="tns:IServicioCuenta_ModificarCuenta_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ModificarCuentaResponse" message="tns:IServicioCuenta_ModificarCuenta_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ModificarJugador">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ModificarJugador" message="tns:IServicioCuenta_ModificarJugador_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ModificarJugadorResponse" message="tns:IServicioCuenta_ModificarJugador_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ModificarAspecto">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ModificarAspecto" message="tns:IServicioCuenta_ModificarAspecto_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ModificarAspectoResponse" message="tns:IServicioCuenta_ModificarAspecto_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="ObtenerCuentaPorId">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorId" message="tns:IServicioCuenta_ObtenerCuentaPorId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorIdResponse" message="tns:IServicioCuenta_ObtenerCuentaPorId_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ObtenerJugadorPorId">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerJugadorPorId" message="tns:IServicioCuenta_ObtenerJugadorPorId_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerJugadorPorIdResponse" message="tns:IServicioCuenta_ObtenerJugadorPorId_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="CrearAspecto">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/CrearAspecto" message="tns:IServicioCuenta_CrearAspecto_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/CrearAspectoResponse" message="tns:IServicioCuenta_CrearAspecto_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ObtenerAspectoPorId">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerAspectoPorId" message="tns:IServicioCuenta_ObtenerAspectoPorId_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerAspectoPorIdResponse" message="tns:IServicioCuenta_ObtenerAspectoPorId_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="EnviarCodigoVerificacion">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/EnviarCodigoVerificacion" message="tns:IServicioCuenta_EnviarCodigoVerificacion_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/EnviarCodigoVerificacionResponse" message="tns:IServicioCuenta_EnviarCodigoVerificacion_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="VerificarCodigoCrearCuenta">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/VerificarCodigoCrearCuenta" message="tns:IServicioCuenta_VerificarCodigoCrearCuenta_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/VerificarCodigoCrearCuentaResponse" message="tns:IServicioCuenta_VerificarCodigoCrearCuenta_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="VerificarCodigoRecuperarContraseña">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/VerificarCodigoRecuperarContraseña" message="tns:IServicioCuenta_VerificarCodigoRecuperarContraseña_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/VerificarCodigoRecuperarContraseñaResponse" message="tns:IServicioCuenta_VerificarCodigoRecuperarContraseña_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="VerificarContraseñaActual">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/VerificarContraseñaActual" message="tns:IServicioCuenta_VerificarContraseñaActual_InputMessage" />
@@ -949,17 +652,55 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteModificar" message="tns:IServicioCuenta_NombreUsuarioExisteModificar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteModificarResponse" message="tns:IServicioCuenta_NombreUsuarioExisteModificar_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SincronizarAspectos">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/SincronizarAspectos" message="tns:IServicioCuenta_SincronizarAspectos_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/SincronizarAspectosResponse" message="tns:IServicioCuenta_SincronizarAspectos_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ConsultarEstadisticasJugador">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ConsultarEstadisticasJugador" message="tns:IServicioCuenta_ConsultarEstadisticasJugador_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ConsultarEstadisticasJugadorResponse" message="tns:IServicioCuenta_ConsultarEstadisticasJugador_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="ObtenerRankingGlobal">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerRankingGlobal" message="tns:IServicioCuenta_ObtenerRankingGlobal_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerRankingGlobalResponse" message="tns:IServicioCuenta_ObtenerRankingGlobal_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IServicioJugador">
+    <wsdl:operation name="ModificarJugador">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioJugador/ModificarJugador" message="tns:IServicioJugador_ModificarJugador_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioJugador/ModificarJugadorResponse" message="tns:IServicioJugador_ModificarJugador_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerJugadorPorId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioJugador/ObtenerJugadorPorId" message="tns:IServicioJugador_ObtenerJugadorPorId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioJugador/ObtenerJugadorPorIdResponse" message="tns:IServicioJugador_ObtenerJugadorPorId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarEstadisticasJugador">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioJugador/ConsultarEstadisticasJugador" message="tns:IServicioJugador_ConsultarEstadisticasJugador_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioJugador/ConsultarEstadisticasJugadorResponse" message="tns:IServicioJugador_ConsultarEstadisticasJugador_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IServicioAspecto">
+    <wsdl:operation name="ModificarAspecto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioAspecto/ModificarAspecto" message="tns:IServicioAspecto_ModificarAspecto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioAspecto/ModificarAspectoResponse" message="tns:IServicioAspecto_ModificarAspecto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CrearAspecto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioAspecto/CrearAspecto" message="tns:IServicioAspecto_CrearAspecto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioAspecto/CrearAspectoResponse" message="tns:IServicioAspecto_CrearAspecto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAspectoPorId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioAspecto/ObtenerAspectoPorId" message="tns:IServicioAspecto_ObtenerAspectoPorId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioAspecto/ObtenerAspectoPorIdResponse" message="tns:IServicioAspecto_ObtenerAspectoPorId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SincronizarAspectos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioAspecto/SincronizarAspectos" message="tns:IServicioAspecto_SincronizarAspectos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioAspecto/SincronizarAspectosResponse" message="tns:IServicioAspecto_SincronizarAspectos_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IServicioCodigo">
+    <wsdl:operation name="EnviarCodigoVerificacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCodigo/EnviarCodigoVerificacion" message="tns:IServicioCodigo_EnviarCodigoVerificacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCodigo/EnviarCodigoVerificacionResponse" message="tns:IServicioCodigo_EnviarCodigoVerificacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificarCodigoCrearCuenta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCodigo/VerificarCodigoCrearCuenta" message="tns:IServicioCodigo_VerificarCodigoCrearCuenta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCodigo/VerificarCodigoCrearCuentaResponse" message="tns:IServicioCodigo_VerificarCodigoCrearCuenta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificarCodigoRecuperarContraseña">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCodigo/VerificarCodigoRecuperarContraseña" message="tns:IServicioCodigo_VerificarCodigoRecuperarContraseña_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCodigo/VerificarCodigoRecuperarContraseñaResponse" message="tns:IServicioCodigo_VerificarCodigoRecuperarContraseña_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IServicioJugabilidad">
@@ -1185,21 +926,6 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="Heartbeat">
-      <soap12:operation soapAction="http://tempuri.org/IServicioPartida/Heartbeat" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="GuardarEstadisticasJugador">
-      <soap12:operation soapAction="http://tempuri.org/IServicioPartida/GuardarEstadisticasJugador" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="MostrarNuevoJugadorEnTurno">
       <soap12:operation soapAction="http://tempuri.org/IServicioPartida/MostrarNuevoJugadorEnTurno" style="document" />
       <wsdl:output>
@@ -1319,80 +1045,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ModificarJugador">
-      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ModificarJugador" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ModificarAspecto">
-      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ModificarAspecto" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="ObtenerCuentaPorId">
       <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorId" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ObtenerJugadorPorId">
-      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ObtenerJugadorPorId" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CrearAspecto">
-      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/CrearAspecto" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ObtenerAspectoPorId">
-      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ObtenerAspectoPorId" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="EnviarCodigoVerificacion">
-      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/EnviarCodigoVerificacion" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="VerificarCodigoCrearCuenta">
-      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/VerificarCodigoCrearCuenta" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="VerificarCodigoRecuperarContraseña">
-      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/VerificarCodigoRecuperarContraseña" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1463,8 +1117,30 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SincronizarAspectos">
-      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/SincronizarAspectos" style="document" />
+    <wsdl:operation name="ObtenerRankingGlobal">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ObtenerRankingGlobal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IServicioJugador" type="tns:IServicioJugador">
+    <wsp:PolicyReference URI="#NetTcpBinding_IServicioJugador_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="ModificarJugador">
+      <soap12:operation soapAction="http://tempuri.org/IServicioJugador/ModificarJugador" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerJugadorPorId">
+      <soap12:operation soapAction="http://tempuri.org/IServicioJugador/ObtenerJugadorPorId" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1473,7 +1149,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="ConsultarEstadisticasJugador">
-      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ConsultarEstadisticasJugador" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IServicioJugador/ConsultarEstadisticasJugador" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1481,8 +1157,70 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ObtenerRankingGlobal">
-      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ObtenerRankingGlobal" style="document" />
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IServicioAspecto" type="tns:IServicioAspecto">
+    <wsp:PolicyReference URI="#NetTcpBinding_IServicioAspecto_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="ModificarAspecto">
+      <soap12:operation soapAction="http://tempuri.org/IServicioAspecto/ModificarAspecto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CrearAspecto">
+      <soap12:operation soapAction="http://tempuri.org/IServicioAspecto/CrearAspecto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAspectoPorId">
+      <soap12:operation soapAction="http://tempuri.org/IServicioAspecto/ObtenerAspectoPorId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SincronizarAspectos">
+      <soap12:operation soapAction="http://tempuri.org/IServicioAspecto/SincronizarAspectos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IServicioCodigo" type="tns:IServicioCodigo">
+    <wsp:PolicyReference URI="#NetTcpBinding_IServicioCodigo_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="EnviarCodigoVerificacion">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCodigo/EnviarCodigoVerificacion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificarCodigoCrearCuenta">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCodigo/VerificarCodigoCrearCuenta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificarCodigoRecuperarContraseña">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCodigo/VerificarCodigoRecuperarContraseña" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1682,117 +1420,96 @@
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioInicioSesion" binding="tns:NetTcpBinding_IServicioInicioSesion">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioSala" binding="tns:NetTcpBinding_IServicioSala">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioRecuperarSala" binding="tns:NetTcpBinding_IServicioRecuperarSala">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioPartida" binding="tns:NetTcpBinding_IServicioPartida">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioActualizacionJugadoresEnSala" binding="tns:NetTcpBinding_IServicioActualizacionJugadoresEnSala">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="endpointCrearCuenta" binding="tns:endpointCrearCuenta">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IServicioJugador" binding="tns:NetTcpBinding_IServicioJugador">
+      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IServicioAspecto" binding="tns:NetTcpBinding_IServicioAspecto">
+      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IServicioCodigo" binding="tns:NetTcpBinding_IServicioCodigo">
+      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioJugabilidad" binding="tns:NetTcpBinding_IServicioJugabilidad">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioJugadoresEnLinea" binding="tns:NetTcpBinding_IServicioJugadoresEnLinea">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioActualizacionJugadoresEnLinea" binding="tns:NetTcpBinding_IServicioActualizacionJugadoresEnLinea">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioSocial" binding="tns:NetTcpBinding_IServicioSocial">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioAmistad" binding="tns:NetTcpBinding_IServicioAmistad">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioBuzon" binding="tns:NetTcpBinding_IServicioBuzon">
       <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

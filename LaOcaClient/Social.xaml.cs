@@ -23,7 +23,8 @@ namespace LaOcaClient
     /// </summary>
     public partial class Social : Window, IServicioActualizacionJugadoresEnLineaCallback
     {
-        private LaOcaService.ServicioActualizacionJugadoresEnLineaClient _clienteActualizacionJugadoresEnLinea;
+        private readonly ServicioActualizacionJugadoresEnLineaClient _clienteActualizacionJugadoresEnLinea;
+
         private Dictionary<string, Amigo> _amigos = new Dictionary<string, Amigo>();
 
         public Sala ventanaSala;
@@ -159,7 +160,7 @@ namespace LaOcaClient
                 ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
                 Amistad[] amistades = clienteAmistad.RecuperarAmistades(SingletonJugador.Instance.Jugador.IdJugador, EstadoAmistad.AMIGOS);
 
-                ServicioCuentaClient clienteCuenta = new ServicioCuentaClient();
+                ServicioJugadorClient clienteJugador = new ServicioJugadorClient();
 
                 Jugador jugadorAmigo = new Jugador();
 
@@ -167,11 +168,11 @@ namespace LaOcaClient
                 {
                     if (amistad.IdJugadorSolicitante == SingletonJugador.Instance.Jugador.IdJugador)
                     {
-                        jugadorAmigo = clienteCuenta.ObtenerJugadorPorId(amistad.IdJugadorReceptor);
+                        jugadorAmigo = clienteJugador.ObtenerJugadorPorId(amistad.IdJugadorReceptor);
                     } 
                     else
                     {
-                        jugadorAmigo = clienteCuenta.ObtenerJugadorPorId(amistad.IdJugadorSolicitante);
+                        jugadorAmigo = clienteJugador.ObtenerJugadorPorId(amistad.IdJugadorSolicitante);
                     }
                     
                     amigos.Add(jugadorAmigo);
@@ -253,8 +254,8 @@ namespace LaOcaClient
         {
             try
             {
-                ServicioCuentaClient clienteCuenta = new ServicioCuentaClient();
-                Jugador exAmigo = clienteCuenta.ObtenerJugadorPorId(idJugadorQueTerminoAmistad);
+                ServicioJugadorClient clienteJugador = new ServicioJugadorClient();
+                Jugador exAmigo = clienteJugador.ObtenerJugadorPorId(idJugadorQueTerminoAmistad);
 
                 Amigo entradaExAmigo = _amigos[exAmigo.NombreUsuario];
                 lbxListaAmigos.Items.Remove(entradaExAmigo);

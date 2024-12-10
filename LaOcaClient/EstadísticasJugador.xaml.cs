@@ -6,7 +6,7 @@ namespace LaOcaClient
 {
     public partial class EstadisticasJugador : Window
     {
-        private int idJugador;
+        private readonly int idJugador;
 
         public EstadisticasJugador(int idJugador)
         {
@@ -19,8 +19,8 @@ namespace LaOcaClient
         {
             try
             {
-                var clienteServicio = new ServicioCuentaClient();
-                string estadisticas = clienteServicio.ConsultarEstadisticasJugador(idJugador);
+                var clienteJugador = new ServicioJugadorClient();
+                string estadisticas = clienteJugador.ConsultarEstadisticasJugador(idJugador);
                 var estadisticasArray = estadisticas.Split(',');
 
                 string casillasRecorridas = Properties.Resources.txtCasillasRecorridas;

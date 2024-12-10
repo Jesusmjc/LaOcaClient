@@ -18,12 +18,13 @@ namespace LaOcaClient
 {
     public partial class RecuperarContraseña : Window
     {
-        private readonly IServicioCuenta _servicioCuenta;
+        private readonly IServicioCuenta _clienteCuenta;
+        private readonly IServicioCodigo _clienteCodigo;
 
         public RecuperarContraseña()
         {
             InitializeComponent();
-            _servicioCuenta = new ServicioCuentaClient();
+            _clienteCuenta = new ServicioCuentaClient();
         }
 
         private void btnEnviarCodigoRestablecimiento_Click(object sender, RoutedEventArgs e)
@@ -44,7 +45,7 @@ namespace LaOcaClient
 
             try
             {
-                _servicioCuenta.EnviarCodigoVerificacion(correo);
+                _clienteCodigo.EnviarCodigoVerificacion(correo);
                 MessageBox.Show(Properties.Resources.msgCodigoEnviado, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 ActualizarVentanaCodigoVerificacion();
             }
@@ -77,7 +78,7 @@ namespace LaOcaClient
 
             try
             {
-                int cuentaId = _servicioCuenta.VerificarCodigoRecuperarContraseña(correo, codigoIngresado);
+                int cuentaId = _clienteCodigo.VerificarCodigoRecuperarContraseña(correo, codigoIngresado);
 
                 if (cuentaId > 0)
                 {
@@ -141,7 +142,7 @@ namespace LaOcaClient
 
             try
             {
-                _servicioCuenta.ModificarContraseña(idCuenta, Utilidad.HashearConSha256(nuevaContrasena));
+                _clienteCuenta.ModificarContraseña(idCuenta, Utilidad.HashearConSha256(nuevaContrasena));
                 MessageBox.Show(Properties.Resources.msgContraseñaRestablecida, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 IniciarSesion ventanaIniciarSesion = new IniciarSesion();
                 ventanaIniciarSesion.Show();
