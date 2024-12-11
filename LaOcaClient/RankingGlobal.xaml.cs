@@ -35,7 +35,7 @@ namespace LaOcaClient
 
                 dgRanking.ItemsSource = datosRanking;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show(Properties.Resources.msgErrorRanking, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
             }

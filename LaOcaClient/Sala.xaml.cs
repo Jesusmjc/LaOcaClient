@@ -23,7 +23,7 @@ namespace LaOcaClient
     /// <summary>
     /// Interaction logic for Sala.xaml
     /// </summary>
-    public partial class Sala : Window, IVentanaSala, IServicioChatCallback, IServicioSalaCallback
+    public partial class Sala : Window, IVentanaSala, IServicioChatCallback, IServicioSalaCallback, IServicioActualizacionJugadoresEnSalaCallback
     {
         public LaOcaService.Sala SalaActual { get; set; }
         public ServicioActualizacionJugadoresEnSalaClient ClienteJugadoresEnSala {  get; set; }
@@ -163,17 +163,18 @@ namespace LaOcaClient
 
         private string GenerarCodigoSala()
         {
-            Random random = new Random();
+            Random _random = new Random();
             string codigoSala;
             bool esCodigoUnico = false;
 
             do
             {
-                codigoSala = "";
+                StringBuilder codigoSalaBuilder = new StringBuilder();
                 for (int i = 0; i < 4; i++)
                 {
-                    codigoSala += random.Next(0, 10).ToString();
+                    codigoSalaBuilder.Append(_random.Next(0, 10).ToString());
                 }
+                codigoSala = codigoSalaBuilder.ToString();
 
                 try
                 {
@@ -345,20 +346,20 @@ namespace LaOcaClient
             }
         }
 
-        public void MostrarDesconexionJugador(string nombreJugadorDesconectado)
+        public void MostrarDesconexionJugador(string nombreJugador)
         {
             int posicionJugadorDesconectado = 0;
 
             for (int i = 1; i < SalaActual.Jugadores.Count ; i++)
             {
-                if (_jugadoresEnSala[i].jugadorEnSala.NombreUsuario.Equals(nombreJugadorDesconectado))
+                if (_jugadoresEnSala[i].JugadorEnLaSala.NombreUsuario.Equals(nombreJugador))
                 {
                     posicionJugadorDesconectado = i;
                     break;
                 }
             }
 
-            SalaActual.Jugadores.Remove(nombreJugadorDesconectado);
+            SalaActual.Jugadores.Remove(nombreJugador);
 
             LimpiarGrids();
             switch(posicionJugadorDesconectado)
@@ -464,10 +465,10 @@ namespace LaOcaClient
         {
             for (int i = 0; i < SalaActual.Jugadores.Count; i++)
             {
-                if (_jugadoresEnSala[i].jugadorEnSala.NombreUsuario.Equals(nombreJugadorEmisor))
+                if (_jugadoresEnSala[i].JugadorEnLaSala.NombreUsuario.Equals(nombreJugadorEmisor))
                 {
                     ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
-                    Amistad amistad = clienteAmistad.RecuperarAmistad(SingletonJugador.Instance.Jugador.IdJugador, _jugadoresEnSala[i].jugadorEnSala.IdJugador);
+                    Amistad amistad = clienteAmistad.RecuperarAmistad(SingletonJugador.Instance.Jugador.IdJugador, _jugadoresEnSala[i].JugadorEnLaSala.IdJugador);
 
                     _jugadoresEnSala[i].ActualizarOpcionesDeMenuPopupCallback(amistad);
                     break;

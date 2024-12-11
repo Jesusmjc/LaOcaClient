@@ -26,7 +26,8 @@ namespace LaOcaClient
         private LaOcaService.ServicioActualizacionJugadoresEnLineaClient _clienteActualizacionJugadoresEnLinea;
         private Dictionary<string, Amigo> _amigos = new Dictionary<string, Amigo>();
 
-        public Sala ventanaSala;
+        public Sala VentanaSala { get; set; }
+
 
         public Social()
         {
@@ -62,7 +63,7 @@ namespace LaOcaClient
             {
                 _clienteActualizacionJugadoresEnLinea.AgregarCanalCallbackJugadoresEnLinea(SingletonJugador.Instance.Jugador.NombreUsuario);
 
-                this.ventanaSala = ventanaSala;
+                VentanaSala = ventanaSala;
 
                 MostrarAmigos();
                 imgBuzon.Visibility = Visibility.Hidden;
@@ -85,25 +86,22 @@ namespace LaOcaClient
 
             foreach (Jugador amigo in amigos)
             {
-                if (ventanaSala != null)
+                if (VentanaSala != null && (VentanaSala.SalaActual.Jugadores.ContainsKey(amigo.NombreUsuario)))
                 {
-                    if (ventanaSala.SalaActual.Jugadores.ContainsKey(amigo.NombreUsuario))
-                    {
-                        continue;
-                    }
+                    continue;
                 }
 
                 if (!jugadoresConectados.ContainsKey(amigo.NombreUsuario))
                 {
-                    if (ventanaSala != null)
+                    if (VentanaSala != null)
                     {
-                        Amigo entradaAmigo = new Amigo(amigo, "Desconectado", this);
+                        Amigo entradaAmigo = new Amigo(amigo, Properties.Resources.lbDesconectado, this);
                         _amigos.Add(amigo.NombreUsuario, entradaAmigo);
 
                         continue;
                     }
 
-                    MostrarAmigo(amigo, "Desconectado");             
+                    MostrarAmigo(amigo, Properties.Resources.lbDesconectado);
                 }
                 else
                 {
@@ -124,7 +122,7 @@ namespace LaOcaClient
             _amigos.Add(amigo.NombreUsuario, entradaAmigo);
         }
 
-        private Dictionary<string, Jugador> RecuperarJugadoresConectados()
+        private static Dictionary<string, Jugador> RecuperarJugadoresConectados()
         {
             Dictionary<string, Jugador> jugadores = new Dictionary<string, Jugador>();
 
@@ -150,7 +148,7 @@ namespace LaOcaClient
             return jugadores;
         }
 
-        private List<Jugador> RecuperarAmigos()
+        private static List<Jugador> RecuperarAmigos()
         {
             List<Jugador> amigos = new List<Jugador>();
 
@@ -161,7 +159,7 @@ namespace LaOcaClient
 
                 ServicioCuentaClient clienteCuenta = new ServicioCuentaClient();
 
-                Jugador jugadorAmigo = new Jugador();
+                Jugador jugadorAmigo;
 
                 foreach (Amistad amistad in amistades)
                 {
@@ -200,24 +198,24 @@ namespace LaOcaClient
                 Amigo amigoConectado = _amigos[nuevoJugadorConectado.NombreUsuario];
                 lbxListaAmigos.Items.Remove(amigoConectado);
 
-                amigoConectado.estado = Properties.Resources.lbEnLinea;
+                amigoConectado.Estado = Properties.Resources.lbEnLinea;
                 amigoConectado.lbEstado.Content = Properties.Resources.lbEnLinea;
 
                 lbxListaAmigos.Items.Insert(0, amigoConectado);
             } 
         }
 
-        public void OcultarJugadorDesconectado(Jugador jugadorDesconectado)
+        public void OcultarJugadorDesconectado(Jugador nombreJugadorDesconectado)
         {
-            if (_amigos.ContainsKey(jugadorDesconectado.NombreUsuario))
+            if (_amigos.ContainsKey(nombreJugadorDesconectado.NombreUsuario))
             {
-                Amigo amigoDesconectado = _amigos[jugadorDesconectado.NombreUsuario];
+                Amigo amigoDesconectado = _amigos[nombreJugadorDesconectado.NombreUsuario];
                 lbxListaAmigos.Items.Remove(amigoDesconectado);
 
-                if (ventanaSala == null)
+                if (VentanaSala == null)
                 {
-                    amigoDesconectado.estado = "Desconectado";
-                    amigoDesconectado.lbEstado.Content = "Desconectado";
+                    amigoDesconectado.Estado = Properties.Resources.lbDesconectado;
+                    amigoDesconectado.lbEstado.Content = Properties.Resources.lbDesconectado;
                     lbxListaAmigos.Items.Add(amigoDesconectado);
                 }
             }
@@ -225,7 +223,7 @@ namespace LaOcaClient
 
         private void RegresarAVentanaAnterior(object sender, MouseButtonEventArgs e)
         {
-            if (ventanaSala != null)
+            if (VentanaSala != null)
             {
                 this.Close();
             }

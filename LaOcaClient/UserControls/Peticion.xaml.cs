@@ -10,8 +10,10 @@ namespace LaOcaClient.UserControls
 {
     public partial class Peticion : UserControl
     {
-        public string codigoSala;
-        public Buzon VentanaBuzon;
+        public string CodigoSala { get; set; }
+
+        public Buzon VentanaBuzon { get; set; }
+
         private InvitacionPartida _invitacion;
         private Amistad _amistad;
 
@@ -22,7 +24,7 @@ namespace LaOcaClient.UserControls
             InitializeComponent();
 
             lbMensaje.Content = invitacion.JugadorEmisor.NombreUsuario + " te ha invitado a su partida.";
-            this.codigoSala = invitacion.CodigoSalaObjetivo;
+            this.CodigoSala = invitacion.CodigoSalaObjetivo;
             this._invitacion = invitacion;
             _esInvitacion = true;
 
@@ -47,10 +49,10 @@ namespace LaOcaClient.UserControls
         {
             try
             {
-                LaOcaService.Sala salaObjetivo = new LaOcaService.Sala();
+                LaOcaService.Sala salaObjetivo;
 
                 LaOcaService.ServicioRecuperarSalaClient clienteRecuperarSala = new LaOcaService.ServicioRecuperarSalaClient();
-                salaObjetivo = clienteRecuperarSala.RecuperarSala(codigoSala);
+                salaObjetivo = clienteRecuperarSala.RecuperarSala(CodigoSala);
 
                 if (salaObjetivo.Jugadores.Count >= 1)
                 {

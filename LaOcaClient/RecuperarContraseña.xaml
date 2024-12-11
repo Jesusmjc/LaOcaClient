@@ -10,13 +10,13 @@
 
         <StackPanel x:Name="spCorreo" Margin="20,20,20,24" Visibility="Visible">
             <TextBlock Text="{x:Static p:Resources.lbIngresarCorreo}" Margin="0,0,0,10"/>
-            <TextBox x:Name="tbCorreoElectronico" Margin="0,0,0,20"/>
+            <TextBox x:Name="tbCorreoElectronico" Margin="0,0,0,20" MaxLength="50"/>
             <Button Content="{x:Static p:Resources.btnEnviarCodigo}" Click="btnEnviarCodigoRestablecimiento_Click"/>
         </StackPanel>
 
         <StackPanel x:Name="spCodigo" Margin="20" Visibility="Collapsed">
             <TextBlock Text="{x:Static p:Resources.lbIngresarCodigo}" Margin="0,0,0,10"/>
-            <TextBox x:Name="tbCodigoRestablecimiento" Margin="0,0,0,20"/>
+            <TextBox x:Name="tbCodigoRestablecimiento" Margin="0,0,0,20" MaxLength="10"/>
             <Button Content="{x:Static p:Resources.btnVerificarCodigo}" Click="btnVerificarCodigo_Click"/>
         </StackPanel>
 

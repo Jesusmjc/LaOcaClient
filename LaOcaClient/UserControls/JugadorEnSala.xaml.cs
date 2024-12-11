@@ -20,19 +20,19 @@ namespace LaOcaClient.UserControls
 {
     public partial class JugadorEnSala : UserControl
     {
-        public Jugador jugadorEnSala;
+        public Jugador JugadorEnLaSala { get; set; }
 
-        private IVentanaSala _ventanaPadre;
+        public Sala _ventanaPadre;
 
         private ServicioAmistadClient _clienteAmistad;
         private Amistad _amistad;
 
-        public JugadorEnSala(Jugador jugadorEnSala, IVentanaSala ventanaSala)
+        public JugadorEnSala(Jugador jugadorEnSala, Sala ventanaSala)
         {
             InitializeComponent();
 
             lbNombreJugador.Content = jugadorEnSala.NombreUsuario;
-            this.jugadorEnSala = jugadorEnSala;
+            this.JugadorEnLaSala = jugadorEnSala;
 
             _clienteAmistad = new ServicioAmistadClient();
             _ventanaPadre = ventanaSala;
@@ -43,12 +43,27 @@ namespace LaOcaClient.UserControls
             MostrarImagenMasOpciones();
         }
 
+        public JugadorEnSala(Jugador jugadorEnSala)
+        {
+            InitializeComponent();
+
+            lbNombreJugador.Content = jugadorEnSala.NombreUsuario;
+            this.JugadorEnLaSala = jugadorEnSala;
+
+            _clienteAmistad = new ServicioAmistadClient();
+
+            string rutaFotoPerfil = FotoPerfilUtils.ObtenerRutaFotoPerfil(jugadorEnSala.IdFotoPerfil);
+            imgFotoPerfil.Source = new BitmapImage(new Uri(rutaFotoPerfil, UriKind.RelativeOrAbsolute));
+
+            MostrarImagenMasOpciones();
+        }
+
         private void MostrarImagenMasOpciones()
         {
             bool soyHost = SingletonJugador.Instance.Jugador.NombreUsuario.Equals(_ventanaPadre.SalaActual.NombreHost);
-            bool soyYo = SingletonJugador.Instance.Jugador.Equals(jugadorEnSala);
+            bool soyYo = SingletonJugador.Instance.Jugador.Equals(JugadorEnLaSala);
 
-            if (_ventanaPadre is Partida)
+            if (_ventanaPadre is Sala)
             {
                 imgMasOpciones.Visibility = Visibility.Hidden;
                 return;
@@ -56,15 +71,15 @@ namespace LaOcaClient.UserControls
 
             if (!SingletonJugador.Instance.Jugador.EsInvitado)
             {
-                if (_ventanaPadre is Partida)
+                if (_ventanaPadre is Sala)
                 {
-                    imgMasOpciones.Visibility |= Visibility.Hidden;
+                    imgMasOpciones.Visibility = Visibility.Hidden;
                 }
                 if (soyYo)
                 {
                     imgMasOpciones.Visibility = Visibility.Hidden;
                 }
-                else if (!jugadorEnSala.EsInvitado)
+                else if (!JugadorEnLaSala.EsInvitado)
                 {
                     AjustarMenuPopupSegunAmistad();
 
@@ -92,7 +107,7 @@ namespace LaOcaClient.UserControls
         {
             try
             {
-                _amistad = _clienteAmistad.RecuperarAmistad(SingletonJugador.Instance.Jugador.IdJugador, jugadorEnSala.IdJugador);
+                _amistad = _clienteAmistad.RecuperarAmistad(SingletonJugador.Instance.Jugador.IdJugador, JugadorEnLaSala.IdJugador);
                 CargarMenuPopup();
             }
             catch (FaultException<AmistadException> ex)
@@ -176,7 +191,7 @@ namespace LaOcaClient.UserControls
                 estoyBloqueado = _amistad.Estado.Equals(EstadoAmistad.BLOQUEO) && _amistad.IdJugadorReceptor == SingletonJugador.Instance.Jugador.IdJugador;
             }
 
-            if (!jugadorEnSala.EsInvitado)
+            if (!JugadorEnLaSala.EsInvitado)
             {
                 if (estoyBloqueado)
                 {
@@ -206,12 +221,12 @@ namespace LaOcaClient.UserControls
                 {
                     Estado = EstadoAmistad.SOLICITUD,
                     IdJugadorSolicitante = SingletonJugador.Instance.Jugador.IdJugador,
-                    IdJugadorReceptor = jugadorEnSala.IdJugador,
+                    IdJugadorReceptor = JugadorEnLaSala.IdJugador,
                 };
 
                 if (_amistad.IdAmistad == 0)
                 {
-                    amistad.IdAmistad = _clienteAmistad.RegistrarNuevaAmistad(amistad, jugadorEnSala.NombreUsuario);
+                    amistad.IdAmistad = _clienteAmistad.RegistrarNuevaAmistad(amistad, JugadorEnLaSala.NombreUsuario);
                 }
                 else
                 {
@@ -221,7 +236,7 @@ namespace LaOcaClient.UserControls
 
                 _amistad = amistad;
                 
-                _ventanaPadre.ClienteJugadoresEnSala.NotificarCambioEnAmistad(_ventanaPadre.SalaActual.Codigo, SingletonJugador.Instance.Jugador.NombreUsuario, jugadorEnSala.NombreUsuario);
+                _ventanaPadre.ClienteJugadoresEnSala.NotificarCambioEnAmistad(_ventanaPadre.SalaActual.Codigo, SingletonJugador.Instance.Jugador.NombreUsuario, JugadorEnLaSala.NombreUsuario);
                 ActualizarOpcionesDeMenuPopupLocal(EstadoAmistad.SOLICITUD);
             }
             catch (FaultException<AmistadException> ex)
@@ -232,7 +247,7 @@ namespace LaOcaClient.UserControls
             {
                 MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (CommunicationException ex)
+            catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -246,12 +261,12 @@ namespace LaOcaClient.UserControls
                 {
                     Estado = EstadoAmistad.BLOQUEO,
                     IdJugadorSolicitante = SingletonJugador.Instance.Jugador.IdJugador,
-                    IdJugadorReceptor = jugadorEnSala.IdJugador
+                    IdJugadorReceptor = JugadorEnLaSala.IdJugador
                 };
 
                 if (_amistad.IdAmistad == 0)
                 {
-                    bloqueo.IdAmistad = _clienteAmistad.RegistrarNuevaAmistad(bloqueo, jugadorEnSala.NombreUsuario);
+                    bloqueo.IdAmistad = _clienteAmistad.RegistrarNuevaAmistad(bloqueo, JugadorEnLaSala.NombreUsuario);
                 }
                 else
                 {
@@ -261,7 +276,7 @@ namespace LaOcaClient.UserControls
 
                 _amistad = bloqueo;
                 
-                _ventanaPadre.ClienteJugadoresEnSala.NotificarCambioEnAmistad(_ventanaPadre.SalaActual.Codigo, SingletonJugador.Instance.Jugador.NombreUsuario, jugadorEnSala.NombreUsuario);
+                _ventanaPadre.ClienteJugadoresEnSala.NotificarCambioEnAmistad(_ventanaPadre.SalaActual.Codigo, SingletonJugador.Instance.Jugador.NombreUsuario, JugadorEnLaSala.NombreUsuario);
                 ActualizarOpcionesDeMenuPopupLocal(EstadoAmistad.BLOQUEO);
             }
             catch (FaultException<AmistadException> ex)
@@ -280,8 +295,8 @@ namespace LaOcaClient.UserControls
 
         private void ExpulsarJugador()
         {
-            _ventanaPadre.ClienteJugadoresEnSala?.ExpulsarJugador(_ventanaPadre.SalaActual.Codigo, jugadorEnSala.NombreUsuario);
-            _ventanaPadre.MostrarDesconexionJugador(jugadorEnSala.NombreUsuario);
+            _ventanaPadre.ClienteJugadoresEnSala?.ExpulsarJugador(_ventanaPadre.SalaActual.Codigo, JugadorEnLaSala.NombreUsuario);
+            _ventanaPadre.MostrarDesconexionJugador(JugadorEnLaSala.NombreUsuario);
         }
 
         private void DesbloquearJugador()
@@ -293,11 +308,11 @@ namespace LaOcaClient.UserControls
                     IdAmistad = _amistad.IdAmistad,
                     Estado = EstadoAmistad.RECHAZADA,
                     IdJugadorSolicitante = SingletonJugador.Instance.Jugador.IdJugador,
-                    IdJugadorReceptor = jugadorEnSala.IdJugador
+                    IdJugadorReceptor = JugadorEnLaSala.IdJugador
                 };
 
                 _clienteAmistad.ActualizarSolicitudAmistad(desbloqueo, EstadoAmistad.RECHAZADA);
-                _ventanaPadre.ClienteJugadoresEnSala.NotificarCambioEnAmistad(_ventanaPadre.SalaActual.Codigo, SingletonJugador.Instance.Jugador.NombreUsuario, jugadorEnSala.NombreUsuario);
+                _ventanaPadre.ClienteJugadoresEnSala.NotificarCambioEnAmistad(_ventanaPadre.SalaActual.Codigo, SingletonJugador.Instance.Jugador.NombreUsuario, JugadorEnLaSala.NombreUsuario);
                 ActualizarOpcionesDeMenuPopupLocal(EstadoAmistad.RECHAZADA);
             }
             catch (FaultException<AmistadException> ex)
@@ -319,7 +334,7 @@ namespace LaOcaClient.UserControls
             imgMasOpciones_MenuContextual.Items.Clear();
             _amistad.Estado = nuevoEstadoAmistad;
             _amistad.IdJugadorSolicitante = SingletonJugador.Instance.Jugador.IdJugador;
-            _amistad.IdJugadorReceptor = jugadorEnSala.IdJugador;
+            _amistad.IdJugadorReceptor = JugadorEnLaSala.IdJugador;
 
             CargarMenuPopup();
         }

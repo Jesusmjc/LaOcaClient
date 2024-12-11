@@ -4,27 +4,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -33,27 +12,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -62,27 +20,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -91,27 +28,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -120,27 +36,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -149,27 +44,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -178,27 +52,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -207,27 +60,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -236,27 +68,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -265,27 +76,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -294,27 +84,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -323,27 +92,6 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
@@ -352,38 +100,17 @@
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
         <wsaw:UsingAddressing />
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/LaOcaService" />
-      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+      <xsd:import schemaLocation="http://192.168.63.166:8082/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://192.168.63.166:8082/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://192.168.63.166:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/LaOcaService" />
+      <xsd:import schemaLocation="http://192.168.63.166:8082/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://192.168.63.166:8082/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IServicioChat_UnirseAlChat_InputMessage">
@@ -460,15 +187,6 @@
   </wsdl:message>
   <wsdl:message name="IServicioPartida_AbandonarPartida_InputMessage">
     <wsdl:part name="parameters" element="tns:AbandonarPartida" />
-  </wsdl:message>
-  <wsdl:message name="IServicioPartida_Heartbeat_InputMessage">
-    <wsdl:part name="parameters" element="tns:Heartbeat" />
-  </wsdl:message>
-  <wsdl:message name="IServicioPartida_GuardarEstadisticasJugador_InputMessage">
-    <wsdl:part name="parameters" element="tns:GuardarEstadisticasJugador" />
-  </wsdl:message>
-  <wsdl:message name="IServicioPartida_GuardarEstadisticasJugador_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GuardarEstadisticasJugadorResponse" />
   </wsdl:message>
   <wsdl:message name="IServicioPartida_MostrarNuevoJugadorEnTurno_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MostrarNuevoJugadorEnTurno" />
@@ -821,13 +539,6 @@
     </wsdl:operation>
     <wsdl:operation name="AbandonarPartida">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioPartida/AbandonarPartida" message="tns:IServicioPartida_AbandonarPartida_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Heartbeat">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPartida/Heartbeat" message="tns:IServicioPartida_Heartbeat_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GuardarEstadisticasJugador">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPartida/GuardarEstadisticasJugador" message="tns:IServicioPartida_GuardarEstadisticasJugador_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/GuardarEstadisticasJugadorResponse" message="tns:IServicioPartida_GuardarEstadisticasJugador_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="MostrarNuevoJugadorEnTurno">
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/MostrarNuevoJugadorEnTurno" message="tns:IServicioPartida_MostrarNuevoJugadorEnTurno_OutputCallbackMessage" />
@@ -1184,21 +895,6 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="Heartbeat">
-      <soap12:operation soapAction="http://tempuri.org/IServicioPartida/Heartbeat" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="GuardarEstadisticasJugador">
-      <soap12:operation soapAction="http://tempuri.org/IServicioPartida/GuardarEstadisticasJugador" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="MostrarNuevoJugadorEnTurno">
       <soap12:operation soapAction="http://tempuri.org/IServicioPartida/MostrarNuevoJugadorEnTurno" style="document" />
@@ -1679,120 +1375,81 @@
   </wsdl:binding>
   <wsdl:service name="LaOcaService">
     <wsdl:port name="NetTcpBinding_IServicioChat" binding="tns:NetTcpBinding_IServicioChat">
-      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <soap12:address location="net.tcp://192.168.63.166:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
+        <wsa10:Address>net.tcp://192.168.63.166:8083/LaOcaServicio</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioInicioSesion" binding="tns:NetTcpBinding_IServicioInicioSesion">
-      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <soap12:address location="net.tcp://192.168.63.166:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
+        <wsa10:Address>net.tcp://192.168.63.166:8083/LaOcaServicio</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioSala" binding="tns:NetTcpBinding_IServicioSala">
-      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <soap12:address location="net.tcp://192.168.63.166:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
+        <wsa10:Address>net.tcp://192.168.63.166:8083/LaOcaServicio</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioRecuperarSala" binding="tns:NetTcpBinding_IServicioRecuperarSala">
-      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <soap12:address location="net.tcp://192.168.63.166:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
+        <wsa10:Address>net.tcp://192.168.63.166:8083/LaOcaServicio</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioPartida" binding="tns:NetTcpBinding_IServicioPartida">
-      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <soap12:address location="net.tcp://192.168.63.166:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
+        <wsa10:Address>net.tcp://192.168.63.166:8083/LaOcaServicio</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioActualizacionJugadoresEnSala" binding="tns:NetTcpBinding_IServicioActualizacionJugadoresEnSala">
-      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <soap12:address location="net.tcp://192.168.63.166:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
+        <wsa10:Address>net.tcp://192.168.63.166:8083/LaOcaServicio</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="endpointCrearCuenta" binding="tns:endpointCrearCuenta">
-      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <soap12:address location="net.tcp://192.168.63.166:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
+        <wsa10:Address>net.tcp://192.168.63.166:8083/LaOcaServicio</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioJugabilidad" binding="tns:NetTcpBinding_IServicioJugabilidad">
-      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <soap12:address location="net.tcp://192.168.63.166:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
+        <wsa10:Address>net.tcp://192.168.63.166:8083/LaOcaServicio</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioJugadoresEnLinea" binding="tns:NetTcpBinding_IServicioJugadoresEnLinea">
-      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <soap12:address location="net.tcp://192.168.63.166:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
+        <wsa10:Address>net.tcp://192.168.63.166:8083/LaOcaServicio</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioActualizacionJugadoresEnLinea" binding="tns:NetTcpBinding_IServicioActualizacionJugadoresEnLinea">
-      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <soap12:address location="net.tcp://192.168.63.166:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
+        <wsa10:Address>net.tcp://192.168.63.166:8083/LaOcaServicio</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioSocial" binding="tns:NetTcpBinding_IServicioSocial">
-      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <soap12:address location="net.tcp://192.168.63.166:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
+        <wsa10:Address>net.tcp://192.168.63.166:8083/LaOcaServicio</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioAmistad" binding="tns:NetTcpBinding_IServicioAmistad">
-      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <soap12:address location="net.tcp://192.168.63.166:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
+        <wsa10:Address>net.tcp://192.168.63.166:8083/LaOcaServicio</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IServicioBuzon" binding="tns:NetTcpBinding_IServicioBuzon">
-      <soap12:address location="net.tcp://localhost:8083/LaOcaServicio" />
+      <soap12:address location="net.tcp://192.168.63.166:8083/LaOcaServicio" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8083/LaOcaServicio</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>THELASTLAPTOPHP\Carim</Upn>
-        </Identity>
+        <wsa10:Address>net.tcp://192.168.63.166:8083/LaOcaServicio</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

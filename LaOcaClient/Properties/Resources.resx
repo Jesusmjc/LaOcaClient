@@ -678,4 +678,7 @@
   <data name="btnRegresarAlInicio" xml:space="preserve">
     <value>Regresar al inicio</value>
   </data>
+  <data name="lbDesconectado" xml:space="preserve">
+    <value>Desconectado</value>
+  </data>
 </root>

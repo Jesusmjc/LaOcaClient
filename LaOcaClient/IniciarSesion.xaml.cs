@@ -47,26 +47,6 @@ namespace LaOcaClient
             this.Close();
         }
 
-        private void ManejarFocoTextBox(object remitente, RoutedEventArgs e)
-        {
-            TextBox cuadroTexto = remitente as TextBox;
-            if (cuadroTexto.Text == cuadroTexto.Tag.ToString())
-            {
-                cuadroTexto.Text = "";
-                cuadroTexto.Foreground = Brushes.Black;
-            }
-        }
-
-        private void ManejarPerdidaFocoTextBox(object remitente, RoutedEventArgs e)
-        {
-            TextBox cuadroTexto = remitente as TextBox;
-            if (string.IsNullOrWhiteSpace(cuadroTexto.Text))
-            {
-                cuadroTexto.Text = cuadroTexto.Tag.ToString();
-                cuadroTexto.Foreground = Brushes.Gray;
-            }
-        }
-
         private void BtnIniciarSesion_Click(object sender, RoutedEventArgs e)
         {
             string correoElectronico = tbxCorreoElectronico.Text.ToString();
@@ -128,20 +108,11 @@ namespace LaOcaClient
             {
                 MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (CommunicationException)
+            catch (CommunicationException ex)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.InnerException.Message, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        /*private void OcultarMensajesError()
-        {
-            lbCamposVacios.Visibility = Visibility.Hidden;
-            lbCorreoInvalido.Visibility = Visibility.Hidden;
-            lbCaracteristicasCorreoValido.Visibility = Visibility.Hidden;
-            lbContrasenaInvalida.Visibility = Visibility.Hidden;
-            lbCaracteristicasContrasenaValida.Visibility = Visibility.Hidden;
-        }*/
 
         private void BtnOlvideMiContraseña_Click(object sender, RoutedEventArgs e)
         {

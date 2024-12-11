@@ -10,13 +10,13 @@
     <Grid>
         <StackPanel Margin="40">
             <TextBlock Text="{x:Static p:Resources.lbContraseñaActual}" Margin="0,0,0,10"/>
-            <PasswordBox x:Name="tbContraseñaActual" Margin="0,0,0,20"/>
+            <PasswordBox x:Name="tbContraseñaActual" Margin="0,0,0,20" MaxLength="16"/>
 
             <TextBlock Text="{x:Static p:Resources.lbIngresarNuevaContraseña}" Margin="0,0,0,10"/>
-            <PasswordBox x:Name="tbNuevaContraseña" Margin="0,0,0,20"/>
+            <PasswordBox x:Name="tbNuevaContraseña" Margin="0,0,0,20" MaxLength="16"/>
 
             <TextBlock Text="{x:Static p:Resources.lbConfirmarNuevaContraseña}" Margin="0,0,0,10"/>
-            <PasswordBox x:Name="tbConfirmarNuevaContraseña" Margin="0,0,0,20"/>
+            <PasswordBox x:Name="tbConfirmarNuevaContraseña" Margin="0,0,0,20" MaxLength="16"/>
 
             <Button Content="{x:Static p:Resources.btnCambiarContraseña}" Click="btnActualizarContraseña_Click" Margin="0,0,0,20"/>
         </StackPanel>

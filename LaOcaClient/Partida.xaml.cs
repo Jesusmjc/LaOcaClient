@@ -23,7 +23,6 @@ namespace LaOcaClient
         private Dictionary<int, Point> _posicionesCasillas;
         private Grid[] _gridsJugadores;
         private Dictionary<string, int> _posicionesJugadores;
-        private Dictionary<string, string> _fichaPorJugador = new Dictionary<string, string>();
         private Dictionary<string, Image> _fichasPorJugador = new Dictionary<string, Image>();
         private Dictionary<string, int> _casillasRecorridasPorJugador = new Dictionary<string, int>();
 
@@ -38,7 +37,6 @@ namespace LaOcaClient
         private List<int> _casillasCalavera = new List<int> { 58 };
         private List<int> _casillasMeta = new List<int> { 63 };
 
-        Ficha ficha = new Ficha();
         private int _pocisionAnterior;
 
         private List<string> fichasDisponibles = new List<string>
@@ -94,7 +92,13 @@ namespace LaOcaClient
                 Margin = new Thickness(0, 0, 0, 10)
             });
 
-            foreach (var jugador in SalaActual.Jugadores.Values)
+            var jugadoresConFichas = SalaActual.Jugadores.Values.Select(jugador => new
+            {
+                NombreUsuario = jugador.NombreUsuario,
+                Ficha = _fichasPorJugador.TryGetValue(jugador.NombreUsuario, out Image ficha) ? ficha : null
+            });
+
+            foreach (var jugador in jugadoresConFichas)
             {
                 StackPanel panelJugador = new StackPanel
                 {
@@ -102,16 +106,15 @@ namespace LaOcaClient
                     Margin = new Thickness(0, 5, 0, 5)
                 };
 
-                if (_fichasPorJugador.TryGetValue(jugador.NombreUsuario, out Image ficha))
+                if (jugador.Ficha != null)
                 {
                     Image imagenFicha = new Image
                     {
-                        Source = ficha.Source,
+                        Source = jugador.Ficha.Source,
                         Width = 30,
                         Height = 30,
                         Margin = new Thickness(0, 0, 10, 0)
                     };
-
                     panelJugador.Children.Add(imagenFicha);
                 }
 
@@ -123,11 +126,10 @@ namespace LaOcaClient
                     Margin = new Thickness(0, 0, 10, 0)
                 };
                 panelJugador.Children.Add(nombreJugador);
+
                 FichasJugadoresPanel.Children.Add(panelJugador);
             }
         }
-
-
 
         private void MostrarJugadoresEnPartida()
         {
@@ -138,7 +140,7 @@ namespace LaOcaClient
                 Jugador jugador = SalaActual.Jugadores[SalaActual.Partida.NombresDeJugadoresEnOrdenDeTurnos[i]];
 
                 string fichaPath = fichasDisponibles[i % fichasDisponibles.Count];
-                Image ficha = new Image
+                Image fichaObtenida = new Image
                 {
                     Source = new BitmapImage(new Uri(fichaPath)),
                     Width = 85,
@@ -147,7 +149,7 @@ namespace LaOcaClient
 
                 if (SingletonJugador.Instance.Jugador.NombreUsuario == jugador.NombreUsuario)
                 {
-                    ficha.Effect = new System.Windows.Media.Effects.DropShadowEffect
+                    fichaObtenida.Effect = new System.Windows.Media.Effects.DropShadowEffect
                     {
                         Color = Colors.Magenta,
                         Direction = 0,
@@ -158,10 +160,10 @@ namespace LaOcaClient
                 }
 
 
-                _fichasPorJugador[jugador.NombreUsuario] = ficha;
+                _fichasPorJugador[jugador.NombreUsuario] = fichaObtenida;
                 _casillasRecorridasPorJugador[jugador.NombreUsuario] = 0;
 
-                JugadorEnSala jugadorEnSala = new JugadorEnSala(jugador, this);
+                JugadorEnSala jugadorEnSala = new JugadorEnSala(jugador);
                 if (SingletonJugador.Instance.Jugador.NombreUsuario.Equals(SalaActual.NombreHost))
                 {
                     jugadorEnSala.CargarOpcionExpulsar();
@@ -170,9 +172,9 @@ namespace LaOcaClient
                 _gridsJugadores[i].Children.Add(jugadorEnSala);
                 _posicionesJugadores[jugador.NombreUsuario] = 0;
 
-                TableroCanvas.Children.Add(ficha);
-                Canvas.SetLeft(ficha, posicionInicial.X + (i));
-                Canvas.SetTop(ficha, posicionInicial.Y);
+                TableroCanvas.Children.Add(fichaObtenida);
+                Canvas.SetLeft(fichaObtenida, posicionInicial.X + (i));
+                Canvas.SetTop(fichaObtenida, posicionInicial.Y);
             }
         }
 
@@ -197,27 +199,24 @@ namespace LaOcaClient
             }
         }
 
-        private void LanzarDado(object sender, RoutedEventArgs e)
+        private async void LanzarDado(object sender, RoutedEventArgs e)
         {
             string nombreJugador = SingletonJugador.Instance.Jugador.NombreUsuario;
 
             try
             {
-                if (SalaActual.Jugadores.TryGetValue(nombreJugador, out Jugador jugador))
+                if (SalaActual.Jugadores.TryGetValue(nombreJugador, out Jugador jugador) && (jugador.TurnosPerdidos > 0))
                 {
-                    if (jugador.TurnosPerdidos > 0)
-                    {
-                        MessageBox.Show(Properties.Resources.msgPierdesUnTurno + $"{jugador.TurnosPerdidos}");
-                        jugador.TurnosPerdidos--;
-                        pasarTurnoSiguienteJugador();
-                        return;
-                    }
+                    MessageBox.Show(Properties.Resources.msgPierdesUnTurno + $"{jugador.TurnosPerdidos}");
+                    jugador.TurnosPerdidos--;
+                    await PasarTurnoSiguienteJugador();
+                    return;
                 }
 
                 Random random = new Random();
                 int numeroAleatorio = random.Next(1, 7);
                 MessageBox.Show(Properties.Resources.msgLanzarDado + $"{numeroAleatorio}.");
-                MoverFicha(numeroAleatorio, nombreJugador);
+                await MoverFicha(numeroAleatorio, nombreJugador);
             }
             catch (CommunicationException)
             {
@@ -229,8 +228,7 @@ namespace LaOcaClient
             }
         }
 
-
-        private async void pasarTurnoSiguienteJugador()
+        private async Task PasarTurnoSiguienteJugador()
         {
             try
             {
@@ -260,7 +258,7 @@ namespace LaOcaClient
             }
         }
 
-        private async void MoverFicha(int pasos, string nombreJugador)
+        private async Task MoverFicha(int pasos, string nombreJugador)
         {
             BtnDados.IsEnabled = false;
             BtnAbandonar.IsEnabled = false;
@@ -273,7 +271,7 @@ namespace LaOcaClient
                 if (nuevaPosicion > 63)
                 {
                     MessageBox.Show(Properties.Resources.msgNecesitasNumeroExacto);
-                    pasarTurnoSiguienteJugador();
+                    await PasarTurnoSiguienteJugador();
                     return;
                 }
 
@@ -293,7 +291,7 @@ namespace LaOcaClient
 
                     if (i == trayecto.Count - 1)
                     {
-                        EvaluarCasilla(posicion, nombreJugador);
+                        await EvaluarCasilla(posicion, nombreJugador);
                     }
 
                     await Task.Delay(300);
@@ -310,107 +308,125 @@ namespace LaOcaClient
             });
         }
 
-        private async void EvaluarCasilla(int posicion, string nombreJugador)
+        private async Task EvaluarCasilla(int posicion, string nombreJugador)
         {
             Jugador jugador = SalaActual.Jugadores[nombreJugador];
 
             if (_casillasDeOca.Contains(posicion))
             {
-                if (posicion == 59 && ((_pocisionAnterior - posicion) == 54))
-                {
-                    pasarTurnoSiguienteJugador();
-                    return;
-                }
-                else if (posicion == 59)
-                {
-                    MessageBox.Show(Properties.Resources.msgOcaDorada);
-                    var trayecto = GenerarTrayectoria(59, 63);
-
-                    foreach (var pos in trayecto)
-                    {
-                        _posicionesJugadores[nombreJugador] = pos;
-                        ActualizarInterfazGrafica(pos, nombreJugador);
-                        await _clientePartida.NotificarMovimientoFichaAsync(pos, nombreJugador, SalaActual.Codigo);
-                        await Task.Delay(300);
-                    }
-
-                    await _clientePartida.NotificarMovimientoFichaAsync(posicion, nombreJugador, SalaActual.Codigo);
-                    return;
-                }
-                else
-                {
-                    MessageBox.Show(Properties.Resources.msgDeOcaAOca);
-                    BtnDados.IsEnabled = true;
-                    BtnAbandonar.IsEnabled = true;
-                    return;
-                }
+                await ManejarCasillaOca(posicion, nombreJugador);
+                return;
             }
 
             if (_casillasPuente.Contains(posicion))
             {
-                MessageBox.Show(Properties.Resources.msgPuente);
-                BtnDados.IsEnabled = true;
-                BtnAbandonar.IsEnabled = true;
+                MostrarMensajeYHabilitarBotones(Properties.Resources.msgPuente);
                 return;
             }
 
             if (_casillasPosada.Contains(posicion))
             {
-                MessageBox.Show(Properties.Resources.msgPosada);
-                jugador.TurnosPerdidos = 1;
-                pasarTurnoSiguienteJugador();
+                await ManejarCasillaConTurnosPerdidos(jugador, 1, Properties.Resources.msgPosada);
                 return;
             }
 
             if (_casillasDado.Contains(posicion))
             {
-                MessageBox.Show(Properties.Resources.msgDados);
-                BtnDados.IsEnabled = true;
-                BtnAbandonar.IsEnabled = true;
+                MostrarMensajeYHabilitarBotones(Properties.Resources.msgDados);
                 return;
             }
 
             if (_casillasPozo.Contains(posicion))
             {
-                MessageBox.Show(Properties.Resources.msgPozo);
-                jugador.TurnosPerdidos = 3;
-                pasarTurnoSiguienteJugador();
+                await ManejarCasillaConTurnosPerdidos(jugador, 3, Properties.Resources.msgPozo);
                 return;
             }
 
             if (_casillasLaberinto.Contains(posicion))
             {
-                MessageBox.Show(Properties.Resources.msgLaberinto);
-                _posicionesJugadores[nombreJugador] = 30;
-                ActualizarInterfazGrafica(30, nombreJugador);
-                pasarTurnoSiguienteJugador();
+                await ManejarCasillaLaberinto(nombreJugador);
                 return;
             }
 
             if (_casillasCarcel.Contains(posicion))
             {
-                MessageBox.Show(Properties.Resources.msgCarcel);
-                jugador.TurnosPerdidos = 2;
-                pasarTurnoSiguienteJugador();
+                await ManejarCasillaConTurnosPerdidos(jugador, 2, Properties.Resources.msgCarcel);
                 return;
             }
 
             if (_casillasCalavera.Contains(posicion))
             {
-                MessageBox.Show(Properties.Resources.msgCalavera);
-                _posicionesJugadores[nombreJugador] = 1;
-                ActualizarInterfazGrafica(1, nombreJugador);
-                pasarTurnoSiguienteJugador();
+                await ManejarCasillaCalavera(nombreJugador);
                 return;
             }
 
             if (_casillasMeta.Contains(posicion))
             {
-                await _clientePartida.NotificarMovimientoFichaAsync(posicion, nombreJugador, SalaActual.Codigo);
+                await NotificarMovimiento(posicion, nombreJugador);
                 return;
             }
 
-            pasarTurnoSiguienteJugador();
+            await PasarTurnoSiguienteJugador();
+        }
+
+        private async Task ManejarCasillaOca(int posicion, string nombreJugador)
+        {
+            if (posicion == 59 && ((_pocisionAnterior - posicion) == 54))
+            {
+                await PasarTurnoSiguienteJugador();
+            }
+            else if (posicion == 59)
+            {
+                MessageBox.Show(Properties.Resources.msgOcaDorada);
+                var trayecto = GenerarTrayectoria(59, 63);
+                foreach (var pos in trayecto)
+                {
+                    _posicionesJugadores[nombreJugador] = pos;
+                    ActualizarInterfazGrafica(pos, nombreJugador);
+                    await NotificarMovimiento(pos, nombreJugador);
+                    await Task.Delay(300);
+                }
+                await NotificarMovimiento(posicion, nombreJugador);
+            }
+            else
+            {
+                MostrarMensajeYHabilitarBotones(Properties.Resources.msgDeOcaAOca);
+            }
+        }
+
+        private void MostrarMensajeYHabilitarBotones(string mensaje)
+        {
+            MessageBox.Show(mensaje);
+            BtnDados.IsEnabled = true;
+            BtnAbandonar.IsEnabled = true;
+        }
+
+        private async Task ManejarCasillaConTurnosPerdidos(Jugador jugador, int turnosPerdidos, string mensaje)
+        {
+            MessageBox.Show(mensaje);
+            jugador.TurnosPerdidos = turnosPerdidos;
+            await PasarTurnoSiguienteJugador();
+        }
+
+        private async Task ManejarCasillaLaberinto(string nombreJugador)
+        {
+            MessageBox.Show(Properties.Resources.msgLaberinto);
+            _posicionesJugadores[nombreJugador] = 30;
+            ActualizarInterfazGrafica(30, nombreJugador);
+            await PasarTurnoSiguienteJugador();
+        }
+
+        private async Task ManejarCasillaCalavera(string nombreJugador)
+        {
+            MessageBox.Show(Properties.Resources.msgCalavera);
+            _posicionesJugadores[nombreJugador] = 1;
+            ActualizarInterfazGrafica(1, nombreJugador);
+            await PasarTurnoSiguienteJugador();
+        }
+
+        private async Task NotificarMovimiento(int posicion, string nombreJugador)
+        {
+            await _clientePartida.NotificarMovimientoFichaAsync(posicion, nombreJugador, SalaActual.Codigo);
         }
 
         public void MostrarPantallaVictoria(KeyValuePair<string, int>[] jugadoresOrdenados)
@@ -423,7 +439,7 @@ namespace LaOcaClient
             });
         }
 
-        private List<int> GenerarTrayectoria(int posicionActual, int nuevaPosicion)
+        private static List<int> GenerarTrayectoria(int posicionActual, int nuevaPosicion)
         {
             var trayecto = new List<int>();
 
@@ -437,20 +453,17 @@ namespace LaOcaClient
 
         private void ActualizarInterfazGrafica(int nuevaPosicion, string nombreJugador)
         {
-            if (_fichasPorJugador.TryGetValue(nombreJugador, out Image ficha))
+            if (_fichasPorJugador.TryGetValue(nombreJugador, out Image fichaObtenida) && (_posicionesCasillas.TryGetValue(nuevaPosicion, out Point nuevaPosicionCanvas)))
             {
-                if (_posicionesCasillas.TryGetValue(nuevaPosicion, out Point nuevaPosicionCanvas))
+                Dispatcher.Invoke(() =>
                 {
-                    Dispatcher.Invoke(() =>
-                    {
-                        Canvas.SetLeft(ficha, nuevaPosicionCanvas.X);
-                        Canvas.SetTop(ficha, nuevaPosicionCanvas.Y);
-                    });
-                }
+                    Canvas.SetLeft(fichaObtenida, nuevaPosicionCanvas.X);
+                    Canvas.SetTop(fichaObtenida, nuevaPosicionCanvas.Y);
+                }); 
             }
         }
 
-        private Dictionary<int, Point> ObtenerPosicionesCasillas()
+        private static Dictionary<int, Point> ObtenerPosicionesCasillas()
         {
             var posiciones = new Dictionary<int, Point>
             {
@@ -552,21 +565,6 @@ namespace LaOcaClient
             }
         }
 
-        public void MostrarDesconexionJugador(string nombreJugador)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ExpulsarAMenúPrincipal(string motivo)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ActualizarEstadoAmistad(string nombreJugadorEmisor)
-        {
-            throw new NotImplementedException();
-        }
-        
         private async void BtnAbandonar_Click(object sender, RoutedEventArgs e)
         {
 
@@ -582,13 +580,13 @@ namespace LaOcaClient
                     {
                         await _clientePartida.AbandonarPartidaAsync(nombreJugador, SalaActual.Codigo);
 
-                        if (_fichasPorJugador.TryGetValue(nombreJugador, out Image ficha))
+                        if (_fichasPorJugador.TryGetValue(nombreJugador, out Image fichaObtenida))
                         {
-                            TableroCanvas.Children.Remove(ficha);
+                            TableroCanvas.Children.Remove(fichaObtenida);
                             _fichasPorJugador.Remove(nombreJugador);
                         }
 
-                        Dispatcher.Invoke(() =>
+                        await Dispatcher.InvokeAsync(() =>
                         {
                             lbNotificacion.Content = $"{nombreJugador}" + Properties.Resources.msgHaAbandonadoLaPartida;
                             lbNotificacion.Visibility = Visibility.Visible;
@@ -611,41 +609,56 @@ namespace LaOcaClient
         {
             Dispatcher.Invoke(() =>
             {
-                lbNotificacion.Content = $"{nombreJugador}" + Properties.Resources.msgHaAbandonadoLaPartida;
-                lbNotificacion.Visibility = Visibility.Visible;
-
-                if (_fichasPorJugador.TryGetValue(nombreJugador, out Image ficha))
-                {
-                    TableroCanvas.Children.Remove(ficha);
-                    _fichasPorJugador.Remove(nombreJugador);
-                }
-
-                foreach (var panelJugador in FichasJugadoresPanel.Children.OfType<StackPanel>())
-                {
-                    var nombreTextBlock = panelJugador.Children.OfType<TextBlock>().FirstOrDefault();
-                    if (nombreTextBlock != null && nombreTextBlock.Text == nombreJugador)
-                    {
-                        nombreTextBlock.Foreground = Brushes.Red;
-                        break;
-                    }
-                }
-
-                foreach (var grid in _gridsJugadores)
-                {
-                    foreach (var child in grid.Children.OfType<JugadorEnSala>().ToList())
-                    {
-                        if (child.lbNombreJugador.Content.ToString() == nombreJugador)
-                        {
-                            grid.Children.Remove(child);
-                            break;
-                        }
-                    }
-                }
+                MostrarNotificacionAbandono(nombreJugador);
+                EliminarFichaJugador(nombreJugador);
+                ResaltarNombreJugadorEnPanel(nombreJugador);
+                EliminarJugadorDeGrids(nombreJugador);
             });
         }
 
+        private void MostrarNotificacionAbandono(string nombreJugador)
+        {
+            lbNotificacion.Content = $"{nombreJugador} {Properties.Resources.msgHaAbandonadoLaPartida}";
+            lbNotificacion.Visibility = Visibility.Visible;
+        }
 
-        private void ManejarCaidaServidor()
+        private void EliminarFichaJugador(string nombreJugador)
+        {
+            if (_fichasPorJugador.TryGetValue(nombreJugador, out Image fichaObtenida))
+            {
+                TableroCanvas.Children.Remove(fichaObtenida);
+                _fichasPorJugador.Remove(nombreJugador);
+            }
+        }
+
+        private void ResaltarNombreJugadorEnPanel(string nombreJugador)
+        {
+            foreach (var panelJugador in FichasJugadoresPanel.Children.OfType<StackPanel>())
+            {
+                var nombreTextBlock = panelJugador.Children.OfType<TextBlock>().FirstOrDefault();
+                if (nombreTextBlock != null && nombreTextBlock.Text == nombreJugador)
+                {
+                    nombreTextBlock.Foreground = Brushes.Red;
+                    break;
+                }
+            }
+        }
+
+        private void EliminarJugadorDeGrids(string nombreJugador)
+        {
+            var jugadorEnSala = _gridsJugadores
+                .SelectMany(grid => grid.Children.OfType<JugadorEnSala>())
+                .FirstOrDefault(child => child.lbNombreJugador.Content.ToString() == nombreJugador);
+
+            if (jugadorEnSala != null)
+            {
+                var grid = _gridsJugadores.First(g => g.Children.Contains(jugadorEnSala));
+                grid.Children.Remove(jugadorEnSala);
+            }
+        }
+
+
+        private static void ManejarCaidaServidor()
         {
             MessageBox.Show(
                 "El servidor se encuentra fuera de servicio. La aplicación se cerrará automáticamente.",
@@ -658,13 +671,13 @@ namespace LaOcaClient
         }
 
 
-        private async Task VerificarConexionConServidor()
+        private static async Task VerificarConexionConServidor()
         {
             while (true)
             {
                 try
                 {
-                    await _clientePartida.HeartbeatAsync();
+                    //await _clientePartida.HeartbeatAsync();
                 }
                 catch (CommunicationException)
                 {
@@ -684,7 +697,7 @@ namespace LaOcaClient
         {
             try
             {
-                await _clientePartida.GuardarEstadisticasJugadorAsync(idJugador, casillasRecorridas, ganoPartida);
+                //await _clientePartida.GuardarEstadisticasJugadorAsync(idJugador, casillasRecorridas, ganoPartida);
                 MessageBox.Show("Estadísticas guardadas correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (FaultException)

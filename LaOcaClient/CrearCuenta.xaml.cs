@@ -40,7 +40,6 @@ namespace LaOcaClient
         private DispatcherTimer _timer;
         private int _tiempoRestante;
         private readonly ModoCuenta _modo;
-        private readonly ResourceManager _resourceManager;
 
         public CrearCuenta(ModoCuenta modo)
         {
@@ -53,7 +52,7 @@ namespace LaOcaClient
             _timer.Tick += Timer_Tick;
             _modo = modo;
             AjustarInterfazSegunModo();
-            _resourceManager = new ResourceManager("LaOcaClient.Resources", typeof(CrearCuenta).Assembly);
+            ResourceManager _resourceManager = new ResourceManager("LaOcaClient.Resources", typeof(CrearCuenta).Assembly);
             _servicioCuenta.SincronizarAspectos(referenciaToIdMap);
 
         }
@@ -90,18 +89,12 @@ namespace LaOcaClient
             }
         }
 
-        private void btnSiguienteCrear_Click(object sender, RoutedEventArgs e)
+        private void BtnSiguienteCrear_Click(object sender, RoutedEventArgs e)
         {
             if (!ValidarFormularioCrear())
             {
                 return;
             }
-
-            var cuenta = new Cuenta
-            {
-                CorreoElectronico = tbCorreo.Text,
-                Contrasena = Utilidad.HashearConSha256(tbContraseña.Password)
-            };
 
             int idFotoPerfil;
 
@@ -148,7 +141,7 @@ namespace LaOcaClient
             }
         }
 
-        private void btnSiguienteModificar_Click(object sender, RoutedEventArgs e)
+        private void BtnSiguienteModificar_Click(object sender, RoutedEventArgs e)
         {
             if (!ValidarFormularioModificar())
             {
@@ -305,7 +298,7 @@ namespace LaOcaClient
             return true;
         }
 
-        private void btnVerificarCodigo_Click(object sender, RoutedEventArgs e)
+        private void BtnVerificarCodigo_Click(object sender, RoutedEventArgs e)
         {
             string correo = tbCorreo.Text;
             string codigoIngresado = tbCodigoVerificacion.Text;
@@ -369,7 +362,7 @@ namespace LaOcaClient
             }
         }
 
-        private void btnReenviarCodigo_Click(object sender, RoutedEventArgs e)
+        private void BtnReenviarCodigo_Click(object sender, RoutedEventArgs e)
         {
             string correo = tbCorreo.Text;
 
@@ -430,7 +423,7 @@ namespace LaOcaClient
             _servicioCuenta.SincronizarAspectos(referenciaToIdMap);
         }
 
-        private int ObtenerIdAspectoPorReferencia(string referencia)
+        private static int ObtenerIdAspectoPorReferencia(string referencia)
         {
             if (referenciaToIdMap.TryGetValue(referencia, out int id))
             {
@@ -442,30 +435,24 @@ namespace LaOcaClient
             }
         }
 
-        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
             CancelarCrearModificar(_modo);
         }
 
         private void CancelarCrearModificar(ModoCuenta modo)
         {
-            if (modo == ModoCuenta.Crear)
+            if (modo == ModoCuenta.Crear && (MessageBoxResult.Yes == MessageBox.Show(Properties.Resources.msgCancelarCreacionCuenta, Properties.Resources.tituloCancelarCrearCuenta, MessageBoxButton.YesNo, MessageBoxImage.Warning)))
             {
-                if (MessageBoxResult.Yes == MessageBox.Show(Properties.Resources.msgCancelarCreacionCuenta, Properties.Resources.tituloCancelarCrearCuenta, MessageBoxButton.YesNo, MessageBoxImage.Warning))
-                {
-                    IniciarSesion ventanaIniciarSesion = new IniciarSesion();
-                    ventanaIniciarSesion.Show();
-                    this.Close();
-                }
+                IniciarSesion ventanaIniciarSesion = new IniciarSesion();
+                ventanaIniciarSesion.Show();
+                this.Close();
             }
-            else if (modo == ModoCuenta.Modificar)
+            else if (modo == ModoCuenta.Modificar && (MessageBoxResult.Yes == MessageBox.Show(Properties.Resources.msgCancelarModificacionCuenta, Properties.Resources.tituloCancelarModificacionCuenta, MessageBoxButton.YesNo, MessageBoxImage.Warning)))
             {
-                if (MessageBoxResult.Yes == MessageBox.Show(Properties.Resources.msgCancelarModificacionCuenta, Properties.Resources.tituloCancelarModificacionCuenta, MessageBoxButton.YesNo, MessageBoxImage.Warning))
-                {
-                    MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
-                    ventanaMenuPrincipal.Show();
-                    this.Close();
-                }
+                MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
+                ventanaMenuPrincipal.Show();
+                this.Close();
             }
         }
 
@@ -509,7 +496,7 @@ namespace LaOcaClient
             wpImagenesPerfil.Visibility = Visibility.Collapsed;
         }
 
-        private void btnVolverAtras_Click(object sender, RoutedEventArgs e)
+        private void BtnVolverAtras_Click(object sender, RoutedEventArgs e)
         {
             this.Height = 600;
             this.Width = 900;
@@ -602,14 +589,11 @@ namespace LaOcaClient
                 globalConfirmarContraseña.Visibility = Visibility.Collapsed;
                 tbConfirmarContraseña.Visibility = Visibility.Collapsed;
                 btnCambiarContraseña.Visibility = Visibility.Visible;
-                //globalCorreo.Margin = new Thickness(78, 440, 0, 0);
-                //tbCorreo.Margin = new Thickness(78, 468, 0, 0);
                 tbCorreo.IsEnabled = false;
-                //btnCambiarContraseña.Margin = new Thickness(78, 353, 0, 0);
             }
         }
 
-        private void btnCambiarContraseña_Click(object sender, RoutedEventArgs e)
+        private void BtnCambiarContraseña_Click(object sender, RoutedEventArgs e)
         {
             CambiarContraseña ventanaCambiarContraseña = new CambiarContraseña(SingletonJugador.Instance.Jugador.IdCuenta);
             ventanaCambiarContraseña.Show();

@@ -678,4 +678,7 @@
   <data name="btnRegresarAlInicio" xml:space="preserve">
     <value>Return to main menu</value>
   </data>
+  <data name="lbDesconectado" xml:space="preserve">
+    <value>Offline</value>
+  </data>
 </root>

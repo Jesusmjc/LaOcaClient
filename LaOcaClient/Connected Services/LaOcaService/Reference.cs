@@ -110,6 +110,11 @@ namespace LaOcaClient.LaOcaService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Jugador", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.KeyValuePair<string, int>[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.KeyValuePair<string, int>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<string, LaOcaClient.LaOcaService.Jugador>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(string[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<string, int>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Cuenta))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Amistad[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Amistad))]
@@ -123,11 +128,6 @@ namespace LaOcaClient.LaOcaService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Aspecto))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Jugador[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.AmistadException))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<string, LaOcaClient.LaOcaService.Jugador>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(string[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<string, int>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.KeyValuePair<string, int>[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.KeyValuePair<string, int>))]
     public partial class Jugador : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -1426,18 +1426,6 @@ namespace LaOcaClient.LaOcaService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioPartida/AbandonarPartida")]
         System.Threading.Tasks.Task AbandonarPartidaAsync(string nombreJugador, string codigoSala);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioPartida/Heartbeat")]
-        void Heartbeat();
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioPartida/Heartbeat")]
-        System.Threading.Tasks.Task HeartbeatAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPartida/GuardarEstadisticasJugador", ReplyAction="http://tempuri.org/IServicioPartida/GuardarEstadisticasJugadorResponse")]
-        void GuardarEstadisticasJugador(int idJugador, int casillasRecorridas, bool ganoPartida);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPartida/GuardarEstadisticasJugador", ReplyAction="http://tempuri.org/IServicioPartida/GuardarEstadisticasJugadorResponse")]
-        System.Threading.Tasks.Task GuardarEstadisticasJugadorAsync(int idJugador, int casillasRecorridas, bool ganoPartida);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1517,22 +1505,6 @@ namespace LaOcaClient.LaOcaService {
         
         public System.Threading.Tasks.Task AbandonarPartidaAsync(string nombreJugador, string codigoSala) {
             return base.Channel.AbandonarPartidaAsync(nombreJugador, codigoSala);
-        }
-        
-        public void Heartbeat() {
-            base.Channel.Heartbeat();
-        }
-        
-        public System.Threading.Tasks.Task HeartbeatAsync() {
-            return base.Channel.HeartbeatAsync();
-        }
-        
-        public void GuardarEstadisticasJugador(int idJugador, int casillasRecorridas, bool ganoPartida) {
-            base.Channel.GuardarEstadisticasJugador(idJugador, casillasRecorridas, ganoPartida);
-        }
-        
-        public System.Threading.Tasks.Task GuardarEstadisticasJugadorAsync(int idJugador, int casillasRecorridas, bool ganoPartida) {
-            return base.Channel.GuardarEstadisticasJugadorAsync(idJugador, casillasRecorridas, ganoPartida);
         }
     }
     

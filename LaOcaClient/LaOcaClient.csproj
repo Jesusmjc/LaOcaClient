@@ -86,9 +86,6 @@
     <Compile Include="Partida.xaml.cs">
       <DependentUpon>Partida.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LaOcaPartida.xaml.cs">
-      <DependentUpon>LaOcaPartida.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Sala.xaml.cs">
       <DependentUpon>Sala.xaml</DependentUpon>
     </Compile>
@@ -143,10 +140,6 @@
     <Page Include="IniciarSesion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="LaOcaPartida.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
