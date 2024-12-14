@@ -26,7 +26,6 @@ namespace LaOcaClient
         private Dictionary<string, Image> _fichasPorJugador = new Dictionary<string, Image>();
         private Dictionary<string, int> _casillasRecorridasPorJugador = new Dictionary<string, int>();
 
-
         private List<int> _casillasDeOca = new List<int> { 1, 5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59 };
         private List<int> _casillasPuente = new List<int> { 6, 12 };
         private List<int> _casillasPosada = new List<int> { 19 };
@@ -66,10 +65,6 @@ namespace LaOcaClient
             MostrarJugadoresEnPartida();
             MostrarJugadorEnTurno();
             MostrarFichasYJugadores();
-
-            _ = VerificarConexionConServidor();
-
-
         }
 
         private void AgregarCanalCallbackDePartida()
@@ -159,7 +154,6 @@ namespace LaOcaClient
                     };
                 }
 
-
                 _fichasPorJugador[jugador.NombreUsuario] = fichaObtenida;
                 _casillasRecorridasPorJugador[jugador.NombreUsuario] = 0;
 
@@ -172,7 +166,7 @@ namespace LaOcaClient
                 _gridsJugadores[i].Children.Add(jugadorEnSala);
                 _posicionesJugadores[jugador.NombreUsuario] = 0;
 
-                TableroCanvas.Children.Add(fichaObtenida);
+                cvTablero.Children.Add(fichaObtenida);
                 Canvas.SetLeft(fichaObtenida, posicionInicial.X + (i));
                 Canvas.SetTop(fichaObtenida, posicionInicial.Y);
             }
@@ -187,15 +181,15 @@ namespace LaOcaClient
             {
                 VentanaCierreAutomatico ventanaTurno = new VentanaCierreAutomatico(Properties.Resources.msgEsTuTurno, Properties.Resources.tituloHoraDeJugar, 3);
                 ventanaTurno.Show();
-                BtnDados.IsEnabled = true;
-                BtnAbandonar.IsEnabled = true;
+                btnDado.IsEnabled = true;
+                btnAbandonar.IsEnabled = true;
             }
             else
             {
                 VentanaCierreAutomatico ventanaTurno = new VentanaCierreAutomatico(Properties.Resources.lbEsTurnoDe + nombreJugadorEnTurno, Properties.Resources.tituloHoraDeJugar, 3);
                 ventanaTurno.Show();
-                BtnDados.IsEnabled = false;
-                BtnAbandonar.IsEnabled = false;
+                btnDado.IsEnabled = false;
+                btnAbandonar.IsEnabled = false;
             }
         }
 
@@ -220,11 +214,9 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                ManejarCaidaServidor();
             }
             catch (TimeoutException)
             {
-                ManejarCaidaServidor();
             }
         }
 
@@ -260,8 +252,8 @@ namespace LaOcaClient
 
         private async Task MoverFicha(int pasos, string nombreJugador)
         {
-            BtnDados.IsEnabled = false;
-            BtnAbandonar.IsEnabled = false;
+            btnDado.IsEnabled = false;
+            btnAbandonar.IsEnabled = false;
 
             if (_posicionesJugadores.TryGetValue(nombreJugador, out int posicionActual))
             {
@@ -397,8 +389,8 @@ namespace LaOcaClient
         private void MostrarMensajeYHabilitarBotones(string mensaje)
         {
             MessageBox.Show(mensaje);
-            BtnDados.IsEnabled = true;
-            BtnAbandonar.IsEnabled = true;
+            btnDado.IsEnabled = true;
+            btnAbandonar.IsEnabled = true;
         }
 
         private async Task ManejarCasillaConTurnosPerdidos(Jugador jugador, int turnosPerdidos, string mensaje)
@@ -553,23 +545,21 @@ namespace LaOcaClient
             {
                 VentanaCierreAutomatico ventanaTurno = new VentanaCierreAutomatico(Properties.Resources.msgEsTuTurno, Properties.Resources.tituloHoraDeJugar, 2);
                 ventanaTurno.Show();
-                BtnDados.IsEnabled = true;
-                BtnAbandonar.IsEnabled = true;
+                btnDado.IsEnabled = true;
+                btnAbandonar.IsEnabled = true;
             }
             else
             {
                 VentanaCierreAutomatico ventanaTurno = new VentanaCierreAutomatico(Properties.Resources.lbEsTurnoDe + nombreNuevoJugadorEnTurno, Properties.Resources.tituloHoraDeJugar, 2);
                 ventanaTurno.Show();
-                BtnDados.IsEnabled = false;
-                BtnAbandonar.IsEnabled = false;
+                btnDado.IsEnabled = false;
+                btnAbandonar.IsEnabled = false;
             }
         }
 
-        private async void BtnAbandonar_Click(object sender, RoutedEventArgs e)
+        private async void BtnAbandonar(object sender, RoutedEventArgs e)
         {
-
             string nombreJugador = SingletonJugador.Instance.Jugador.NombreUsuario;
-
             MessageBoxResult resultado = MessageBox.Show(Properties.Resources.msgAbandonarPartidaEnCurso, Properties.Resources.tituloConfirmacion, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
             if (resultado == MessageBoxResult.Yes)
@@ -582,7 +572,7 @@ namespace LaOcaClient
 
                         if (_fichasPorJugador.TryGetValue(nombreJugador, out Image fichaObtenida))
                         {
-                            TableroCanvas.Children.Remove(fichaObtenida);
+                            cvTablero.Children.Remove(fichaObtenida);
                             _fichasPorJugador.Remove(nombreJugador);
                         }
 
@@ -626,7 +616,7 @@ namespace LaOcaClient
         {
             if (_fichasPorJugador.TryGetValue(nombreJugador, out Image fichaObtenida))
             {
-                TableroCanvas.Children.Remove(fichaObtenida);
+                cvTablero.Children.Remove(fichaObtenida);
                 _fichasPorJugador.Remove(nombreJugador);
             }
         }
@@ -656,66 +646,5 @@ namespace LaOcaClient
                 grid.Children.Remove(jugadorEnSala);
             }
         }
-
-
-        private static void ManejarCaidaServidor()
-        {
-            MessageBox.Show(
-                "El servidor se encuentra fuera de servicio. La aplicación se cerrará automáticamente.",
-                "Servidor no disponible",
-                MessageBoxButton.OK,
-                MessageBoxImage.Error
-            );
-
-            Application.Current.Shutdown();
-        }
-
-
-        private static async Task VerificarConexionConServidor()
-        {
-            while (true)
-            {
-                try
-                {
-                    //await _clientePartida.HeartbeatAsync();
-                }
-                catch (CommunicationException)
-                {
-                    ManejarCaidaServidor();
-                    break;
-                }
-                catch (TimeoutException)
-                {
-                    ManejarCaidaServidor();
-                    break;
-                }
-
-                await Task.Delay(5000);
-            }
-        }
-        private async Task GuardarEstadisticasAsync(int idJugador, int casillasRecorridas, bool ganoPartida)
-        {
-            try
-            {
-                //await _clientePartida.GuardarEstadisticasJugadorAsync(idJugador, casillasRecorridas, ganoPartida);
-                MessageBox.Show("Estadísticas guardadas correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch (FaultException)
-            {
-                var resultado = MessageBox.Show(
-                    "Hubo un error al guardar las estadísticas. ¿Deseas reintentar?",
-                    "Error",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Warning);
-
-                if (resultado == MessageBoxResult.Yes)
-                {
-                    await GuardarEstadisticasAsync(idJugador, casillasRecorridas, ganoPartida);
-                }
-            }
-        }
-
-
-
     }
 }

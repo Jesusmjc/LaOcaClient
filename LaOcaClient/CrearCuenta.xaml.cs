@@ -34,8 +34,9 @@ namespace LaOcaClient
     public partial class CrearCuenta : Window
     {
         private readonly IServicioCuenta _servicioCuenta;
-        private readonly IServicioCuenta _servicioJugador;
-        private readonly IServicioCuenta _servicioAspecto; 
+        private readonly IServicioJugador _servicioJugador;
+        private readonly IServicioAspecto _servicioAspecto;
+        private readonly IServicioCodigo _servicioCodigo;
         private string _imagenPerfilSeleccionada;
         private DispatcherTimer _timer;
         private int _tiempoRestante;
@@ -45,16 +46,15 @@ namespace LaOcaClient
         {
             InitializeComponent();
             _servicioCuenta = new ServicioCuentaClient();
-            _servicioJugador = new ServicioCuentaClient();
-            _servicioAspecto = new ServicioCuentaClient();
+            _servicioJugador = new ServicioJugadorClient();
+            _servicioAspecto = new ServicioAspectoClient();
+            _servicioCodigo = new ServicioCodigoClient();
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += Timer_Tick;
             _modo = modo;
             AjustarInterfazSegunModo();
-            ResourceManager _resourceManager = new ResourceManager("LaOcaClient.Resources", typeof(CrearCuenta).Assembly);
-            _servicioCuenta.SincronizarAspectos(referenciaToIdMap);
-
+            _servicioAspecto.SincronizarAspectos(_ReferenciaToIdMap);
         }
 
         public CrearCuenta(ModoCuenta modo, int idCuenta, int idJugador) : this(modo)
@@ -62,7 +62,7 @@ namespace LaOcaClient
             if (modo == ModoCuenta.Modificar)
             {
                 this.Title = Properties.Resources.lbModificarCuenta;
-                globalCrearCuenta.Content = Properties.Resources.lbModificarCuenta;
+                lbCrearCuenta.Content = Properties.Resources.lbModificarCuenta;
                 btnSiguienteModificarCuenta.Content = Properties.Resources.btnGuardarCambios;
                 CargarDatosJugador(idCuenta, idJugador);
             }
@@ -80,16 +80,16 @@ namespace LaOcaClient
                 btnSiguienteCrearCuenta.Visibility = Visibility.Collapsed;
                 btnSiguienteModificarCuenta.Visibility = Visibility.Visible;
 
-                tbContraseña.Visibility = Visibility.Collapsed;
-                tbConfirmarContraseña.Visibility = Visibility.Collapsed;
+                pbContraseña.Visibility = Visibility.Collapsed;
+                pbConfirmarContraseña.Visibility = Visibility.Collapsed;
                 btnCambiarContraseña.Visibility = Visibility.Visible;
-                globalCorreo.Margin = new Thickness(78, 440, 0, 0);
-                tbCorreo.Margin = new Thickness(78, 468, 0, 0);
+                lbCorreo.Margin = new Thickness(78, 440, 0, 0);
+                lbCorreo.Margin = new Thickness(78, 468, 0, 0);
                 btnCambiarContraseña.Margin = new Thickness(78, 353, 0, 0);
             }
         }
 
-        private void BtnSiguienteCrear_Click(object sender, RoutedEventArgs e)
+        private void BtnSiguienteCrear(object sender, RoutedEventArgs e)
         {
             if (!ValidarFormularioCrear())
             {
@@ -110,7 +110,7 @@ namespace LaOcaClient
 
             var jugador = new Jugador
             {
-                NombreUsuario = tbNombreUsuario.Text,
+                NombreUsuario = tbxNombreUsuario.Text,
                 IdFotoPerfil = idFotoPerfil
             };
 
@@ -122,7 +122,7 @@ namespace LaOcaClient
                     return;
                 }
 
-                _servicioCuenta.EnviarCodigoVerificacion(tbCorreo.Text);
+                _servicioCodigo.EnviarCodigoVerificacion(tbxCorreo.Text);
                 MessageBox.Show(Properties.Resources.msgCodigoEnviadoCrearCuenta, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 ActualizarVentanaCrearCuenta();
                 IniciarTemporizador();
@@ -141,7 +141,7 @@ namespace LaOcaClient
             }
         }
 
-        private void BtnSiguienteModificar_Click(object sender, RoutedEventArgs e)
+        private void BtnSiguienteModificar(object sender, RoutedEventArgs e)
         {
             if (!ValidarFormularioModificar())
             {
@@ -151,11 +151,12 @@ namespace LaOcaClient
             var cuenta = new Cuenta
             {
                 IdCuenta = SingletonJugador.Instance.Jugador.IdCuenta,
-                CorreoElectronico = tbCorreo.Text,
-                Contrasena = tbContraseña.Password
+                CorreoElectronico = tbxCorreo.Text,
+                Contrasena = pbContraseña.Password
             };
 
             int idFotoPerfil;
+
             try
             {
                 idFotoPerfil = ObtenerIdAspectoPorReferencia(_imagenPerfilSeleccionada);
@@ -169,7 +170,7 @@ namespace LaOcaClient
             var jugador = new Jugador
             {
                 IdJugador = SingletonJugador.Instance.Jugador.IdJugador,
-                NombreUsuario = tbNombreUsuario.Text,
+                NombreUsuario = tbxNombreUsuario.Text,
                 IdFotoPerfil = idFotoPerfil
             };
 
@@ -219,7 +220,7 @@ namespace LaOcaClient
 
         private bool ValidarCamposComunes()
         {
-            string nombreUsuario = tbNombreUsuario.Text;
+            string nombreUsuario = tbxNombreUsuario.Text;
 
             if (string.IsNullOrWhiteSpace(nombreUsuario))
             {
@@ -238,8 +239,8 @@ namespace LaOcaClient
 
         private bool ValidarContrasena()
         {
-            string contrasena = tbContraseña.Password;
-            string confirmarContrasena = tbConfirmarContraseña.Password;
+            string contrasena = pbContraseña.Password;
+            string confirmarContrasena = pbConfirmarContraseña.Password;
 
             if (string.IsNullOrWhiteSpace(contrasena) || string.IsNullOrWhiteSpace(confirmarContrasena))
             {
@@ -264,7 +265,7 @@ namespace LaOcaClient
 
         private bool ValidarCorreo()
         {
-            string correo = tbCorreo.Text;
+            string correo = tbxCorreo.Text;
 
             if (string.IsNullOrWhiteSpace(correo))
             {
@@ -298,27 +299,27 @@ namespace LaOcaClient
             return true;
         }
 
-        private void BtnVerificarCodigo_Click(object sender, RoutedEventArgs e)
+        private void BtnVerificarCodigo(object sender, RoutedEventArgs e)
         {
-            string correo = tbCorreo.Text;
-            string codigoIngresado = tbCodigoVerificacion.Text;
+            string correo = tbxCorreo.Text;
+            string codigoIngresado = tbxCodigoVerificacion.Text;
 
             try
             {
-                bool esCodigoCorrecto = _servicioCuenta.VerificarCodigoCrearCuenta(correo, codigoIngresado);
+                bool esCodigoCorrecto = _servicioCodigo.VerificarCodigoCrearCuenta(correo, codigoIngresado);
                 if (esCodigoCorrecto)
                 {
                     MessageBox.Show(Properties.Resources.msgCodigoCorrecto, "", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     var cuenta = new Cuenta
                     {
-                        CorreoElectronico = tbCorreo.Text,
-                        Contrasena = Utilidad.HashearConSha256(tbContraseña.Password)
+                        CorreoElectronico = tbxCorreo.Text,
+                        Contrasena = Utilidad.HashearConSha256(pbContraseña.Password)
                     };
 
                     var jugador = new Jugador
                     {
-                        NombreUsuario = tbNombreUsuario.Text,
+                        NombreUsuario = tbxNombreUsuario.Text,
                         IdFotoPerfil = ObtenerIdAspectoPorReferencia(_imagenPerfilSeleccionada)
                     };
 
@@ -362,13 +363,13 @@ namespace LaOcaClient
             }
         }
 
-        private void BtnReenviarCodigo_Click(object sender, RoutedEventArgs e)
+        private void BtnReenviarCodigo(object sender, RoutedEventArgs e)
         {
-            string correo = tbCorreo.Text;
+            string correo = tbxCorreo.Text;
 
             try
             {
-                _servicioCuenta.EnviarCodigoVerificacion(correo);
+                _servicioCodigo.EnviarCodigoVerificacion(correo);
                 MessageBox.Show(Properties.Resources.msgCodigoReenviado, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 IniciarTemporizador();
             }
@@ -408,7 +409,7 @@ namespace LaOcaClient
             _timer.Start();
         }
 
-        private static readonly Dictionary<string, int> referenciaToIdMap = new Dictionary<string, int>
+        private static readonly Dictionary<string, int> _ReferenciaToIdMap = new Dictionary<string, int>
         {
             { "pack://application:,,,/LaOcaClient;component/Recursos/OcaDeportista.jpg", 1 },
             { "pack://application:,,,/LaOcaClient;component/Recursos/OcaDesastrosa.jpg", 2 },
@@ -418,14 +419,9 @@ namespace LaOcaClient
             { "pack://application:,,,/LaOcaClient;component/Recursos/OcaUniversitaria.jpg", 6 }
         };
 
-        public void SincronizarAspectosConServidor()
-        {
-            _servicioCuenta.SincronizarAspectos(referenciaToIdMap);
-        }
-
         private static int ObtenerIdAspectoPorReferencia(string referencia)
         {
-            if (referenciaToIdMap.TryGetValue(referencia, out int id))
+            if (_ReferenciaToIdMap.TryGetValue(referencia, out int id))
             {
                 return id;
             }
@@ -435,7 +431,7 @@ namespace LaOcaClient
             }
         }
 
-        private void BtnCancelar_Click(object sender, RoutedEventArgs e)
+        private void BtnCancelar(object sender, RoutedEventArgs e)
         {
             CancelarCrearModificar(_modo);
         }
@@ -474,48 +470,48 @@ namespace LaOcaClient
         {
             this.Height = 400;
             this.Width = 600;
-            tbCodigoVerificacion.Visibility = Visibility.Visible;
+            tbxCodigoVerificacion.Visibility = Visibility.Visible;
             btnVerificarCodigo.Visibility = Visibility.Visible;
             lbIngresarCodigo.Visibility = Visibility.Visible;
             btnReenviarCodigo.Visibility = Visibility.Visible;
             lbReenviarCodigo.Visibility = Visibility.Visible;
             btnVolverAtras.Visibility = Visibility.Visible;
 
-            globalCrearCuenta.Visibility = Visibility.Collapsed;
-            globalNombreUsuario.Visibility = Visibility.Collapsed;
-            tbNombreUsuario.Visibility = Visibility.Collapsed;
-            globalContraseña.Visibility = Visibility.Collapsed;
-            tbContraseña.Visibility = Visibility.Collapsed;
-            globalConfirmarContraseña.Visibility = Visibility.Collapsed;
-            tbConfirmarContraseña.Visibility = Visibility.Collapsed;
-            globalCorreo.Visibility = Visibility.Collapsed;
-            tbCorreo.Visibility = Visibility.Collapsed;
+            lbCrearCuenta.Visibility = Visibility.Collapsed;
+            lbNombreUsuario.Visibility = Visibility.Collapsed;
+            tbxNombreUsuario.Visibility = Visibility.Collapsed;
+            lbContraseña.Visibility = Visibility.Collapsed;
+            pbContraseña.Visibility = Visibility.Collapsed;
+            lbConfirmarContraseña.Visibility = Visibility.Collapsed;
+            pbConfirmarContraseña.Visibility = Visibility.Collapsed;
+            lbCorreo.Visibility = Visibility.Collapsed;
+            tbxCorreo.Visibility = Visibility.Collapsed;
             btnSiguienteCrearCuenta.Visibility = Visibility.Collapsed;
             btnCancelar.Visibility = Visibility.Collapsed;
             lbSeleccionarImagenPerfil.Visibility = Visibility.Collapsed;
             wpImagenesPerfil.Visibility = Visibility.Collapsed;
         }
 
-        private void BtnVolverAtras_Click(object sender, RoutedEventArgs e)
+        private void BtnVolverAtras(object sender, RoutedEventArgs e)
         {
             this.Height = 600;
             this.Width = 900;
-            tbCodigoVerificacion.Visibility = Visibility.Collapsed;
+            tbxCodigoVerificacion.Visibility = Visibility.Collapsed;
             btnVerificarCodigo.Visibility = Visibility.Collapsed;
             lbIngresarCodigo.Visibility = Visibility.Collapsed;
             btnReenviarCodigo.Visibility = Visibility.Collapsed;
             lbReenviarCodigo.Visibility = Visibility.Collapsed;
             btnVolverAtras.Visibility = Visibility.Collapsed;
 
-            globalCrearCuenta.Visibility = Visibility.Visible;
-            globalNombreUsuario.Visibility = Visibility.Visible;
-            tbNombreUsuario.Visibility = Visibility.Visible;
-            globalContraseña.Visibility = Visibility.Visible;
-            tbContraseña.Visibility = Visibility.Visible;
-            globalConfirmarContraseña.Visibility = Visibility.Visible;
-            tbConfirmarContraseña.Visibility = Visibility.Visible;
-            globalCorreo.Visibility = Visibility.Visible;
-            tbCorreo.Visibility = Visibility.Visible;
+            lbCrearCuenta.Visibility = Visibility.Visible;
+            lbNombreUsuario.Visibility = Visibility.Visible;
+            tbxNombreUsuario.Visibility = Visibility.Visible;
+            lbContraseña.Visibility = Visibility.Visible;
+            pbContraseña.Visibility = Visibility.Visible;
+            lbConfirmarContraseña.Visibility = Visibility.Visible;
+            pbConfirmarContraseña.Visibility = Visibility.Visible;
+            lbCorreo.Visibility = Visibility.Visible;
+            tbxCorreo.Visibility = Visibility.Visible;
             btnSiguienteCrearCuenta.Visibility = Visibility.Visible;
             btnCancelar.Visibility = Visibility.Visible;
             lbSeleccionarImagenPerfil.Visibility = Visibility.Visible;
@@ -540,10 +536,10 @@ namespace LaOcaClient
                     return;
                 }
 
-                tbNombreUsuario.Text = jugador.NombreUsuario;
-                tbCorreo.Text = cuenta.CorreoElectronico;
-                tbContraseña.Password = cuenta.Contrasena;
-                tbConfirmarContraseña.Password = cuenta.Contrasena;
+                tbxNombreUsuario.Text = jugador.NombreUsuario;
+                tbxCorreo.Text = cuenta.CorreoElectronico;
+                pbContraseña.Password = cuenta.Contrasena;
+                pbConfirmarContraseña.Password = cuenta.Contrasena;
 
                 var aspecto = _servicioAspecto.ObtenerAspectoPorId(jugador.IdFotoPerfil);
                 if (aspecto != null)
@@ -584,16 +580,16 @@ namespace LaOcaClient
         {
             if (modo == ModoCuenta.Modificar)
             {
-                globalContraseña.Visibility = Visibility.Collapsed;
-                tbContraseña.Visibility = Visibility.Collapsed;
-                globalConfirmarContraseña.Visibility = Visibility.Collapsed;
-                tbConfirmarContraseña.Visibility = Visibility.Collapsed;
+                lbContraseña.Visibility = Visibility.Collapsed;
+                pbContraseña.Visibility = Visibility.Collapsed;
+                lbConfirmarContraseña.Visibility = Visibility.Collapsed;
+                pbConfirmarContraseña.Visibility = Visibility.Collapsed;
                 btnCambiarContraseña.Visibility = Visibility.Visible;
-                tbCorreo.IsEnabled = false;
+                tbxCorreo.IsEnabled = false;
             }
         }
 
-        private void BtnCambiarContraseña_Click(object sender, RoutedEventArgs e)
+        private void BtnCambiarContraseña(object sender, RoutedEventArgs e)
         {
             CambiarContraseña ventanaCambiarContraseña = new CambiarContraseña(SingletonJugador.Instance.Jugador.IdCuenta);
             ventanaCambiarContraseña.Show();

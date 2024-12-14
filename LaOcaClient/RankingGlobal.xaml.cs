@@ -6,9 +6,6 @@ using System.Windows;
 
 namespace LaOcaClient
 {
-    /// <summary>
-    /// Lógica de interacción para RankingGlobal.xaml
-    /// </summary>
     public partial class RankingGlobal : Window
     {
         public RankingGlobal()
@@ -32,7 +29,6 @@ namespace LaOcaClient
                     jugador.PartidasGanadas
                 }).Take(10).ToList();
 
-
                 dgRanking.ItemsSource = datosRanking;
             }
             catch (Exception)
@@ -41,7 +37,7 @@ namespace LaOcaClient
             }
         }
 
-        private void BtnCerrar_Click(object sender, RoutedEventArgs e)
+        private void BtnCerrar(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

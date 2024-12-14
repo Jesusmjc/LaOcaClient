@@ -19,15 +19,13 @@ namespace LaOcaClient
         {
             try
             {
-                var clienteServicio = new ServicioCuentaClient();
+                var clienteServicio = new ServicioJugadorClient();
                 string estadisticas = clienteServicio.ConsultarEstadisticasJugador(idJugador);
                 var estadisticasArray = estadisticas.Split(',');
-
                 string casillasRecorridas = Properties.Resources.txtCasillasRecorridas;
                 string partidasGanadas = Properties.Resources.txtPartidasGanadas;
-
-                txtCasillasRecorridas.Text = casillasRecorridas + estadisticasArray[0].Trim();
-                txtPartidasGanadas.Text = partidasGanadas + estadisticasArray[1].Trim();
+                tbckCasillasRecorridas.Text = casillasRecorridas + estadisticasArray[0].Trim();
+                tbckPartidasGanadas.Text = partidasGanadas + estadisticasArray[1].Trim();
             }
             catch (Exception)
             {
@@ -35,7 +33,7 @@ namespace LaOcaClient
             }
         }
 
-        private void BtnCerrar_Click(object sender, RoutedEventArgs e)
+        private void BtnCerrar(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

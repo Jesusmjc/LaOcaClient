@@ -110,11 +110,6 @@ namespace LaOcaClient.LaOcaService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Jugador", Namespace="http://schemas.datacontract.org/2004/07/LaOcaService")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.KeyValuePair<string, int>[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.KeyValuePair<string, int>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<string, LaOcaClient.LaOcaService.Jugador>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(string[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<string, int>))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Cuenta))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Amistad[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Amistad))]
@@ -125,9 +120,14 @@ namespace LaOcaClient.LaOcaService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Sala))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Partida))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.SalaException))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Aspecto))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Jugador[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.Aspecto))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(LaOcaClient.LaOcaService.AmistadException))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<string, LaOcaClient.LaOcaService.Jugador>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(string[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.Dictionary<string, int>))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.KeyValuePair<string, int>[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.KeyValuePair<string, int>))]
     public partial class Jugador : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -1652,59 +1652,11 @@ namespace LaOcaClient.LaOcaService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ModificarCuenta", ReplyAction="http://tempuri.org/IServicioCuenta/ModificarCuentaResponse")]
         System.Threading.Tasks.Task ModificarCuentaAsync(LaOcaClient.LaOcaService.Cuenta cuenta);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ModificarJugador", ReplyAction="http://tempuri.org/IServicioCuenta/ModificarJugadorResponse")]
-        void ModificarJugador(LaOcaClient.LaOcaService.Jugador jugador);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ModificarJugador", ReplyAction="http://tempuri.org/IServicioCuenta/ModificarJugadorResponse")]
-        System.Threading.Tasks.Task ModificarJugadorAsync(LaOcaClient.LaOcaService.Jugador jugador);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ModificarAspecto", ReplyAction="http://tempuri.org/IServicioCuenta/ModificarAspectoResponse")]
-        void ModificarAspecto(LaOcaClient.LaOcaService.Aspecto aspecto);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ModificarAspecto", ReplyAction="http://tempuri.org/IServicioCuenta/ModificarAspectoResponse")]
-        System.Threading.Tasks.Task ModificarAspectoAsync(LaOcaClient.LaOcaService.Aspecto aspecto);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorId", ReplyAction="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorIdResponse")]
         LaOcaClient.LaOcaService.Cuenta ObtenerCuentaPorId(int idCuenta);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorId", ReplyAction="http://tempuri.org/IServicioCuenta/ObtenerCuentaPorIdResponse")]
         System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Cuenta> ObtenerCuentaPorIdAsync(int idCuenta);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ObtenerJugadorPorId", ReplyAction="http://tempuri.org/IServicioCuenta/ObtenerJugadorPorIdResponse")]
-        LaOcaClient.LaOcaService.Jugador ObtenerJugadorPorId(int idJugador);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ObtenerJugadorPorId", ReplyAction="http://tempuri.org/IServicioCuenta/ObtenerJugadorPorIdResponse")]
-        System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Jugador> ObtenerJugadorPorIdAsync(int idJugador);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/CrearAspecto", ReplyAction="http://tempuri.org/IServicioCuenta/CrearAspectoResponse")]
-        void CrearAspecto(LaOcaClient.LaOcaService.Aspecto aspecto);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/CrearAspecto", ReplyAction="http://tempuri.org/IServicioCuenta/CrearAspectoResponse")]
-        System.Threading.Tasks.Task CrearAspectoAsync(LaOcaClient.LaOcaService.Aspecto aspecto);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ObtenerAspectoPorId", ReplyAction="http://tempuri.org/IServicioCuenta/ObtenerAspectoPorIdResponse")]
-        LaOcaClient.LaOcaService.Aspecto ObtenerAspectoPorId(int idAspecto);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ObtenerAspectoPorId", ReplyAction="http://tempuri.org/IServicioCuenta/ObtenerAspectoPorIdResponse")]
-        System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Aspecto> ObtenerAspectoPorIdAsync(int idAspecto);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/EnviarCodigoVerificacion", ReplyAction="http://tempuri.org/IServicioCuenta/EnviarCodigoVerificacionResponse")]
-        void EnviarCodigoVerificacion(string correoElectronico);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/EnviarCodigoVerificacion", ReplyAction="http://tempuri.org/IServicioCuenta/EnviarCodigoVerificacionResponse")]
-        System.Threading.Tasks.Task EnviarCodigoVerificacionAsync(string correoElectronico);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/VerificarCodigoCrearCuenta", ReplyAction="http://tempuri.org/IServicioCuenta/VerificarCodigoCrearCuentaResponse")]
-        bool VerificarCodigoCrearCuenta(string correo, string codigo);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/VerificarCodigoCrearCuenta", ReplyAction="http://tempuri.org/IServicioCuenta/VerificarCodigoCrearCuentaResponse")]
-        System.Threading.Tasks.Task<bool> VerificarCodigoCrearCuentaAsync(string correo, string codigo);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/VerificarCodigoRecuperarContraseña", ReplyAction="http://tempuri.org/IServicioCuenta/VerificarCodigoRecuperarContraseñaResponse")]
-        int VerificarCodigoRecuperarContraseña(string correo, string codigo);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/VerificarCodigoRecuperarContraseña", ReplyAction="http://tempuri.org/IServicioCuenta/VerificarCodigoRecuperarContraseñaResponse")]
-        System.Threading.Tasks.Task<int> VerificarCodigoRecuperarContraseñaAsync(string correo, string codigo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/VerificarContraseñaActual", ReplyAction="http://tempuri.org/IServicioCuenta/VerificarContraseñaActualResponse")]
         bool VerificarContraseñaActual(int idCuenta, string contraseñaActual);
@@ -1747,18 +1699,6 @@ namespace LaOcaClient.LaOcaService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteModificar", ReplyAction="http://tempuri.org/IServicioCuenta/NombreUsuarioExisteModificarResponse")]
         System.Threading.Tasks.Task<bool> NombreUsuarioExisteModificarAsync(string nombreUsuario, int idJugadorActual);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/SincronizarAspectos", ReplyAction="http://tempuri.org/IServicioCuenta/SincronizarAspectosResponse")]
-        void SincronizarAspectos(System.Collections.Generic.Dictionary<string, int> referenciaToIdMap);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/SincronizarAspectos", ReplyAction="http://tempuri.org/IServicioCuenta/SincronizarAspectosResponse")]
-        System.Threading.Tasks.Task SincronizarAspectosAsync(System.Collections.Generic.Dictionary<string, int> referenciaToIdMap);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ConsultarEstadisticasJugador", ReplyAction="http://tempuri.org/IServicioCuenta/ConsultarEstadisticasJugadorResponse")]
-        string ConsultarEstadisticasJugador(int idJugador);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ConsultarEstadisticasJugador", ReplyAction="http://tempuri.org/IServicioCuenta/ConsultarEstadisticasJugadorResponse")]
-        System.Threading.Tasks.Task<string> ConsultarEstadisticasJugadorAsync(int idJugador);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ObtenerRankingGlobal", ReplyAction="http://tempuri.org/IServicioCuenta/ObtenerRankingGlobalResponse")]
         LaOcaClient.LaOcaService.Jugador[] ObtenerRankingGlobal();
@@ -1810,76 +1750,12 @@ namespace LaOcaClient.LaOcaService {
             return base.Channel.ModificarCuentaAsync(cuenta);
         }
         
-        public void ModificarJugador(LaOcaClient.LaOcaService.Jugador jugador) {
-            base.Channel.ModificarJugador(jugador);
-        }
-        
-        public System.Threading.Tasks.Task ModificarJugadorAsync(LaOcaClient.LaOcaService.Jugador jugador) {
-            return base.Channel.ModificarJugadorAsync(jugador);
-        }
-        
-        public void ModificarAspecto(LaOcaClient.LaOcaService.Aspecto aspecto) {
-            base.Channel.ModificarAspecto(aspecto);
-        }
-        
-        public System.Threading.Tasks.Task ModificarAspectoAsync(LaOcaClient.LaOcaService.Aspecto aspecto) {
-            return base.Channel.ModificarAspectoAsync(aspecto);
-        }
-        
         public LaOcaClient.LaOcaService.Cuenta ObtenerCuentaPorId(int idCuenta) {
             return base.Channel.ObtenerCuentaPorId(idCuenta);
         }
         
         public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Cuenta> ObtenerCuentaPorIdAsync(int idCuenta) {
             return base.Channel.ObtenerCuentaPorIdAsync(idCuenta);
-        }
-        
-        public LaOcaClient.LaOcaService.Jugador ObtenerJugadorPorId(int idJugador) {
-            return base.Channel.ObtenerJugadorPorId(idJugador);
-        }
-        
-        public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Jugador> ObtenerJugadorPorIdAsync(int idJugador) {
-            return base.Channel.ObtenerJugadorPorIdAsync(idJugador);
-        }
-        
-        public void CrearAspecto(LaOcaClient.LaOcaService.Aspecto aspecto) {
-            base.Channel.CrearAspecto(aspecto);
-        }
-        
-        public System.Threading.Tasks.Task CrearAspectoAsync(LaOcaClient.LaOcaService.Aspecto aspecto) {
-            return base.Channel.CrearAspectoAsync(aspecto);
-        }
-        
-        public LaOcaClient.LaOcaService.Aspecto ObtenerAspectoPorId(int idAspecto) {
-            return base.Channel.ObtenerAspectoPorId(idAspecto);
-        }
-        
-        public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Aspecto> ObtenerAspectoPorIdAsync(int idAspecto) {
-            return base.Channel.ObtenerAspectoPorIdAsync(idAspecto);
-        }
-        
-        public void EnviarCodigoVerificacion(string correoElectronico) {
-            base.Channel.EnviarCodigoVerificacion(correoElectronico);
-        }
-        
-        public System.Threading.Tasks.Task EnviarCodigoVerificacionAsync(string correoElectronico) {
-            return base.Channel.EnviarCodigoVerificacionAsync(correoElectronico);
-        }
-        
-        public bool VerificarCodigoCrearCuenta(string correo, string codigo) {
-            return base.Channel.VerificarCodigoCrearCuenta(correo, codigo);
-        }
-        
-        public System.Threading.Tasks.Task<bool> VerificarCodigoCrearCuentaAsync(string correo, string codigo) {
-            return base.Channel.VerificarCodigoCrearCuentaAsync(correo, codigo);
-        }
-        
-        public int VerificarCodigoRecuperarContraseña(string correo, string codigo) {
-            return base.Channel.VerificarCodigoRecuperarContraseña(correo, codigo);
-        }
-        
-        public System.Threading.Tasks.Task<int> VerificarCodigoRecuperarContraseñaAsync(string correo, string codigo) {
-            return base.Channel.VerificarCodigoRecuperarContraseñaAsync(correo, codigo);
         }
         
         public bool VerificarContraseñaActual(int idCuenta, string contraseñaActual) {
@@ -1938,12 +1814,79 @@ namespace LaOcaClient.LaOcaService {
             return base.Channel.NombreUsuarioExisteModificarAsync(nombreUsuario, idJugadorActual);
         }
         
-        public void SincronizarAspectos(System.Collections.Generic.Dictionary<string, int> referenciaToIdMap) {
-            base.Channel.SincronizarAspectos(referenciaToIdMap);
+        public LaOcaClient.LaOcaService.Jugador[] ObtenerRankingGlobal() {
+            return base.Channel.ObtenerRankingGlobal();
         }
         
-        public System.Threading.Tasks.Task SincronizarAspectosAsync(System.Collections.Generic.Dictionary<string, int> referenciaToIdMap) {
-            return base.Channel.SincronizarAspectosAsync(referenciaToIdMap);
+        public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Jugador[]> ObtenerRankingGlobalAsync() {
+            return base.Channel.ObtenerRankingGlobalAsync();
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioJugador")]
+    public interface IServicioJugador {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugador/ModificarJugador", ReplyAction="http://tempuri.org/IServicioJugador/ModificarJugadorResponse")]
+        void ModificarJugador(LaOcaClient.LaOcaService.Jugador jugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugador/ModificarJugador", ReplyAction="http://tempuri.org/IServicioJugador/ModificarJugadorResponse")]
+        System.Threading.Tasks.Task ModificarJugadorAsync(LaOcaClient.LaOcaService.Jugador jugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugador/ObtenerJugadorPorId", ReplyAction="http://tempuri.org/IServicioJugador/ObtenerJugadorPorIdResponse")]
+        LaOcaClient.LaOcaService.Jugador ObtenerJugadorPorId(int idJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugador/ObtenerJugadorPorId", ReplyAction="http://tempuri.org/IServicioJugador/ObtenerJugadorPorIdResponse")]
+        System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Jugador> ObtenerJugadorPorIdAsync(int idJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugador/ConsultarEstadisticasJugador", ReplyAction="http://tempuri.org/IServicioJugador/ConsultarEstadisticasJugadorResponse")]
+        string ConsultarEstadisticasJugador(int idJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioJugador/ConsultarEstadisticasJugador", ReplyAction="http://tempuri.org/IServicioJugador/ConsultarEstadisticasJugadorResponse")]
+        System.Threading.Tasks.Task<string> ConsultarEstadisticasJugadorAsync(int idJugador);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioJugadorChannel : LaOcaClient.LaOcaService.IServicioJugador, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ServicioJugadorClient : System.ServiceModel.ClientBase<LaOcaClient.LaOcaService.IServicioJugador>, LaOcaClient.LaOcaService.IServicioJugador {
+        
+        public ServicioJugadorClient() {
+        }
+        
+        public ServicioJugadorClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ServicioJugadorClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioJugadorClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioJugadorClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public void ModificarJugador(LaOcaClient.LaOcaService.Jugador jugador) {
+            base.Channel.ModificarJugador(jugador);
+        }
+        
+        public System.Threading.Tasks.Task ModificarJugadorAsync(LaOcaClient.LaOcaService.Jugador jugador) {
+            return base.Channel.ModificarJugadorAsync(jugador);
+        }
+        
+        public LaOcaClient.LaOcaService.Jugador ObtenerJugadorPorId(int idJugador) {
+            return base.Channel.ObtenerJugadorPorId(idJugador);
+        }
+        
+        public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Jugador> ObtenerJugadorPorIdAsync(int idJugador) {
+            return base.Channel.ObtenerJugadorPorIdAsync(idJugador);
         }
         
         public string ConsultarEstadisticasJugador(int idJugador) {
@@ -1953,13 +1896,169 @@ namespace LaOcaClient.LaOcaService {
         public System.Threading.Tasks.Task<string> ConsultarEstadisticasJugadorAsync(int idJugador) {
             return base.Channel.ConsultarEstadisticasJugadorAsync(idJugador);
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioAspecto")]
+    public interface IServicioAspecto {
         
-        public LaOcaClient.LaOcaService.Jugador[] ObtenerRankingGlobal() {
-            return base.Channel.ObtenerRankingGlobal();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAspecto/ModificarAspecto", ReplyAction="http://tempuri.org/IServicioAspecto/ModificarAspectoResponse")]
+        void ModificarAspecto(LaOcaClient.LaOcaService.Aspecto aspecto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAspecto/ModificarAspecto", ReplyAction="http://tempuri.org/IServicioAspecto/ModificarAspectoResponse")]
+        System.Threading.Tasks.Task ModificarAspectoAsync(LaOcaClient.LaOcaService.Aspecto aspecto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAspecto/CrearAspecto", ReplyAction="http://tempuri.org/IServicioAspecto/CrearAspectoResponse")]
+        void CrearAspecto(LaOcaClient.LaOcaService.Aspecto aspecto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAspecto/CrearAspecto", ReplyAction="http://tempuri.org/IServicioAspecto/CrearAspectoResponse")]
+        System.Threading.Tasks.Task CrearAspectoAsync(LaOcaClient.LaOcaService.Aspecto aspecto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAspecto/ObtenerAspectoPorId", ReplyAction="http://tempuri.org/IServicioAspecto/ObtenerAspectoPorIdResponse")]
+        LaOcaClient.LaOcaService.Aspecto ObtenerAspectoPorId(int idAspecto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAspecto/ObtenerAspectoPorId", ReplyAction="http://tempuri.org/IServicioAspecto/ObtenerAspectoPorIdResponse")]
+        System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Aspecto> ObtenerAspectoPorIdAsync(int idAspecto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAspecto/SincronizarAspectos", ReplyAction="http://tempuri.org/IServicioAspecto/SincronizarAspectosResponse")]
+        void SincronizarAspectos(System.Collections.Generic.Dictionary<string, int> referenciaToIdMap);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioAspecto/SincronizarAspectos", ReplyAction="http://tempuri.org/IServicioAspecto/SincronizarAspectosResponse")]
+        System.Threading.Tasks.Task SincronizarAspectosAsync(System.Collections.Generic.Dictionary<string, int> referenciaToIdMap);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioAspectoChannel : LaOcaClient.LaOcaService.IServicioAspecto, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ServicioAspectoClient : System.ServiceModel.ClientBase<LaOcaClient.LaOcaService.IServicioAspecto>, LaOcaClient.LaOcaService.IServicioAspecto {
+        
+        public ServicioAspectoClient() {
         }
         
-        public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Jugador[]> ObtenerRankingGlobalAsync() {
-            return base.Channel.ObtenerRankingGlobalAsync();
+        public ServicioAspectoClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ServicioAspectoClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioAspectoClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioAspectoClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public void ModificarAspecto(LaOcaClient.LaOcaService.Aspecto aspecto) {
+            base.Channel.ModificarAspecto(aspecto);
+        }
+        
+        public System.Threading.Tasks.Task ModificarAspectoAsync(LaOcaClient.LaOcaService.Aspecto aspecto) {
+            return base.Channel.ModificarAspectoAsync(aspecto);
+        }
+        
+        public void CrearAspecto(LaOcaClient.LaOcaService.Aspecto aspecto) {
+            base.Channel.CrearAspecto(aspecto);
+        }
+        
+        public System.Threading.Tasks.Task CrearAspectoAsync(LaOcaClient.LaOcaService.Aspecto aspecto) {
+            return base.Channel.CrearAspectoAsync(aspecto);
+        }
+        
+        public LaOcaClient.LaOcaService.Aspecto ObtenerAspectoPorId(int idAspecto) {
+            return base.Channel.ObtenerAspectoPorId(idAspecto);
+        }
+        
+        public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Aspecto> ObtenerAspectoPorIdAsync(int idAspecto) {
+            return base.Channel.ObtenerAspectoPorIdAsync(idAspecto);
+        }
+        
+        public void SincronizarAspectos(System.Collections.Generic.Dictionary<string, int> referenciaToIdMap) {
+            base.Channel.SincronizarAspectos(referenciaToIdMap);
+        }
+        
+        public System.Threading.Tasks.Task SincronizarAspectosAsync(System.Collections.Generic.Dictionary<string, int> referenciaToIdMap) {
+            return base.Channel.SincronizarAspectosAsync(referenciaToIdMap);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LaOcaService.IServicioCodigo")]
+    public interface IServicioCodigo {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCodigo/EnviarCodigoVerificacion", ReplyAction="http://tempuri.org/IServicioCodigo/EnviarCodigoVerificacionResponse")]
+        void EnviarCodigoVerificacion(string correoElectronico);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCodigo/EnviarCodigoVerificacion", ReplyAction="http://tempuri.org/IServicioCodigo/EnviarCodigoVerificacionResponse")]
+        System.Threading.Tasks.Task EnviarCodigoVerificacionAsync(string correoElectronico);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCodigo/VerificarCodigoCrearCuenta", ReplyAction="http://tempuri.org/IServicioCodigo/VerificarCodigoCrearCuentaResponse")]
+        bool VerificarCodigoCrearCuenta(string correo, string codigo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCodigo/VerificarCodigoCrearCuenta", ReplyAction="http://tempuri.org/IServicioCodigo/VerificarCodigoCrearCuentaResponse")]
+        System.Threading.Tasks.Task<bool> VerificarCodigoCrearCuentaAsync(string correo, string codigo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCodigo/VerificarCodigoRecuperarContraseña", ReplyAction="http://tempuri.org/IServicioCodigo/VerificarCodigoRecuperarContraseñaResponse")]
+        int VerificarCodigoRecuperarContraseña(string correo, string codigo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCodigo/VerificarCodigoRecuperarContraseña", ReplyAction="http://tempuri.org/IServicioCodigo/VerificarCodigoRecuperarContraseñaResponse")]
+        System.Threading.Tasks.Task<int> VerificarCodigoRecuperarContraseñaAsync(string correo, string codigo);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IServicioCodigoChannel : LaOcaClient.LaOcaService.IServicioCodigo, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ServicioCodigoClient : System.ServiceModel.ClientBase<LaOcaClient.LaOcaService.IServicioCodigo>, LaOcaClient.LaOcaService.IServicioCodigo {
+        
+        public ServicioCodigoClient() {
+        }
+        
+        public ServicioCodigoClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ServicioCodigoClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioCodigoClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ServicioCodigoClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public void EnviarCodigoVerificacion(string correoElectronico) {
+            base.Channel.EnviarCodigoVerificacion(correoElectronico);
+        }
+        
+        public System.Threading.Tasks.Task EnviarCodigoVerificacionAsync(string correoElectronico) {
+            return base.Channel.EnviarCodigoVerificacionAsync(correoElectronico);
+        }
+        
+        public bool VerificarCodigoCrearCuenta(string correo, string codigo) {
+            return base.Channel.VerificarCodigoCrearCuenta(correo, codigo);
+        }
+        
+        public System.Threading.Tasks.Task<bool> VerificarCodigoCrearCuentaAsync(string correo, string codigo) {
+            return base.Channel.VerificarCodigoCrearCuentaAsync(correo, codigo);
+        }
+        
+        public int VerificarCodigoRecuperarContraseña(string correo, string codigo) {
+            return base.Channel.VerificarCodigoRecuperarContraseña(correo, codigo);
+        }
+        
+        public System.Threading.Tasks.Task<int> VerificarCodigoRecuperarContraseñaAsync(string correo, string codigo) {
+            return base.Channel.VerificarCodigoRecuperarContraseñaAsync(correo, codigo);
         }
     }
     

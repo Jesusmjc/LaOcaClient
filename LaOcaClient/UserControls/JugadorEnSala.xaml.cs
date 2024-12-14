@@ -60,21 +60,17 @@ namespace LaOcaClient.UserControls
 
         private void MostrarImagenMasOpciones()
         {
-            bool soyHost = SingletonJugador.Instance.Jugador.NombreUsuario.Equals(_ventanaPadre.SalaActual.NombreHost);
-            bool soyYo = SingletonJugador.Instance.Jugador.Equals(JugadorEnLaSala);
-
-            if (_ventanaPadre is Sala)
+            if (!(_ventanaPadre is Sala))
             {
                 imgMasOpciones.Visibility = Visibility.Hidden;
                 return;
             }
 
+            bool soyHost = SingletonJugador.Instance.Jugador.NombreUsuario.Equals(_ventanaPadre.SalaActual.NombreHost);
+            bool soyYo = SingletonJugador.Instance.Jugador.Equals(JugadorEnLaSala);
+
             if (!SingletonJugador.Instance.Jugador.EsInvitado)
             {
-                if (_ventanaPadre is Sala)
-                {
-                    imgMasOpciones.Visibility = Visibility.Hidden;
-                }
                 if (soyYo)
                 {
                     imgMasOpciones.Visibility = Visibility.Hidden;
@@ -82,7 +78,6 @@ namespace LaOcaClient.UserControls
                 else if (!JugadorEnLaSala.EsInvitado)
                 {
                     AjustarMenuPopupSegunAmistad();
-
                 }
                 else
                 {
@@ -100,7 +95,6 @@ namespace LaOcaClient.UserControls
             {
                 imgMasOpciones.Visibility = Visibility.Hidden;
             }
-            
         }
 
         public void AjustarMenuPopupSegunAmistad()
@@ -142,7 +136,7 @@ namespace LaOcaClient.UserControls
                     }
                     break;
 
-                default: // "Rechazada" o No existe amistad
+                default:
                     CargarOpcionEnviarSolicitudAmistad();
                     CargarOpcionBloquear();
                     break;

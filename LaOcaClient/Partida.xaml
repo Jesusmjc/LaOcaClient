@@ -5,6 +5,7 @@
         Title="{x:Static p:Resources.tituloPartida}"
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen">
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
@@ -14,12 +15,14 @@
         <Viewbox Stretch="Uniform" Grid.Column="0">
             <Grid>
                 <Image Source="pack://application:,,,/LaOcaClient;component/Recursos/TableroOcaActualizado.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Canvas Name="TableroCanvas" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Name="FichaOcaAmarilla" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaAmarilla.png" Width="85" Height="85" Canvas.Left="-584" Canvas.Top="315" Visibility="Collapsed"/>
-                    <Image Name="FichaOcaAzul" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaAzul.png" Width="85" Height="85" Canvas.Left="-584" Canvas.Top="315" Visibility="Collapsed"/>
-                    <Image Name="FichaOcaRosa" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaRosa.png" Width="85" Height="85" Canvas.Left="-584" Canvas.Top="315" Visibility="Collapsed"/>
-                    <Image Name="FichaOcaVerde" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaVerde.png" Width="85" Height="85" Canvas.Left="-584" Canvas.Top="315" Visibility="Collapsed"/>
+                
+                <Canvas x:Name="cvTablero" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image x:Name="imgFichaOcaAmarilla" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaAmarilla.png" Width="85" Height="85" Canvas.Left="-584" Canvas.Top="315" Visibility="Collapsed"/>
+                    <Image x:Name="imgFichaOcaAzul" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaAzul.png" Width="85" Height="85" Canvas.Left="-584" Canvas.Top="315" Visibility="Collapsed"/>
+                    <Image x:Name="imgFichaOcaRosa" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaRosa.png" Width="85" Height="85" Canvas.Left="-584" Canvas.Top="315" Visibility="Collapsed"/>
+                    <Image x:Name="imgFichaOcaVerde" Source="pack://application:,,,/LaOcaClient;component/Recursos/FichaOcaVerde.png" Width="85" Height="85" Canvas.Left="-584" Canvas.Top="315" Visibility="Collapsed"/>
                 </Canvas>
+                
                 <StackPanel x:Name="FichasJugadoresPanel" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,134,0,0">
                     <TextBlock Text="{x:Static p:Resources.lbJugadoresEnPartida}" FontWeight="Bold" FontSize="16"/>
                 </StackPanel>
@@ -33,10 +36,12 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
+                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
+                    
                     <Grid x:Name="gridJugador1" Grid.Row="0" Grid.Column="0" Height="140" Width="140" Margin="10"/>
                     <Grid x:Name="gridJugador2" Grid.Row="0" Grid.Column="1" Height="140" Width="140" Margin="10"/>
                     <Grid x:Name="gridJugador3" Grid.Row="1" Grid.Column="0" Height="140" Width="140" Margin="10"/>
@@ -47,28 +52,16 @@
                 <Label x:Name="lbNombreJugadorEnTurno" Content="fulano" Margin="10" VerticalAlignment="Center" FontWeight="Bold" FontSize="16"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <Button x:Name="BtnDados" 
-                            Content="{x:Static p:Resources.btnLanzarDado}" 
-                            Margin="10" 
-                            Click="LanzarDado" 
-                            Height="42" 
-                            Width="120" 
-                            FontSize="16"   
-                            Background="#0000FF" 
-                            Foreground="White" 
-                            IsEnabled="False"/>
+                    <Button x:Name="btnDado" Content="{x:Static p:Resources.btnLanzarDado}" Margin="10" Click="LanzarDado" Height="42" Width="120" FontSize="16" Background="#0000FF" Foreground="White" IsEnabled="False"/>
+                    
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-                        <Image x:Name="imgDado" 
-                               Source="pack://application:,,,/LaOcaClient;component/Recursos/Dado.png" 
-                               Width="40" 
-                               Height="40" 
-                               Visibility="Visible"/>
+                        <Image x:Name="imgDado" Source="pack://application:,,,/LaOcaClient;component/Recursos/Dado.png" Width="40" Height="40" Visibility="Visible"/>
                     </Grid>
                 </StackPanel>
 
-                <Button Name="BtnAbandonar" Content="{x:Static p:Resources.btnAbandonarPartida}" Margin="10" Click="BtnAbandonar_Click" Height="42" Width="150" FontSize="16" Background="#FFDD4B39" Foreground="White" />
-
+                <Button Name="btnAbandonar" Content="{x:Static p:Resources.btnAbandonarPartida}" Margin="10" Click="BtnAbandonar" Height="42" Width="150" FontSize="16" Background="#FFDD4B39" Foreground="White" />
                 <Label x:Name="lbNotificacion" Content="" HorizontalAlignment="Center" Margin="10,10,10,0" FontSize="14" FontWeight="Normal" Foreground="Red" Visibility="Visible"/>
+                
             </StackPanel>
         </Border>
     </Grid>

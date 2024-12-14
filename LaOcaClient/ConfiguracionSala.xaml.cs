@@ -21,7 +21,6 @@ namespace LaOcaClient
             InitializeComponent();
             cbVisibilidad.Items.Add(Properties.Resources.globalPublica);
             cbVisibilidad.Items.Add(Properties.Resources.globalPrivada);
-
             tbxNombreSala.Text = Properties.Resources.lbSalaDe + SingletonJugador.Instance.Jugador.NombreUsuario;
             cbVisibilidad.SelectedIndex = 0;
         }

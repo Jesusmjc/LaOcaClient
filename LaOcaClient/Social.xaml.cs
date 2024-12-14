@@ -18,9 +18,6 @@ using System.Windows.Shapes;
 
 namespace LaOcaClient
 {
-    /// <summary>
-    /// Interaction logic for Social.xaml
-    /// </summary>
     public partial class Social : Window, IServicioActualizacionJugadoresEnLineaCallback
     {
         private LaOcaService.ServicioActualizacionJugadoresEnLineaClient _clienteActualizacionJugadoresEnLinea;
@@ -28,11 +25,9 @@ namespace LaOcaClient
 
         public Sala VentanaSala { get; set; }
 
-
         public Social()
         {
             InitializeComponent();
-
             InstanceContext contexto = new InstanceContext(this);
             _clienteActualizacionJugadoresEnLinea = new ServicioActualizacionJugadoresEnLineaClient(contexto);
 
@@ -55,16 +50,13 @@ namespace LaOcaClient
         public Social(Sala ventanaSala)
         {
             InitializeComponent();
-
             InstanceContext contexto = new InstanceContext(this);
             _clienteActualizacionJugadoresEnLinea = new ServicioActualizacionJugadoresEnLineaClient(contexto);
 
             try
             {
                 _clienteActualizacionJugadoresEnLinea.AgregarCanalCallbackJugadoresEnLinea(SingletonJugador.Instance.Jugador.NombreUsuario);
-
                 VentanaSala = ventanaSala;
-
                 MostrarAmigos();
                 imgBuzon.Visibility = Visibility.Hidden;
             }
@@ -157,7 +149,7 @@ namespace LaOcaClient
                 ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
                 Amistad[] amistades = clienteAmistad.RecuperarAmistades(SingletonJugador.Instance.Jugador.IdJugador, EstadoAmistad.AMIGOS);
 
-                ServicioCuentaClient clienteCuenta = new ServicioCuentaClient();
+                ServicioJugadorClient clienteCuenta = new ServicioJugadorClient();
 
                 Jugador jugadorAmigo;
 
@@ -251,9 +243,8 @@ namespace LaOcaClient
         {
             try
             {
-                ServicioCuentaClient clienteCuenta = new ServicioCuentaClient();
+                ServicioJugadorClient clienteCuenta = new ServicioJugadorClient();
                 Jugador exAmigo = clienteCuenta.ObtenerJugadorPorId(idJugadorQueTerminoAmistad);
-
                 Amigo entradaExAmigo = _amigos[exAmigo.NombreUsuario];
                 lbxListaAmigos.Items.Remove(entradaExAmigo);
                 _amigos.Remove(exAmigo.NombreUsuario);

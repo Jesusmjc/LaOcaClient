@@ -21,7 +21,7 @@ namespace LaOcaClient
 {
     public partial class IniciarSesion : Window
     {
-        LaOcaService.ServicioInicioSesionClient _clienteInicioSesion;
+        private LaOcaService.ServicioInicioSesionClient _clienteInicioSesion;
 
         public IniciarSesion()
         {
@@ -41,17 +41,15 @@ namespace LaOcaClient
         private void CambiarIdioma(string cultureCode)
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(cultureCode);
-
             IniciarSesion nuevaVentana = new IniciarSesion();
             nuevaVentana.Show();
             this.Close();
         }
 
-        private void BtnIniciarSesion_Click(object sender, RoutedEventArgs e)
+        private void BtnIniciarSesion(object sender, RoutedEventArgs e)
         {
             string correoElectronico = tbxCorreoElectronico.Text.ToString();
-            string contrasena = pwbContrasena.Password.ToString();
-
+            string contrasena = pbContrasena.Password.ToString();
 
             if (!string.IsNullOrWhiteSpace(correoElectronico) && !string.IsNullOrWhiteSpace(contrasena))
             {
@@ -108,20 +106,20 @@ namespace LaOcaClient
             {
                 MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (CommunicationException ex)
+            catch (CommunicationException)
             {
-                MessageBox.Show(ex.InnerException.Message, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        private void BtnOlvideMiContraseña_Click(object sender, RoutedEventArgs e)
+        private void BtnOlvideMiContraseña(object sender, RoutedEventArgs e)
         {
             RecuperarContraseña ventanaRecuperarContraseña = new RecuperarContraseña();
             ventanaRecuperarContraseña.Show();
             this.Close();
         }
 
-        private void BtnCrearCuentaNueva_Click(object sender, RoutedEventArgs e)
+        private void BtnCrearCuentaNueva(object sender, RoutedEventArgs e)
         {
             CrearCuenta crearCuentaWindow = new CrearCuenta(ModoCuenta.Crear);
             crearCuentaWindow.Show();
@@ -141,7 +139,7 @@ namespace LaOcaClient
             Jugador jugadorInvitado = new Jugador
             {
                 EsInvitado = true,
-                NombreUsuario = "Invitado" + DateTime.Now.Second.ToString("D2") + DateTime.Now.Minute.ToString("D2")
+                NombreUsuario = Properties.Resources.lbInvitado + DateTime.Now.Second.ToString("D2") + DateTime.Now.Minute.ToString("D2")
                                 + DateTime.Now.Hour.ToString("D2") + DateTime.Now.Day.ToString("D2")
             };
             SingletonJugador.Instance.Jugador = jugadorInvitado;
@@ -157,11 +155,11 @@ namespace LaOcaClient
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

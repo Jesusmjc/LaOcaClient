@@ -15,12 +15,9 @@ using System.Windows.Threading;
 
 namespace LaOcaClient
 {
-    /// <summary>
-    /// Interaction logic for VentanaCierreAutomatico.xaml
-    /// </summary>
     public partial class VentanaCierreAutomatico : Window
     {
-        private DispatcherTimer timer;
+        private DispatcherTimer _timer;
 
         public VentanaCierreAutomatico(string mensaje, string titulo, int segundos)
         {
@@ -28,17 +25,17 @@ namespace LaOcaClient
             Title = titulo;
             lbMensaje.Content = mensaje;
 
-            timer = new DispatcherTimer
+            _timer = new DispatcherTimer
             {
                 Interval = TimeSpan.FromSeconds(segundos)
             };
-            timer.Tick += Timer_Tick;
-            timer.Start();
+            _timer.Tick += Timer_Tick;
+            _timer.Start();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            timer.Stop();
+            _timer.Stop();
             Close();
         }
 

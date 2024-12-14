@@ -20,9 +20,6 @@ using System.Windows.Shapes;
 
 namespace LaOcaClient
 {
-    /// <summary>
-    /// Interaction logic for Sala.xaml
-    /// </summary>
     public partial class Sala : Window, IVentanaSala, IServicioChatCallback, IServicioSalaCallback, IServicioActualizacionJugadoresEnSalaCallback
     {
         public LaOcaService.Sala SalaActual { get; set; }
@@ -31,17 +28,14 @@ namespace LaOcaClient
         private InstanceContext _contexto;
         private LaOcaService.ServicioChatClient _clienteChat;
         private LaOcaService.ServicioSalaClient _clienteSala;
-
         private Grid[] _gridsJugadores;
         private JugadorEnSala[] _jugadoresEnSala;
-
         private Social _ventanaSocial;
         private bool _ventanaEstaAbierta = true;
 
         public Sala()
         {
             InitializeComponent();
-            
             PrepararSala();
             MostrarPrimerJugador();
             UnirseAlChat();
@@ -50,7 +44,6 @@ namespace LaOcaClient
         public Sala(string nombreSala, string visibilidad)
         {
             InitializeComponent();
-
             PrepararSala();
             CrearSala(nombreSala, visibilidad);
             MostrarPrimerJugador();
@@ -60,11 +53,9 @@ namespace LaOcaClient
         public Sala(LaOcaService.Sala sala)
         {
             InitializeComponent();
-
             this.SalaActual = sala;
             lbNombreSala.Content = SalaActual.Nombre;
             lbCodigoSala.Content = SalaActual.Codigo;
-
             PrepararSala();
             MostrarJugadoresEnSala();
             AgregarJugadorASala();
@@ -78,9 +69,7 @@ namespace LaOcaClient
             _gridsJugadores[1] = gridJugadorSala2;
             _gridsJugadores[2] = gridJugadorSala3;
             _gridsJugadores[3] = gridJugadorSala4;
-
             _jugadoresEnSala = new JugadorEnSala[4];
-
             _contexto = new InstanceContext(this);
             _clienteChat = new LaOcaService.ServicioChatClient(_contexto);
             _clienteSala = new LaOcaService.ServicioSalaClient(_contexto);
@@ -99,6 +88,7 @@ namespace LaOcaClient
                 Visibilidad = visibilidad,
                 NombreHost = SingletonJugador.Instance.Jugador.NombreUsuario
             };
+
             nuevaSala.Jugadores.Add(SingletonJugador.Instance.Jugador.NombreUsuario, SingletonJugador.Instance.Jugador);
             SalaActual = nuevaSala;
 
@@ -240,7 +230,7 @@ namespace LaOcaClient
         {
             Dispatcher.Invoke(() =>
             {
-                lbChat.Items.Add($"{nombreJugador}: {mensaje}");
+                lbxChat.Items.Add($"{nombreJugador}: {mensaje}");
             });
         }
 
@@ -287,7 +277,6 @@ namespace LaOcaClient
                 }
             });
         }
-
 
         private void LimpiarTextoEjemplo(object sender, RoutedEventArgs e)
         {
@@ -440,7 +429,6 @@ namespace LaOcaClient
         public void ExpulsarAMenúPrincipal(string motivo)
         {
             MessageBox.Show(motivo, Properties.Resources.tituloExpulsadoSala, MessageBoxButton.OK, MessageBoxImage.Information);
-
             MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
             _ventanaSocial?.Close();
             _ventanaEstaAbierta = false;
@@ -452,7 +440,6 @@ namespace LaOcaClient
         {
             Social ventanaAmigos = new Social(this);
             this._ventanaSocial = ventanaAmigos;
-
             this.Hide();
             ventanaAmigos.ShowDialog();
             if (_ventanaEstaAbierta)

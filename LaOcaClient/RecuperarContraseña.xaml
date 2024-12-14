@@ -4,29 +4,28 @@
         xmlns:local="clr-namespace:LaOcaClient"
         xmlns:p="clr-namespace:LaOcaClient.Properties"
         Title="{x:Static p:Resources.globalRecuperarContraseña}" Height="245" Width="379">
-    <Grid>
 
-        <Button Content="{x:Static p:Resources.btnGlobalRegresar}" Margin="0,0,0,-150" Click="btnVolver_Click" Height="20" Width="60"/>
+    <Grid>
+        <Button x:Name="btnRegresar" Content="{x:Static p:Resources.btnGlobalRegresar}" Margin="0,0,0,-150" Click="btnVolver" Height="20" Width="60"/>
 
         <StackPanel x:Name="spCorreo" Margin="20,20,20,24" Visibility="Visible">
-            <TextBlock Text="{x:Static p:Resources.lbIngresarCorreo}" Margin="0,0,0,10"/>
-            <TextBox x:Name="tbCorreoElectronico" Margin="0,0,0,20" MaxLength="50"/>
-            <Button Content="{x:Static p:Resources.btnEnviarCodigo}" Click="btnEnviarCodigoRestablecimiento_Click"/>
+            <TextBlock x:Name="tbckIngresarCorreo" Text="{x:Static p:Resources.lbIngresarCorreo}" Margin="0,0,0,10"/>
+            <TextBox x:Name="tbxCorreoElectronico" Margin="0,0,0,20" MaxLength="50"/>
+            <Button x:Name="btnEnviarCodigo" Content="{x:Static p:Resources.btnEnviarCodigo}" Click="btnEnviarCodigoRestablecimiento"/>
         </StackPanel>
 
         <StackPanel x:Name="spCodigo" Margin="20" Visibility="Collapsed">
-            <TextBlock Text="{x:Static p:Resources.lbIngresarCodigo}" Margin="0,0,0,10"/>
-            <TextBox x:Name="tbCodigoRestablecimiento" Margin="0,0,0,20" MaxLength="10"/>
-            <Button Content="{x:Static p:Resources.btnVerificarCodigo}" Click="btnVerificarCodigo_Click"/>
+            <TextBlock x:Name="tbckIngresarCodigo" Text="{x:Static p:Resources.lbIngresarCodigo}" Margin="0,0,0,10"/>
+            <TextBox x:Name="tbxCodigoRestablecimiento" Margin="0,0,0,20" MaxLength="6"/>
+            <Button x:Name="btnVerificarElCodigo" Content="{x:Static p:Resources.btnVerificarCodigo}" Click="btnVerificarCodigo"/>
         </StackPanel>
 
-        <StackPanel x:Name="spNuevaContraseña" Margin="20,10,20,20" Visibility="Collapsed">
-            <TextBlock Text="{x:Static p:Resources.lbIngresarNuevaContraseña}" Width="345" Margin="0,10,0,10"/>
+        <StackPanel x:Name="spContraseña" Margin="20,10,20,20" Visibility="Collapsed">
+            <TextBlock x:Name="tbckIngresarNuevaContraseña" Text="{x:Static p:Resources.lbIngresarNuevaContraseña}" Width="345" Margin="0,10,0,10"/>
             <PasswordBox x:Name="pbNuevaContrasena" Width="245"/>
-            <TextBlock Text="{x:Static p:Resources.lbConfirmarNuevaContraseña}" Margin="0,10,0,10" Width="345"/>
+            <TextBlock x:Name="tbckConfirmarContraseña" Text="{x:Static p:Resources.lbConfirmarNuevaContraseña}" Margin="0,10,0,10" Width="345"/>
             <PasswordBox x:Name="pbConfirmarContrasena" Width="244"/>
-            <Button Content="{x:Static p:Resources.btnGuardarNuevaContraseña}" Click="btnRestablecerContrasena_Click" Width="200" Margin="0,10,0,10" Height="20"/>
+            <Button x:Name="btnGuardarContraseña" Content="{x:Static p:Resources.btnGuardarNuevaContraseña}" Click="btnRestablecerContrasena" Width="200" Margin="0,10,0,10" Height="20"/>
         </StackPanel>
-
     </Grid>
 </Window>

@@ -28,7 +28,7 @@ namespace LaOcaClient
             }
         }
 
-        private void BtnModificarCuenta_Click(object sender, RoutedEventArgs e)
+        private void BtnModificarCuenta(object sender, RoutedEventArgs e)
         {
             int idCuenta = SingletonJugador.Instance.Jugador.IdCuenta;
             int idJugador = SingletonJugador.Instance.Jugador.IdJugador;
@@ -107,7 +107,7 @@ namespace LaOcaClient
             ventanaSocial.ShowDialog();
         }
 
-        private void BtnVerEstadisticas_Click(object sender, RoutedEventArgs e)
+        private void BtnVerEstadisticas(object sender, RoutedEventArgs e)
         {
             int idJugador = SingletonJugador.Instance.Jugador.IdJugador;
 
@@ -115,7 +115,7 @@ namespace LaOcaClient
             ventanaEstadisticas.ShowDialog();
         }
 
-        private void BtnVerRankingGlobal_Click(object sender, RoutedEventArgs e)
+        private void BtnVerRankingGlobal(object sender, RoutedEventArgs e)
         {
             var ventanaRanking = new RankingGlobal();
             ventanaRanking.ShowDialog();

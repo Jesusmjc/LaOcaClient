@@ -7,12 +7,12 @@
         xmlns:p="clr-namespace:LaOcaClient.Properties"
         mc:Ignorable="d"
         Title="Social" Height="450" Width="800">
+    
     <Grid>
         <Label x:Name="lbSocial" Content="{x:Static p:Resources.lbAmigos}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="300,20,300,0" VerticalAlignment="Top" Height="50" FontSize="24"/>
         <Image x:Name="imgVolver" Margin="20,20,0,0" Source="/Recursos/icono_volver.png" Stretch="Fill" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40" MouseLeftButtonDown="RegresarAVentanaAnterior"/>
         <Image x:Name="imgBuzon" Margin="0,20,20,0" Source="/Recursos/buzon.png" Stretch="Fill" Height="40" VerticalAlignment="Top" HorizontalAlignment="Right" Width="40" MouseLeftButtonDown="MostrarBuzon"/>
         <ListBox x:Name="lbxListaAmigos" Margin="20,100,20, 20">
-            
         </ListBox>
     </Grid>
 </Window>

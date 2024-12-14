@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using System.ServiceModel.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -90,11 +91,11 @@ namespace LaOcaClient
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("El servidor ha tardado demasiado en responder.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
-                MessageBox.Show("Ha ocurrido un error al intentar conectar con el Servidor. Por favor intente de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             return invitaciones;
@@ -111,7 +112,6 @@ namespace LaOcaClient
         {
             btnSolicitudes.IsEnabled = false;
             btnInvitaciones.IsEnabled = true;
-
             lbxPeticiones.Items.Clear();
 
             try
@@ -145,9 +145,7 @@ namespace LaOcaClient
         {
             btnInvitaciones.IsEnabled = false;
             btnSolicitudes.IsEnabled = true;
-
             lbxPeticiones.Items.Clear();
-
             MostrarInvitacionesPendientes();
         }
     }

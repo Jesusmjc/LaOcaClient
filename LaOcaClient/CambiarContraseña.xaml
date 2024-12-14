@@ -8,19 +8,19 @@
         mc:Ignorable="d"
         Title="{x:Static p:Resources.btnCambiarContraseña}" Height="450" Width="800">
     <Grid>
-        <StackPanel Margin="40">
-            <TextBlock Text="{x:Static p:Resources.lbContraseñaActual}" Margin="0,0,0,10"/>
-            <PasswordBox x:Name="tbContraseñaActual" Margin="0,0,0,20" MaxLength="16"/>
+        <StackPanel x:Name="spCambiarContraseña" Margin="40">
+            <TextBlock x:Name="tbckContraseñaActual" Text="{x:Static p:Resources.lbContraseñaActual}" Margin="0,0,0,10"/>
+            <PasswordBox x:Name="pbContraseñaActual" Margin="0,0,0,20" MaxLength="16"/>
 
-            <TextBlock Text="{x:Static p:Resources.lbIngresarNuevaContraseña}" Margin="0,0,0,10"/>
-            <PasswordBox x:Name="tbNuevaContraseña" Margin="0,0,0,20" MaxLength="16"/>
+            <TextBlock x:Name="tbckContraseñaNueva" Text="{x:Static p:Resources.lbIngresarNuevaContraseña}" Margin="0,0,0,10"/>
+            <PasswordBox x:Name="pbNuevaContraseña" Margin="0,0,0,20" MaxLength="16"/>
 
-            <TextBlock Text="{x:Static p:Resources.lbConfirmarNuevaContraseña}" Margin="0,0,0,10"/>
-            <PasswordBox x:Name="tbConfirmarNuevaContraseña" Margin="0,0,0,20" MaxLength="16"/>
+            <TextBlock x:Name="tbckConfirmarContraseña" Text="{x:Static p:Resources.lbConfirmarNuevaContraseña}" Margin="0,0,0,10"/>
+            <PasswordBox x:Name="pbConfirmarNuevaContraseña" Margin="0,0,0,20" MaxLength="16"/>
 
-            <Button Content="{x:Static p:Resources.btnCambiarContraseña}" Click="btnActualizarContraseña_Click" Margin="0,0,0,20"/>
+            <Button x:Name="btnCambiarContraseña" Content="{x:Static p:Resources.btnCambiarContraseña}" Click="BtnActualizarContraseña" Margin="0,0,0,20"/>
         </StackPanel>
-        <Button Content="{x:Static p:Resources.btnGlobalRegresar}" Margin="606,321,116,10" Click="btnVolver_Click" Height="20" Width="60"/>
+        <Button x:Name="btnRegresar" Content="{x:Static p:Resources.btnGlobalRegresar}" Margin="606,321,116,10" Click="BtnVolver" Height="20" Width="60"/>
 
     </Grid>
 </Window>

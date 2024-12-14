@@ -16,14 +16,13 @@ namespace LaOcaClient.UserControls
 
         private InvitacionPartida _invitacion;
         private Amistad _amistad;
-
         private bool _esInvitacion;
 
         public Peticion(InvitacionPartida invitacion)
         {
             InitializeComponent();
 
-            lbMensaje.Content = invitacion.JugadorEmisor.NombreUsuario + " te ha invitado a su partida.";
+            lbMensaje.Content = invitacion.JugadorEmisor.NombreUsuario + Properties.Resources.lbTeInvitoAPartida;
             this.CodigoSala = invitacion.CodigoSalaObjetivo;
             this._invitacion = invitacion;
             _esInvitacion = true;
@@ -36,13 +35,16 @@ namespace LaOcaClient.UserControls
         {
             InitializeComponent();
 
-            ServicioCuentaClient clienteCuenta = new ServicioCuentaClient();
+            ServicioJugadorClient clienteCuenta = new ServicioJugadorClient();
 
             Jugador jugadorEmisor = clienteCuenta.ObtenerJugadorPorId(amistad.IdJugadorSolicitante);
 
-            lbMensaje.Content = jugadorEmisor.NombreUsuario + " quiere ser tu amigo.";
+            lbMensaje.Content = jugadorEmisor.NombreUsuario + Properties.Resources.lbQuiereAmistad;
             _amistad = amistad;
             _esInvitacion = false;
+
+            string rutaFotoPerfil = FotoPerfilUtils.ObtenerRutaFotoPerfil(jugadorEmisor.IdFotoPerfil);
+            imgFotoPerfil.Source = new BitmapImage(new Uri(rutaFotoPerfil, UriKind.RelativeOrAbsolute));
         }
 
         private void UnirseASala()
@@ -95,11 +97,11 @@ namespace LaOcaClient.UserControls
 
                 if (estadoAmistad.Equals(EstadoAmistad.AMIGOS))
                 {
-                    MessageBox.Show("¡Ahora son amigos!", "Solicitud de amistad aceptada", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(Properties.Resources.msgAhoraSonAmigos, Properties.Resources.tituloSolicitudAceptada, MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Has rechazado la solicitud de amistad.", "Solicitud de amistad rechazada", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(Properties.Resources.msgSolicitudRechazada, Properties.Resources.tituloSolicitudRechazada, MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (FaultException<AmistadException> ex)

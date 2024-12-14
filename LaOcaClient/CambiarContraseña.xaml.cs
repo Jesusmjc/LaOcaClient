@@ -19,7 +19,7 @@ namespace LaOcaClient
     public partial class CambiarContraseña : Window
     {
         private readonly IServicioCuenta _servicioCuenta;
-        private Cuenta cuenta;
+        private Cuenta _cuenta;
 
         public CambiarContraseña(int idCuenta)
         {
@@ -32,8 +32,8 @@ namespace LaOcaClient
         {
             try
             {
-                cuenta = _servicioCuenta.ObtenerCuentaPorId(idCuenta);
-                if (cuenta == null)
+                _cuenta = _servicioCuenta.ObtenerCuentaPorId(idCuenta);
+                if (_cuenta == null)
                 {
                     MessageBox.Show(Properties.Resources.msgCuentaNoEncontrada, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
                     Close();
@@ -56,11 +56,11 @@ namespace LaOcaClient
             }
         }
 
-        private void btnActualizarContraseña_Click(object sender, RoutedEventArgs e)
+        private void BtnActualizarContraseña(object sender, RoutedEventArgs e)
         {
-            string contraseñaActual = tbContraseñaActual.Password;
-            string nuevaContraseña = tbNuevaContraseña.Password;
-            string confirmarNuevaContraseña = tbConfirmarNuevaContraseña.Password;
+            string contraseñaActual = pbContraseñaActual.Password;
+            string nuevaContraseña = pbNuevaContraseña.Password;
+            string confirmarNuevaContraseña = pbConfirmarNuevaContraseña.Password;
 
             if (string.IsNullOrEmpty(contraseñaActual) || string.IsNullOrEmpty(nuevaContraseña) || string.IsNullOrEmpty(confirmarNuevaContraseña))
             {
@@ -82,11 +82,11 @@ namespace LaOcaClient
 
             try
             {
-                bool esContraseñaCorrecta = _servicioCuenta.VerificarContraseñaActual(cuenta.IdCuenta, Utilidad.HashearConSha256(contraseñaActual));
+                bool esContraseñaCorrecta = _servicioCuenta.VerificarContraseñaActual(_cuenta.IdCuenta, Utilidad.HashearConSha256(contraseñaActual));
                 if (esContraseñaCorrecta)
                 {
-                    cuenta.Contrasena = Utilidad.HashearConSha256(nuevaContraseña);
-                    _servicioCuenta.ModificarCuenta(cuenta);
+                    _cuenta.Contrasena = Utilidad.HashearConSha256(nuevaContraseña);
+                    _servicioCuenta.ModificarCuenta(_cuenta);
                     MessageBox.Show(Properties.Resources.msgContraseñaRestablecida, "", MessageBoxButton.OK, MessageBoxImage.Information);
                     CerrarSesion();
                 }
@@ -130,7 +130,7 @@ namespace LaOcaClient
             ventanaIniciarSesion.ShowDialog();
         }
 
-        private void btnVolver_Click(object sender, RoutedEventArgs e)
+        private void BtnVolver(object sender, RoutedEventArgs e)
         {
             int idCuenta = SingletonJugador.Instance.Jugador.IdCuenta;
             int idJugador = SingletonJugador.Instance.Jugador.IdJugador;

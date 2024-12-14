@@ -18,17 +18,19 @@ namespace LaOcaClient
 {
     public partial class RecuperarContraseña : Window
     {
-        private readonly IServicioCuenta _servicioCuenta;
+        private IServicioCuenta _servicioCuenta;
+        private IServicioCodigo _servicioCodigo;
 
         public RecuperarContraseña()
         {
             InitializeComponent();
             _servicioCuenta = new ServicioCuentaClient();
+            _servicioCodigo = new ServicioCodigoClient();
         }
 
-        private void btnEnviarCodigoRestablecimiento_Click(object sender, RoutedEventArgs e)
+        private void btnEnviarCodigoRestablecimiento(object sender, RoutedEventArgs e)
         {
-            string correo = tbCorreoElectronico.Text;
+            string correo = tbxCorreoElectronico.Text;
 
             if (string.IsNullOrEmpty(correo))
             {
@@ -44,7 +46,7 @@ namespace LaOcaClient
 
             try
             {
-                _servicioCuenta.EnviarCodigoVerificacion(correo);
+                _servicioCodigo.EnviarCodigoVerificacion(correo);
                 MessageBox.Show(Properties.Resources.msgCodigoEnviado, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 ActualizarVentanaCodigoVerificacion();
             }
@@ -62,12 +64,12 @@ namespace LaOcaClient
             }
         }
 
-        private int idCuenta;
+        private int _idCuenta;
 
-        private void btnVerificarCodigo_Click(object sender, RoutedEventArgs e)
+        private void btnVerificarCodigo(object sender, RoutedEventArgs e)
         {
-            string correo = tbCorreoElectronico.Text;
-            string codigoIngresado = tbCodigoRestablecimiento.Text;
+            string correo = tbxCorreoElectronico.Text;
+            string codigoIngresado = tbxCodigoRestablecimiento.Text;
 
             if (string.IsNullOrEmpty(codigoIngresado))
             {
@@ -77,11 +79,11 @@ namespace LaOcaClient
 
             try
             {
-                int cuentaId = _servicioCuenta.VerificarCodigoRecuperarContraseña(correo, codigoIngresado);
+                int cuentaId = _servicioCodigo.VerificarCodigoRecuperarContraseña(correo, codigoIngresado);
 
                 if (cuentaId > 0)
                 {
-                    idCuenta = cuentaId;
+                    _idCuenta = cuentaId;
                     MessageBox.Show(Properties.Resources.msgCodigoCorrecto, "", MessageBoxButton.OK, MessageBoxImage.Information);
                     ActualizarVentanaRestablecerContrasena();
                 }
@@ -113,10 +115,10 @@ namespace LaOcaClient
         private void ActualizarVentanaRestablecerContrasena()
         {
             spCodigo.Visibility = Visibility.Collapsed;
-            spNuevaContraseña.Visibility = Visibility.Visible;
+            spContraseña.Visibility = Visibility.Visible;
         }
 
-        private void btnRestablecerContrasena_Click(object sender, RoutedEventArgs e)
+        private void btnRestablecerContrasena(object sender, RoutedEventArgs e)
         {
             string nuevaContrasena = pbNuevaContrasena.Password;
             string confirmarContrasena = pbConfirmarContrasena.Password;
@@ -141,7 +143,7 @@ namespace LaOcaClient
 
             try
             {
-                _servicioCuenta.ModificarContraseña(idCuenta, Utilidad.HashearConSha256(nuevaContrasena));
+                _servicioCuenta.ModificarContraseña(_idCuenta, Utilidad.HashearConSha256(nuevaContrasena));
                 MessageBox.Show(Properties.Resources.msgContraseñaRestablecida, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 IniciarSesion ventanaIniciarSesion = new IniciarSesion();
                 ventanaIniciarSesion.Show();
@@ -161,7 +163,7 @@ namespace LaOcaClient
             }
         }
 
-        private void btnVolver_Click(object sender, RoutedEventArgs e)
+        private void btnVolver(object sender, RoutedEventArgs e)
         {
             IniciarSesion ventanaIniciarSesion = new IniciarSesion();
             ventanaIniciarSesion.Show();

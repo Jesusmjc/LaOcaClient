@@ -752,7 +752,7 @@ namespace LaOcaClient.Properties
         }
 
         /// <summary>
-        ///   Busca una cadena traducida similar a El correo electrónico no es válido. Debe ser un correo de gmail, outlook o hotmail..
+        ///   Busca una cadena traducida similar a El correo electrónico no es válido. Debe contener un nombre de usuario con letras, números, puntos, guiones o guiones bajos sin caracteres consecutivos o al inicio o final, seguido de un dominio válido y una extensión como &apos;.com&apos;, &apos;.org&apos;, &apos;.mx&apos;..
         /// </summary>
         public static string lbCaracteristicasCorreoValido
         {
@@ -972,6 +972,17 @@ namespace LaOcaClient.Properties
         }
 
         /// <summary>
+        ///   Busca una cadena traducida similar a Invitado.
+        /// </summary>
+        public static string lbInvitado
+        {
+            get
+            {
+                return ResourceManager.GetString("lbInvitado", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Busca una cadena traducida similar a Invitar a partida.
         /// </summary>
         public static string lbInvitarAPartida
@@ -1060,6 +1071,17 @@ namespace LaOcaClient.Properties
         }
 
         /// <summary>
+        ///   Busca una cadena traducida similar a  quiere ser tu amigo..
+        /// </summary>
+        public static string lbQuiereAmistad
+        {
+            get
+            {
+                return ResourceManager.GetString("lbQuiereAmistad", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Busca una cadena traducida similar a Ranking Global de Jugadores.
         /// </summary>
         public static string lbRanking
@@ -1100,6 +1122,17 @@ namespace LaOcaClient.Properties
             get
             {
                 return ResourceManager.GetString("lbSeleccionarImagenPerfil", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Busca una cadena traducida similar a  te ha invitado a su partida..
+        /// </summary>
+        public static string lbTeInvitoAPartida
+        {
+            get
+            {
+                return ResourceManager.GetString("lbTeInvitoAPartida", resourceCulture);
             }
         }
 
@@ -1159,6 +1192,17 @@ namespace LaOcaClient.Properties
         }
 
         /// <summary>
+        ///   Busca una cadena traducida similar a ¡Ahora son amigos!.
+        /// </summary>
+        public static string msgAhoraSonAmigos
+        {
+            get
+            {
+                return ResourceManager.GetString("msgAhoraSonAmigos", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Busca una cadena traducida similar a ¡Caíste en la calavera! Regresas al principio (casilla 1)..
         /// </summary>
         public static string msgCalavera
@@ -1192,7 +1236,7 @@ namespace LaOcaClient.Properties
         }
 
         /// <summary>
-        ///   Busca una cadena traducida similar a El nombre de usuario debe tener al menos 6 caracteres..
+        ///   Busca una cadena traducida similar a El nombre del jugador no es válido. Debe tener entre 6 y 12 caracteres, incluir letras, números, puntos, guiones o guiones bajos, no comenzar ni terminar con caracteres especiales, y no contener caracteres especiales consecutivos..
         /// </summary>
         public static string msgCaracteristicasNombreUsuario
         {
@@ -1797,6 +1841,17 @@ namespace LaOcaClient.Properties
         }
 
         /// <summary>
+        ///   Busca una cadena traducida similar a Has rechazado la solicitud de amistad..
+        /// </summary>
+        public static string msgSolicitudRechazada
+        {
+            get
+            {
+                return ResourceManager.GetString("msgSolicitudRechazada", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Busca una cadena traducida similar a El servidor ha tardado demasiado en responder..
         /// </summary>
         public static string msgTimeoutEx
@@ -2079,6 +2134,28 @@ namespace LaOcaClient.Properties
             get
             {
                 return ResourceManager.GetString("tituloRegresarAlMenu", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Busca una cadena traducida similar a Solicitud de amistad aceptada.
+        /// </summary>
+        public static string tituloSolicitudAceptada
+        {
+            get
+            {
+                return ResourceManager.GetString("tituloSolicitudAceptada", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Busca una cadena traducida similar a Solicitud de amistad rechazada.
+        /// </summary>
+        public static string tituloSolicitudRechazada
+        {
+            get
+            {
+                return ResourceManager.GetString("tituloSolicitudRechazada", resourceCulture);
             }
         }
 
