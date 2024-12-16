@@ -46,7 +46,7 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                Utilidad.ManejarCommunicationException(this);
             }
 
             MostrarAmigos();
@@ -74,7 +74,7 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                Utilidad.ManejarCommunicationException(this);
             }
         }
 
@@ -145,7 +145,7 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                Utilidad.ManejarCommunicationException(this);
             }
 
             return jugadores;
@@ -188,7 +188,7 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                Utilidad.ManejarCommunicationException(this);
             }
 
             return amigos;
@@ -267,7 +267,7 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                Utilidad.ManejarCommunicationException(this);
             }
         }
     }

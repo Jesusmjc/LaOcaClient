@@ -86,7 +86,7 @@ namespace LaOcaClient
                 }
                 catch (CommunicationException)
                 {
-                    MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                    Utilidad.ManejarCommunicationException(this);
                 }
             }
         }
@@ -121,7 +121,6 @@ namespace LaOcaClient
             ventanaRanking.ShowDialog();
         }
 
-
         private void CerrarSesion(object sender, RoutedEventArgs e)
         {
             LaOcaService.ServicioJugadoresEnLineaClient clienteJugadoresEnLinea = new LaOcaService.ServicioJugadoresEnLineaClient();
@@ -138,6 +137,7 @@ namespace LaOcaClient
             {
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
             IniciarSesion ventanaIniciarSesion = new IniciarSesion();
             this.Close();
             ventanaIniciarSesion.ShowDialog();

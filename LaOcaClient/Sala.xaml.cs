@@ -123,7 +123,7 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                Utilidad.ManejarCommunicationException(this);
             }
 
         }
@@ -185,7 +185,7 @@ namespace LaOcaClient
                 }
                 catch (CommunicationException)
                 {
-                    MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                    Utilidad.ManejarCommunicationException(this);
                 }
             } while (!esCodigoUnico);
 
@@ -207,7 +207,7 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                Utilidad.ManejarCommunicationException(this);
             }
             catch (Exception)
             {
@@ -227,7 +227,7 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                Utilidad.ManejarCommunicationException(this);
             }
             catch (Exception)
             {
@@ -262,7 +262,7 @@ namespace LaOcaClient
                     }
                     catch (CommunicationException)
                     {
-                        MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                        Utilidad.ManejarCommunicationException(this);
                     }
                 }
 

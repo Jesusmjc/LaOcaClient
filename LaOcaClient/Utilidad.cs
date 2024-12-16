@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace LaOcaClient
 {
@@ -59,6 +60,15 @@ namespace LaOcaClient
             }
 
             return esContrasenaValida;
+        }
+
+        public static void ManejarCommunicationException(Window ventanaActual)
+        {
+            MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+
+            IniciarSesion ventanaIniciarSesion = new IniciarSesion();
+            ventanaActual.Close();
+            ventanaIniciarSesion.ShowDialog();
         }
     }
 

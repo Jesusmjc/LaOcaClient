@@ -67,7 +67,7 @@ namespace LaOcaClient
             }
         }
 
-        private void BtnIniciarSesion_Click(object sender, RoutedEventArgs e)
+        private void ValidarInicioSesion(object sender, RoutedEventArgs e)
         {
             string correoElectronico = tbxCorreoElectronico.Text.ToString();
             string contrasena = pwbContrasena.Password.ToString();
@@ -133,15 +133,6 @@ namespace LaOcaClient
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        /*private void OcultarMensajesError()
-        {
-            lbCamposVacios.Visibility = Visibility.Hidden;
-            lbCorreoInvalido.Visibility = Visibility.Hidden;
-            lbCaracteristicasCorreoValido.Visibility = Visibility.Hidden;
-            lbContrasenaInvalida.Visibility = Visibility.Hidden;
-            lbCaracteristicasContrasenaValida.Visibility = Visibility.Hidden;
-        }*/
 
         private void BtnOlvideMiContraseña_Click(object sender, RoutedEventArgs e)
         {
