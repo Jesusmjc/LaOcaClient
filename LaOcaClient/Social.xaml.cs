@@ -22,6 +22,7 @@ namespace LaOcaClient
     {
         private LaOcaService.ServicioActualizacionJugadoresEnLineaClient _clienteActualizacionJugadoresEnLinea;
         private Dictionary<string, Amigo> _amigos = new Dictionary<string, Amigo>();
+        private IniciarSesion _iniciarSesion = new IniciarSesion();
 
         public Sala VentanaSala { get; set; }
 
@@ -42,6 +43,12 @@ namespace LaOcaClient
             catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             MostrarAmigos();
@@ -67,6 +74,12 @@ namespace LaOcaClient
             catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -114,7 +127,7 @@ namespace LaOcaClient
             _amigos.Add(amigo.NombreUsuario, entradaAmigo);
         }
 
-        private static Dictionary<string, Jugador> RecuperarJugadoresConectados()
+        private Dictionary<string, Jugador> RecuperarJugadoresConectados()
         {
             Dictionary<string, Jugador> jugadores = new Dictionary<string, Jugador>();
 
@@ -135,12 +148,18 @@ namespace LaOcaClient
             catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             return jugadores;
         }
 
-        private static List<Jugador> RecuperarAmigos()
+        private List<Jugador> RecuperarAmigos()
         {
             List<Jugador> amigos = new List<Jugador>();
 
@@ -178,6 +197,12 @@ namespace LaOcaClient
             catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             return amigos;
@@ -256,6 +281,12 @@ namespace LaOcaClient
             catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

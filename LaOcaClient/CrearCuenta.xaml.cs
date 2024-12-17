@@ -41,6 +41,7 @@ namespace LaOcaClient
         private DispatcherTimer _timer;
         private int _tiempoRestante;
         private readonly ModoCuenta _modo;
+        private IniciarSesion _iniciarSesion = new IniciarSesion();
 
         public CrearCuenta(ModoCuenta modo)
         {
@@ -54,7 +55,27 @@ namespace LaOcaClient
             _timer.Tick += Timer_Tick;
             _modo = modo;
             AjustarInterfazSegunModo();
-            _servicioAspecto.SincronizarAspectos(_ReferenciaToIdMap);
+
+            try
+            {
+                _servicioAspecto.SincronizarAspectos(_ReferenciaToIdMap);
+            }
+            catch (FaultException)
+            {
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public CrearCuenta(ModoCuenta modo, int idCuenta, int idJugador) : this(modo)
@@ -77,15 +98,7 @@ namespace LaOcaClient
             }
             else if (_modo == ModoCuenta.Modificar)
             {
-                btnSiguienteCrearCuenta.Visibility = Visibility.Collapsed;
-                btnSiguienteModificarCuenta.Visibility = Visibility.Visible;
-
-                pbContraseña.Visibility = Visibility.Collapsed;
-                pbConfirmarContraseña.Visibility = Visibility.Collapsed;
-                btnCambiarContraseña.Visibility = Visibility.Visible;
-                lbCorreo.Margin = new Thickness(78, 440, 0, 0);
-                lbCorreo.Margin = new Thickness(78, 468, 0, 0);
-                btnCambiarContraseña.Margin = new Thickness(78, 353, 0, 0);
+                ActualizarVentanaModificar(_modo);
             }
         }
 
@@ -127,17 +140,23 @@ namespace LaOcaClient
                 ActualizarVentanaCrearCuenta();
                 IniciarTemporizador();
             }
-            catch (CommunicationException)
+            catch (FaultException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
-                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
             }
             catch (Exception)
             {
-                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -190,21 +209,23 @@ namespace LaOcaClient
                 ventanaMenuPrincipal.Show();
                 this.Close();
             }
-            catch (InvalidOperationException)
+            catch (FaultException)
             {
-                MessageBox.Show(Properties.Resources.msgErrorModificarJugador, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (TimeoutException)
-            {
-                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
             }
             catch (Exception)
             {
-                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -267,22 +288,45 @@ namespace LaOcaClient
         {
             string correo = tbxCorreo.Text;
 
-            if (string.IsNullOrWhiteSpace(correo))
+            try
             {
-                MessageBox.Show(Properties.Resources.camposVaciosLogin, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
+                if (string.IsNullOrWhiteSpace(correo))
+                {
+                    MessageBox.Show(Properties.Resources.camposVaciosLogin, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
 
-            if (!Utilidad.ValidarCorreoElectronico(correo))
-            {
-                MessageBox.Show(Properties.Resources.lbCaracteristicasCorreoValido, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
+                if (!Utilidad.ValidarCorreoElectronico(correo))
+                {
+                    MessageBox.Show(Properties.Resources.lbCaracteristicasCorreoValido, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
 
-            if (_servicioCuenta.CorreoExiste(correo))
+                if (_servicioCuenta.CorreoExiste(correo))
+                {
+                    MessageBox.Show(Properties.Resources.msgCorreoYaExiste, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+
+                return true;
+            }
+            catch (FaultException)
             {
-                MessageBox.Show(Properties.Resources.msgCorreoYaExiste, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             return true;
@@ -331,17 +375,23 @@ namespace LaOcaClient
                         ventanaIniciarSesion.Show();
                         this.Close();
                     }
-                    catch (CommunicationException)
+                    catch (FaultException)
                     {
-                        MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     catch (TimeoutException)
                     {
-                        MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    catch (CommunicationException)
+                    {
+                        MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                        _iniciarSesion.Show();
+                        this.Close();
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 else
@@ -349,17 +399,23 @@ namespace LaOcaClient
                     MessageBox.Show(Properties.Resources.msgCodigoIncorrecto, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (CommunicationException)
+            catch (FaultException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
-                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
             }
             catch (Exception)
             {
-                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -373,17 +429,23 @@ namespace LaOcaClient
                 MessageBox.Show(Properties.Resources.msgCodigoReenviado, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 IniciarTemporizador();
             }
-            catch (CommunicationException)
+            catch (FaultException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
-                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
             }
             catch (Exception)
             {
-                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -562,17 +624,23 @@ namespace LaOcaClient
                     MessageBox.Show(Properties.Resources.msgImagenPerfilNoEncontrada, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (CommunicationException)
+            catch (FaultException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
-                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
             }
             catch (Exception)
             {
-                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -586,14 +654,45 @@ namespace LaOcaClient
                 pbConfirmarContraseña.Visibility = Visibility.Collapsed;
                 btnCambiarContraseña.Visibility = Visibility.Visible;
                 tbxCorreo.IsEnabled = false;
+                btnSiguienteCrearCuenta.Visibility = Visibility.Collapsed;
             }
         }
 
         private void BtnCambiarContraseña(object sender, RoutedEventArgs e)
         {
-            CambiarContraseña ventanaCambiarContraseña = new CambiarContraseña(SingletonJugador.Instance.Jugador.IdCuenta);
-            ventanaCambiarContraseña.Show();
-            this.Close();
+            try
+            {
+                LaOcaService.ServicioCuentaClient clienteCuenta = new ServicioCuentaClient();
+
+                if (clienteCuenta.ProbarConexionConBD())
+                {
+                    CambiarContraseña ventanaCambiarContraseña = new CambiarContraseña(SingletonJugador.Instance.Jugador.IdCuenta);
+                    ventanaCambiarContraseña.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (FaultException)
+            {
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

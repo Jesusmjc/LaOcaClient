@@ -628,7 +628,7 @@
     <value>Confirmación</value>
   </data>
   <data name="msgHaAbandonadoLaPartida" xml:space="preserve">
-    <value>ha habandonado la partida.</value>
+    <value> ha abandonado la partida.</value>
   </data>
   <data name="msgPartidaAbandonada" xml:space="preserve">
     <value>Has abandonado la partida. Serás redirigido al menú principal.</value>
@@ -701,5 +701,20 @@
   </data>
   <data name="tituloSolicitudRechazada" xml:space="preserve">
     <value>Solicitud de amistad rechazada</value>
+  </data>
+  <data name="msgExcepcionGeneral" xml:space="preserve">
+    <value>Ups! Algo salió mal, vuelva más tarde.</value>
+  </data>
+  <data name="tituloExcepcionGeneral" xml:space="preserve">
+    <value>Algo salió mal</value>
+  </data>
+  <data name="msgErrorGuardarEstadisticas" xml:space="preserve">
+    <value>No pudimos guardar las estadísticas de los jugadores en la partida debido a un problema con la base de datos. ¿Deseas reintentar guardar las estadísticas?</value>
+  </data>
+  <data name="msgEstadisticasGuardadas" xml:space="preserve">
+    <value>Las estadísticas se guardaron correctamente.</value>
+  </data>
+  <data name="globalTituloExito" xml:space="preserve">
+    <value>Éxito</value>
   </data>
 </root>

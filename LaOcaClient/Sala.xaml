@@ -6,21 +6,37 @@
         xmlns:local="clr-namespace:LaOcaClient"
         mc:Ignorable="d"
         xmlns:p="clr-namespace:LaOcaClient.Properties"
-        Title="{x:Static p:Resources.globalSala}" Height="450" Width="800">
+        Title="{x:Static p:Resources.globalSala}" Height="600" Width="1000"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
+        Background="#FFF2F2F2">
     
     <Grid>
-        <ListBox x:Name="lbxChat" HorizontalAlignment="Left" Height="73" Margin="26,325,0,0" VerticalAlignment="Top" Width="405"/>
-        <TextBox x:Name="tbxMensaje" MaxLength="100" HorizontalAlignment="Left" Margin="26,398,0,0" TextWrapping="Wrap" Text="{x:Static p:Resources.lbEscribeUnMsg}" VerticalAlignment="Top" Width="405" KeyDown="EnviarMensaje" GotFocus="LimpiarTextoEjemplo"/>
-        <Image x:Name="imgVolver" Margin="20,20,0,0" Source="/Recursos/icono_volver.png" Stretch="Fill" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40" MouseLeftButtonDown="RegresarAMenuPrincipal"/>
-        <Grid x:Name="gridJugadorSala1" HorizontalAlignment="Left" Height="140" Margin="100,120,0,0" VerticalAlignment="Top" Width="100"/>
-        <Grid x:Name="gridJugadorSala2" HorizontalAlignment="Left" Height="140" Margin="275,120,0,0" VerticalAlignment="Top" Width="100"/>
-        <Grid x:Name="gridJugadorSala3" HorizontalAlignment="Left" Height="140" Margin="450,120,0,0" VerticalAlignment="Top" Width="100"/>
-        <Grid x:Name="gridJugadorSala4" HorizontalAlignment="Left" Height="140" Margin="625,120,0,0" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="50" Margin="380,15,0,0" Stroke="Black" VerticalAlignment="Top" Width="239" Fill="#FFA9BAB9"/>
-        <Label Content="{x:Static p:Resources.lbCodigoSala}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="32" Margin="397,24,0,0" VerticalAlignment="Top" Width="117"/>
-        <Label x:Name="lbCodigoSala" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="0000" HorizontalAlignment="Left" Height="32" Margin="519,24,0,0" VerticalAlignment="Top" Width="81"/>
-        <Label x:Name="lbNombreSala" Content="{x:Static p:Resources.lbSalaDe}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="65,15,0,0" VerticalAlignment="Top" Height="50" Width="310" FontSize="24"/>
-        <Button x:Name="btnIniciarPartida" Content="{x:Static p:Resources.btnIniciarPartida}" HorizontalAlignment="Left" Margin="638,382,0,0" VerticalAlignment="Top" Height="34" Width="136" FontSize="16" Click="IniciarPartida" IsEnabled="False" Visibility="Hidden"/>
-        <Button x:Name="btnAmigos" Content="{x:Static p:Resources.lbAmigos}" HorizontalAlignment="Left" Margin="714,24,0,0" VerticalAlignment="Top" Width="60" Height="40" Click="MostrarAmigos"/>
+        <ListBox x:Name="lbxChat" HorizontalAlignment="Left" Height="100" Margin="30,450,0,0" VerticalAlignment="Top" Width="500" Background="#FFF9F9F9" BorderBrush="#FFD1D1D1" BorderThickness="1"/>
+        <TextBox x:Name="tbxMensaje" MaxLength="100" HorizontalAlignment="Left" Margin="30,560,0,0" TextWrapping="Wrap" Text="{x:Static p:Resources.lbEscribeUnMsg}" VerticalAlignment="Top" Width="500" Height="40" FontSize="14" Background="#FFFFFF" BorderBrush="#FFD1D1D1" BorderThickness="1" KeyDown="EnviarMensaje" GotFocus="LimpiarTextoEjemplo"/>
+        <Image x:Name="imgVolver" Margin="20,20,0,0" Source="/Recursos/icono_volver.png" Stretch="Uniform" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Width="50" MouseLeftButtonDown="RegresarAMenuPrincipal" ToolTip="Volver"/>
+
+        <Border HorizontalAlignment="Left" Margin="100,150,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="#FFD1D1D1" BorderThickness="1" Background="#FFECECEC">
+            <Grid x:Name="gridJugadorSala1"/>
+        </Border>
+
+        <Border HorizontalAlignment="Left" Margin="270,150,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="#FFD1D1D1" BorderThickness="1" Background="#FFECECEC">
+            <Grid x:Name="gridJugadorSala2"/>
+        </Border>
+
+        <Border HorizontalAlignment="Left" Margin="440,150,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="#FFD1D1D1" BorderThickness="1" Background="#FFECECEC">
+            <Grid x:Name="gridJugadorSala3"/>
+        </Border>
+
+        <Border HorizontalAlignment="Left" Margin="610,150,0,0" VerticalAlignment="Top" Width="100" Height="100" BorderBrush="#FFD1D1D1" BorderThickness="1" Background="#FFECECEC">
+            <Grid x:Name="gridJugadorSala4"/>
+        </Border>
+
+        <Rectangle HorizontalAlignment="Left" Height="60" Margin="400,20,0,0" Stroke="#FFD1D1D1" VerticalAlignment="Top" Width="250" Fill="#FFF9F9F9" RadiusX="8" RadiusY="8"/>
+        <Label Content="{x:Static p:Resources.lbCodigoSala}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="40" Margin="420,30,0,0" VerticalAlignment="Top" Width="130" FontSize="16" FontWeight="Bold"/>
+        <Label x:Name="lbCodigoSala" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="0000" HorizontalAlignment="Left" Height="40" Margin="560,30,0,0" VerticalAlignment="Top" Width="80" FontSize="16" FontWeight="Bold"/>
+        <Label x:Name="lbNombreSala" Content="{x:Static p:Resources.lbSalaDe}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="65,20,0,0" VerticalAlignment="Top" Height="50" Width="310" FontSize="26" FontWeight="Bold" Foreground="#FF333333"/>
+        <Button x:Name="btnIniciarPartida" Content="{x:Static p:Resources.btnIniciarPartida}" HorizontalAlignment="Right" Margin="0,550,30,0" VerticalAlignment="Top" Height="50" Width="200" FontSize="16" Background="#FF4CAF50" Foreground="White" BorderBrush="#FF388E3C" BorderThickness="2" Click="IniciarPartida" IsEnabled="False" Visibility="Hidden"/>
+        <Button x:Name="btnAmigos" Content="{x:Static p:Resources.lbAmigos}" HorizontalAlignment="Right" Margin="0,20,30,0" VerticalAlignment="Top" Width="80" Height="50" FontSize="14" Background="#FF2196F3" Foreground="White" BorderBrush="#FF1976D2" BorderThickness="2" Click="MostrarAmigos"/>
     </Grid>
 </Window>

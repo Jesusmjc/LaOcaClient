@@ -708,6 +708,17 @@ namespace LaOcaClient.Properties
         }
 
         /// <summary>
+        ///   Busca una cadena traducida similar a Éxito.
+        /// </summary>
+        public static string globalTituloExito
+        {
+            get
+            {
+                return ResourceManager.GetString("globalTituloExito", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Busca una cadena traducida similar a Visibilidad:.
         /// </summary>
         public static string globalVisibilidad
@@ -1566,6 +1577,17 @@ namespace LaOcaClient.Properties
         }
 
         /// <summary>
+        ///   Busca una cadena traducida similar a No pudimos guardar las estadísticas de los jugadores en la partida debido a un problema con la base de datos. ¿Deseas reintentar guardar las estadísticas?.
+        /// </summary>
+        public static string msgErrorGuardarEstadisticas
+        {
+            get
+            {
+                return ResourceManager.GetString("msgErrorGuardarEstadisticas", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Busca una cadena traducida similar a Lo sentimos, ocurrió un error al modificar el jugador..
         /// </summary>
         public static string msgErrorModificarJugador
@@ -1588,6 +1610,17 @@ namespace LaOcaClient.Properties
         }
 
         /// <summary>
+        ///   Busca una cadena traducida similar a Las estadísticas se guardaron correctamente..
+        /// </summary>
+        public static string msgEstadisticasGuardadas
+        {
+            get
+            {
+                return ResourceManager.GetString("msgEstadisticasGuardadas", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Busca una cadena traducida similar a ¡Es tu turno de tirar!.
         /// </summary>
         public static string msgEsTuTurno
@@ -1599,7 +1632,18 @@ namespace LaOcaClient.Properties
         }
 
         /// <summary>
-        ///   Busca una cadena traducida similar a ha habandonado la partida..
+        ///   Busca una cadena traducida similar a Ups! Algo salió mal, vuelva más tarde..
+        /// </summary>
+        public static string msgExcepcionGeneral
+        {
+            get
+            {
+                return ResourceManager.GetString("msgExcepcionGeneral", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Busca una cadena traducida similar a  ha abandonado la partida..
         /// </summary>
         public static string msgHaAbandonadoLaPartida
         {
@@ -2046,6 +2090,17 @@ namespace LaOcaClient.Properties
             get
             {
                 return ResourceManager.GetString("tituloErrorSala", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Busca una cadena traducida similar a Algo salió mal.
+        /// </summary>
+        public static string tituloExcepcionGeneral
+        {
+            get
+            {
+                return ResourceManager.GetString("tituloExcepcionGeneral", resourceCulture);
             }
         }
 

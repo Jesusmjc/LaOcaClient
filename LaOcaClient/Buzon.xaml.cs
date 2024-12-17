@@ -21,22 +21,19 @@ namespace LaOcaClient
     public partial class Buzon : Window, IServicioBuzonCallback
     {
         private LaOcaService.ServicioSocialClient _clienteSocial;
+        private IniciarSesion _iniciarSesion = new IniciarSesion();
 
         public Buzon()
         {
             InitializeComponent();
-
             btnInvitaciones.IsEnabled = false;
-
             _clienteSocial = new LaOcaService.ServicioSocialClient();
-
             InstanceContext contexto = new InstanceContext(this);
             LaOcaService.ServicioBuzonClient clienteBuzon = new LaOcaService.ServicioBuzonClient(contexto);
 
             try
             {
                 clienteBuzon.AgregarCanalCallbackBuzon(SingletonJugador.Instance.Jugador.NombreUsuario);
-
                 MostrarInvitacionesPendientes();
             }
             catch (TimeoutException)
@@ -46,6 +43,12 @@ namespace LaOcaClient
             catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -96,6 +99,12 @@ namespace LaOcaClient
             catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             return invitaciones;
@@ -138,6 +147,12 @@ namespace LaOcaClient
             catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

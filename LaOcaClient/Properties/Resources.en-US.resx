@@ -628,7 +628,7 @@
     <value>Confirmation</value>
   </data>
   <data name="msgHaAbandonadoLaPartida" xml:space="preserve">
-    <value>has left the game.</value>
+    <value> has left the game.</value>
   </data>
   <data name="msgPartidaAbandonada" xml:space="preserve">
     <value>You have left the game. You will be redirected to the main menu.</value>
@@ -701,5 +701,20 @@
   </data>
   <data name="tituloSolicitudRechazada" xml:space="preserve">
     <value>Friend request rejected</value>
+  </data>
+  <data name="msgExcepcionGeneral" xml:space="preserve">
+    <value>Oops! Something went wrong, please come back later.</value>
+  </data>
+  <data name="tituloExcepcionGeneral" xml:space="preserve">
+    <value>Something went wrong</value>
+  </data>
+  <data name="msgErrorGuardarEstadisticas" xml:space="preserve">
+    <value>We were unable to save player statistics for the match due to a database issue. Would you like to retry saving statistics?</value>
+  </data>
+  <data name="msgEstadisticasGuardadas" xml:space="preserve">
+    <value>Statistics were saved successfully.</value>
+  </data>
+  <data name="globalTituloExito" xml:space="preserve">
+    <value>Success</value>
   </data>
 </root>

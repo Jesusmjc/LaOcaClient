@@ -104,11 +104,15 @@ namespace LaOcaClient
             }
             catch (TimeoutException)
             {
-                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -121,9 +125,33 @@ namespace LaOcaClient
 
         private void BtnCrearCuentaNueva(object sender, RoutedEventArgs e)
         {
-            CrearCuenta crearCuentaWindow = new CrearCuenta(ModoCuenta.Crear);
-            crearCuentaWindow.Show();
-            this.Close();
+            try
+            {
+                LaOcaService.ServicioCuentaClient clienteCuenta = new LaOcaService.ServicioCuentaClient();
+
+                if (clienteCuenta.ProbarConexionConBD() || clienteCuenta.ProbarConexionConServidor())
+                {
+                    CrearCuenta crearCuentaWindow = new CrearCuenta(ModoCuenta.Crear);
+                    crearCuentaWindow.Show();
+                    this.Close();
+                }
+            }
+            catch (FaultException)
+            {
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void LimpiarTextoEjemplo(object sender, MouseButtonEventArgs e)
@@ -153,13 +181,21 @@ namespace LaOcaClient
                 menuPrincipalWindow.Show();
                 this.Close();
             }
+            catch (FaultException)
+            {
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             catch (TimeoutException)
             {
-                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

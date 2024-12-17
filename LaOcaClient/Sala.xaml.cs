@@ -25,6 +25,8 @@ namespace LaOcaClient
         public LaOcaService.Sala SalaActual { get; set; }
         public ServicioActualizacionJugadoresEnSalaClient ClienteJugadoresEnSala {  get; set; }
 
+        private LaOcaService.ServicioCuentaClient _clienteCuenta = new LaOcaService.ServicioCuentaClient();
+        private IniciarSesion _ventanaIniciarSesion = new IniciarSesion();
         private InstanceContext _contexto;
         private LaOcaService.ServicioChatClient _clienteChat;
         private LaOcaService.ServicioSalaClient _clienteSala;
@@ -32,6 +34,7 @@ namespace LaOcaClient
         private JugadorEnSala[] _jugadoresEnSala;
         private Social _ventanaSocial;
         private bool _ventanaEstaAbierta = true;
+        private IniciarSesion _iniciarSesion = new IniciarSesion();
 
         public Sala()
         {
@@ -114,8 +117,13 @@ namespace LaOcaClient
             catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                this.Close();
+                _iniciarSesion.ShowDialog();
             }
-
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void MostrarPrimerJugador()
@@ -177,6 +185,11 @@ namespace LaOcaClient
                 catch (CommunicationException)
                 {
                     MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                    break;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             } while (!esCodigoUnico);
 
@@ -199,10 +212,12 @@ namespace LaOcaClient
             catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
             }
             catch (Exception)
             {
-                MessageBox.Show(Properties.Resources.msgErrorEnviarMsg, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -219,10 +234,12 @@ namespace LaOcaClient
             catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
             }
             catch (Exception)
             {
-                MessageBox.Show(Properties.Resources.msgErrorEnviarMsg, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -254,6 +271,12 @@ namespace LaOcaClient
                     catch (CommunicationException)
                     {
                         MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                        _iniciarSesion.Show();
+                        this.Close();
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
 
@@ -289,19 +312,43 @@ namespace LaOcaClient
 
         private void IniciarPartida(object sender, RoutedEventArgs e)
         {
-            if (SalaActual.Jugadores.Count >= 2)
+            try
             {
-                LaOcaService.Partida nuevaPartida = _clienteSala.IniciarPartida(SalaActual.Codigo);
+                if (_clienteCuenta.ProbarConexionConBD() && _clienteCuenta.ProbarConexionConServidor())
+                {
+                    if (SalaActual.Jugadores.Count >= 2)
+                    {
+                        LaOcaService.Partida nuevaPartida = _clienteSala.IniciarPartida(SalaActual.Codigo);
 
-                SalaActual.Partida = nuevaPartida;
+                        SalaActual.Partida = nuevaPartida;
 
-                Partida ventanaPartida = new Partida(SalaActual);
-                this.Close();
-                ventanaPartida.ShowDialog();
+                        Partida ventanaPartida = new Partida(SalaActual);
+                        this.Close();
+                        ventanaPartida.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show(Properties.Resources.msgDosOMasJugadores, Properties.Resources.tituloMasJugadores, MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
             }
-            else
+            catch (FaultException)
             {
-                MessageBox.Show(Properties.Resources.msgDosOMasJugadores, Properties.Resources.tituloMasJugadores, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _ventanaIniciarSesion.Show();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -450,16 +497,33 @@ namespace LaOcaClient
 
         public void ActualizarEstadoAmistad(string nombreJugadorEmisor)
         {
-            for (int i = 0; i < SalaActual.Jugadores.Count; i++)
+            try
             {
-                if (_jugadoresEnSala[i].JugadorEnLaSala.NombreUsuario.Equals(nombreJugadorEmisor))
+                for (int i = 0; i < SalaActual.Jugadores.Count; i++)
                 {
-                    ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
-                    Amistad amistad = clienteAmistad.RecuperarAmistad(SingletonJugador.Instance.Jugador.IdJugador, _jugadoresEnSala[i].JugadorEnLaSala.IdJugador);
+                    if (_jugadoresEnSala[i].JugadorEnLaSala.NombreUsuario.Equals(nombreJugadorEmisor))
+                    {
+                        ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
+                        Amistad amistad = clienteAmistad.RecuperarAmistad(SingletonJugador.Instance.Jugador.IdJugador, _jugadoresEnSala[i].JugadorEnLaSala.IdJugador);
 
-                    _jugadoresEnSala[i].ActualizarOpcionesDeMenuPopupCallback(amistad);
-                    break;
+                        _jugadoresEnSala[i].ActualizarOpcionesDeMenuPopupCallback(amistad);
+                        break;
+                    }
                 }
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

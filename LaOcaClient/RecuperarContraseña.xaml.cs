@@ -20,6 +20,7 @@ namespace LaOcaClient
     {
         private IServicioCuenta _servicioCuenta;
         private IServicioCodigo _servicioCodigo;
+        private IniciarSesion _iniciarSesion = new IniciarSesion();
 
         public RecuperarContraseña()
         {
@@ -28,7 +29,7 @@ namespace LaOcaClient
             _servicioCodigo = new ServicioCodigoClient();
         }
 
-        private void btnEnviarCodigoRestablecimiento(object sender, RoutedEventArgs e)
+        private void BtnEnviarCodigoRestablecimiento(object sender, RoutedEventArgs e)
         {
             string correo = tbxCorreoElectronico.Text;
 
@@ -50,23 +51,29 @@ namespace LaOcaClient
                 MessageBox.Show(Properties.Resources.msgCodigoEnviado, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 ActualizarVentanaCodigoVerificacion();
             }
-            catch (CommunicationException)
+            catch (FaultException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
-                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
             }
             catch (Exception)
             {
-                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private int _idCuenta;
 
-        private void btnVerificarCodigo(object sender, RoutedEventArgs e)
+        private void BtnVerificarCodigo(object sender, RoutedEventArgs e)
         {
             string correo = tbxCorreoElectronico.Text;
             string codigoIngresado = tbxCodigoRestablecimiento.Text;
@@ -85,24 +92,30 @@ namespace LaOcaClient
                 {
                     _idCuenta = cuentaId;
                     MessageBox.Show(Properties.Resources.msgCodigoCorrecto, "", MessageBoxButton.OK, MessageBoxImage.Information);
-                    ActualizarVentanaRestablecerContrasena();
+                    ActualizarVentanaRestablecerContraseña();
                 }
                 else
                 {
                     MessageBox.Show(Properties.Resources.msgCodigoIncorrecto, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (CommunicationException)
+            catch (FaultException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
-                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
             }
             catch (Exception)
             {
-                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -112,13 +125,13 @@ namespace LaOcaClient
             spCodigo.Visibility = Visibility.Visible;
         }
 
-        private void ActualizarVentanaRestablecerContrasena()
+        private void ActualizarVentanaRestablecerContraseña()
         {
             spCodigo.Visibility = Visibility.Collapsed;
             spContraseña.Visibility = Visibility.Visible;
         }
 
-        private void btnRestablecerContrasena(object sender, RoutedEventArgs e)
+        private void BtnRestablecerContrasena(object sender, RoutedEventArgs e)
         {
             string nuevaContrasena = pbNuevaContrasena.Password;
             string confirmarContrasena = pbConfirmarContrasena.Password;
@@ -149,21 +162,27 @@ namespace LaOcaClient
                 ventanaIniciarSesion.Show();
                 this.Close();
             }
-            catch (CommunicationException)
+            catch (FaultException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
-                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
             }
             catch (Exception)
             {
-                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        private void btnVolver(object sender, RoutedEventArgs e)
+        private void BtnVolver(object sender, RoutedEventArgs e)
         {
             IniciarSesion ventanaIniciarSesion = new IniciarSesion();
             ventanaIniciarSesion.Show();

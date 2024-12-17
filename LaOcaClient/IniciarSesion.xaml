@@ -3,58 +3,44 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LaOcaClient"
         xmlns:p="clr-namespace:LaOcaClient.Properties"
         mc:Ignorable="d"
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
-        Title="{x:Static p:Resources.lbInicioSesion}" Height="500" Width="800" MinHeight="400" MinWidth="600">
+        Title="{x:Static p:Resources.lbInicioSesion}"
+        Background="Transparent">
 
     <Grid>
-        <Image Source="pack://application:,,,/LaOcaClient;component/Recursos/FondoLogin.jpg" Stretch="UniformToFill" Panel.ZIndex="0"/>
+        <Image Source="pack://application:,,,/LaOcaClient;component/Recursos/FondoLogin.jpg" Stretch="Fill" Opacity="0.9"/>
 
-        <Grid Margin="20" Panel.ZIndex="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <ComboBox x:Name="cbIdioma" Width="150" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" SelectionChanged="CbIdioma_SelectionChanged">
+        <Grid>
+            <ComboBox x:Name="cbIdioma" Width="200" Height="40" Margin="30" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="16" SelectionChanged="CbIdioma_SelectionChanged">
                 <ComboBoxItem Content="English" Tag="en-US"/>
                 <ComboBoxItem Content="Español" Tag="es-MX"/>
             </ComboBox>
 
-            <Label x:Name="lbLaOca" Content="{x:Static p:Resources.lbTituloOca}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="0" FontSize="48" Foreground="White" Margin="0,10,0,10"/>
+            <TextBlock Text="{x:Static p:Resources.lbTituloOca}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="80" FontWeight="Bold" Foreground="White" Margin="0,30,0,0" TextAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="Black" BlurRadius="5" ShadowDepth="0" Opacity="0.7"/>
+                </TextBlock.Effect>
+            </TextBlock>
 
-            <Border Grid.Row="1" Grid.Column="1" Background="#80000000" CornerRadius="10" Padding="20" Margin="0,0,0,56">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Width="300">
-                    <Label x:Name="lbCorreoElectronico" Content="{x:Static p:Resources.globalCorreo}" Margin="0,10,0,0" Foreground="White"/>
-                    <TextBox x:Name="tbxCorreoElectronico" MaxLength="50" TextWrapping="Wrap" Height="25" Tag="{x:Static p:Resources.usuarioLogin}" Foreground="Black" Margin="0,5,0,5"/>
-                    <Label x:Name="lbCorreoInvalido" Content="{x:Static p:Resources.lbIngreseCorreoValido}" Foreground="#FFFA0606" Visibility="Hidden" Margin="0,5,0,0"/>
-                    <Label x:Name="lbCaracteristicasCorreoValido" Content="{x:Static p:Resources.lbCaracteristicasCorreoValido}" FontSize="10" Foreground="#FF026B8F" Visibility="Hidden"/>
-                    <Label x:Name="lbContrasena" Content="{x:Static p:Resources.globalContraseña}" Margin="0,5,0,0" Foreground="White"/>
-                    <PasswordBox x:Name="pbContrasena" MaxLength="16" Height="25" Margin="0,5,0,10"/>
-                    <Label x:Name="lbContrasenaInvalida" Content="{x:Static p:Resources.lbContraseñaValida}" Foreground="#FFFA0606" Visibility="Hidden" Margin="0,5,0,0"/>
-                    <Label x:Name="lbCaracteristicasContrasenaValida" Content="{x:Static p:Resources.lbCaracteristicasContraseñaValida}" FontSize="10" Foreground="#FF026B8F" Visibility="Hidden"/>
-                    <Button x:Name="btnIniciarSesion" Content="{x:Static p:Resources.btnIniciarSesion}" Width="200" Height="30" FontSize="14" Margin="0,10,0,10" Background="Green" Foreground="White" FontWeight="Bold" Click="BtnIniciarSesion"/>
+            <Border Background="#BF1C2833" CornerRadius="20" Padding="30" Width="450" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,40,0,0">
+                
+                <StackPanel>
+                    <Label Content="{x:Static p:Resources.globalCorreo}" Foreground="White" FontSize="18" Margin="0,5"/>
+                    <TextBox x:Name="tbxCorreoElectronico" Height="45" FontSize="16" BorderBrush="#FF9CCC65" BorderThickness="2" MaxLength="50"/>
+                    <Label Content="{x:Static p:Resources.globalContraseña}" Foreground="White" FontSize="18" Margin="0,15,0,5"/>
+                    <PasswordBox x:Name="pbContrasena" Height="45" FontSize="16" BorderBrush="#FF9CCC65" BorderThickness="2" MaxLength="16"/>
+                    <Button Content="{x:Static p:Resources.btnIniciarSesion}" Height="50" Width="250" Background="#FF81C784" Foreground="White" BorderBrush="#FF66BB6A" FontSize="18" FontWeight="Bold" Margin="0,30,0,10" HorizontalAlignment="Center" Click="BtnIniciarSesion"/>
+                    <Button Content="{x:Static p:Resources.btnOlvideMiContraseña}" Background="Transparent" Foreground="#FF90CAF9" BorderBrush="Transparent" FontWeight="Bold" HorizontalAlignment="Center" FontSize="14" Click="BtnOlvideMiContraseña"/>
 
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
-                        <Button x:Name="btnOlvideMiContraseña" Content="{x:Static p:Resources.btnOlvideMiContraseña}" Foreground="LightBlue" Background="Transparent" BorderBrush="Transparent" FontWeight="Bold" Cursor="Hand" Click="BtnOlvideMiContraseña"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15">
+                        <Label Content="{x:Static p:Resources.lbNoTengoCuenta}" Foreground="White" FontSize="14"/>
+                        <Button Content="{x:Static p:Resources.btnCrearCuenta}" Background="Transparent" Foreground="#FF90CAF9" BorderBrush="Transparent" FontWeight="Bold" FontSize="14" Click="BtnCrearCuentaNueva"/>
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
-                        <Label x:Name="lbNoTengoCuenta" Content="{x:Static p:Resources.lbNoTengoCuenta}" Foreground="White"/>
-                        <Button x:Name="btnCrearCuentaNueva" Content="{x:Static p:Resources.btnCrearCuenta}" Foreground="LightBlue" Background="Transparent" BorderBrush="Transparent" FontWeight="Bold" Cursor="Hand" Click="BtnCrearCuentaNueva"/>
-                    </StackPanel>
-
-                    <Button x:Name="btnJugarComoInvitado" Content="{x:Static p:Resources.globalJugarComoInvitado}" Foreground="LightBlue" Background="Transparent" BorderBrush="Transparent" FontWeight="Bold" Cursor="Hand" Click="EntrarComoInvitado" Margin="0,10,0,0"/>
+                    <Button Content="{x:Static p:Resources.globalJugarComoInvitado}" Background="Transparent" Foreground="#FF90CAF9" BorderBrush="Transparent" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" Margin="0,5,0,0" Click="EntrarComoInvitado"/>
                 </StackPanel>
             </Border>
         </Grid>

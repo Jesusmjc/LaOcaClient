@@ -3,29 +3,52 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:LaOcaClient"
         xmlns:p="clr-namespace:LaOcaClient.Properties"
-        Title="{x:Static p:Resources.globalRecuperarContraseña}" Height="245" Width="379">
+        Title="{x:Static p:Resources.globalRecuperarContraseña}" Height="400" Width="500" 
+        Background="LightGray" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow">
 
     <Grid>
-        <Button x:Name="btnRegresar" Content="{x:Static p:Resources.btnGlobalRegresar}" Margin="0,0,0,-150" Click="btnVolver" Height="20" Width="60"/>
+        <Border CornerRadius="10" Background="White" Padding="20" Margin="10" BorderBrush="Gray" BorderThickness="1">
+            <Grid>
+                <Button x:Name="btnRegresar" Content="{x:Static p:Resources.btnGlobalRegresar}" 
+                        HorizontalAlignment="Left" VerticalAlignment="Top" 
+                        Width="80" Height="30" Click="BtnVolver"
+                        Background="LightBlue" BorderBrush="DarkGray"/>
 
-        <StackPanel x:Name="spCorreo" Margin="20,20,20,24" Visibility="Visible">
-            <TextBlock x:Name="tbckIngresarCorreo" Text="{x:Static p:Resources.lbIngresarCorreo}" Margin="0,0,0,10"/>
-            <TextBox x:Name="tbxCorreoElectronico" Margin="0,0,0,20" MaxLength="50"/>
-            <Button x:Name="btnEnviarCodigo" Content="{x:Static p:Resources.btnEnviarCodigo}" Click="btnEnviarCodigoRestablecimiento"/>
-        </StackPanel>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="400">
 
-        <StackPanel x:Name="spCodigo" Margin="20" Visibility="Collapsed">
-            <TextBlock x:Name="tbckIngresarCodigo" Text="{x:Static p:Resources.lbIngresarCodigo}" Margin="0,0,0,10"/>
-            <TextBox x:Name="tbxCodigoRestablecimiento" Margin="0,0,0,20" MaxLength="6"/>
-            <Button x:Name="btnVerificarElCodigo" Content="{x:Static p:Resources.btnVerificarCodigo}" Click="btnVerificarCodigo"/>
-        </StackPanel>
+                    <StackPanel x:Name="spCorreo" Visibility="Visible" Margin="0,0,0,20">
+                        <TextBlock x:Name="tbckIngresarCorreo" Text="{x:Static p:Resources.lbIngresarCorreo}" 
+                                   FontSize="14" FontWeight="Bold" Margin="0,0,0,10" Foreground="Black"/>
+                        <TextBox x:Name="tbxCorreoElectronico" Height="30" MaxLength="50" 
+                                 Margin="0,0,0,20" Padding="5"/>
+                        <Button x:Name="btnEnviarCodigo" Content="{x:Static p:Resources.btnEnviarCodigo}" 
+                                Click="BtnEnviarCodigoRestablecimiento" Height="35" 
+                                Background="LightBlue" BorderBrush="DarkGray"/>
+                    </StackPanel>
 
-        <StackPanel x:Name="spContraseña" Margin="20,10,20,20" Visibility="Collapsed">
-            <TextBlock x:Name="tbckIngresarNuevaContraseña" Text="{x:Static p:Resources.lbIngresarNuevaContraseña}" Width="345" Margin="0,10,0,10"/>
-            <PasswordBox x:Name="pbNuevaContrasena" Width="245"/>
-            <TextBlock x:Name="tbckConfirmarContraseña" Text="{x:Static p:Resources.lbConfirmarNuevaContraseña}" Margin="0,10,0,10" Width="345"/>
-            <PasswordBox x:Name="pbConfirmarContrasena" Width="244"/>
-            <Button x:Name="btnGuardarContraseña" Content="{x:Static p:Resources.btnGuardarNuevaContraseña}" Click="btnRestablecerContrasena" Width="200" Margin="0,10,0,10" Height="20"/>
-        </StackPanel>
+                    <StackPanel x:Name="spCodigo" Visibility="Collapsed" Margin="0,0,0,20">
+                        <TextBlock x:Name="tbckIngresarCodigo" Text="{x:Static p:Resources.lbIngresarCodigo}" 
+                                   FontSize="14" FontWeight="Bold" Margin="0,0,0,10" Foreground="Black"/>
+                        <TextBox x:Name="tbxCodigoRestablecimiento" Height="30" MaxLength="6" 
+                                 Margin="0,0,0,20" Padding="5"/>
+                        <Button x:Name="btnVerificarElCodigo" Content="{x:Static p:Resources.btnVerificarCodigo}" 
+                                Click="BtnVerificarCodigo" Height="35" 
+                                Background="LightBlue" BorderBrush="DarkGray"/>
+                    </StackPanel>
+
+                    <StackPanel x:Name="spContraseña" Visibility="Collapsed" Margin="0,0,0,20">
+                        <TextBlock x:Name="tbckIngresarNuevaContraseña" Text="{x:Static p:Resources.lbIngresarNuevaContraseña}" 
+                                   FontSize="14" FontWeight="Bold" Margin="0,10,0,10" Foreground="Black"/>
+                        <PasswordBox x:Name="pbNuevaContrasena" Height="30" Margin="0,0,0,10" MaxLength="16"/>
+                        <TextBlock x:Name="tbckConfirmarContraseña" Text="{x:Static p:Resources.lbConfirmarNuevaContraseña}" 
+                                   FontSize="14" FontWeight="Bold" Margin="0,10,0,10" Foreground="Black"/>
+                        <PasswordBox x:Name="pbConfirmarContrasena" Height="30" Margin="0,0,0,10" MaxLength="16"/>
+                        <Button x:Name="btnGuardarContraseña" Content="{x:Static p:Resources.btnGuardarNuevaContraseña}" 
+                                Click="BtnRestablecerContrasena" Height="35" Width="250" 
+                                Background="LightBlue" BorderBrush="DarkGray" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

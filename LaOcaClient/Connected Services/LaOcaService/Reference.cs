@@ -1426,6 +1426,24 @@ namespace LaOcaClient.LaOcaService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioPartida/AbandonarPartida")]
         System.Threading.Tasks.Task AbandonarPartidaAsync(string nombreJugador, string codigoSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPartida/ReintentarGuardarEstadisticas", ReplyAction="http://tempuri.org/IServicioPartida/ReintentarGuardarEstadisticasResponse")]
+        void ReintentarGuardarEstadisticas(string codigoSala, string nombreJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPartida/ReintentarGuardarEstadisticas", ReplyAction="http://tempuri.org/IServicioPartida/ReintentarGuardarEstadisticasResponse")]
+        System.Threading.Tasks.Task ReintentarGuardarEstadisticasAsync(string codigoSala, string nombreJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPartida/FinalizarSinGuardarEstadisticas", ReplyAction="http://tempuri.org/IServicioPartida/FinalizarSinGuardarEstadisticasResponse")]
+        void FinalizarSinGuardarEstadisticas(string codigoSala, string nombreJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPartida/FinalizarSinGuardarEstadisticas", ReplyAction="http://tempuri.org/IServicioPartida/FinalizarSinGuardarEstadisticasResponse")]
+        System.Threading.Tasks.Task FinalizarSinGuardarEstadisticasAsync(string codigoSala, string nombreJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPartida/Ping", ReplyAction="http://tempuri.org/IServicioPartida/PingResponse")]
+        bool Ping();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioPartida/Ping", ReplyAction="http://tempuri.org/IServicioPartida/PingResponse")]
+        System.Threading.Tasks.Task<bool> PingAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1445,6 +1463,15 @@ namespace LaOcaClient.LaOcaService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioPartida/NotificarAbandonoJugador")]
         void NotificarAbandonoJugador(string nombreJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioPartida/MostrarMensajeError")]
+        void MostrarMensajeError(string mensaje);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioPartida/MostrarOpcionesErrorBD")]
+        void MostrarOpcionesErrorBD(string nombreJugadorGanador);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServicioPartida/MostrarMensajeExito")]
+        void MostrarMensajeExito(string mensaje);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1505,6 +1532,30 @@ namespace LaOcaClient.LaOcaService {
         
         public System.Threading.Tasks.Task AbandonarPartidaAsync(string nombreJugador, string codigoSala) {
             return base.Channel.AbandonarPartidaAsync(nombreJugador, codigoSala);
+        }
+        
+        public void ReintentarGuardarEstadisticas(string codigoSala, string nombreJugador) {
+            base.Channel.ReintentarGuardarEstadisticas(codigoSala, nombreJugador);
+        }
+        
+        public System.Threading.Tasks.Task ReintentarGuardarEstadisticasAsync(string codigoSala, string nombreJugador) {
+            return base.Channel.ReintentarGuardarEstadisticasAsync(codigoSala, nombreJugador);
+        }
+        
+        public void FinalizarSinGuardarEstadisticas(string codigoSala, string nombreJugador) {
+            base.Channel.FinalizarSinGuardarEstadisticas(codigoSala, nombreJugador);
+        }
+        
+        public System.Threading.Tasks.Task FinalizarSinGuardarEstadisticasAsync(string codigoSala, string nombreJugador) {
+            return base.Channel.FinalizarSinGuardarEstadisticasAsync(codigoSala, nombreJugador);
+        }
+        
+        public bool Ping() {
+            return base.Channel.Ping();
+        }
+        
+        public System.Threading.Tasks.Task<bool> PingAsync() {
+            return base.Channel.PingAsync();
         }
     }
     
@@ -1705,6 +1756,18 @@ namespace LaOcaClient.LaOcaService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ObtenerRankingGlobal", ReplyAction="http://tempuri.org/IServicioCuenta/ObtenerRankingGlobalResponse")]
         System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Jugador[]> ObtenerRankingGlobalAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ProbarConexionConBD", ReplyAction="http://tempuri.org/IServicioCuenta/ProbarConexionConBDResponse")]
+        bool ProbarConexionConBD();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ProbarConexionConBD", ReplyAction="http://tempuri.org/IServicioCuenta/ProbarConexionConBDResponse")]
+        System.Threading.Tasks.Task<bool> ProbarConexionConBDAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ProbarConexionConServidor", ReplyAction="http://tempuri.org/IServicioCuenta/ProbarConexionConServidorResponse")]
+        bool ProbarConexionConServidor();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicioCuenta/ProbarConexionConServidor", ReplyAction="http://tempuri.org/IServicioCuenta/ProbarConexionConServidorResponse")]
+        System.Threading.Tasks.Task<bool> ProbarConexionConServidorAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1820,6 +1883,22 @@ namespace LaOcaClient.LaOcaService {
         
         public System.Threading.Tasks.Task<LaOcaClient.LaOcaService.Jugador[]> ObtenerRankingGlobalAsync() {
             return base.Channel.ObtenerRankingGlobalAsync();
+        }
+        
+        public bool ProbarConexionConBD() {
+            return base.Channel.ProbarConexionConBD();
+        }
+        
+        public System.Threading.Tasks.Task<bool> ProbarConexionConBDAsync() {
+            return base.Channel.ProbarConexionConBDAsync();
+        }
+        
+        public bool ProbarConexionConServidor() {
+            return base.Channel.ProbarConexionConServidor();
+        }
+        
+        public System.Threading.Tasks.Task<bool> ProbarConexionConServidorAsync() {
+            return base.Channel.ProbarConexionConServidorAsync();
         }
     }
     
