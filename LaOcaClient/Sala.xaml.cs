@@ -49,7 +49,7 @@ namespace LaOcaClient
             }
             catch (RegresarAlMenuPrincipalException) 
             {
-                RedirigirAlMenuPrincipal();   
+                RedirigirAInicioSesion();   
             }
         }
 
@@ -66,7 +66,7 @@ namespace LaOcaClient
             }
             catch (RegresarAlMenuPrincipalException)
             {
-                RedirigirAlMenuPrincipal();
+                RedirigirAInicioSesion();
             }
         }
 
@@ -87,7 +87,7 @@ namespace LaOcaClient
             }
             catch (RegresarAlMenuPrincipalException)
             {
-                RedirigirAlMenuPrincipal();
+                RedirigirAInicioSesion();
             }
         }
 
@@ -142,7 +142,20 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(_clienteSala);
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    _clienteSala = new ServicioSalaClient(new InstanceContext (this));
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    RedirigirAInicioSesion();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -204,7 +217,16 @@ namespace LaOcaClient
                 }
                 catch (CommunicationException)
                 {
-                    Utilidad.ManejarCommunicationException(_clienteSala);
+                    try
+                    {
+                        ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                        MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                        _clienteSala = new ServicioSalaClient(new InstanceContext(this));
+                    }
+                    catch (RegresarAInicioSesionException)
+                    {
+                        RedirigirAInicioSesion();
+                    }
                 }
             } while (!esCodigoUnico);
 
@@ -226,7 +248,16 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(_clienteSala);
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    _clienteSala = new ServicioSalaClient(new InstanceContext(this));
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    RedirigirAInicioSesion();
+                }
             }
             catch (Exception)
             {
@@ -246,7 +277,16 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(_clienteChat);
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    _clienteChat = new ServicioChatClient(new InstanceContext(this));
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    RedirigirAInicioSesion();
+                }
             }
             catch (Exception)
             {
@@ -281,7 +321,16 @@ namespace LaOcaClient
                     }
                     catch (CommunicationException)
                     {
-                        Utilidad.ManejarCommunicationException(_clienteChat);
+                        try
+                        {
+                            ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                            MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                            _clienteChat = new ServicioChatClient(new InstanceContext(this));
+                        }
+                        catch (RegresarAInicioSesionException)
+                        {
+                            RedirigirAInicioSesion();
+                        }
                     }
                 }
 
@@ -347,9 +396,16 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
-                _ventanaIniciarSesion.Show();
-                this.Close();
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    _clienteCuenta = new ServicioCuentaClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    RedirigirAInicioSesion();
+                }
             }
             catch (Exception)
             {
@@ -374,16 +430,62 @@ namespace LaOcaClient
             {
                 if (!SingletonJugador.Instance.Jugador.NombreUsuario.Equals(SalaActual.NombreHost))
                 {
-                    ClienteJugadoresEnSala.NotificarDesconexion(SingletonJugador.Instance.Jugador.NombreUsuario, SalaActual.Codigo);
+                    try
+                    {
+                        ClienteJugadoresEnSala.NotificarDesconexion(SingletonJugador.Instance.Jugador.NombreUsuario, SalaActual.Codigo);
+
+                        MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
+                        this.Close();
+                        ventanaMenuPrincipal.ShowDialog();
+                    }
+                    catch (TimeoutException)
+                    {
+                        MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    catch (CommunicationException)
+                    {
+                        try
+                        {
+                            ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                            MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                            InstanceContext contexto = new InstanceContext(this);
+                            ClienteJugadoresEnSala = new ServicioActualizacionJugadoresEnSalaClient(contexto);
+                        }
+                        catch (RegresarAInicioSesionException)
+                        {
+                            RedirigirAInicioSesion();
+                        }
+                    }
                 }
                 else
                 {
-                    ClienteJugadoresEnSala.EliminarSala(SalaActual.Codigo);
-                }
+                    try
+                    {
+                        ClienteJugadoresEnSala.EliminarSala(SalaActual.Codigo);
 
-                MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
-                this.Close();
-                ventanaMenuPrincipal.ShowDialog();
+                        MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
+                        this.Close();
+                        ventanaMenuPrincipal.ShowDialog();
+                    }
+                    catch (TimeoutException)
+                    {
+                        MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    catch (CommunicationException)
+                    {
+                        try
+                        {
+                            ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                            MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                            InstanceContext contexto = new InstanceContext(this);
+                            ClienteJugadoresEnSala = new ServicioActualizacionJugadoresEnSalaClient(contexto);
+                        }
+                        catch (RegresarAInicioSesionException)
+                        {
+                            RedirigirAInicioSesion();
+                        }
+                    }
+                }
             }
         }
 
@@ -527,9 +629,15 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
-                _iniciarSesion.Show();
-                this.Close();
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    RedirigirAInicioSesion();
+                }
             }
             catch (Exception)
             {
@@ -537,7 +645,7 @@ namespace LaOcaClient
             }
         }
 
-        public void RedirigirAlMenuPrincipal()
+        public void RedirigirAInicioSesion()
         {
             IniciarSesion ventanaIniciarSesion = new IniciarSesion();
             this.Close();

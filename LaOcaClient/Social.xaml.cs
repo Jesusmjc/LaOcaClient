@@ -39,7 +39,7 @@ namespace LaOcaClient
             }
             catch (RegresarAlMenuPrincipalException)
             {
-                RedirigirAlMenuPrincipal();
+                RedirigirAInicioSesion();
             }
         }
 
@@ -58,7 +58,7 @@ namespace LaOcaClient
             }
             catch (RegresarAlMenuPrincipalException)
             {
-                RedirigirAlMenuPrincipal();
+                RedirigirAInicioSesion();
             }
         }
 
@@ -269,7 +269,7 @@ namespace LaOcaClient
             }
         }
 
-        public void RedirigirAlMenuPrincipal()
+        public void RedirigirAInicioSesion()
         {
             IniciarSesion ventanaIniciarSesion = new IniciarSesion();
             this.Close();

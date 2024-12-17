@@ -73,6 +73,7 @@
     <Compile Include="EstadísticasJugador.xaml.cs">
       <DependentUpon>EstadísticasJugador.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ManejadorExcepciones.cs" />
     <Compile Include="RankingGlobal.xaml.cs">
       <DependentUpon>RankingGlobal.xaml</DependentUpon>
     </Compile>
@@ -237,21 +238,6 @@
       <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="Connected Services\LaOcaService\item.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\LaOcaService\item1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\LaOcaService\item2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\LaOcaService\item3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\LaOcaService\item4.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\LaOcaService\item5.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -288,7 +274,6 @@
     <None Include="Connected Services\LaOcaService\LaOcaClient.LaOcaService.Sala.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\LaOcaService\LaOcaService.wsdl" />
     <None Include="Connected Services\LaOcaService\LaOcaService1.wsdl" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -347,6 +332,9 @@
     <Resource Include="Recursos\Dado.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Recursos\FondoMainMenu.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\LaOcaService\" />
   </ItemGroup>
   <ItemGroup>
@@ -360,9 +348,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Recursos\FondoMainMenu.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\LaOcaService\item1.disco" />

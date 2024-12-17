@@ -55,9 +55,16 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
-                _ventanaIniciarSesion.Show();
-                this.Close();
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    _clienteCuenta = new ServicioCuentaClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    RedirigirAInicioSesion();
+                }
             }
             catch (Exception)
             {
@@ -88,9 +95,35 @@ namespace LaOcaClient
                         {
                             if (salaObjetivo.Jugadores.Count <= 3)
                             {
-                                Sala ventanaNuevaSala = new Sala(salaObjetivo);
-                                this.Close();
-                                ventanaNuevaSala.ShowDialog();
+                                try
+                                {
+                                    LaOcaService.ServicioCuentaClient clienteCuenta = new LaOcaService.ServicioCuentaClient();
+
+                                    if (clienteCuenta.ProbarConexionConBD() || clienteCuenta.ProbarConexionConServidor())
+                                    {
+                                        Sala ventanaNuevaSala = new Sala(salaObjetivo);
+                                        this.Close();
+                                        ventanaNuevaSala.ShowDialog();
+                                    }
+                                }
+                                catch (FaultException)
+                                {
+                                    MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                                }
+                                catch (TimeoutException)
+                                {
+                                    MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+                                }
+                                catch (CommunicationException)
+                                {
+                                    MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    _ventanaIniciarSesion.Show();
+                                    this.Close();
+                                }
+                                catch (Exception)
+                                {
+                                    MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                                }
                             }
                             else
                             {
@@ -105,7 +138,7 @@ namespace LaOcaClient
                 }
                 catch (RegresarAlMenuPrincipalException)
                 {
-                    RedirigirAlMenuPrincipal();
+                    RedirigirAInicioSesion();
                 }
             }
         }
@@ -242,7 +275,7 @@ namespace LaOcaClient
             _ventanaIniciarSesion.ShowDialog();
         }
 
-        public void RedirigirAlMenuPrincipal()
+        public void RedirigirAInicioSesion()
         {
             IniciarSesion ventanaIniciarSesion = new IniciarSesion();
             this.Close();

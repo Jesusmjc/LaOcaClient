@@ -71,7 +71,7 @@ namespace LaOcaClient
             MostrarFichasYJugadores();
 
             _timerPing = new System.Windows.Threading.DispatcherTimer();
-            _timerPing.Interval = TimeSpan.FromSeconds(5); // Comprueba cada 5 segundos
+            _timerPing.Interval = TimeSpan.FromSeconds(5);
             _timerPing.Tick += ComprobarServidor;
             _timerPing.Start();
         }
@@ -302,7 +302,7 @@ namespace LaOcaClient
                 }
 
                 Random random = new Random();
-                int numeroAleatorio = 59;//random.Next(1, 7);
+                int numeroAleatorio = random.Next(1, 7);
                 MessageBox.Show(Properties.Resources.msgLanzarDado + $"{numeroAleatorio}.");
                 await MoverFicha(numeroAleatorio, nombreJugador);
             }

@@ -114,7 +114,14 @@ namespace LaOcaClient.UserControls
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    Utilidad.ManejarCommunicationException(_clienteAmistad);
+                }
+                catch (RegresarAlMenuPrincipalException)
+                {
+                    _ventanaPadre.RedirigirAInicioSesion();
+                }
             }
         }
 
@@ -229,7 +236,7 @@ namespace LaOcaClient.UserControls
                 }
 
                 _amistad = amistad;
-                
+
                 _ventanaPadre.ClienteJugadoresEnSala.NotificarCambioEnAmistad(_ventanaPadre.SalaActual.Codigo, SingletonJugador.Instance.Jugador.NombreUsuario, JugadorEnLaSala.NombreUsuario);
                 ActualizarOpcionesDeMenuPopupLocal(EstadoAmistad.SOLICITUD);
             }
@@ -243,7 +250,14 @@ namespace LaOcaClient.UserControls
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    Utilidad.ManejarCommunicationException(_clienteAmistad);
+                }
+                catch (RegresarAlMenuPrincipalException)
+                {
+                    _ventanaPadre.RedirigirAInicioSesion();
+                }
             }
         }
 
@@ -269,7 +283,7 @@ namespace LaOcaClient.UserControls
                 }
 
                 _amistad = bloqueo;
-                
+
                 _ventanaPadre.ClienteJugadoresEnSala.NotificarCambioEnAmistad(_ventanaPadre.SalaActual.Codigo, SingletonJugador.Instance.Jugador.NombreUsuario, JugadorEnLaSala.NombreUsuario);
                 ActualizarOpcionesDeMenuPopupLocal(EstadoAmistad.BLOQUEO);
             }
@@ -283,14 +297,39 @@ namespace LaOcaClient.UserControls
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    Utilidad.ManejarCommunicationException(_clienteAmistad);
+                }
+                catch (RegresarAlMenuPrincipalException)
+                {
+                    _ventanaPadre.RedirigirAInicioSesion();
+                }
             }
         }
 
         private void ExpulsarJugador()
         {
-            _ventanaPadre.ClienteJugadoresEnSala?.ExpulsarJugador(_ventanaPadre.SalaActual.Codigo, JugadorEnLaSala.NombreUsuario);
-            _ventanaPadre.MostrarDesconexionJugador(JugadorEnLaSala.NombreUsuario);
+            try
+            {
+                _ventanaPadre.ClienteJugadoresEnSala?.ExpulsarJugador(_ventanaPadre.SalaActual.Codigo, JugadorEnLaSala.NombreUsuario);
+                _ventanaPadre.MostrarDesconexionJugador(JugadorEnLaSala.NombreUsuario);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                try
+                {
+                    Utilidad.ManejarCommunicationException(_ventanaPadre.ClienteJugadoresEnSala);
+                }
+                catch (RegresarAlMenuPrincipalException)
+                {
+                    _ventanaPadre.RedirigirAInicioSesion();
+                }
+            }
         }
 
         private void DesbloquearJugador()
@@ -319,7 +358,14 @@ namespace LaOcaClient.UserControls
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    Utilidad.ManejarCommunicationException(_clienteAmistad);
+                }
+                catch (RegresarAlMenuPrincipalException)
+                {
+                    _ventanaPadre.RedirigirAInicioSesion();
+                }
             }
         }
 
