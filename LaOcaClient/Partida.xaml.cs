@@ -137,8 +137,7 @@ namespace LaOcaClient
                 }
             }
 
-            MenuPrincipal menu = new MenuPrincipal();
-            menu.Show();
+            _iniciarSesion.Show();
             this.Close();
         }
 
@@ -303,7 +302,7 @@ namespace LaOcaClient
                 }
 
                 Random random = new Random();
-                int numeroAleatorio = random.Next(1, 7);
+                int numeroAleatorio = 59;//random.Next(1, 7);
                 MessageBox.Show(Properties.Resources.msgLanzarDado + $"{numeroAleatorio}.");
                 await MoverFicha(numeroAleatorio, nombreJugador);
             }
@@ -823,8 +822,6 @@ namespace LaOcaClient
 
         private async void BtnAbandonar(object sender, RoutedEventArgs e)
         {
-            CierreVoluntario = true;
-
             string nombreJugador = SingletonJugador.Instance.Jugador.NombreUsuario;
             MessageBoxResult resultado = MessageBox.Show(Properties.Resources.msgAbandonarPartidaEnCurso, Properties.Resources.tituloConfirmacion, MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
@@ -872,10 +869,6 @@ namespace LaOcaClient
                 {
                     MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-            }
-            else
-            {
-                CierreVoluntario = false;
             }
         }
 
@@ -1032,38 +1025,6 @@ namespace LaOcaClient
 
             base.OnClosing(e);
             _timerPing.Stop();
-            if (!CierreVoluntario)
-            {
-                Task.Run(() => NotificarDesconexionInesperada());
-            }
-        }
-
-        private async void NotificarDesconexionInesperada()
-        {
-            string nombreJugador = SingletonJugador.Instance.Jugador.NombreUsuario;
-
-            try
-            {
-                await _clientePartida.AbandonarPartidaAsync(nombreJugador, SalaActual.Codigo);
-            }
-            catch (FaultException)
-            {
-                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (TimeoutException)
-            {
-                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (CommunicationException)
-            {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
-                _iniciarSesion.Show();
-                this.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
 
         public void MostrarMensajeExito(string mensaje)

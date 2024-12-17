@@ -49,7 +49,7 @@
 
             <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="10">
                 <Button x:Name="btnModificarCuenta" Content="{x:Static p:Resources.lbModificarCuenta}" Width="150" Height="40" FontSize="14" Background="#FF90CAF9" Foreground="White" BorderBrush="#FF1E88E5" BorderThickness="2" Margin="0,10" Click="BtnModificarCuenta"/>
-                <Button x:Name="btnSalir" Content="{x:Static p:Resources.globalSalir}" Width="150" Height="40" FontSize="14" Background="#FFEF5350" Foreground="White" BorderBrush="#FFD32F2F" BorderThickness="2" Margin="0,10" Click="BtnSalir"/>
+                <Button x:Name="btnSalir" Content="{x:Static p:Resources.globalSalir}" Width="150" Height="40" FontSize="14" Background="#FFEF5350" Foreground="White" BorderBrush="#FFD32F2F" BorderThickness="2" Margin="0,10" Click="CerrarSesion"/>
             </StackPanel>
         </Grid>
     </Grid>

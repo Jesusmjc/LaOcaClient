@@ -33,10 +33,10 @@ namespace LaOcaClient
 
     public partial class CrearCuenta : Window
     {
-        private readonly IServicioCuenta _servicioCuenta;
-        private readonly IServicioJugador _servicioJugador;
-        private readonly IServicioAspecto _servicioAspecto;
-        private readonly IServicioCodigo _servicioCodigo;
+        private readonly IServicioCuenta _clienteCuenta;
+        private readonly IServicioJugador _clienteJugador;
+        private readonly IServicioAspecto _clienteAspecto;
+        private readonly IServicioCodigo _clienteCodigo;
         private string _imagenPerfilSeleccionada;
         private readonly DispatcherTimer _timer;
         private int _tiempoRestante;
@@ -46,10 +46,10 @@ namespace LaOcaClient
         public CrearCuenta(ModoCuenta modo)
         {
             InitializeComponent();
-            _servicioCuenta = new ServicioCuentaClient();
-            _servicioJugador = new ServicioJugadorClient();
-            _servicioAspecto = new ServicioAspectoClient();
-            _servicioCodigo = new ServicioCodigoClient();
+            _clienteCuenta = new ServicioCuentaClient();
+            _clienteJugador = new ServicioJugadorClient();
+            _clienteAspecto = new ServicioAspectoClient();
+            _clienteCodigo = new ServicioCodigoClient();
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += Timer_Tick;
@@ -58,7 +58,7 @@ namespace LaOcaClient
 
             try
             {
-                _servicioAspecto.SincronizarAspectos(_ReferenciaToIdMap);
+                _clienteAspecto.SincronizarAspectos(_ReferenciaToIdMap);
             }
             catch (FaultException)
             {
@@ -135,7 +135,7 @@ namespace LaOcaClient
                     return;
                 }
 
-                _servicioCodigo.EnviarCodigoVerificacion(tbxCorreo.Text);
+                _clienteCodigo.EnviarCodigoVerificacion(tbxCorreo.Text);
                 MessageBox.Show(Properties.Resources.msgCodigoEnviadoCrearCuenta, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 ActualizarVentanaCrearCuenta();
                 IniciarTemporizador();
@@ -302,7 +302,7 @@ namespace LaOcaClient
                     return false;
                 }
 
-                if (_servicioCuenta.CorreoExiste(correo))
+                if (_clienteCuenta.CorreoExiste(correo))
                 {
                     MessageBox.Show(Properties.Resources.msgCorreoYaExiste, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
@@ -350,7 +350,7 @@ namespace LaOcaClient
 
             try
             {
-                bool esCodigoCorrecto = _servicioCodigo.VerificarCodigoCrearCuenta(correo, codigoIngresado);
+                bool esCodigoCorrecto = _clienteCodigo.VerificarCodigoCrearCuenta(correo, codigoIngresado);
                 if (esCodigoCorrecto)
                 {
                     MessageBox.Show(Properties.Resources.msgCodigoCorrecto, "", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -425,7 +425,7 @@ namespace LaOcaClient
 
             try
             {
-                _servicioCodigo.EnviarCodigoVerificacion(correo);
+                _clienteCodigo.EnviarCodigoVerificacion(correo);
                 MessageBox.Show(Properties.Resources.msgCodigoReenviado, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 IniciarTemporizador();
             }

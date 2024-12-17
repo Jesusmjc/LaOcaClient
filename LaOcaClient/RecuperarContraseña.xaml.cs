@@ -18,15 +18,15 @@ namespace LaOcaClient
 {
     public partial class RecuperarContraseña : Window
     {
-        private IServicioCuenta _servicioCuenta;
-        private IServicioCodigo _servicioCodigo;
+        private IServicioCuenta _clienteCuenta;
+        private IServicioCodigo _clienteCodigo;
         private IniciarSesion _iniciarSesion = new IniciarSesion();
 
         public RecuperarContraseña()
         {
             InitializeComponent();
-            _servicioCuenta = new ServicioCuentaClient();
-            _servicioCodigo = new ServicioCodigoClient();
+            _clienteCuenta = new ServicioCuentaClient();
+            _clienteCodigo = new ServicioCodigoClient();
         }
 
         private void BtnEnviarCodigoRestablecimiento(object sender, RoutedEventArgs e)
@@ -47,7 +47,7 @@ namespace LaOcaClient
 
             try
             {
-                _servicioCodigo.EnviarCodigoVerificacion(correo);
+                _clienteCodigo.EnviarCodigoVerificacion(correo);
                 MessageBox.Show(Properties.Resources.msgCodigoEnviado, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 ActualizarVentanaCodigoVerificacion();
             }
@@ -86,7 +86,7 @@ namespace LaOcaClient
 
             try
             {
-                int cuentaId = _servicioCodigo.VerificarCodigoRecuperarContraseña(correo, codigoIngresado);
+                int cuentaId = _clienteCodigo.VerificarCodigoRecuperarContraseña(correo, codigoIngresado);
 
                 if (cuentaId > 0)
                 {
@@ -156,7 +156,7 @@ namespace LaOcaClient
 
             try
             {
-                _servicioCuenta.ModificarContraseña(_idCuenta, Utilidad.HashearConSha256(nuevaContrasena));
+                _clienteCuenta.ModificarContraseña(_idCuenta, Utilidad.HashearConSha256(nuevaContrasena));
                 MessageBox.Show(Properties.Resources.msgContraseñaRestablecida, "", MessageBoxButton.OK, MessageBoxImage.Information);
                 IniciarSesion ventanaIniciarSesion = new IniciarSesion();
                 ventanaIniciarSesion.Show();

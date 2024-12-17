@@ -242,19 +242,6 @@ namespace LaOcaClient
             _ventanaIniciarSesion.ShowDialog();
         }
 
-        private void BtnSalir(object sender, RoutedEventArgs e)
-        {
-            if (SingletonJugador.Instance.Jugador.EsInvitado)
-            {
-                this.Close();
-                _ventanaIniciarSesion.ShowDialog();
-            }
-            else
-            {
-                CerrarSesion();
-            }
-        }
-
         public void RedirigirAlMenuPrincipal()
         {
             IniciarSesion ventanaIniciarSesion = new IniciarSesion();

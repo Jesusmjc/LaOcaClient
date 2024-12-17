@@ -32,7 +32,7 @@
                     <TextBox x:Name="tbxCorreoElectronico" Height="45" FontSize="16" BorderBrush="#FF9CCC65" BorderThickness="2" MaxLength="50"/>
                     <Label Content="{x:Static p:Resources.globalContraseña}" Foreground="White" FontSize="18" Margin="0,15,0,5"/>
                     <PasswordBox x:Name="pbContrasena" Height="45" FontSize="16" BorderBrush="#FF9CCC65" BorderThickness="2" MaxLength="16"/>
-                    <Button Content="{x:Static p:Resources.btnIniciarSesion}" Height="50" Width="250" Background="#FF81C784" Foreground="White" BorderBrush="#FF66BB6A" FontSize="18" FontWeight="Bold" Margin="0,30,0,10" HorizontalAlignment="Center" Click="BtnIniciarSesion"/>
+                    <Button Content="{x:Static p:Resources.btnIniciarSesion}" Height="50" Width="250" Background="#FF81C784" Foreground="White" BorderBrush="#FF66BB6A" FontSize="18" FontWeight="Bold" Margin="0,30,0,10" HorizontalAlignment="Center" Click="ValidarInicioSesion"/>
                     <Button Content="{x:Static p:Resources.btnOlvideMiContraseña}" Background="Transparent" Foreground="#FF90CAF9" BorderBrush="Transparent" FontWeight="Bold" HorizontalAlignment="Center" FontSize="14" Click="BtnOlvideMiContraseña"/>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15">

@@ -18,7 +18,7 @@ namespace LaOcaClient
 {
     public partial class CambiarContraseña : Window
     {
-        private readonly IServicioCuenta _servicioCuenta;
+        private readonly IServicioCuenta _clienteCuenta;
         private Cuenta _cuenta;
         private IniciarSesion _iniciarSesion = new IniciarSesion();
         private MenuPrincipal _menuPrincipal = new MenuPrincipal();
@@ -26,7 +26,7 @@ namespace LaOcaClient
         public CambiarContraseña(int idCuenta)
         {
             InitializeComponent();
-            _servicioCuenta = new ServicioCuentaClient();
+            _clienteCuenta = new ServicioCuentaClient();
             CargarDatosCuenta(idCuenta);
         }
 
@@ -34,7 +34,7 @@ namespace LaOcaClient
         {
             try
             {
-                _cuenta = _servicioCuenta.ObtenerCuentaPorId(idCuenta);
+                _cuenta = _clienteCuenta.ObtenerCuentaPorId(idCuenta);
 
                 if (_cuenta == null)
                 {
@@ -88,11 +88,11 @@ namespace LaOcaClient
 
             try
             {
-                bool esContraseñaCorrecta = _servicioCuenta.VerificarContraseñaActual(_cuenta.IdCuenta, Utilidad.HashearConSha256(contraseñaActual));
+                bool esContraseñaCorrecta = _clienteCuenta.VerificarContraseñaActual(_cuenta.IdCuenta, Utilidad.HashearConSha256(contraseñaActual));
                 if (esContraseñaCorrecta)
                 {
                     _cuenta.Contrasena = Utilidad.HashearConSha256(nuevaContraseña);
-                    _servicioCuenta.ModificarCuenta(_cuenta);
+                    _clienteCuenta.ModificarCuenta(_cuenta);
                     MessageBox.Show(Properties.Resources.msgContraseñaRestablecida, "", MessageBoxButton.OK, MessageBoxImage.Information);
                     CerrarSesion();
                 }

@@ -20,7 +20,7 @@ namespace LaOcaClient
 {
     public partial class Social : Window, IServicioActualizacionJugadoresEnLineaCallback
     {
-        public Sala ventanaSala;
+        public Sala VentanaSala;
         public bool EstaAbierta = true;
 
         private readonly ServicioActualizacionJugadoresEnLineaClient _clienteActualizacionJugadoresEnLinea;
@@ -49,7 +49,7 @@ namespace LaOcaClient
             InstanceContext contexto = new InstanceContext(this);
             _clienteActualizacionJugadoresEnLinea = new ServicioActualizacionJugadoresEnLineaClient(contexto);
             
-            this.ventanaSala = ventanaSala;
+            this.VentanaSala = ventanaSala;
             imgBuzon.Visibility = Visibility.Hidden;
 
             try

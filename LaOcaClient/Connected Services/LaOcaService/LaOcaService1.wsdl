@@ -212,6 +212,24 @@
   <wsdl:message name="IServicioPartida_AbandonarPartida_InputMessage">
     <wsdl:part name="parameters" element="tns:AbandonarPartida" />
   </wsdl:message>
+  <wsdl:message name="IServicioPartida_ReintentarGuardarEstadisticas_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReintentarGuardarEstadisticas" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPartida_ReintentarGuardarEstadisticas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReintentarGuardarEstadisticasResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPartida_FinalizarSinGuardarEstadisticas_InputMessage">
+    <wsdl:part name="parameters" element="tns:FinalizarSinGuardarEstadisticas" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPartida_FinalizarSinGuardarEstadisticas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FinalizarSinGuardarEstadisticasResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPartida_Ping_InputMessage">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPartida_Ping_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
   <wsdl:message name="IServicioPartida_MostrarNuevoJugadorEnTurno_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MostrarNuevoJugadorEnTurno" />
   </wsdl:message>
@@ -226,6 +244,15 @@
   </wsdl:message>
   <wsdl:message name="IServicioPartida_NotificarAbandonoJugador_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:NotificarAbandonoJugador" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPartida_MostrarMensajeError_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MostrarMensajeError" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPartida_MostrarOpcionesErrorBD_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MostrarOpcionesErrorBD" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPartida_MostrarMensajeExito_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MostrarMensajeExito" />
   </wsdl:message>
   <wsdl:message name="IServicioActualizacionJugadoresEnSala_AgregarCanalCallbackActualizacionJugadoresEnSala_InputMessage">
     <wsdl:part name="parameters" element="tns:AgregarCanalCallbackActualizacionJugadoresEnSala" />
@@ -331,6 +358,18 @@
   </wsdl:message>
   <wsdl:message name="IServicioCuenta_ObtenerRankingGlobal_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerRankingGlobalResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ProbarConexionConBD_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProbarConexionConBD" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ProbarConexionConBD_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProbarConexionConBDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ProbarConexionConServidor_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProbarConexionConServidor" />
+  </wsdl:message>
+  <wsdl:message name="IServicioCuenta_ProbarConexionConServidor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProbarConexionConServidorResponse" />
   </wsdl:message>
   <wsdl:message name="IServicioJugador_ModificarJugador_InputMessage">
     <wsdl:part name="parameters" element="tns:ModificarJugador" />
@@ -564,6 +603,18 @@
     <wsdl:operation name="AbandonarPartida">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioPartida/AbandonarPartida" message="tns:IServicioPartida_AbandonarPartida_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ReintentarGuardarEstadisticas">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPartida/ReintentarGuardarEstadisticas" message="tns:IServicioPartida_ReintentarGuardarEstadisticas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/ReintentarGuardarEstadisticasResponse" message="tns:IServicioPartida_ReintentarGuardarEstadisticas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FinalizarSinGuardarEstadisticas">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPartida/FinalizarSinGuardarEstadisticas" message="tns:IServicioPartida_FinalizarSinGuardarEstadisticas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/FinalizarSinGuardarEstadisticasResponse" message="tns:IServicioPartida_FinalizarSinGuardarEstadisticas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPartida/Ping" message="tns:IServicioPartida_Ping_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/PingResponse" message="tns:IServicioPartida_Ping_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="MostrarNuevoJugadorEnTurno">
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/MostrarNuevoJugadorEnTurno" message="tns:IServicioPartida_MostrarNuevoJugadorEnTurno_OutputCallbackMessage" />
     </wsdl:operation>
@@ -578,6 +629,15 @@
     </wsdl:operation>
     <wsdl:operation name="NotificarAbandonoJugador">
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/NotificarAbandonoJugador" message="tns:IServicioPartida_NotificarAbandonoJugador_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarMensajeError">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/MostrarMensajeError" message="tns:IServicioPartida_MostrarMensajeError_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarOpcionesErrorBD">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/MostrarOpcionesErrorBD" message="tns:IServicioPartida_MostrarOpcionesErrorBD_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarMensajeExito">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/MostrarMensajeExito" message="tns:IServicioPartida_MostrarMensajeExito_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IServicioActualizacionJugadoresEnSala">
@@ -655,6 +715,14 @@
     <wsdl:operation name="ObtenerRankingGlobal">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerRankingGlobal" message="tns:IServicioCuenta_ObtenerRankingGlobal_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ObtenerRankingGlobalResponse" message="tns:IServicioCuenta_ObtenerRankingGlobal_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ProbarConexionConBD">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ProbarConexionConBD" message="tns:IServicioCuenta_ProbarConexionConBD_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ProbarConexionConBDResponse" message="tns:IServicioCuenta_ProbarConexionConBD_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ProbarConexionConServidor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioCuenta/ProbarConexionConServidor" message="tns:IServicioCuenta_ProbarConexionConServidor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioCuenta/ProbarConexionConServidorResponse" message="tns:IServicioCuenta_ProbarConexionConServidor_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IServicioJugador">
@@ -926,6 +994,33 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="ReintentarGuardarEstadisticas">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPartida/ReintentarGuardarEstadisticas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinalizarSinGuardarEstadisticas">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPartida/FinalizarSinGuardarEstadisticas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPartida/Ping" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="MostrarNuevoJugadorEnTurno">
       <soap12:operation soapAction="http://tempuri.org/IServicioPartida/MostrarNuevoJugadorEnTurno" style="document" />
       <wsdl:output>
@@ -952,6 +1047,24 @@
     </wsdl:operation>
     <wsdl:operation name="NotificarAbandonoJugador">
       <soap12:operation soapAction="http://tempuri.org/IServicioPartida/NotificarAbandonoJugador" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarMensajeError">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPartida/MostrarMensajeError" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarOpcionesErrorBD">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPartida/MostrarOpcionesErrorBD" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarMensajeExito">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPartida/MostrarMensajeExito" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
@@ -1119,6 +1232,24 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerRankingGlobal">
       <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ObtenerRankingGlobal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProbarConexionConBD">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ProbarConexionConBD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProbarConexionConServidor">
+      <soap12:operation soapAction="http://tempuri.org/IServicioCuenta/ProbarConexionConServidor" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
