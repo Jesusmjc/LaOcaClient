@@ -27,6 +27,7 @@ namespace LaOcaClient
     {
         public LaOcaService.Sala SalaActual { get; set; }
         public ServicioActualizacionJugadoresEnSalaClient ClienteJugadoresEnSala {  get; set; }
+        public bool EstaAbierta = true;
 
         private InstanceContext _contexto;
         private LaOcaService.ServicioChatClient _clienteChat;
@@ -40,35 +41,56 @@ namespace LaOcaClient
 
         public Sala()
         {
-            InitializeComponent();
-            
-            PrepararSala();
-            MostrarPrimerJugador();
-            UnirseAlChat();
+            try
+            {
+                InitializeComponent();
+
+                PrepararSala();
+                MostrarPrimerJugador();
+                UnirseAlChat();
+            }
+            catch (RegresarAlMenuPrincipalException) 
+            {
+                RedirigirAlMenuPrincipal();   
+            }
         }
 
         public Sala(string nombreSala, string visibilidad)
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            PrepararSala();
-            CrearSala(nombreSala, visibilidad);
-            MostrarPrimerJugador();
-            UnirseAlChat();
+                PrepararSala();
+                CrearSala(nombreSala, visibilidad);
+                MostrarPrimerJugador();
+                UnirseAlChat();
+            }
+            catch (RegresarAlMenuPrincipalException)
+            {
+                RedirigirAlMenuPrincipal();
+            }
         }
 
         public Sala(LaOcaService.Sala sala)
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            this.SalaActual = sala;
-            lbNombreSala.Content = SalaActual.Nombre;
-            lbCodigoSala.Content = SalaActual.Codigo;
+                this.SalaActual = sala;
+                lbNombreSala.Content = SalaActual.Nombre;
+                lbCodigoSala.Content = SalaActual.Codigo;
 
-            PrepararSala();
-            MostrarJugadoresEnSala();
-            AgregarJugadorASala();
-            UnirseAlChat();
+                PrepararSala();
+                MostrarJugadoresEnSala();
+                AgregarJugadorASala();
+                UnirseAlChat();
+            }
+            catch (RegresarAlMenuPrincipalException)
+            {
+                RedirigirAlMenuPrincipal();
+            }
         }
 
         private void PrepararSala()
@@ -123,7 +145,7 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(this);
+                Utilidad.ManejarCommunicationException(_clienteSala);
             }
 
         }
@@ -185,7 +207,7 @@ namespace LaOcaClient
                 }
                 catch (CommunicationException)
                 {
-                    Utilidad.ManejarCommunicationException(this);
+                    Utilidad.ManejarCommunicationException(_clienteSala);
                 }
             } while (!esCodigoUnico);
 
@@ -207,7 +229,7 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(this);
+                Utilidad.ManejarCommunicationException(_clienteSala);
             }
             catch (Exception)
             {
@@ -227,7 +249,7 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(this);
+                Utilidad.ManejarCommunicationException(_clienteChat);
             }
             catch (Exception)
             {
@@ -262,7 +284,7 @@ namespace LaOcaClient
                     }
                     catch (CommunicationException)
                     {
-                        Utilidad.ManejarCommunicationException(this);
+                        Utilidad.ManejarCommunicationException(_clienteChat);
                     }
                 }
 
@@ -450,10 +472,14 @@ namespace LaOcaClient
         private void MostrarAmigos(object sender, RoutedEventArgs e)
         {
             Social ventanaAmigos = new Social(this);
-            this._ventanaSocial = ventanaAmigos;
+            _ventanaSocial = ventanaAmigos;
 
             this.Hide();
-            ventanaAmigos.ShowDialog();
+            if (ventanaAmigos.EstaAbierta)
+            {
+                ventanaAmigos.ShowDialog();
+            }
+            
             if (_ventanaEstaAbierta)
             {
                 this.Show();
@@ -473,6 +499,14 @@ namespace LaOcaClient
                     break;
                 }
             }
+        }
+
+        public void RedirigirAlMenuPrincipal()
+        {
+            IniciarSesion ventanaIniciarSesion = new IniciarSesion();
+            this.Close();
+            EstaAbierta = false;
+            ventanaIniciarSesion.Show();
         }
     }
 }

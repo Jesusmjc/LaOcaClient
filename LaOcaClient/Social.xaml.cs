@@ -23,11 +23,14 @@ namespace LaOcaClient
     /// </summary>
     public partial class Social : Window, IServicioActualizacionJugadoresEnLineaCallback
     {
+        public Sala ventanaSala;
+        public bool EstaAbierta = true;
+
         private readonly ServicioActualizacionJugadoresEnLineaClient _clienteActualizacionJugadoresEnLinea;
 
         private Dictionary<string, Amigo> _amigos = new Dictionary<string, Amigo>();
 
-        public Sala ventanaSala;
+        
 
         public Social()
         {
@@ -35,21 +38,15 @@ namespace LaOcaClient
 
             InstanceContext contexto = new InstanceContext(this);
             _clienteActualizacionJugadoresEnLinea = new ServicioActualizacionJugadoresEnLineaClient(contexto);
-
+   
             try
             {
-                _clienteActualizacionJugadoresEnLinea.AgregarCanalCallbackJugadoresEnLinea(SingletonJugador.Instance.Jugador.NombreUsuario);
+                MostrarAmigos();
             }
-            catch (TimeoutException)
+            catch (RegresarAlMenuPrincipalException)
             {
-                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+                RedirigirAlMenuPrincipal();
             }
-            catch (CommunicationException)
-            {
-                Utilidad.ManejarCommunicationException(this);
-            }
-
-            MostrarAmigos();
         }
 
         public Social(Sala ventanaSala)
@@ -58,15 +55,25 @@ namespace LaOcaClient
 
             InstanceContext contexto = new InstanceContext(this);
             _clienteActualizacionJugadoresEnLinea = new ServicioActualizacionJugadoresEnLineaClient(contexto);
+            
+            this.ventanaSala = ventanaSala;
+            imgBuzon.Visibility = Visibility.Hidden;
 
+            try
+            { 
+                MostrarAmigos();
+            }
+            catch (RegresarAlMenuPrincipalException)
+            {
+                RedirigirAlMenuPrincipal();
+            }
+        }
+
+        private void MostrarAmigos()
+        {
             try
             {
                 _clienteActualizacionJugadoresEnLinea.AgregarCanalCallbackJugadoresEnLinea(SingletonJugador.Instance.Jugador.NombreUsuario);
-
-                this.ventanaSala = ventanaSala;
-
-                MostrarAmigos();
-                imgBuzon.Visibility = Visibility.Hidden;
             }
             catch (TimeoutException)
             {
@@ -74,12 +81,9 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(this);
+                Utilidad.ManejarCommunicationException(_clienteActualizacionJugadoresEnLinea);
             }
-        }
 
-        private void MostrarAmigos()
-        {
             List<Jugador> amigos = RecuperarAmigos();
             Dictionary<string, Jugador> jugadoresConectados = RecuperarJugadoresConectados();
             List<Jugador> amigosConectados = new List<Jugador>();
@@ -129,9 +133,11 @@ namespace LaOcaClient
         {
             Dictionary<string, Jugador> jugadores = new Dictionary<string, Jugador>();
 
+            LaOcaService.ServicioJugadoresEnLineaClient clienteJugadoresEnLinea = new LaOcaService.ServicioJugadoresEnLineaClient();
+
             try
             {
-                LaOcaService.ServicioJugadoresEnLineaClient clienteJugadoresEnLinea = new LaOcaService.ServicioJugadoresEnLineaClient();
+                
                 Jugador[] jugadoresConectados = clienteJugadoresEnLinea.RecuperarJugadoresConectados();
 
                 foreach (Jugador jugador in jugadoresConectados)
@@ -145,7 +151,7 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(this);
+                Utilidad.ManejarCommunicationException(clienteJugadoresEnLinea);
             }
 
             return jugadores;
@@ -154,13 +160,11 @@ namespace LaOcaClient
         private List<Jugador> RecuperarAmigos()
         {
             List<Jugador> amigos = new List<Jugador>();
-
+            ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
+            ServicioJugadorClient clienteJugador = new ServicioJugadorClient();
             try
             {
-                ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
                 Amistad[] amistades = clienteAmistad.RecuperarAmistades(SingletonJugador.Instance.Jugador.IdJugador, EstadoAmistad.AMIGOS);
-
-                ServicioJugadorClient clienteJugador = new ServicioJugadorClient();
 
                 Jugador jugadorAmigo = new Jugador();
 
@@ -188,7 +192,7 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(this);
+                Utilidad.ManejarCommunicationException(clienteAmistad);
             }
 
             return amigos;
@@ -247,14 +251,18 @@ namespace LaOcaClient
         {
             Buzon ventanaBuzon = new Buzon();
             this.Close();
-            ventanaBuzon.ShowDialog();
+            if (ventanaBuzon.EstaAbierta)
+            {
+                ventanaBuzon.ShowDialog();
+            }
         }
 
         public void OcultarJugadorQueTerminoAmistad(int idJugadorQueTerminoAmistad)
         {
+            ServicioJugadorClient clienteJugador = new ServicioJugadorClient();
+
             try
             {
-                ServicioJugadorClient clienteJugador = new ServicioJugadorClient();
                 Jugador exAmigo = clienteJugador.ObtenerJugadorPorId(idJugadorQueTerminoAmistad);
 
                 Amigo entradaExAmigo = _amigos[exAmigo.NombreUsuario];
@@ -267,8 +275,16 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(this);
+                Utilidad.ManejarCommunicationException(clienteJugador);
             }
+        }
+
+        public void RedirigirAlMenuPrincipal()
+        {
+            IniciarSesion ventanaIniciarSesion = new IniciarSesion();
+            this.Close();
+            EstaAbierta = false;
+            ventanaIniciarSesion.Show();
         }
     }
 }

@@ -47,7 +47,10 @@ namespace LaOcaClient
         {
             Sala ventanaSala = new Sala(nombreSala, visibilidad);
             this.Close();
-            ventanaSala.ShowDialog();
+            if (ventanaSala.EstaAbierta)
+            {
+                ventanaSala.ShowDialog();
+            }
         }
 
         private void RegresarAVentanaAnterior(object sender, MouseButtonEventArgs e)

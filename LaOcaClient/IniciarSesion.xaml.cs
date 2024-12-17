@@ -131,6 +131,24 @@ namespace LaOcaClient
             catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+
+                try
+                {
+                    if (_clienteInicioSesion.State == CommunicationState.Faulted)
+                    {
+                        _clienteInicioSesion.Abort();
+                    }
+                    else
+                    {
+                        _clienteInicioSesion.Close();
+                    }
+                }
+                catch
+                {
+                    _clienteInicioSesion.Abort();
+                }
+
+                _clienteInicioSesion = new ServicioInicioSesionClient();
             }
         }
 

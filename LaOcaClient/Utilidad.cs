@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.ServiceModel;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -62,13 +63,27 @@ namespace LaOcaClient
             return esContrasenaValida;
         }
 
-        public static void ManejarCommunicationException(Window ventanaActual)
+        public static void ManejarCommunicationException(ICommunicationObject cliente)
         {
             MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
 
-            IniciarSesion ventanaIniciarSesion = new IniciarSesion();
-            ventanaActual.Close();
-            ventanaIniciarSesion.ShowDialog();
+            try
+            {
+                if (cliente.State == CommunicationState.Faulted)
+                {
+                    cliente.Abort();
+                }
+                else
+                {
+                    cliente.Close();
+                }
+            }
+            catch
+            {
+                cliente.Abort();
+            }
+
+            throw new RegresarAlMenuPrincipalException(Properties.Resources.msgComunnicationEx);
         }
     }
 
@@ -103,5 +118,10 @@ namespace LaOcaClient
                 ? FotoPerfilMap[idFotoPerfil]
                 : "../Recursos/icono_usuario.png";
         }
+    }
+
+    public class RegresarAlMenuPrincipalException : Exception
+    {
+        public RegresarAlMenuPrincipalException(string message) : base(message) { }
     }
 }

@@ -19,6 +19,8 @@ namespace LaOcaClient
 {
     public partial class Buzon : Window, IServicioBuzonCallback
     {
+        public bool EstaAbierta = true;
+
         private LaOcaService.ServicioSocialClient _clienteSocial;
 
         public Buzon()
@@ -29,22 +31,13 @@ namespace LaOcaClient
 
             _clienteSocial = new LaOcaService.ServicioSocialClient();
 
-            InstanceContext contexto = new InstanceContext(this);
-            LaOcaService.ServicioBuzonClient clienteBuzon = new LaOcaService.ServicioBuzonClient(contexto);
-
             try
             {
-                clienteBuzon.AgregarCanalCallbackBuzon(SingletonJugador.Instance.Jugador.NombreUsuario);
-
                 MostrarInvitacionesPendientes();
             }
-            catch (TimeoutException)
+            catch (RegresarAlMenuPrincipalException)
             {
-                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (CommunicationException)
-            {
-                Utilidad.ManejarCommunicationException(this);
+                RedirigirAlMenuPrincipal();
             }
         }
 
@@ -60,14 +53,30 @@ namespace LaOcaClient
 
         private void MostrarInvitacionesPendientes()
         {
-            List<InvitacionPartida> invitaciones = RecuperarInvitacionesDelServidor();
+            InstanceContext contexto = new InstanceContext(this);
+            LaOcaService.ServicioBuzonClient clienteBuzon = new LaOcaService.ServicioBuzonClient(contexto);
 
-            foreach (var invitacion in invitaciones)
+            try
             {
-                Peticion peticion = new Peticion(invitacion);
-                peticion.VentanaBuzon = this;
+                clienteBuzon.AgregarCanalCallbackBuzon(SingletonJugador.Instance.Jugador.NombreUsuario);
 
-                lbxPeticiones.Items.Add(peticion);
+                List<InvitacionPartida> invitaciones = RecuperarInvitacionesDelServidor();
+
+                foreach (var invitacion in invitaciones)
+                {
+                    Peticion peticion = new Peticion(invitacion);
+                    peticion.VentanaBuzon = this;
+
+                    lbxPeticiones.Items.Add(peticion);
+                }
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                Utilidad.ManejarCommunicationException(clienteBuzon);
             }
         }
 
@@ -94,7 +103,7 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(this);
+                Utilidad.ManejarCommunicationException(_clienteSocial);
             }
 
             return invitaciones;
@@ -104,7 +113,10 @@ namespace LaOcaClient
         {
             Social ventanaSocial = new Social();
             this.Close();
-            ventanaSocial.ShowDialog();
+            if (ventanaSocial.EstaAbierta)
+            {
+                ventanaSocial.ShowDialog();
+            } 
         }
 
         private void MostrarSolicitudesAmistad(object sender, RoutedEventArgs e)
@@ -114,9 +126,9 @@ namespace LaOcaClient
 
             lbxPeticiones.Items.Clear();
 
+            ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
             try
             {
-                ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
                 Amistad[] solicitudesDeAmistadDeJugador = clienteAmistad.RecuperarAmistades(SingletonJugador.Instance.Jugador.IdJugador, EstadoAmistad.SOLICITUD);
 
                 foreach (Amistad solicitudAmistad in solicitudesDeAmistadDeJugador)
@@ -137,7 +149,14 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(this);
+                try
+                {
+                    Utilidad.ManejarCommunicationException(clienteAmistad);
+                }
+                catch (RegresarAlMenuPrincipalException)
+                {
+                    RedirigirAlMenuPrincipal();
+                }
             }
         }
 
@@ -148,7 +167,22 @@ namespace LaOcaClient
 
             lbxPeticiones.Items.Clear();
 
-            MostrarInvitacionesPendientes();
+            try
+            {
+                MostrarInvitacionesPendientes();
+            }
+            catch (RegresarAlMenuPrincipalException)
+            {
+                RedirigirAlMenuPrincipal();
+            }
+        }
+
+        public void RedirigirAlMenuPrincipal()
+        {
+            IniciarSesion ventanaIniciarSesion = new IniciarSesion();
+            this.Close();
+            EstaAbierta = false;
+            ventanaIniciarSesion.Show();
         }
     }
 }

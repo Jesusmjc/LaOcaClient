@@ -54,41 +54,59 @@ namespace LaOcaClient
             {
                 try
                 {
-                    LaOcaService.ServicioRecuperarSalaClient clienteRecuperarSala = new LaOcaService.ServicioRecuperarSalaClient();
-                    salaObjetivo = clienteRecuperarSala.RecuperarSala(codigoSalaObjetivo);
-
-                    if (salaObjetivo.Jugadores.Count >= 1)
+                    salaObjetivo = RecuperarSalaDelServidor(codigoSalaObjetivo);
+                    if (salaObjetivo.Codigo != null)
                     {
-                        if (salaObjetivo.Jugadores.Count <= 3)
+                        if (salaObjetivo.Jugadores.Count >= 1)
                         {
-                            Sala ventanaNuevaSala = new Sala(salaObjetivo);
-                            this.Close();
-                            ventanaNuevaSala.ShowDialog();
+                            if (salaObjetivo.Jugadores.Count <= 3)
+                            {
+                                Sala ventanaNuevaSala = new Sala(salaObjetivo);
+                                this.Close();
+                                ventanaNuevaSala.ShowDialog();
+                            }
+                            else
+                            {
+                                MessageBox.Show(Properties.Resources.msgSalaLlena, Properties.Resources.tituloErrorSala, MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
                         }
                         else
                         {
-                            MessageBox.Show(Properties.Resources.msgSalaLlena, Properties.Resources.tituloErrorSala, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(Properties.Resources.msgErrorCodigoSala, Properties.Resources.tituloErrorSala, MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show(Properties.Resources.msgErrorCodigoSala, Properties.Resources.tituloErrorSala, MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    
                 }
-                catch (FaultException<SalaException> ex)
+                catch (RegresarAlMenuPrincipalException)
                 {
-                    MessageBox.Show(ex.Detail.Mensaje + "\n" + ex.Reason, Properties.Resources.tituloErrorSala, MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                catch (TimeoutException)
-                {
-                    MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                catch (CommunicationException)
-                {
-                    Utilidad.ManejarCommunicationException(this);
+                    RedirigirAlMenuPrincipal();
                 }
             }
+        }
+
+        private LaOcaService.Sala RecuperarSalaDelServidor(string codigoSalaObjetivo)
+        {
+            LaOcaService.ServicioRecuperarSalaClient clienteRecuperarSala = new LaOcaService.ServicioRecuperarSalaClient();
+
+            LaOcaService.Sala salaObjetivo = new LaOcaService.Sala();
+
+            try
+            {
+                salaObjetivo = clienteRecuperarSala.RecuperarSala(codigoSalaObjetivo);
+            }
+            catch (FaultException<SalaException> ex)
+            {
+                MessageBox.Show(ex.Detail.Mensaje + "\n" + ex.Reason, Properties.Resources.tituloErrorSala, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                Utilidad.ManejarCommunicationException(clienteRecuperarSala);
+            }
+
+            return salaObjetivo;
         }
 
         private void MostrarModoInvitado()
@@ -104,7 +122,10 @@ namespace LaOcaClient
         {
             Social ventanaSocial = new Social();
             this.Close();
-            ventanaSocial.ShowDialog();
+            if (ventanaSocial.EstaAbierta)
+            {
+                ventanaSocial.ShowDialog();
+            }
         }
 
         private void BtnVerEstadisticas_Click(object sender, RoutedEventArgs e)
@@ -141,6 +162,13 @@ namespace LaOcaClient
             IniciarSesion ventanaIniciarSesion = new IniciarSesion();
             this.Close();
             ventanaIniciarSesion.ShowDialog();
+        }
+
+        public void RedirigirAlMenuPrincipal()
+        {
+            IniciarSesion ventanaIniciarSesion = new IniciarSesion();
+            this.Close();
+            ventanaIniciarSesion.Show();
         }
     }
 }
