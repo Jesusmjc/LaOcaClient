@@ -2,15 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Windows;
 
 namespace LaOcaClient
 {
-    /// <summary>
-    /// Lógica de interacción para RankingGlobal.xaml
-    /// </summary>
     public partial class RankingGlobal : Window
     {
+        private IniciarSesion _ventanaIniciarSesion = new IniciarSesion();
+
         public RankingGlobal()
         {
             InitializeComponent();
@@ -32,16 +32,29 @@ namespace LaOcaClient
                     jugador.PartidasGanadas
                 }).Take(10).ToList();
 
-
                 dgRanking.ItemsSource = datosRanking;
             }
-            catch (Exception ex)
+            catch (FaultException)
             {
-                MessageBox.Show(Properties.Resources.msgErrorRanking, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _ventanaIniciarSesion.Show();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        private void BtnCerrar_Click(object sender, RoutedEventArgs e)
+        private void BtnCerrar(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

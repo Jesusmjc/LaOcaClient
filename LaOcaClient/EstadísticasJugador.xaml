@@ -15,17 +15,18 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="{x:Static p:Resources.globalMisEstadisticas}" FontSize="24" FontWeight="Bold" TextAlignment="Center" Grid.Row="0" Margin="10"/>
+        <TextBlock x:Name="tbckMisEstadisticas" Text="{x:Static p:Resources.globalMisEstadisticas}" FontSize="24" FontWeight="Bold" TextAlignment="Center" Grid.Row="0" Margin="10"/>
 
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Name="txtCasillasRecorridas" FontSize="16" TextAlignment="Center" Margin="5"/>
-            <TextBlock Name="txtPartidasGanadas" FontSize="16" TextAlignment="Center" Margin="5"/>
+            <TextBlock x:Name="tbckCasillasRecorridas" FontSize="16" TextAlignment="Center" Margin="5"/>
+            <TextBlock x:Name="tbckPartidasGanadas" FontSize="16" TextAlignment="Center" Margin="5"/>
         </StackPanel>
 
-        <Button Content="{x:Static p:Resources.btnGlobalRegresar}" Width="100" Height="30" Margin="10" Click="BtnCerrar_Click" Grid.Row="2" HorizontalAlignment="Center"/>
+        <Button Content="{x:Static p:Resources.btnGlobalRegresar}" Width="100" Height="30" Margin="10" Click="BtnCerrar" Grid.Row="2" HorizontalAlignment="Center"/>
     </Grid>
 </Window>

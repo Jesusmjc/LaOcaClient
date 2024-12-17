@@ -19,7 +19,9 @@ namespace LaOcaClient
     public partial class CambiarContraseña : Window
     {
         private readonly IServicioCuenta _servicioCuenta;
-        private Cuenta cuenta;
+        private Cuenta _cuenta;
+        private IniciarSesion _iniciarSesion = new IniciarSesion();
+        private MenuPrincipal _menuPrincipal = new MenuPrincipal();
 
         public CambiarContraseña(int idCuenta)
         {
@@ -32,35 +34,39 @@ namespace LaOcaClient
         {
             try
             {
-                cuenta = _servicioCuenta.ObtenerCuentaPorId(idCuenta);
-                if (cuenta == null)
+                _cuenta = _servicioCuenta.ObtenerCuentaPorId(idCuenta);
+
+                if (_cuenta == null)
                 {
                     MessageBox.Show(Properties.Resources.msgCuentaNoEncontrada, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
                     Close();
                 }
             }
-            catch (CommunicationException)
+            catch (FaultException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
-                Close();
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
-                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
-                Close();
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
             }
             catch (Exception)
             {
-                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
-                Close();
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        private void btnActualizarContraseña_Click(object sender, RoutedEventArgs e)
+        private void BtnActualizarContraseña(object sender, RoutedEventArgs e)
         {
-            string contraseñaActual = tbContraseñaActual.Password;
-            string nuevaContraseña = tbNuevaContraseña.Password;
-            string confirmarNuevaContraseña = tbConfirmarNuevaContraseña.Password;
+            string contraseñaActual = pbContraseñaActual.Password;
+            string nuevaContraseña = pbNuevaContraseña.Password;
+            string confirmarNuevaContraseña = pbConfirmarNuevaContraseña.Password;
 
             if (string.IsNullOrEmpty(contraseñaActual) || string.IsNullOrEmpty(nuevaContraseña) || string.IsNullOrEmpty(confirmarNuevaContraseña))
             {
@@ -82,11 +88,11 @@ namespace LaOcaClient
 
             try
             {
-                bool esContraseñaCorrecta = _servicioCuenta.VerificarContraseñaActual(cuenta.IdCuenta, Utilidad.HashearConSha256(contraseñaActual));
+                bool esContraseñaCorrecta = _servicioCuenta.VerificarContraseñaActual(_cuenta.IdCuenta, Utilidad.HashearConSha256(contraseñaActual));
                 if (esContraseñaCorrecta)
                 {
-                    cuenta.Contrasena = Utilidad.HashearConSha256(nuevaContraseña);
-                    _servicioCuenta.ModificarCuenta(cuenta);
+                    _cuenta.Contrasena = Utilidad.HashearConSha256(nuevaContraseña);
+                    _servicioCuenta.ModificarCuenta(_cuenta);
                     MessageBox.Show(Properties.Resources.msgContraseñaRestablecida, "", MessageBoxButton.OK, MessageBoxImage.Information);
                     CerrarSesion();
                 }
@@ -95,17 +101,23 @@ namespace LaOcaClient
                     MessageBox.Show(Properties.Resources.msgContraseñaActualIncorrecta, Properties.Resources.globalErrorValidacion, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (CommunicationException)
+            catch (FaultException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
-                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
             }
             catch (Exception)
             {
-                MessageBox.Show(Properties.Resources.globalErrorServidor, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -119,25 +131,64 @@ namespace LaOcaClient
             }
             catch (TimeoutException)
             {
-                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
             {
                 MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
             }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
             IniciarSesion ventanaIniciarSesion = new IniciarSesion();
             this.Close();
             ventanaIniciarSesion.ShowDialog();
         }
 
-        private void btnVolver_Click(object sender, RoutedEventArgs e)
+        private void BtnVolver(object sender, RoutedEventArgs e)
         {
-            int idCuenta = SingletonJugador.Instance.Jugador.IdCuenta;
-            int idJugador = SingletonJugador.Instance.Jugador.IdJugador;
-            CrearCuenta ventanaCrearCuenta = new CrearCuenta(ModoCuenta.Modificar, idCuenta, idJugador);
-            ventanaCrearCuenta.ActualizarVentanaModificar(ModoCuenta.Modificar);
-            ventanaCrearCuenta.Show();
-            this.Close();
+            try
+            {
+                LaOcaService.ServicioCuentaClient clienteCuenta = new LaOcaService.ServicioCuentaClient();
+
+                if (clienteCuenta.ProbarConexionConBD())
+                {
+                    int idCuenta = SingletonJugador.Instance.Jugador.IdCuenta;
+                    int idJugador = SingletonJugador.Instance.Jugador.IdJugador;
+                    CrearCuenta ventanaCrearCuenta = new CrearCuenta(ModoCuenta.Modificar, idCuenta, idJugador);
+                    ventanaCrearCuenta.ActualizarVentanaModificar(ModoCuenta.Modificar);
+                    ventanaCrearCuenta.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (FaultException)
+            {
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                _menuPrincipal.Show();
+                this.Close();
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _iniciarSesion.Show();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

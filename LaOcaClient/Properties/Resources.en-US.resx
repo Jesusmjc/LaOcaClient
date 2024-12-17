@@ -328,7 +328,7 @@
     <value>Please enter a valid password</value>
   </data>
   <data name="lbCaracteristicasCorreoValido" xml:space="preserve">
-    <value>The email is not valid. It must be a Gmail, Outlook or Hotmail email.</value>
+    <value>The email is invalid. It must contain a username with letters, numbers, periods, hyphens, or underscores with no consecutive or leading or trailing characters, followed by a valid domain and extension such as '.com', '.org', '.mx'.</value>
   </data>
   <data name="lbCaracteristicasContraseñaValida" xml:space="preserve">
     <value>The password does not meet the requirements. It must be between 8 and 16 characters, and include at least one uppercase letter, one lowercase letter, one number, and one special character.</value>
@@ -388,7 +388,7 @@
     <value>Sorry, an error occurred while modifying the player.</value>
   </data>
   <data name="msgCaracteristicasNombreUsuario" xml:space="preserve">
-    <value>The username must be at least 6 characters.</value>
+    <value>The player name is invalid. It must be between 6 and 12 characters, include letters, numbers, periods, hyphens, or underscores, not start or end with any special characters, and not contain consecutive special characters.</value>
   </data>
   <data name="msgCorreoYaExiste" xml:space="preserve">
     <value>The email is already registered by another account, please enter another one.</value>
@@ -628,7 +628,7 @@
     <value>Confirmation</value>
   </data>
   <data name="msgHaAbandonadoLaPartida" xml:space="preserve">
-    <value>has left the game.</value>
+    <value> has left the game.</value>
   </data>
   <data name="msgPartidaAbandonada" xml:space="preserve">
     <value>You have left the game. You will be redirected to the main menu.</value>
@@ -677,5 +677,44 @@
   </data>
   <data name="btnRegresarAlInicio" xml:space="preserve">
     <value>Return to main menu</value>
+  </data>
+  <data name="lbDesconectado" xml:space="preserve">
+    <value>Offline</value>
+  </data>
+  <data name="lbInvitado" xml:space="preserve">
+    <value>Guest</value>
+  </data>
+  <data name="lbTeInvitoAPartida" xml:space="preserve">
+    <value> has invited you to his game.</value>
+  </data>
+  <data name="lbQuiereAmistad" xml:space="preserve">
+    <value> wants to be your friend</value>
+  </data>
+  <data name="msgAhoraSonAmigos" xml:space="preserve">
+    <value>Now you are friends!</value>
+  </data>
+  <data name="tituloSolicitudAceptada" xml:space="preserve">
+    <value>Friend request accepted</value>
+  </data>
+  <data name="msgSolicitudRechazada" xml:space="preserve">
+    <value>You have rejected the friend request.</value>
+  </data>
+  <data name="tituloSolicitudRechazada" xml:space="preserve">
+    <value>Friend request rejected</value>
+  </data>
+  <data name="msgExcepcionGeneral" xml:space="preserve">
+    <value>Oops! Something went wrong, please come back later.</value>
+  </data>
+  <data name="tituloExcepcionGeneral" xml:space="preserve">
+    <value>Something went wrong</value>
+  </data>
+  <data name="msgErrorGuardarEstadisticas" xml:space="preserve">
+    <value>We were unable to save player statistics for the match due to a database issue. Would you like to retry saving statistics?</value>
+  </data>
+  <data name="msgEstadisticasGuardadas" xml:space="preserve">
+    <value>Statistics were saved successfully.</value>
+  </data>
+  <data name="globalTituloExito" xml:space="preserve">
+    <value>Success</value>
   </data>
 </root>

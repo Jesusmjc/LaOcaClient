@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using System.ServiceModel.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,13 +23,12 @@ namespace LaOcaClient
         public bool EstaAbierta = true;
 
         private LaOcaService.ServicioSocialClient _clienteSocial;
+        private IniciarSesion _iniciarSesion = new IniciarSesion();
 
         public Buzon()
         {
             InitializeComponent();
-
             btnInvitaciones.IsEnabled = false;
-
             _clienteSocial = new LaOcaService.ServicioSocialClient();
 
             try
@@ -123,7 +123,6 @@ namespace LaOcaClient
         {
             btnSolicitudes.IsEnabled = false;
             btnInvitaciones.IsEnabled = true;
-
             lbxPeticiones.Items.Clear();
 
             ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
@@ -164,7 +163,6 @@ namespace LaOcaClient
         {
             btnInvitaciones.IsEnabled = false;
             btnSolicitudes.IsEnabled = true;
-
             lbxPeticiones.Items.Clear();
 
             try

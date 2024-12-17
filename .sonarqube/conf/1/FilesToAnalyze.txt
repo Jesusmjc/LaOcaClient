@@ -1,8 +1,11 @@
 ﻿C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\App.xaml
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Buzon.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\EstadísticasJugador.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\RankingGlobal.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Victoria.xaml.cs
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\ConfiguracionSala.xaml.cs
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\IVentanaSala.cs
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Partida.xaml.cs
-C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\LaOcaPartida.xaml.cs
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Sala.xaml.cs
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\SingletonJugador.cs
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Social.xaml.cs
@@ -13,7 +16,6 @@ C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Utilidad.
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\VentanaCierreAutomatico.xaml.cs
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\RecuperarContraseña.xaml.cs
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\App.xaml.cs
-C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Chat.xaml.cs
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\CambiarContraseña.xaml.cs
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\CrearCuenta.xaml.cs
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\IniciarSesion.xaml.cs
@@ -27,6 +29,7 @@ C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\item1.xsd
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\item2.xsd
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\item3.xsd
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\item4.xsd
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\LaOcaClient.LaOcaService.Amistad.datasource
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\LaOcaClient.LaOcaService.Aspecto.datasource
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\LaOcaClient.LaOcaService.Cuenta.datasource
@@ -43,12 +46,13 @@ C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\configuration.svcinfo
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Connected Services\LaOcaService\Reference.svcmap
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Buzon.xaml
-C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Chat.xaml
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\CambiarContraseña.xaml
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\EstadísticasJugador.xaml
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\RankingGlobal.xaml
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Victoria.xaml
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\ConfiguracionSala.xaml
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\CrearCuenta.xaml
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\IniciarSesion.xaml
-C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\LaOcaPartida.xaml
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\MainWindow.xaml
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Partida.xaml
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Sala.xaml
@@ -77,3 +81,5 @@ C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Recursos\
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Recursos\buzon.png
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Recursos\icono_masopciones.png
 C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Recursos\TableroOcaActualizado.png
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Recursos\FondoLogin.jpg
+C:\Users\Carim\OneDrive\Documents\LaOcaCliente\LaOcaClient\LaOcaClient\Recursos\Dado.png

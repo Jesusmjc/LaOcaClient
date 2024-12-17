@@ -12,30 +12,29 @@ namespace LaOcaClient.UserControls
 {
     public partial class Amigo : UserControl
     {
-        public Jugador amigo;
-        public string estado;
-
+        public Jugador JugadorAmigo { get; set; }
+        public string Estado { get; set; }
         public Social VentanaSocial { get; set; }
 
         public Amigo(Jugador amigo, string estado, Social ventanaSocial)
         {
             InitializeComponent();
 
-            this.amigo = amigo;
-            this.estado = estado;
-            this.VentanaSocial = ventanaSocial;
+            JugadorAmigo = amigo;
+            Estado = estado;
+            VentanaSocial = ventanaSocial;
 
-            lbNombreAmigo.Content = amigo.NombreUsuario;
-            lbEstado.Content = estado;
+            lbNombreAmigo.Content = JugadorAmigo.NombreUsuario;
+            lbEstado.Content = Estado;
 
-            string rutaFotoPerfil = FotoPerfilUtils.ObtenerRutaFotoPerfil(amigo.IdFotoPerfil);
+            string rutaFotoPerfil = FotoPerfilUtils.ObtenerRutaFotoPerfil(JugadorAmigo.IdFotoPerfil);
             imgFotoPerfil.Source = new BitmapImage(new Uri(rutaFotoPerfil, UriKind.RelativeOrAbsolute));
 
             MenuItem opcionEliminarAmigo = new MenuItem { Header = Properties.Resources.lbEliminarAmigo };
             opcionEliminarAmigo.Click += (s, args) => EliminarAmigo();
             imgMasOpciones_MenuContextual.Items.Add(opcionEliminarAmigo);
 
-            if (VentanaSocial.ventanaSala != null)
+            if (VentanaSocial.VentanaSala != null)
             {
                 MenuItem opcionInvitarAPartida = new MenuItem { Header = Properties.Resources.lbInvitarAPartida };
                 opcionInvitarAPartida.Click += (s, args) => EnviarInvitacionAPartida();
@@ -53,12 +52,12 @@ namespace LaOcaClient.UserControls
             try
             {
                 LaOcaService.ServicioRecuperarSalaClient clienteSala = new LaOcaService.ServicioRecuperarSalaClient();
-                LaOcaService.Sala salaActual = clienteSala.RecuperarSala(VentanaSocial.ventanaSala.SalaActual.Codigo);
+                LaOcaService.Sala salaActual = clienteSala.RecuperarSala(VentanaSocial.VentanaSala.SalaActual.Codigo);
 
                 if (salaActual != null)
                 {
                     LaOcaService.ServicioSocialClient clienteSocial = new LaOcaService.ServicioSocialClient();
-                    bool resultado = clienteSocial.EnviarInvitacionAPartida(amigo.NombreUsuario, SingletonJugador.Instance.Jugador, VentanaSocial.ventanaSala.SalaActual.Codigo);
+                    bool resultado = clienteSocial.EnviarInvitacionAPartida(JugadorAmigo.NombreUsuario, SingletonJugador.Instance.Jugador, VentanaSocial.VentanaSala.SalaActual.Codigo);
 
                     if (resultado)
                     {
@@ -92,10 +91,10 @@ namespace LaOcaClient.UserControls
             try
             {
                 ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
-                Amistad amistad = clienteAmistad.RecuperarAmistad(SingletonJugador.Instance.Jugador.IdJugador, amigo.IdJugador);
+                Amistad amistad = clienteAmistad.RecuperarAmistad(SingletonJugador.Instance.Jugador.IdJugador, JugadorAmigo.IdJugador);
 
                 amistad.IdJugadorSolicitante = SingletonJugador.Instance.Jugador.IdJugador;
-                amistad.IdJugadorReceptor = amigo.IdJugador;
+                amistad.IdJugadorReceptor = JugadorAmigo.IdJugador;
 
                 clienteAmistad.ActualizarSolicitudAmistad(amistad, EstadoAmistad.RECHAZADA);
 

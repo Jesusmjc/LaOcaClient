@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace LaOcaClient
 {
-    public class Utilidad
+    public static class Utilidad
     {
         public static string HashearConSha256(string entrada)
         {
@@ -33,7 +33,9 @@ namespace LaOcaClient
         public static bool ValidarNombreJugador(string nombreJugador)
         {
             bool esNombreJugadorValido = false;
-            if (nombreJugador.Length >= 6)
+            string patronNombreJugador = @"^(?!.*[._-]{2})[a-zA-Z0-9](?:[a-zA-Z0-9._-]*[a-zA-Z0-9]){5,11}$";
+
+            if (Regex.IsMatch(nombreJugador, patronNombreJugador))
             {
                 esNombreJugadorValido = true;
             }
@@ -44,7 +46,7 @@ namespace LaOcaClient
         public static bool ValidarCorreoElectronico(string correoElectronico)
         {
             bool esCorreoValido = false;
-            if (Regex.IsMatch(correoElectronico, "^[a-zA-Z0-9\\-_]{5,20}@(gmail|outlook|hotmail)\\.com$"))
+            if (Regex.IsMatch(correoElectronico, @"^[a-zA-Z0-9](?:[a-zA-Z0-9._\-]*[a-zA-Z0-9])?@[a-zA-Z0-9](?:[a-zA-Z0-9\-]*[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,})+$"))
             {
                 esCorreoValido = true;
             }
@@ -97,7 +99,7 @@ namespace LaOcaClient
 
     public static class FotoPerfilUtils
     {
-        private static readonly Dictionary<int, string> FotoPerfilMap = new Dictionary<int, string>
+        private static readonly Dictionary<int, string> _FotoPerfilMap = new Dictionary<int, string>
         {
             {1, "pack://application:,,,/LaOcaClient;component/Recursos/OcaDeportista.jpg"},
             {2, "pack://application:,,,/LaOcaClient;component/Recursos/OcaDesastrosa.jpg"},
@@ -114,8 +116,8 @@ namespace LaOcaClient
         /// <returns>La ruta de la imagen correspondiente o una ruta predeterminada si no existe el ID.</returns>
         public static string ObtenerRutaFotoPerfil(int idFotoPerfil)
         {
-            return FotoPerfilMap.ContainsKey(idFotoPerfil)
-                ? FotoPerfilMap[idFotoPerfil]
+            return _FotoPerfilMap.ContainsKey(idFotoPerfil)
+                ? _FotoPerfilMap[idFotoPerfil]
                 : "../Recursos/icono_usuario.png";
         }
     }

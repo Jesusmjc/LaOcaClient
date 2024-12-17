@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LaOcaClient
 {
-    public interface IVentanaSala : IServicioActualizacionJugadoresEnSalaCallback
+    public interface IVentanaSala
     {
         LaOcaService.Sala SalaActual { set;  get; }
 

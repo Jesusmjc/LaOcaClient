@@ -9,8 +9,8 @@ namespace LaOcaClient
 {
     public class SingletonJugador
     {
-        private static SingletonJugador instance;
-        private static readonly object lockObject = new object();
+        private static SingletonJugador _Instance;
+        private static readonly object _LockObject = new object();
 
         public Jugador Jugador {  get; set; }
 
@@ -23,15 +23,15 @@ namespace LaOcaClient
         {
             get
             {
-                lock (lockObject)
+                lock (_LockObject)
                 {
-                    if (instance == null)
+                    if (_Instance == null)
                     {
-                        instance = new SingletonJugador();
+                        _Instance = new SingletonJugador();
                     }
                 }
 
-                return instance;
+                return _Instance;
             }
         }
     }

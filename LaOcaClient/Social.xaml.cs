@@ -18,9 +18,6 @@ using System.Windows.Shapes;
 
 namespace LaOcaClient
 {
-    /// <summary>
-    /// Interaction logic for Social.xaml
-    /// </summary>
     public partial class Social : Window, IServicioActualizacionJugadoresEnLineaCallback
     {
         public Sala ventanaSala;
@@ -30,12 +27,9 @@ namespace LaOcaClient
 
         private Dictionary<string, Amigo> _amigos = new Dictionary<string, Amigo>();
 
-        
-
         public Social()
         {
             InitializeComponent();
-
             InstanceContext contexto = new InstanceContext(this);
             _clienteActualizacionJugadoresEnLinea = new ServicioActualizacionJugadoresEnLineaClient(contexto);
    
@@ -52,7 +46,6 @@ namespace LaOcaClient
         public Social(Sala ventanaSala)
         {
             InitializeComponent();
-
             InstanceContext contexto = new InstanceContext(this);
             _clienteActualizacionJugadoresEnLinea = new ServicioActualizacionJugadoresEnLineaClient(contexto);
             
@@ -90,25 +83,22 @@ namespace LaOcaClient
 
             foreach (Jugador amigo in amigos)
             {
-                if (ventanaSala != null)
+                if (VentanaSala != null && (VentanaSala.SalaActual.Jugadores.ContainsKey(amigo.NombreUsuario)))
                 {
-                    if (ventanaSala.SalaActual.Jugadores.ContainsKey(amigo.NombreUsuario))
-                    {
-                        continue;
-                    }
+                    continue;
                 }
 
                 if (!jugadoresConectados.ContainsKey(amigo.NombreUsuario))
                 {
-                    if (ventanaSala != null)
+                    if (VentanaSala != null)
                     {
-                        Amigo entradaAmigo = new Amigo(amigo, "Desconectado", this);
+                        Amigo entradaAmigo = new Amigo(amigo, Properties.Resources.lbDesconectado, this);
                         _amigos.Add(amigo.NombreUsuario, entradaAmigo);
 
                         continue;
                     }
 
-                    MostrarAmigo(amigo, "Desconectado");             
+                    MostrarAmigo(amigo, Properties.Resources.lbDesconectado);
                 }
                 else
                 {
@@ -205,24 +195,24 @@ namespace LaOcaClient
                 Amigo amigoConectado = _amigos[nuevoJugadorConectado.NombreUsuario];
                 lbxListaAmigos.Items.Remove(amigoConectado);
 
-                amigoConectado.estado = Properties.Resources.lbEnLinea;
+                amigoConectado.Estado = Properties.Resources.lbEnLinea;
                 amigoConectado.lbEstado.Content = Properties.Resources.lbEnLinea;
 
                 lbxListaAmigos.Items.Insert(0, amigoConectado);
             } 
         }
 
-        public void OcultarJugadorDesconectado(Jugador jugadorDesconectado)
+        public void OcultarJugadorDesconectado(Jugador nombreJugadorDesconectado)
         {
-            if (_amigos.ContainsKey(jugadorDesconectado.NombreUsuario))
+            if (_amigos.ContainsKey(nombreJugadorDesconectado.NombreUsuario))
             {
-                Amigo amigoDesconectado = _amigos[jugadorDesconectado.NombreUsuario];
+                Amigo amigoDesconectado = _amigos[nombreJugadorDesconectado.NombreUsuario];
                 lbxListaAmigos.Items.Remove(amigoDesconectado);
 
-                if (ventanaSala == null)
+                if (VentanaSala == null)
                 {
-                    amigoDesconectado.estado = "Desconectado";
-                    amigoDesconectado.lbEstado.Content = "Desconectado";
+                    amigoDesconectado.Estado = Properties.Resources.lbDesconectado;
+                    amigoDesconectado.lbEstado.Content = Properties.Resources.lbDesconectado;
                     lbxListaAmigos.Items.Add(amigoDesconectado);
                 }
             }
@@ -230,7 +220,7 @@ namespace LaOcaClient
 
         private void RegresarAVentanaAnterior(object sender, MouseButtonEventArgs e)
         {
-            if (ventanaSala != null)
+            if (VentanaSala != null)
             {
                 this.Close();
             }

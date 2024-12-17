@@ -8,27 +8,21 @@
         Title="{x:Static p:Resources.lbRanking}"
         WindowStartupLocation="CenterScreen"
         Height="400" Width="600">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="{x:Static p:Resources.lbRanking}" FontSize="24" FontWeight="Bold" 
-                   TextAlignment="Center" Grid.Row="0" Margin="10"/>
+        <TextBlock Text="{x:Static p:Resources.lbRanking}" FontSize="24" FontWeight="Bold" TextAlignment="Center" Grid.Row="0" Margin="10"/>
 
-        <DataGrid x:Name="dgRanking" 
-          AutoGenerateColumns="False" 
-          CanUserAddRows="False" 
-          IsReadOnly="True" 
-          SelectionMode="Single"
-          CanUserResizeColumns="False"
-          CanUserResizeRows="False"
-          HeadersVisibility="Column">
+        <DataGrid x:Name="dgRanking" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" SelectionMode="Single" CanUserResizeColumns="False" CanUserResizeRows="False" HeadersVisibility="Column">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static p:Resources.colJugador}" Binding="{Binding Posicion}" Width="*"/>
                 <DataGridTextColumn Header="{x:Static p:Resources.colPosicion}" Binding="{Binding NombreUsuario}" Width="*"/>
@@ -37,7 +31,6 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="{x:Static p:Resources.btnGlobalRegresar}" Width="100" Height="30" Margin="10" Click="BtnCerrar_Click" 
-                Grid.Row="2" HorizontalAlignment="Center"/>
+        <Button Content="{x:Static p:Resources.btnGlobalRegresar}" Width="100" Height="30" Margin="10" Click="BtnCerrar" Grid.Row="2" HorizontalAlignment="Center"/>
     </Grid>
 </Window>

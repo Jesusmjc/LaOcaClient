@@ -18,6 +18,9 @@ namespace LaOcaClient
 {
     public partial class MenuPrincipal : Window
     {
+        private IniciarSesion _ventanaIniciarSesion = new IniciarSesion();
+        private LaOcaService.ServicioCuentaClient _clienteCuenta = new LaOcaService.ServicioCuentaClient();
+
         public MenuPrincipal()
         {
             InitializeComponent();
@@ -28,14 +31,38 @@ namespace LaOcaClient
             }
         }
 
-        private void BtnModificarCuenta_Click(object sender, RoutedEventArgs e)
+        private void BtnModificarCuenta(object sender, RoutedEventArgs e)
         {
-            int idCuenta = SingletonJugador.Instance.Jugador.IdCuenta;
-            int idJugador = SingletonJugador.Instance.Jugador.IdJugador;
-            CrearCuenta ventanaCrearCuenta = new CrearCuenta(ModoCuenta.Modificar, idCuenta, idJugador);
-            ventanaCrearCuenta.ActualizarVentanaModificar(ModoCuenta.Modificar);
-            ventanaCrearCuenta.Show();
-            this.Close();
+            try
+            {
+                if (_clienteCuenta.ProbarConexionConBD() && _clienteCuenta.ProbarConexionConServidor())
+                {
+                    int idCuenta = SingletonJugador.Instance.Jugador.IdCuenta;
+                    int idJugador = SingletonJugador.Instance.Jugador.IdJugador;
+                    CrearCuenta ventanaCrearCuenta = new CrearCuenta(ModoCuenta.Modificar, idCuenta, idJugador);
+                    ventanaCrearCuenta.ActualizarVentanaModificar(ModoCuenta.Modificar);
+                    ventanaCrearCuenta.Show();
+                    this.Close();
+                }
+            }
+            catch (FaultException)
+            {
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _ventanaIniciarSesion.Show();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void IrAConfiguracionSala(object sender, RoutedEventArgs e)
@@ -128,18 +155,65 @@ namespace LaOcaClient
             }
         }
 
-        private void BtnVerEstadisticas_Click(object sender, RoutedEventArgs e)
+        private void BtnVerEstadisticas(object sender, RoutedEventArgs e)
         {
-            int idJugador = SingletonJugador.Instance.Jugador.IdJugador;
-
-            var ventanaEstadisticas = new EstadisticasJugador(idJugador);
-            ventanaEstadisticas.ShowDialog();
+            try
+            {
+                if (_clienteCuenta.ProbarConexionConBD() && _clienteCuenta.ProbarConexionConServidor())
+                {
+                    int idJugador = SingletonJugador.Instance.Jugador.IdJugador;
+                    var ventanaEstadisticas = new EstadisticasJugador(idJugador);
+                    ventanaEstadisticas.ShowDialog();
+                }
+            }
+            catch (FaultException)
+            {
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _ventanaIniciarSesion.Show();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void BtnVerRankingGlobal_Click(object sender, RoutedEventArgs e)
+        private void BtnVerRankingGlobal(object sender, RoutedEventArgs e)
         {
-            var ventanaRanking = new RankingGlobal();
-            ventanaRanking.ShowDialog();
+            try
+            {
+                if (_clienteCuenta.ProbarConexionConBD() && _clienteCuenta.ProbarConexionConServidor())
+                {
+                    var ventanaRanking = new RankingGlobal();
+                    ventanaRanking.ShowDialog();
+                }
+            }
+            catch (FaultException)
+            {
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                _ventanaIniciarSesion.Show();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void CerrarSesion(object sender, RoutedEventArgs e)
@@ -149,6 +223,10 @@ namespace LaOcaClient
             try
             {
                 clienteJugadoresEnLinea.EliminarJugadorDesconectado(SingletonJugador.Instance.Jugador);
+            }
+            catch (FaultException)
+            {
+                MessageBox.Show(Properties.Resources.globalErrorBD, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException)
             {
@@ -161,7 +239,20 @@ namespace LaOcaClient
 
             IniciarSesion ventanaIniciarSesion = new IniciarSesion();
             this.Close();
-            ventanaIniciarSesion.ShowDialog();
+            _ventanaIniciarSesion.ShowDialog();
+        }
+
+        private void BtnSalir(object sender, RoutedEventArgs e)
+        {
+            if (SingletonJugador.Instance.Jugador.EsInvitado)
+            {
+                this.Close();
+                _ventanaIniciarSesion.ShowDialog();
+            }
+            else
+            {
+                CerrarSesion();
+            }
         }
 
         public void RedirigirAlMenuPrincipal()

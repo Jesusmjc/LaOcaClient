@@ -10,19 +10,20 @@ namespace LaOcaClient.UserControls
 {
     public partial class Peticion : UserControl
     {
-        public string codigoSala;
-        public Buzon VentanaBuzon;
+        public string CodigoSala { get; set; }
+
+        public Buzon VentanaBuzon { get; set; }
+
         private InvitacionPartida _invitacion;
         private Amistad _amistad;
-
         private bool _esInvitacion;
 
         public Peticion(InvitacionPartida invitacion)
         {
             InitializeComponent();
 
-            lbMensaje.Content = invitacion.JugadorEmisor.NombreUsuario + " te ha invitado a su partida.";
-            this.codigoSala = invitacion.CodigoSalaObjetivo;
+            lbMensaje.Content = invitacion.JugadorEmisor.NombreUsuario + Properties.Resources.lbTeInvitoAPartida;
+            this.CodigoSala = invitacion.CodigoSalaObjetivo;
             this._invitacion = invitacion;
             _esInvitacion = true;
 
@@ -38,19 +39,22 @@ namespace LaOcaClient.UserControls
 
             Jugador jugadorEmisor = clienteJugador.ObtenerJugadorPorId(amistad.IdJugadorSolicitante);
 
-            lbMensaje.Content = jugadorEmisor.NombreUsuario + " quiere ser tu amigo.";
+            lbMensaje.Content = jugadorEmisor.NombreUsuario + Properties.Resources.lbQuiereAmistad;
             _amistad = amistad;
             _esInvitacion = false;
+
+            string rutaFotoPerfil = FotoPerfilUtils.ObtenerRutaFotoPerfil(jugadorEmisor.IdFotoPerfil);
+            imgFotoPerfil.Source = new BitmapImage(new Uri(rutaFotoPerfil, UriKind.RelativeOrAbsolute));
         }
 
         private void UnirseASala()
         {
             try
             {
-                LaOcaService.Sala salaObjetivo = new LaOcaService.Sala();
+                LaOcaService.Sala salaObjetivo;
 
                 LaOcaService.ServicioRecuperarSalaClient clienteRecuperarSala = new LaOcaService.ServicioRecuperarSalaClient();
-                salaObjetivo = clienteRecuperarSala.RecuperarSala(codigoSala);
+                salaObjetivo = clienteRecuperarSala.RecuperarSala(CodigoSala);
 
                 if (salaObjetivo.Jugadores.Count >= 1)
                 {
@@ -93,11 +97,11 @@ namespace LaOcaClient.UserControls
 
                 if (estadoAmistad.Equals(EstadoAmistad.AMIGOS))
                 {
-                    MessageBox.Show("¡Ahora son amigos!", "Solicitud de amistad aceptada", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(Properties.Resources.msgAhoraSonAmigos, Properties.Resources.tituloSolicitudAceptada, MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Has rechazado la solicitud de amistad.", "Solicitud de amistad rechazada", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(Properties.Resources.msgSolicitudRechazada, Properties.Resources.tituloSolicitudRechazada, MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (FaultException<AmistadException> ex)
