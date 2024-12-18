@@ -85,7 +85,7 @@ namespace LaOcaClient
                 cliente.Abort();
             }
 
-            throw new RegresarAlMenuPrincipalException(Properties.Resources.msgComunnicationEx);
+            throw new RegresarAInicioSesionException(Properties.Resources.msgComunnicationEx);
         }
     }
 
@@ -120,10 +120,5 @@ namespace LaOcaClient
                 ? _FotoPerfilMap[idFotoPerfil]
                 : "../Recursos/icono_usuario.png";
         }
-    }
-
-    public class RegresarAlMenuPrincipalException : Exception
-    {
-        public RegresarAlMenuPrincipalException(string message) : base(message) { }
     }
 }

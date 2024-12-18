@@ -118,7 +118,7 @@ namespace LaOcaClient.UserControls
                 {
                     Utilidad.ManejarCommunicationException(_clienteAmistad);
                 }
-                catch (RegresarAlMenuPrincipalException)
+                catch (RegresarAInicioSesionException)
                 {
                     _ventanaPadre.RedirigirAInicioSesion();
                 }
@@ -254,7 +254,7 @@ namespace LaOcaClient.UserControls
                 {
                     Utilidad.ManejarCommunicationException(_clienteAmistad);
                 }
-                catch (RegresarAlMenuPrincipalException)
+                catch (RegresarAInicioSesionException)
                 {
                     _ventanaPadre.RedirigirAInicioSesion();
                 }
@@ -301,7 +301,7 @@ namespace LaOcaClient.UserControls
                 {
                     Utilidad.ManejarCommunicationException(_clienteAmistad);
                 }
-                catch (RegresarAlMenuPrincipalException)
+                catch (RegresarAInicioSesionException)
                 {
                     _ventanaPadre.RedirigirAInicioSesion();
                 }
@@ -325,7 +325,7 @@ namespace LaOcaClient.UserControls
                 {
                     Utilidad.ManejarCommunicationException(_ventanaPadre.ClienteJugadoresEnSala);
                 }
-                catch (RegresarAlMenuPrincipalException)
+                catch (RegresarAInicioSesionException)
                 {
                     _ventanaPadre.RedirigirAInicioSesion();
                 }
@@ -362,7 +362,7 @@ namespace LaOcaClient.UserControls
                 {
                     Utilidad.ManejarCommunicationException(_clienteAmistad);
                 }
-                catch (RegresarAlMenuPrincipalException)
+                catch (RegresarAInicioSesionException)
                 {
                     _ventanaPadre.RedirigirAInicioSesion();
                 }

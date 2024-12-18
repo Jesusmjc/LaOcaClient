@@ -23,7 +23,7 @@ namespace LaOcaClient
         public Sala VentanaSala;
         public bool EstaAbierta = true;
 
-        private readonly ServicioActualizacionJugadoresEnLineaClient _clienteActualizacionJugadoresEnLinea;
+        private ServicioActualizacionJugadoresEnLineaClient _clienteActualizacionJugadoresEnLinea;
 
         private Dictionary<string, Amigo> _amigos = new Dictionary<string, Amigo>();
 
@@ -37,7 +37,7 @@ namespace LaOcaClient
             {
                 MostrarAmigos();
             }
-            catch (RegresarAlMenuPrincipalException)
+            catch (RegresarAInicioSesionException)
             {
                 RedirigirAInicioSesion();
             }
@@ -56,7 +56,7 @@ namespace LaOcaClient
             { 
                 MostrarAmigos();
             }
-            catch (RegresarAlMenuPrincipalException)
+            catch (RegresarAInicioSesionException)
             {
                 RedirigirAInicioSesion();
             }
@@ -74,7 +74,9 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(_clienteActualizacionJugadoresEnLinea);
+                ManejadorExcepciones.ManejarCommunicationException(_clienteActualizacionJugadoresEnLinea);
+                MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                _clienteActualizacionJugadoresEnLinea = new ServicioActualizacionJugadoresEnLineaClient(new InstanceContext(this));
             }
 
             List<Jugador> amigos = RecuperarAmigos();
@@ -126,8 +128,7 @@ namespace LaOcaClient
             LaOcaService.ServicioJugadoresEnLineaClient clienteJugadoresEnLinea = new LaOcaService.ServicioJugadoresEnLineaClient();
 
             try
-            {
-                
+            {       
                 Jugador[] jugadoresConectados = clienteJugadoresEnLinea.RecuperarJugadoresConectados();
 
                 foreach (Jugador jugador in jugadoresConectados)
@@ -141,7 +142,9 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(clienteJugadoresEnLinea);
+                ManejadorExcepciones.ManejarCommunicationException(clienteJugadoresEnLinea);
+                MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                clienteJugadoresEnLinea = new ServicioJugadoresEnLineaClient();
             }
 
             return jugadores;
@@ -182,7 +185,16 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(clienteAmistad);
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(clienteAmistad);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    clienteAmistad = new ServicioAmistadClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    RedirigirAInicioSesion();
+                }
             }
 
             return amigos;
@@ -271,10 +283,9 @@ namespace LaOcaClient
 
         public void RedirigirAInicioSesion()
         {
-            IniciarSesion ventanaIniciarSesion = new IniciarSesion();
-            this.Close();
+            VentanaSala.RedirigirAInicioSesion();
             EstaAbierta = false;
-            ventanaIniciarSesion.Show();
+            this.Close();
         }
     }
 }

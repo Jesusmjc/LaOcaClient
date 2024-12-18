@@ -210,6 +210,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ReportarDesconexionInesperada">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nombreJugador" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="codigoSala" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportarDesconexionInesperadaResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="MostrarNuevoJugadorEnTurno">
     <xs:complexType>
       <xs:sequence>

@@ -230,6 +230,12 @@
   <wsdl:message name="IServicioPartida_Ping_OutputMessage">
     <wsdl:part name="parameters" element="tns:PingResponse" />
   </wsdl:message>
+  <wsdl:message name="IServicioPartida_ReportarDesconexionInesperada_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportarDesconexionInesperada" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPartida_ReportarDesconexionInesperada_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportarDesconexionInesperadaResponse" />
+  </wsdl:message>
   <wsdl:message name="IServicioPartida_MostrarNuevoJugadorEnTurno_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MostrarNuevoJugadorEnTurno" />
   </wsdl:message>
@@ -614,6 +620,10 @@
     <wsdl:operation name="Ping">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicioPartida/Ping" message="tns:IServicioPartida_Ping_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/PingResponse" message="tns:IServicioPartida_Ping_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportarDesconexionInesperada">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPartida/ReportarDesconexionInesperada" message="tns:IServicioPartida_ReportarDesconexionInesperada_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/ReportarDesconexionInesperadaResponse" message="tns:IServicioPartida_ReportarDesconexionInesperada_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="MostrarNuevoJugadorEnTurno">
       <wsdl:output wsaw:Action="http://tempuri.org/IServicioPartida/MostrarNuevoJugadorEnTurno" message="tns:IServicioPartida_MostrarNuevoJugadorEnTurno_OutputCallbackMessage" />
@@ -1014,6 +1024,15 @@
     </wsdl:operation>
     <wsdl:operation name="Ping">
       <soap12:operation soapAction="http://tempuri.org/IServicioPartida/Ping" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportarDesconexionInesperada">
+      <soap12:operation soapAction="http://tempuri.org/IServicioPartida/ReportarDesconexionInesperada" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

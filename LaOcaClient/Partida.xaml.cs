@@ -26,6 +26,7 @@ namespace LaOcaClient
         private Dictionary<string, int> _posicionesJugadores;
         private Dictionary<string, Image> _fichasPorJugador = new Dictionary<string, Image>();
         private Dictionary<string, int> _casillasRecorridasPorJugador = new Dictionary<string, int>();
+        private bool _desconexionNotificada = false;
 
         private List<int> _casillasDeOca = new List<int> { 1, 5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59 };
         private List<int> _casillasPuente = new List<int> { 6, 12 };
@@ -88,15 +89,43 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                NotificarServidorCaido();
+                ProcesarPerdidaConexion();
             }
             catch (TimeoutException)
             {
-                NotificarServidorCaido();
+                ProcesarPerdidaConexion();
             }
             catch (Exception)
             {
-                NotificarServidorCaido();
+                ProcesarPerdidaConexion();
+            }
+        }
+
+        private void ProcesarPerdidaConexion()
+        {
+            if (_desconexionNotificada) return; // Evitar duplicados
+            _desconexionNotificada = true;
+
+            _timerPing.Stop(); // Detener el ping
+            NotificarPerdidaConexionAlServidor(); // Avisar al servidor
+            Dispatcher.Invoke(() =>
+            {
+                MessageBox.Show("Perdiste la conexión a Internet. Serás redirigido al menú principal.",
+                                "Desconexión", MessageBoxButton.OK, MessageBoxImage.Warning);
+                _iniciarSesion.Show();
+                this.Close();
+            });
+        }
+
+        private void NotificarPerdidaConexionAlServidor()
+        {
+            try
+            {
+                _clientePartida.ReportarDesconexionInesperada(SingletonJugador.Instance.Jugador.NombreUsuario, SalaActual.Codigo);
+            }
+            catch (Exception)
+            {
+                // Silenciar errores adicionales
             }
         }
 

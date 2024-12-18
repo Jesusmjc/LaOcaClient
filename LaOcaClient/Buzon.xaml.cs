@@ -35,7 +35,7 @@ namespace LaOcaClient
             {
                 MostrarInvitacionesPendientes();
             }
-            catch (RegresarAlMenuPrincipalException)
+            catch (RegresarAInicioSesionException)
             {
                 RedirigirAInicioSesion();
             }
@@ -152,7 +152,7 @@ namespace LaOcaClient
                 {
                     Utilidad.ManejarCommunicationException(clienteAmistad);
                 }
-                catch (RegresarAlMenuPrincipalException)
+                catch (RegresarAInicioSesionException)
                 {
                     RedirigirAInicioSesion();
                 }
@@ -169,7 +169,7 @@ namespace LaOcaClient
             {
                 MostrarInvitacionesPendientes();
             }
-            catch (RegresarAlMenuPrincipalException)
+            catch (RegresarAInicioSesionException)
             {
                 RedirigirAInicioSesion();
             }

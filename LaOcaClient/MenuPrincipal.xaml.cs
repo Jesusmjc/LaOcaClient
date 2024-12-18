@@ -136,7 +136,7 @@ namespace LaOcaClient
                         }
                     }
                 }
-                catch (RegresarAlMenuPrincipalException)
+                catch (RegresarAInicioSesionException)
                 {
                     RedirigirAInicioSesion();
                 }
@@ -163,7 +163,9 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(clienteRecuperarSala);
+                ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                _clienteCuenta = new ServicioCuentaClient();
             }
 
             return salaObjetivo;

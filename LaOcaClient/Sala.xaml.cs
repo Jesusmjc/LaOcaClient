@@ -47,7 +47,7 @@ namespace LaOcaClient
                 MostrarPrimerJugador();
                 UnirseAlChat();
             }
-            catch (RegresarAlMenuPrincipalException) 
+            catch (RegresarAInicioSesionException) 
             {
                 RedirigirAInicioSesion();   
             }
@@ -64,7 +64,7 @@ namespace LaOcaClient
                 MostrarPrimerJugador();
                 UnirseAlChat();
             }
-            catch (RegresarAlMenuPrincipalException)
+            catch (RegresarAInicioSesionException)
             {
                 RedirigirAInicioSesion();
             }
@@ -85,7 +85,7 @@ namespace LaOcaClient
                 AgregarJugadorASala();
                 UnirseAlChat();
             }
-            catch (RegresarAlMenuPrincipalException)
+            catch (RegresarAInicioSesionException)
             {
                 RedirigirAInicioSesion();
             }
@@ -599,11 +599,11 @@ namespace LaOcaClient
             if (ventanaAmigos.EstaAbierta)
             {
                 ventanaAmigos.ShowDialog();
-            }
-            
-            if (_ventanaEstaAbierta)
-            {
-                this.Show();
+
+                if (_ventanaEstaAbierta)
+                {
+                    this.Show();
+                }
             }
         }
 
