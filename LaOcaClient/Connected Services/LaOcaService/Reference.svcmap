@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="c873047a-1d0c-4ee3-a35b-7044f2845db5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="d5d6db60-d9ac-4f84-980d-bd54ae04adeb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,16 +19,16 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.242.166:8082" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://192.168.40.251:8082/" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="item5.xsd" MetadataType="Schema" ID="746cee40-6cfb-45b9-9baa-70b5acc2adf1" SourceId="1" SourceUrl="http://192.168.242.166:8082/?xsd=xsd2" />
-    <MetadataFile FileName="item51.xsd" MetadataType="Schema" ID="bd81f601-617a-4d7a-95e0-5fc7072df0ea" SourceId="1" SourceUrl="http://192.168.242.166:8082/?xsd=xsd3" />
-    <MetadataFile FileName="item52.xsd" MetadataType="Schema" ID="78cea181-2851-4919-8f71-f44c1cd75d1c" SourceId="1" SourceUrl="http://192.168.242.166:8082/?xsd=xsd0" />
-    <MetadataFile FileName="item53.xsd" MetadataType="Schema" ID="311022a0-4608-474b-bb68-cae97b61342d" SourceId="1" SourceUrl="http://192.168.242.166:8082/?xsd=xsd1" />
-    <MetadataFile FileName="item1.disco" MetadataType="Disco" ID="ef2a217a-4a71-4629-83cf-3278b7f3c819" SourceId="1" SourceUrl="http://192.168.242.166:8082/?disco" />
-    <MetadataFile FileName="LaOcaService1.wsdl" MetadataType="Wsdl" ID="caee00d0-d022-47df-a7cc-c3e67392c21b" SourceId="1" SourceUrl="http://192.168.242.166:8082/?wsdl" />
-    <MetadataFile FileName="item54.xsd" MetadataType="Schema" ID="970b9f47-a88a-4a4d-a513-cac2e435f5bb" SourceId="1" SourceUrl="http://192.168.242.166:8082/?xsd=xsd4" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="38fd1896-2e97-43b1-a3aa-591941f29eca" SourceId="1" SourceUrl="http://192.168.40.251:8082/?xsd=xsd4" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="1e31bc61-3de9-44ce-adf9-927b78fbfb33" SourceId="1" SourceUrl="http://192.168.40.251:8082/?xsd=xsd2" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="3c110952-5730-48a0-996d-69abbbe38e91" SourceId="1" SourceUrl="http://192.168.40.251:8082/?xsd=xsd3" />
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="8036ba11-4598-4243-bcae-51515a8971af" SourceId="1" SourceUrl="http://192.168.40.251:8082/?xsd=xsd0" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="1fd6e4c7-ad75-412d-9fe3-c78e8a30f4fd" SourceId="1" SourceUrl="http://192.168.40.251:8082/?disco" />
+    <MetadataFile FileName="item4.xsd" MetadataType="Schema" ID="f801ec62-0d2b-4f82-886d-493d628459d5" SourceId="1" SourceUrl="http://192.168.40.251:8082/?xsd=xsd1" />
+    <MetadataFile FileName="LaOcaService.wsdl" MetadataType="Wsdl" ID="d5f824b2-0c40-402d-8ca6-3aea38d6dea2" SourceId="1" SourceUrl="http://192.168.40.251:8082/?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

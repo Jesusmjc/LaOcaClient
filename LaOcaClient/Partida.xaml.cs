@@ -15,9 +15,6 @@ namespace LaOcaClient
 {
     public partial class Partida : Window, IVentanaSala, IServicioPartidaCallback
     {
-        public LaOcaService.Sala SalaActual { get; set; }
-        public ServicioActualizacionJugadoresEnSalaClient ClienteJugadoresEnSala { get; set; }
-
         private IniciarSesion _iniciarSesion = new IniciarSesion();
         private LaOcaService.ServicioPartidaClient _clientePartida;
         private IServicioJugabilidad _servicioJugabilidad;
@@ -27,6 +24,8 @@ namespace LaOcaClient
         private Dictionary<string, Image> _fichasPorJugador = new Dictionary<string, Image>();
         private Dictionary<string, int> _casillasRecorridasPorJugador = new Dictionary<string, int>();
         private bool _desconexionNotificada = false;
+        private int _pocisionAnterior;
+        private System.Windows.Threading.DispatcherTimer _timerPing;
 
         private List<int> _casillasDeOca = new List<int> { 1, 5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59 };
         private List<int> _casillasPuente = new List<int> { 6, 12 };
@@ -38,10 +37,8 @@ namespace LaOcaClient
         private List<int> _casillasCalavera = new List<int> { 58 };
         private List<int> _casillasMeta = new List<int> { 63 };
 
-        private int _pocisionAnterior;
-
-        private System.Windows.Threading.DispatcherTimer _timerPing;
-        private bool CierreVoluntario = false;
+        public LaOcaService.Sala SalaActual { get; set; }
+        public ServicioActualizacionJugadoresEnSalaClient ClienteJugadoresEnSala { get; set; }
 
         private List<string> _fichasDisponibles = new List<string>
         {
@@ -103,16 +100,16 @@ namespace LaOcaClient
 
         private void ProcesarPerdidaConexion()
         {
-            if (_desconexionNotificada) return; // Evitar duplicados
+            if (_desconexionNotificada) return;
             _desconexionNotificada = true;
 
-            _timerPing.Stop(); // Detener el ping
-            NotificarPerdidaConexionAlServidor(); // Avisar al servidor
+            _timerPing.Stop();
+            NotificarPerdidaConexionAlServidor();
             Dispatcher.Invoke(() =>
             {
-                MessageBox.Show("Perdiste la conexión a Internet. Serás redirigido al menú principal.",
-                                "Desconexión", MessageBoxButton.OK, MessageBoxImage.Warning);
-                _iniciarSesion.Show();
+                MessageBox.Show("Perdiste la conexión a Internet. Serás redirigido al menú principal.", "Desconexión", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MenuPrincipal menuPrincipal = new MenuPrincipal();
+                menuPrincipal.Show();
                 this.Close();
             });
         }
@@ -125,16 +122,14 @@ namespace LaOcaClient
             }
             catch (Exception)
             {
-                // Silenciar errores adicionales
+                
             }
         }
 
         private void NotificarServidorCaido()
         {
             _timerPing.Stop();
-            MessageBox.Show(Properties.Resources.msgComunnicationEx,
-                            Properties.Resources.globalTituloError,
-                            MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
 
             foreach (var jugador in SalaActual.Jugadores.Values)
             {
@@ -1049,11 +1044,23 @@ namespace LaOcaClient
             }
         }
 
-        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        private async void BtnComprobarConexion_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                var jugadoresEnOrden = SalaActual.Partida.NombresDeJugadoresEnOrdenDeTurnos.ToList();
+                foreach (var jugador in jugadoresEnOrden)
+                {
+                    if (!jugador.Equals(SingletonJugador.Instance.Jugador.NombreUsuario))
+                    {
+                        await _clientePartida.NotificarMovimientoFichaAsync(0, jugador, SalaActual.Codigo);
+                    }
+                }
+            }
+            catch
+            {
 
-            base.OnClosing(e);
-            _timerPing.Stop();
+            }
         }
 
         public void MostrarMensajeExito(string mensaje)
