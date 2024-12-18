@@ -31,12 +31,14 @@
                 </StackPanel>
             </Grid>
         </Viewbox>
+        
+        <Button x:Name="btnComprobarConexion" Content="Comprobar Conexión" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="40" Margin="10" Click="BtnComprobarConexion_Click" />
 
         <Border Grid.Column="1" Background="#E6FFFFFF" Padding="20" Margin="10" CornerRadius="15">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="10" ShadowDepth="5" Opacity="0.5" Color="Gray"/>
             </Border.Effect>
-            
+
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
                     <Grid.RowDefinitions>
@@ -52,15 +54,15 @@
                     <Border Background="#FFF2F8E1" CornerRadius="10" Margin="10" Padding="5" Grid.Row="0" Grid.Column="0">
                         <Grid x:Name="gridJugador1" Height="140" Width="140"/>
                     </Border>
-                    
+
                     <Border Background="#FFF2F8E1" CornerRadius="10" Margin="10" Padding="5" Grid.Row="0" Grid.Column="1">
                         <Grid x:Name="gridJugador2" Height="140" Width="140"/>
                     </Border>
-                    
+
                     <Border Background="#FFF2F8E1" CornerRadius="10" Margin="10" Padding="5" Grid.Row="1" Grid.Column="0">
                         <Grid x:Name="gridJugador3" Height="140" Width="140"/>
                     </Border>
-                    
+
                     <Border Background="#FFF2F8E1" CornerRadius="10" Margin="10" Padding="5" Grid.Row="1" Grid.Column="1">
                         <Grid x:Name="gridJugador4" Height="140" Width="140"/>
                     </Border>
