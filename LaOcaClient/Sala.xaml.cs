@@ -141,17 +141,10 @@ namespace LaOcaClient
                 MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationException)
-            {
-                try
-                {
-                    ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
-                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
-                    _clienteSala = new ServicioSalaClient(new InstanceContext (this));
-                }
-                catch (RegresarAInicioSesionException)
-                {
-                    RedirigirAInicioSesion();
-                }
+        {
+                ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                _clienteSala = new ServicioSalaClient(new InstanceContext (this));
             }
             catch (Exception)
             {
@@ -217,16 +210,9 @@ namespace LaOcaClient
                 }
                 catch (CommunicationException)
                 {
-                    try
-                    {
-                        ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
-                        MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
-                        _clienteSala = new ServicioSalaClient(new InstanceContext(this));
-                    }
-                    catch (RegresarAInicioSesionException)
-                    {
-                        RedirigirAInicioSesion();
-                    }
+                    ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    _clienteSala = new ServicioSalaClient(new InstanceContext(this));
                 }
             } while (!esCodigoUnico);
 
@@ -248,16 +234,10 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                try
-                {
-                    ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
-                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
-                    _clienteSala = new ServicioSalaClient(new InstanceContext(this));
-                }
-                catch (RegresarAInicioSesionException)
-                {
-                    RedirigirAInicioSesion();
-                }
+
+                ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                _clienteSala = new ServicioSalaClient(new InstanceContext(this));
             }
             catch (Exception)
             {
@@ -277,16 +257,9 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                try
-                {
-                    ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
-                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
-                    _clienteChat = new ServicioChatClient(new InstanceContext(this));
-                }
-                catch (RegresarAInicioSesionException)
-                {
-                    RedirigirAInicioSesion();
-                }
+                ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                _clienteChat = new ServicioChatClient(new InstanceContext(this));
             }
             catch (Exception)
             {
@@ -585,6 +558,7 @@ namespace LaOcaClient
             MessageBox.Show(motivo, Properties.Resources.tituloExpulsadoSala, MessageBoxButton.OK, MessageBoxImage.Information);
             MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
             _ventanaSocial?.Close();
+            EstaAbierta = false;
             _ventanaEstaAbierta = false;
             this.Close();
             ventanaMenuPrincipal.ShowDialog();
@@ -600,7 +574,7 @@ namespace LaOcaClient
             {
                 ventanaAmigos.ShowDialog();
 
-                if (_ventanaEstaAbierta)
+                if (EstaAbierta)
                 {
                     this.Show();
                 }

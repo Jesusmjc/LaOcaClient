@@ -33,10 +33,10 @@ namespace LaOcaClient
 
     public partial class CrearCuenta : Window
     {
-        private readonly IServicioCuenta _clienteCuenta;
-        private readonly IServicioJugador _clienteJugador;
-        private readonly IServicioAspecto _clienteAspecto;
-        private readonly IServicioCodigo _clienteCodigo;
+        private ServicioCuentaClient _clienteCuenta;
+        private ServicioJugadorClient _clienteJugador;
+        private ServicioAspectoClient _clienteAspecto;
+        private ServicioCodigoClient _clienteCodigo;
         private string _imagenPerfilSeleccionada;
         private readonly DispatcherTimer _timer;
         private int _tiempoRestante;
@@ -70,7 +70,16 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(_clienteAspecto);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    _clienteAspecto = new ServicioAspectoClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    RedirigirAInicioSesion();
+                }
             }
             catch (Exception)
             {
@@ -150,9 +159,16 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
-                _iniciarSesion.Show();
-                this.Close();
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    _clienteCuenta = new ServicioCuentaClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    RedirigirAInicioSesion();
+                }
             }
             catch (Exception)
             {
@@ -219,9 +235,16 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
-                _iniciarSesion.Show();
-                this.Close();
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    _clienteCuenta = new ServicioCuentaClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    RedirigirAInicioSesion();
+                }
             }
             catch (Exception)
             {
@@ -320,9 +343,16 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
-                _iniciarSesion.Show();
-                this.Close();
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    _clienteCuenta = new ServicioCuentaClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    RedirigirAInicioSesion();
+                }
             }
             catch (Exception)
             {
@@ -409,9 +439,16 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
-                _iniciarSesion.Show();
-                this.Close();
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(_clienteCodigo);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    _clienteCodigo = new ServicioCodigoClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    RedirigirAInicioSesion();
+                }
             }
             catch (Exception)
             {
@@ -439,9 +476,16 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
-                _iniciarSesion.Show();
-                this.Close();
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(_clienteCodigo);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    _clienteCodigo = new ServicioCodigoClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    RedirigirAInicioSesion();
+                }
             }
             catch (Exception)
             {
@@ -634,9 +678,16 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
-                _iniciarSesion.Show();
-                this.Close();
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    _clienteCuenta = new ServicioCuentaClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    RedirigirAInicioSesion();
+                }
             }
             catch (Exception)
             {
@@ -662,9 +713,7 @@ namespace LaOcaClient
         {
             try
             {
-                LaOcaService.ServicioCuentaClient clienteCuenta = new ServicioCuentaClient();
-
-                if (clienteCuenta.ProbarConexionConBD())
+                if (_clienteCuenta.ProbarConexionConBD())
                 {
                     CambiarContraseña ventanaCambiarContraseña = new CambiarContraseña(SingletonJugador.Instance.Jugador.IdCuenta);
                     ventanaCambiarContraseña.Show();
@@ -685,14 +734,28 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
-                _iniciarSesion.Show();
-                this.Close();
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    _clienteCuenta = new ServicioCuentaClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    RedirigirAInicioSesion();
+                }
             }
             catch (Exception)
             {
                 MessageBox.Show(Properties.Resources.msgExcepcionGeneral, Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        public void RedirigirAInicioSesion()
+        {
+            IniciarSesion ventanaIniciarSesion = new IniciarSesion();
+            this.Close();
+            ventanaIniciarSesion.Show();
         }
     }
 }

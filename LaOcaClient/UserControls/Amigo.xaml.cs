@@ -49,9 +49,10 @@ namespace LaOcaClient.UserControls
 
         private void EnviarInvitacionAPartida()
         {
+            LaOcaService.ServicioRecuperarSalaClient clienteSala = new LaOcaService.ServicioRecuperarSalaClient();
+
             try
             {
-                LaOcaService.ServicioRecuperarSalaClient clienteSala = new LaOcaService.ServicioRecuperarSalaClient();
                 LaOcaService.Sala salaActual = clienteSala.RecuperarSala(VentanaSocial.VentanaSala.SalaActual.Codigo);
 
                 if (salaActual != null)
@@ -82,15 +83,25 @@ namespace LaOcaClient.UserControls
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(clienteSala);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    clienteSala = new ServicioRecuperarSalaClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    VentanaSocial.RedirigirAInicioSesion();
+                }
             }
         }
 
         private void EliminarAmigo()
         {
+            ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
+            
             try
-            {
-                ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
+            {    
                 Amistad amistad = clienteAmistad.RecuperarAmistad(SingletonJugador.Instance.Jugador.IdJugador, JugadorAmigo.IdJugador);
 
                 amistad.IdJugadorSolicitante = SingletonJugador.Instance.Jugador.IdJugador;
@@ -110,7 +121,16 @@ namespace LaOcaClient.UserControls
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(clienteAmistad);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    clienteAmistad = new ServicioAmistadClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    VentanaSocial.RedirigirAInicioSesion();
+                }
             }
         }
     }

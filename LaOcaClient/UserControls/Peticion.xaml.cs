@@ -37,23 +37,44 @@ namespace LaOcaClient.UserControls
 
             ServicioJugadorClient clienteJugador = new ServicioJugadorClient();
 
-            Jugador jugadorEmisor = clienteJugador.ObtenerJugadorPorId(amistad.IdJugadorSolicitante);
+            try
+            {
+                Jugador jugadorEmisor = clienteJugador.ObtenerJugadorPorId(amistad.IdJugadorSolicitante);
 
-            lbMensaje.Content = jugadorEmisor.NombreUsuario + Properties.Resources.lbQuiereAmistad;
-            _amistad = amistad;
-            _esInvitacion = false;
+                lbMensaje.Content = jugadorEmisor.NombreUsuario + Properties.Resources.lbQuiereAmistad;
+                _amistad = amistad;
+                _esInvitacion = false;
 
-            string rutaFotoPerfil = FotoPerfilUtils.ObtenerRutaFotoPerfil(jugadorEmisor.IdFotoPerfil);
-            imgFotoPerfil.Source = new BitmapImage(new Uri(rutaFotoPerfil, UriKind.RelativeOrAbsolute));
+                string rutaFotoPerfil = FotoPerfilUtils.ObtenerRutaFotoPerfil(jugadorEmisor.IdFotoPerfil);
+                imgFotoPerfil.Source = new BitmapImage(new Uri(rutaFotoPerfil, UriKind.RelativeOrAbsolute));
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show(Properties.Resources.msgTimeoutEx, Properties.Resources.tituloTimeOut, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationException)
+            {
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(clienteJugador);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    clienteJugador = new ServicioJugadorClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    VentanaBuzon.RedirigirAInicioSesion();
+                }
+            }
         }
 
         private void UnirseASala()
         {
+            LaOcaService.ServicioRecuperarSalaClient clienteRecuperarSala = new LaOcaService.ServicioRecuperarSalaClient();
+
             try
             {
                 LaOcaService.Sala salaObjetivo;
 
-                LaOcaService.ServicioRecuperarSalaClient clienteRecuperarSala = new LaOcaService.ServicioRecuperarSalaClient();
                 salaObjetivo = clienteRecuperarSala.RecuperarSala(CodigoSala);
 
                 if (salaObjetivo.Jugadores.Count >= 1)
@@ -83,15 +104,25 @@ namespace LaOcaClient.UserControls
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(clienteRecuperarSala);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    clienteRecuperarSala = new ServicioRecuperarSalaClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    VentanaBuzon.RedirigirAInicioSesion();
+                }
             }
         }
 
         private void ProcesarSolicitudAmistad(string estadoAmistad)
         {
+            ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
+
             try
-            {
-                ServicioAmistadClient clienteAmistad = new ServicioAmistadClient();
+            {    
                 clienteAmistad.ActualizarSolicitudAmistad(_amistad, estadoAmistad);
                 VentanaBuzon.lbxPeticiones.Items.Remove(this);
 
@@ -114,15 +145,25 @@ namespace LaOcaClient.UserControls
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(clienteAmistad);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    clienteAmistad = new ServicioAmistadClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    VentanaBuzon.RedirigirAInicioSesion();
+                }
             }
         }
 
         private void EliminarInvitacion()
         {
+            ServicioSocialClient clienteSocial = new ServicioSocialClient();
+
             try
             {
-                ServicioSocialClient clienteSocial = new ServicioSocialClient();
                 clienteSocial.EliminarInvitacionAPartida(SingletonJugador.Instance.Jugador.NombreUsuario, _invitacion);
                 VentanaBuzon.lbxPeticiones.Items.Remove(this);
             }
@@ -132,7 +173,16 @@ namespace LaOcaClient.UserControls
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(clienteSocial);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    clienteSocial = new ServicioSocialClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    VentanaBuzon.RedirigirAInicioSesion();
+                }
             }
         }
 

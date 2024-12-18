@@ -76,7 +76,10 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(clienteBuzon);
+                ManejadorExcepciones.ManejarCommunicationException(clienteBuzon);
+                MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                InstanceContext nuevoContexto = new InstanceContext(this);
+                clienteBuzon = new ServicioBuzonClient(nuevoContexto);
             }
         }
 
@@ -103,7 +106,9 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(_clienteSocial);
+                ManejadorExcepciones.ManejarCommunicationException(_clienteSocial);
+                MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                _clienteSocial = new ServicioSocialClient();
             }
 
             return invitaciones;
@@ -150,7 +155,9 @@ namespace LaOcaClient
             {
                 try
                 {
-                    Utilidad.ManejarCommunicationException(clienteAmistad);
+                    ManejadorExcepciones.ManejarCommunicationException(clienteAmistad);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    clienteAmistad = new ServicioAmistadClient();
                 }
                 catch (RegresarAInicioSesionException)
                 {

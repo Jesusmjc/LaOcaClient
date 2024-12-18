@@ -185,16 +185,9 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                try
-                {
-                    ManejadorExcepciones.ManejarCommunicationException(clienteAmistad);
-                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
-                    clienteAmistad = new ServicioAmistadClient();
-                }
-                catch (RegresarAInicioSesionException)
-                {
-                    RedirigirAInicioSesion();
-                }
+                ManejadorExcepciones.ManejarCommunicationException(clienteAmistad);
+                MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                clienteAmistad = new ServicioAmistadClient();
             }
 
             return amigos;
@@ -277,15 +270,34 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                Utilidad.ManejarCommunicationException(clienteJugador);
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(clienteJugador);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    clienteJugador = new ServicioJugadorClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    RedirigirAInicioSesion();
+                }
             }
         }
 
         public void RedirigirAInicioSesion()
         {
-            VentanaSala.RedirigirAInicioSesion();
-            EstaAbierta = false;
-            this.Close();
+            if (VentanaSala != null)
+            {
+                VentanaSala.RedirigirAInicioSesion();
+                EstaAbierta = false;
+                this.Close();
+            }
+            else
+            {
+                IniciarSesion ventanaIniciarSesion = new IniciarSesion();
+                this.Close();
+                EstaAbierta = false;
+                ventanaIniciarSesion.Show();
+            }   
         }
     }
 }

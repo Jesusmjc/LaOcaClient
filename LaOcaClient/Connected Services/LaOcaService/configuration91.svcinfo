@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="9E/N2a3QI6p870T0EAnGxbZQhSLunPVFzeievZUIGRo=">
+<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="TARJNN7rxTwjQHFQ9vWBp7wLaqnLhFa/Z26I++Sipp0=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="netTcpBinding" name="NetTcpBinding_IServicioChat">
       <properties>
@@ -1891,10 +1891,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="NetTcpBinding_IServicioChat" contract="LaOcaService.IServicioChat" bindingType="netTcpBinding" address="net.tcp://192.168.242.166:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioChat">
+    <endpoint name="NetTcpBinding_IServicioChat" contract="LaOcaService.IServicioChat" bindingType="netTcpBinding" address="net.tcp://localhost:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioChat">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.242.166:8083/LaOcaServicio</serializedValue>
+          <serializedValue>net.tcp://localhost:8083/LaOcaServicio</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1976,10 +1976,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IServicioInicioSesion" contract="LaOcaService.IServicioInicioSesion" bindingType="netTcpBinding" address="net.tcp://192.168.242.166:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioInicioSesion">
+    <endpoint name="NetTcpBinding_IServicioInicioSesion" contract="LaOcaService.IServicioInicioSesion" bindingType="netTcpBinding" address="net.tcp://localhost:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioInicioSesion">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.242.166:8083/LaOcaServicio</serializedValue>
+          <serializedValue>net.tcp://localhost:8083/LaOcaServicio</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -2061,10 +2061,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IServicioSala" contract="LaOcaService.IServicioSala" bindingType="netTcpBinding" address="net.tcp://192.168.242.166:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioSala">
+    <endpoint name="NetTcpBinding_IServicioSala" contract="LaOcaService.IServicioSala" bindingType="netTcpBinding" address="net.tcp://localhost:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioSala">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.242.166:8083/LaOcaServicio</serializedValue>
+          <serializedValue>net.tcp://localhost:8083/LaOcaServicio</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -2146,10 +2146,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IServicioRecuperarSala" contract="LaOcaService.IServicioRecuperarSala" bindingType="netTcpBinding" address="net.tcp://192.168.242.166:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioRecuperarSala">
+    <endpoint name="NetTcpBinding_IServicioRecuperarSala" contract="LaOcaService.IServicioRecuperarSala" bindingType="netTcpBinding" address="net.tcp://localhost:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioRecuperarSala">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.242.166:8083/LaOcaServicio</serializedValue>
+          <serializedValue>net.tcp://localhost:8083/LaOcaServicio</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -2231,10 +2231,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IServicioPartida" contract="LaOcaService.IServicioPartida" bindingType="netTcpBinding" address="net.tcp://192.168.242.166:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioPartida">
+    <endpoint name="NetTcpBinding_IServicioPartida" contract="LaOcaService.IServicioPartida" bindingType="netTcpBinding" address="net.tcp://localhost:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioPartida">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.242.166:8083/LaOcaServicio</serializedValue>
+          <serializedValue>net.tcp://localhost:8083/LaOcaServicio</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -2316,10 +2316,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IServicioActualizacionJugadoresEnSala" contract="LaOcaService.IServicioActualizacionJugadoresEnSala" bindingType="netTcpBinding" address="net.tcp://192.168.242.166:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioActualizacionJugadoresEnSala">
+    <endpoint name="NetTcpBinding_IServicioActualizacionJugadoresEnSala" contract="LaOcaService.IServicioActualizacionJugadoresEnSala" bindingType="netTcpBinding" address="net.tcp://localhost:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioActualizacionJugadoresEnSala">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.242.166:8083/LaOcaServicio</serializedValue>
+          <serializedValue>net.tcp://localhost:8083/LaOcaServicio</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -2401,10 +2401,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="endpointCrearCuenta" contract="LaOcaService.IServicioCuenta" bindingType="netTcpBinding" address="net.tcp://192.168.242.166:8083/LaOcaServicio" bindingConfiguration="endpointCrearCuenta">
+    <endpoint name="endpointCrearCuenta" contract="LaOcaService.IServicioCuenta" bindingType="netTcpBinding" address="net.tcp://localhost:8083/LaOcaServicio" bindingConfiguration="endpointCrearCuenta">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.242.166:8083/LaOcaServicio</serializedValue>
+          <serializedValue>net.tcp://localhost:8083/LaOcaServicio</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -2486,10 +2486,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IServicioJugador" contract="LaOcaService.IServicioJugador" bindingType="netTcpBinding" address="net.tcp://192.168.242.166:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioJugador">
+    <endpoint name="NetTcpBinding_IServicioJugador" contract="LaOcaService.IServicioJugador" bindingType="netTcpBinding" address="net.tcp://localhost:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioJugador">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.242.166:8083/LaOcaServicio</serializedValue>
+          <serializedValue>net.tcp://localhost:8083/LaOcaServicio</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -2571,10 +2571,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IServicioAspecto" contract="LaOcaService.IServicioAspecto" bindingType="netTcpBinding" address="net.tcp://192.168.242.166:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioAspecto">
+    <endpoint name="NetTcpBinding_IServicioAspecto" contract="LaOcaService.IServicioAspecto" bindingType="netTcpBinding" address="net.tcp://localhost:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioAspecto">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.242.166:8083/LaOcaServicio</serializedValue>
+          <serializedValue>net.tcp://localhost:8083/LaOcaServicio</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -2656,10 +2656,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IServicioCodigo" contract="LaOcaService.IServicioCodigo" bindingType="netTcpBinding" address="net.tcp://192.168.242.166:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioCodigo">
+    <endpoint name="NetTcpBinding_IServicioCodigo" contract="LaOcaService.IServicioCodigo" bindingType="netTcpBinding" address="net.tcp://localhost:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioCodigo">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.242.166:8083/LaOcaServicio</serializedValue>
+          <serializedValue>net.tcp://localhost:8083/LaOcaServicio</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -2741,10 +2741,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IServicioJugabilidad" contract="LaOcaService.IServicioJugabilidad" bindingType="netTcpBinding" address="net.tcp://192.168.242.166:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioJugabilidad">
+    <endpoint name="NetTcpBinding_IServicioJugabilidad" contract="LaOcaService.IServicioJugabilidad" bindingType="netTcpBinding" address="net.tcp://localhost:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioJugabilidad">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.242.166:8083/LaOcaServicio</serializedValue>
+          <serializedValue>net.tcp://localhost:8083/LaOcaServicio</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -2826,10 +2826,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IServicioJugadoresEnLinea" contract="LaOcaService.IServicioJugadoresEnLinea" bindingType="netTcpBinding" address="net.tcp://192.168.242.166:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioJugadoresEnLinea">
+    <endpoint name="NetTcpBinding_IServicioJugadoresEnLinea" contract="LaOcaService.IServicioJugadoresEnLinea" bindingType="netTcpBinding" address="net.tcp://localhost:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioJugadoresEnLinea">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.242.166:8083/LaOcaServicio</serializedValue>
+          <serializedValue>net.tcp://localhost:8083/LaOcaServicio</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -2911,10 +2911,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IServicioActualizacionJugadoresEnLinea" contract="LaOcaService.IServicioActualizacionJugadoresEnLinea" bindingType="netTcpBinding" address="net.tcp://192.168.242.166:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioActualizacionJugadoresEnLinea">
+    <endpoint name="NetTcpBinding_IServicioActualizacionJugadoresEnLinea" contract="LaOcaService.IServicioActualizacionJugadoresEnLinea" bindingType="netTcpBinding" address="net.tcp://localhost:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioActualizacionJugadoresEnLinea">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.242.166:8083/LaOcaServicio</serializedValue>
+          <serializedValue>net.tcp://localhost:8083/LaOcaServicio</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -2996,10 +2996,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IServicioSocial" contract="LaOcaService.IServicioSocial" bindingType="netTcpBinding" address="net.tcp://192.168.242.166:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioSocial">
+    <endpoint name="NetTcpBinding_IServicioSocial" contract="LaOcaService.IServicioSocial" bindingType="netTcpBinding" address="net.tcp://localhost:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioSocial">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.242.166:8083/LaOcaServicio</serializedValue>
+          <serializedValue>net.tcp://localhost:8083/LaOcaServicio</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -3081,10 +3081,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IServicioAmistad" contract="LaOcaService.IServicioAmistad" bindingType="netTcpBinding" address="net.tcp://192.168.242.166:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioAmistad">
+    <endpoint name="NetTcpBinding_IServicioAmistad" contract="LaOcaService.IServicioAmistad" bindingType="netTcpBinding" address="net.tcp://localhost:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioAmistad">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.242.166:8083/LaOcaServicio</serializedValue>
+          <serializedValue>net.tcp://localhost:8083/LaOcaServicio</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -3166,10 +3166,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IServicioBuzon" contract="LaOcaService.IServicioBuzon" bindingType="netTcpBinding" address="net.tcp://192.168.242.166:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioBuzon">
+    <endpoint name="NetTcpBinding_IServicioBuzon" contract="LaOcaService.IServicioBuzon" bindingType="netTcpBinding" address="net.tcp://localhost:8083/LaOcaServicio" bindingConfiguration="NetTcpBinding_IServicioBuzon">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.242.166:8083/LaOcaServicio</serializedValue>
+          <serializedValue>net.tcp://localhost:8083/LaOcaServicio</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

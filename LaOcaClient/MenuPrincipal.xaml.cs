@@ -163,9 +163,9 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                ManejadorExcepciones.ManejarCommunicationException(clienteRecuperarSala);
                 MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
-                _clienteCuenta = new ServicioCuentaClient();
+                clienteRecuperarSala = new ServicioRecuperarSalaClient();
             }
 
             return salaObjetivo;
@@ -211,9 +211,16 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
-                _ventanaIniciarSesion.Show();
-                this.Close();
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    _clienteCuenta = new ServicioCuentaClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    RedirigirAInicioSesion();
+                }
             }
             catch (Exception)
             {
@@ -241,9 +248,16 @@ namespace LaOcaClient
             }
             catch (CommunicationException)
             {
-                MessageBox.Show(Properties.Resources.msgComunnicationEx, Properties.Resources.globalTituloError, MessageBoxButton.OK, MessageBoxImage.Error);
-                _ventanaIniciarSesion.Show();
-                this.Close();
+                try
+                {
+                    ManejadorExcepciones.ManejarCommunicationException(_clienteCuenta);
+                    MessageBox.Show("No hay internet", Properties.Resources.tituloExcepcionGeneral, MessageBoxButton.OK, MessageBoxImage.Error);
+                    _clienteCuenta = new ServicioCuentaClient();
+                }
+                catch (RegresarAInicioSesionException)
+                {
+                    RedirigirAInicioSesion();
+                }
             }
             catch (Exception)
             {
